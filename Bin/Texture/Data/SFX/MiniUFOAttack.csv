@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,
+MiniUFOAttack,SFX/MiniUFOAttack.bmp,255/0/255,SFX/MiniUFOAttack.csv,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,
+MiniUFOAttack,0.5,1,,,,,,,,1/2/13/14,14/2/27/14,28/2/42/14,43/2/54/14,1/17/13/29/0/1,14/17/27/29,28/17/42/29,43/17/54/29

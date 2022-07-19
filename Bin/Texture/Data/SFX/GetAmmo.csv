@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,
+Items,UI/Items.bmp,255/0/255,SFX/GetAmmo.csv,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,
+GetAmmo,0.2,,,,,,,,,403/479/423/524,424/479/452/524,453/479/489/524,490/479/530/524,531/479/575/524,576/479/625/524

@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,,,,,,
+ShotgunSpace,SFX/ShotgunSpace.bmp,0/248/0,SFX/ShotgunSpace.csv,,,,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,,,,
+Shotgun_Fire,0.3,,,,,,-90,,0,1/529/68/601,1/453/68/528,1/365/68/452,1/274/68/364,1/181/68/273,1/86/68/180,69/506/132/601,69/421/132/505,69/343/132/420,69/274/132/342,69/210/132/273,69/154/132/209,69/124/132/153

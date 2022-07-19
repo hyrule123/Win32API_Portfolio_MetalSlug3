@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,,,,,,,,,,
+UI,UI/UI.bmp,0/248/0,Player/SlugOut.csv,,,,,,,,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,,,,,,,,
+SlugOut,0.7,2,,,,,,,,3/917/32/949,33/917/62/949,63/917/92/949,93/917/122/949,123/917/152/949,153/917/182/949,183/917/212/949,213/917/242/949,243/917/272/949,273/917/302/949,303/917/332/949,333/917/362/949,363/917/392/949,393/917/422/949,423/917/452/949,453/917/482/949,3/917/4/918

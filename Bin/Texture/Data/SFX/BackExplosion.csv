@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<UseHitEffectChannel>,,,,,,,,,,,,,,,,,,,
+BackExplosion,SFX/BackExplosion.bmp,255/0/255,SFX/BackExplosion.csv,,,,,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,,,,,
+BackExplosion,0.5,,,,,,10,,,0/0/50/66,51/0/101/66,102/0/152/66,153/0/203/66,204/0/254/66,255/0/305/66,306/0/356/66,357/0/407/66,408/0/458/66,459/0/509/66,510/0/560/66,561/0/611/66,612/0/662/66,663/0/713/66

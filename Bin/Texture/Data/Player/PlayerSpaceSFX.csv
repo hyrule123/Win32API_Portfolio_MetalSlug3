@@ -1,0 +1,10 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<UseHitEffectChannel>,,,,,,,,,,,
+PlayerSpaceSFX,Player/PlayerSpaceSFX.bmp,255/0/255,Player/PlayerSpaceSFX.csv,2,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,
+LeftBoost,0.2,,,,2,-9,-31,1,0.5,133/17/140/31,116/17/132/31/0/-1,102/17/115/31,83/17/101/31,65/17/82/31,49/17/64/31
+RightBoost,0.2,,,,3,9,-31,0,0.5,49/2/56/16,57/2/73/16,74/2/87/16,88/2/106/16,107/2/124/16,125/2/140/16
+TailBoostLeft2,0.2,1,,,1,-4,-25,1,0,56/51/65/68,66/51/81/68/2/0,82/51/94/68/1/0,95/51/109/68/2/0,,
+TailBooxtLeft1,0.2,1,,,1,-3,-26,1,0,1/51/10/68,11/51/26/68/3/0,27/51/39/68/1/0,40/51/52/68/1/0,,
+TailBoostMid,0.2,1,,,1,,-26,,0,2/2/10/19,11/2/23/19,24/2/34/19,35/2/45/19,,
+TailBoostRight1,0.2,1,,,1,1,-25,0,0,1/33/10/50,11/33/27/50/-3/0,28/33/39/50/-1/0,40/33/51/50/-1/0,,
+TailBoostRight2,0.2,1,,,1,3,-24,0,0,1/33/10/50,11/33/27/50/-3/0,28/33/39/50/-1/0,40/33/51/50/-1/0,,

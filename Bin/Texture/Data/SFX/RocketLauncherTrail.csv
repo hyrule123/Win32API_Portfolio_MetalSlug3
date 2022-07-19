@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,,,,,,,,,
+RocketLauncher,SFX/RocketLauncher.bmp,0/248/0,SFX/RocketLauncherTrail.csv,,,,,,,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,,,,,,,
+RocketTrail,0.5,,,,,,-5,,,1168/69/1184/92,1149/69/1165/92,1129/69/1146/92,1109/69/1126/92,1089/69/1106/92,1069/69/1086/92,1048/69/1066/92,1027/69/1045/92,1006/69/1024/92,985/69/1003/92,964/69/982/92,943/69/961/92,922/69/940/92,901/69/919/92,880/69/898/92,859/69/877/92

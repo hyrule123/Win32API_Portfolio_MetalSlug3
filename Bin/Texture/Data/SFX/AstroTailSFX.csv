@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<UseHitEffectChannel>,,,,,,,,,,
+AstroSlug,Player/AstroSlug.bmp,0/248/0,SFX/AstroTailSFX.csv,1,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,
+TailSFX,0.1,0,,,,-1,-5,,0,407/1042/423/1058,407/1059/423/1075/0/3,407/1076/423/1092/0/6,407/1093/423/1109/0/9,407/1110/423/1126/0/12

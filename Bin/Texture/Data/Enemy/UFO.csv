@@ -1,0 +1,5 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,,,,,,
+UFO,Enemy/UFO.bmp,255/0/255,Enemy/UFO.csv,1,,,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,,,,
+UFO_Main,0.5,1,,,0,,-30,,0,5/5/60/36,61/5/116/36,117/5/172/36,173/5/228/36,229/5/284/36,5/44/60/77,61/44/116/77,117/44/172/77,173/44/228/77,229/44/284/77,285/44/340/77,,
+UFO_Attack,0.5,,,,1,,-8,,0,5/84/43/117,44/84/78/117,79/84/107/117,108/84/128/117,129/84/155/117,156/84/179/117,8/122/38/195,39/122/79/195,80/122/126/195,127/122/137/195,138/122/148/195,149/122/159/195,160/122/168/195

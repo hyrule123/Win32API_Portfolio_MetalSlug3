@@ -92,7 +92,7 @@ namespace std
 //게임 해상도
 #define ORIGINAL_GAME_RES_WIDTH		304
 #define ORIGINAL_GAME_RES_HEIGHT	224
-#define SCREEN_SCALE				4
+#define SCREEN_SCALE				3
 
 #ifdef _DEBUG
 #define STATUS_SPACE		1.2f

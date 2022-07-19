@@ -1,0 +1,5 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,
+Rugname,Enemy/Rugname.bmp,248/156/170,Enemy/Rugname.csv,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,
+RugnameUpper,,1,,,,,,0,0,15/9/319/96,334/9/638/96,653/9/957/96
+RugnameLower,,1,,,,20,65,0,0,36/109/292/149,355/109/611/149,675/109/931/149

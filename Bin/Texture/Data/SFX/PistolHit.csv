@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,,,
+PistolHit,SFX/PistolHit.bmp,255/0/255,SFX/PistolHit.csv,,,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,,,
+PistolHit,0.2,,,,,,,0.5,0.5,0/0/16/16,17/0/33/16,34/0/50/16,51/0/67/16,68/0/84/16,85/0/101/16,102/0/118/16,119/0/135/16,136/0/152/16,153/0/169/16

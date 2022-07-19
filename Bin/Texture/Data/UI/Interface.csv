@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,,,
+UI,UI/UI.bmp,0/248/0,UI/Interface.csv,,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,
+P1Indicator,1,1,,,,,-60,,,3/818/33/849,34/818/64/849,65/818/95/849,96/818/126/849,127/818/157/849,158/818/188/849,189/818/219/849,220/818/250/849

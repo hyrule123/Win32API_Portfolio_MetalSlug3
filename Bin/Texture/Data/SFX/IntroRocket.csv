@@ -1,0 +1,18 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<EReactionChannel>,<<-- 1 = HitEffect,", 2 = InvincibleEffect",,,,,,,,,
+SpaceObjects,SFX/SpaceObjects.bmp,0/248/0,SFX/IntroRocket.csv,2,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,
+HeadLeftSideWhole,10,,,,3,,,1,,306/965/396/1121,,,,,
+HeadLeftSideUpper,10,,,,3,23,137,1,,397/965/478/1122/-9/1,,,,,
+HeadLeftSideLower,10,,,,0,23,137,1,,482/983/547/1122/0/-8,,,,,
+HeadRightSideWhole,10,,,,4,-29,142,0,,550/968/646/1122,,,,,
+HeadInner,10,,,,2,,30,,0,647/881/799/1122,,,,,
+BodyMiddle,10,,,,2,,-7,,0,799/843/951/1122,,,,,
+BodyLowest,10,,,,2,,9,,0,952/867/1084/1121,,,,,
+BodyUpperRingWhole,10,,,,2,,,,0,1084/945/1216/990,,,,,
+BodyUpperRingInner,10,,,,0,,,,0,1084/990/1216/1016,,,,,
+ThrustNormal,10,,,,1,,255,,0,1086/1094/1216/1121,,,,,
+ThrustOn,0.2,1,,,1,,255,,0,0/116/178/286,178/117/352/286/-1/-1,367/117/545/286,552/117/726/286,,
+SideThrustStart,0.2,,,,5,1,250,,0,1225/1576/1424/1592,1225/1450/1424/1474,1225/1329/1424/1369,1225/1204/1424/1256,,
+SideThrustMax,0.2,1,,,5,1,250,,0,1225/1073/1424/1141,1225/946/1424/1032/0/-4,1225/813/1424/923/0/-14,,,
+MiddleSeparateSFX,0.3,,,,5,,255,0.5,0.5,427/540/552/559,553/540/683/568,684/540/808/566,809/540/929/561,930/540/1046/553,1047/540/1153/545
+CapSeparateSFX,0.3,,,,5,-63,140,0,1,425/640/551/730,552/640/682/743,683/640/811/747,812/640/940/752,941/640/1067/757,1068/640/1193/763

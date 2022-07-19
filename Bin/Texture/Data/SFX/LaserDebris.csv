@@ -1,0 +1,4 @@
+﻿<TexName>,<FileName>,<ColorKey>,<ThisFileName>,<UseHitEffectChannel>,,,,,,,,,,,,,
+Laser,SFX/Laser.bmp,192/192/192,SFX/Laser.csv,5,,,,,,,,,,,,,
+<AnimSeqName>,<float PlayTime>,<int LoopFlag>,<bool Reverse>,<float PlayScale>,<int Layer>,<float OffsetX>,<float OffsetY>,<float PivotX>,<float PivotY>,"<FramePos(Start, End)>",<…>,,,,,,
+LaserDebris,0.5,,,,,,,,,2/155/18/169,2/140/18/154,2/125/18/139,2/110/18/124,2/95/18/109,2/80/18/94,2/65/18/79,2/50/18/64
