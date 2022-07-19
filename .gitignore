@@ -29,6 +29,7 @@ x86/
 bld/
 #[Bb]in/
 [Bb]inObj/
+BinObj/
 [Oo]bj/
 [Oo]ut/
 [Ll]og/
@@ -367,3 +368,4 @@ FodyWeavers.xsd
 #Personal Exclude
 *.zip
 _ETC/
+*.exe
