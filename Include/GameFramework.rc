@@ -1,0 +1,200 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어(대한민국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "icon1.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG_ANIMEDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        VERTGUIDE, 21
+        VERTGUIDE, 47
+        VERTGUIDE, 51
+        VERTGUIDE, 82
+        VERTGUIDE, 90
+        VERTGUIDE, 111
+        VERTGUIDE, 129
+        VERTGUIDE, 136
+        VERTGUIDE, 152
+        VERTGUIDE, 155
+        VERTGUIDE, 172
+        VERTGUIDE, 186
+        VERTGUIDE, 192
+        VERTGUIDE, 214
+        VERTGUIDE, 230
+        VERTGUIDE, 237
+        VERTGUIDE, 280
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 354
+        HORZGUIDE, 17
+        HORZGUIDE, 35
+        HORZGUIDE, 48
+        HORZGUIDE, 54
+        HORZGUIDE, 63
+        HORZGUIDE, 66
+        HORZGUIDE, 72
+        HORZGUIDE, 77
+        HORZGUIDE, 98
+        HORZGUIDE, 111
+        HORZGUIDE, 126
+        HORZGUIDE, 141
+        HORZGUIDE, 168
+        HORZGUIDE, 174
+        HORZGUIDE, 182
+        HORZGUIDE, 188
+        HORZGUIDE, 200
+        HORZGUIDE, 205
+        HORZGUIDE, 217
+        HORZGUIDE, 243
+        HORZGUIDE, 268
+        HORZGUIDE, 288
+        HORZGUIDE, 294
+        HORZGUIDE, 308
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_ANIMEDIT DIALOGEX 0, 0, 305, 361
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AnimationEditor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "QUIT",IDC_BUTTON_QUIT,237,340,43,14
+    LISTBOX         IDC_LIST_ANIMSEQ,21,126,90,74,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Load .CSV File",IDC_BUTTON_LOADCSV,129,34,75,29
+    CTEXT           "< Anim Seq >",IDC_STATIC,21,117,90,9
+    LISTBOX         IDC_LIST_SPRITE_FRAME,129,126,43,74,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "< Sprite Info >",IDC_STATIC,122,117,61,9
+    EDITTEXT        IDC_EDIT_FRAME_STARTX,186,124,44,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_FRAME_STARTY,237,124,43,12,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "EndX",IDC_STATIC,186,143,44,13
+    EDITTEXT        IDC_EDIT_FRAME_ENDX,186,156,44,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_FRAME_ENDY,237,156,43,12,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "StartX",IDC_STATIC,180,111,50,13
+    CTEXT           "EndY",IDC_STATIC,237,143,43,13
+    CTEXT           "StartY",IDC_STATIC,237,111,43,13
+    PUSHBUTTON      "PLAY",IDC_BUTTON_PLAY,237,294,43,14
+    PUSHBUTTON      "CLEAR",IDC_BUTTON_CLEARLIST,237,317,43,14,NOT WS_TABSTOP
+    CTEXT           "< Texture Name >",IDC_STATIC,21,18,61,8
+    LISTBOX         IDC_LIST_TEXTURENAME,21,35,90,63,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "OffsetX",IDC_STATIC,186,174,44,13
+    EDITTEXT        IDC_EDIT_FRAME_OFFSETX,186,188,44,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_FRAME_OFFSETY,237,188,43,12,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "OffSetY",IDC_STATIC,237,174,43,13
+    EDITTEXT        IDC_EDIT_OFFSETX,136,268,43,14,ES_AUTOHSCROLL
+    CONTROL         "Reverse",IDC_CHECK_REVERSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,237,243,43,10
+    LISTBOX         IDC_LIST_PLAYLIST,21,243,90,65,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "< Play List >",IDC_STATIC,21,233,90,9
+    CTEXT           "OffsetX",IDC_STATIC,136,260,43,8
+    EDITTEXT        IDC_EDIT_PLAYTIME,136,243,43,14,ES_AUTOHSCROLL
+    CTEXT           "PlayTime",IDC_STATIC,136,235,43,8
+    EDITTEXT        IDC_EDIT_OFFSETY,187,268,43,14,ES_AUTOHSCROLL
+    CTEXT           "OffsetY",IDC_STATIC,187,260,43,8
+    EDITTEXT        IDC_EDIT_PLAYSCALE,187,243,43,14,ES_AUTOHSCROLL
+    CTEXT           "PlayScale",IDC_STATIC,187,235,43,8
+    PUSHBUTTON      "Add PlayList",IDC_BUTTON_ADDPLAYLIST,37,205,61,24
+    EDITTEXT        IDC_EDIT_LAYER,187,316,43,14,ES_AUTOHSCROLL
+    CTEXT           "Layer",IDC_STATIC,187,308,43,8
+    PUSHBUTTON      "SET",IDC_BUTTON_INFOVALUESET,237,268,43,14
+    PUSHBUTTON      "RESET",IDC_BUTTON_RESET,214,69,66,29
+    PUSHBUTTON      "ReLoad Current",IDC_BUTTON_RELOADCSV,129,69,75,29
+    EDITTEXT        IDC_EDIT_PIVOTX,136,292,43,14,ES_AUTOHSCROLL
+    CTEXT           "PivotX",IDC_STATIC,136,284,43,8
+    EDITTEXT        IDC_EDIT_PIVOTY,187,292,43,14,ES_AUTOHSCROLL
+    CTEXT           "PivotY",IDC_STATIC,187,284,43,8
+    EDITTEXT        IDC_EDIT_LOOPFLAG,136,316,43,14,ES_AUTOHSCROLL
+    CTEXT           "LoopFlag",IDC_STATIC,136,308,43,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG_ANIMEDIT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // 한국어(대한민국) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

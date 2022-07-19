@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01. GameManager">
+      <UniqueIdentifier>{b55817c6-ed32-46f5-bdc6-6ed6d2528486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\01. Timer">
+      <UniqueIdentifier>{8eacb0d9-11fb-4941-bbfc-891d2acbe507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene">
+      <UniqueIdentifier>{59b62884-5c60-4584-bc96-56f9469e2625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\02. RefCount, SharedPtr">
+      <UniqueIdentifier>{2871ddfc-7f12-4fe8-a4c9-982dd517e9ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\03. Input">
+      <UniqueIdentifier>{976a6640-0c35-4032-a0e5-8db3633f5bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\04. Path">
+      <UniqueIdentifier>{3b5dfb27-1b15-459c-85c8-bd4c103aaa82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\01. Resource">
+      <UniqueIdentifier>{5fcd0392-bee7-41f4-b9f8-ff66e7f15f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Animation">
+      <UniqueIdentifier>{48bfdd5d-3e04-46b5-88a3-193425b5416d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\02. Camera">
+      <UniqueIdentifier>{aed5d430-51e7-4616-a68f-ab22730efbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Collision">
+      <UniqueIdentifier>{56ae81ad-d292-4e73-9f13-07a2417fee4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Collision\01. Collider">
+      <UniqueIdentifier>{db223128-a56c-43fd-9098-1326e3acbd14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\03. Collision">
+      <UniqueIdentifier>{edd969fe-f18f-4801-9667-ae592f8da40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. UI">
+      <UniqueIdentifier>{0932d86a-e042-4cee-a4fc-7c4a00f3abce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Resource">
+      <UniqueIdentifier>{6fa43765-66df-4ec5-94d7-7804b672e72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Resource\01. Texture">
+      <UniqueIdentifier>{6d485a01-1492-4a43-a173-c6dd7e154687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Resource\02. Animation">
+      <UniqueIdentifier>{ad411654-0b90-454a-bf0c-8ab8396adaf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Resource\03. Sound">
+      <UniqueIdentifier>{539b51fa-d34b-4d7a-90f4-5d1353185506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\00. Output">
+      <UniqueIdentifier>{97fafb2d-d1db-444b-bc49-08cc4d0d6504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject">
+      <UniqueIdentifier>{9542ee83-84dc-452b-ba11-6fa7c4550143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character">
+      <UniqueIdentifier>{06403be3-3a1a-4e19-b513-d6d4ef8f4c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\03. BackGround">
+      <UniqueIdentifier>{97c7d08d-02fd-417e-b979-8b08c1f0cd4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\04. Effect">
+      <UniqueIdentifier>{0fb1ac6f-d69f-4dc0-beef-a0561cf6928f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Resource\04. Font">
+      <UniqueIdentifier>{8bcbcafc-acda-4f67-a9a0-09e5811e993a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\99. SceneEdit">
+      <UniqueIdentifier>{d026faf8-73c4-45bc-a276-afb55c74e75d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\01. Player">
+      <UniqueIdentifier>{b4f57ea9-ae92-46b2-aead-2d819a67f8c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\05. CSV Editor">
+      <UniqueIdentifier>{e539c528-9643-4d9c-94e7-d9c8957991c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\99. Edit">
+      <UniqueIdentifier>{675d1a4c-21bc-4be4-832a-8072dccb97b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\02. Projectiles">
+      <UniqueIdentifier>{d2986586-1ebd-487c-ba0c-ee320e4627d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\04. Effect\00. Effect">
+      <UniqueIdentifier>{2c2a28f5-5855-42b9-92c7-6397e03562b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\05. Intro">
+      <UniqueIdentifier>{58b5bdb4-d7b3-4c55-ad3e-aa2fed1b5759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\04. Effect\01. Just Play">
+      <UniqueIdentifier>{89ec3f9b-e083-4afd-9ef4-59c1bd73184e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. UI\00. WindowOutput">
+      <UniqueIdentifier>{10fb5782-1c65-48cb-a43b-5fbf589f8f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. UI\02. WidgetWindow">
+      <UniqueIdentifier>{9fe9b275-4f5d-4d84-86ca-4bfe1978368b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. UI\03. Widget">
+      <UniqueIdentifier>{501c482c-0db3-4c9f-b05a-1a07e5ea97c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. GameManager\06. Score">
+      <UniqueIdentifier>{bdba7287-676a-4a80-9601-6293c43738af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy">
+      <UniqueIdentifier>{b0c66397-9077-4aaf-91ad-af6666946cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\03. BackGround\01. BackObjects">
+      <UniqueIdentifier>{02b3fa0b-7623-4014-bc4c-478f07b91c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\02. Projectiles\0. Root">
+      <UniqueIdentifier>{5b18f15a-cc75-4568-9c3a-94a628e33a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\02. Projectiles\01. Player">
+      <UniqueIdentifier>{a7fdf769-1cc4-4749-b65a-fcae2054e7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\02. Projectiles\02. Enemy">
+      <UniqueIdentifier>{c35f97a5-b5e9-4604-9471-e3b76f70c4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\00. GameObject">
+      <UniqueIdentifier>{f405224f-8d76-4ae0-af1d-e3cbbbbdd0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\06. Item">
+      <UniqueIdentifier>{ca16806b-7edf-469f-bf5c-86d55ad3b59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\00. Enemy">
+      <UniqueIdentifier>{a983fdf0-65f9-467c-8119-cb236cb3e142}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\01. UFO">
+      <UniqueIdentifier>{1e89db32-3cec-40ba-840a-b47cc3e0e7c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\02.Meteor">
+      <UniqueIdentifier>{60f60a02-7702-4588-9f81-f4cf3f1f8073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\03. DaiManji">
+      <UniqueIdentifier>{f9917d3f-bf98-4964-8f8c-c78e163a2ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\04. MiniUFO">
+      <UniqueIdentifier>{cc90834e-d28c-4b0c-8ab7-ee3c742acb39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\01. Character\02. Enemy\05. Rugname">
+      <UniqueIdentifier>{37d57a33-4cd4-4467-9944-a28aa98e17fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. UI\03. Widget\01. TextImage">
+      <UniqueIdentifier>{c1dfab02-fb12-428f-8a85-a32c0e61582c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>01. GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>01. GameManager\01. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>03. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Ref.cpp">
+      <Filter>01. GameManager\02. RefCount, SharedPtr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>03. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>01. GameManager\03. Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>01. GameManager\04. Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\ResourceManager.cpp">
+      <Filter>07. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Texture\Texture.cpp">
+      <Filter>07. Resource\01. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Texture\TextureManager.cpp">
+      <Filter>07. Resource\01. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneResource.cpp">
+      <Filter>03. Scene\01. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Animation\AnimationManager.cpp">
+      <Filter>07. Resource\02. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Animation\AnimationSequence.cpp">
+      <Filter>07. Resource\02. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Animation\AnimationInfo.cpp">
+      <Filter>05. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Animation\Animation.cpp">
+      <Filter>05. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Camera.cpp">
+      <Filter>03. Scene\02. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\CollisionManager.cpp">
+      <Filter>06. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\Collider.cpp">
+      <Filter>06. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\ColliderBox.cpp">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneCollision.cpp">
+      <Filter>03. Scene\03. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\ColliderCircle.cpp">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Sound\SoundManager.cpp">
+      <Filter>07. Resource\03. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Sound\Sound.cpp">
+      <Filter>07. Resource\03. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Widget.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\MainScene.cpp">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\StartScene.cpp">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowStart.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowEnemyHP.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Font\Font.cpp">
+      <Filter>07. Resource\04. Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Font\FontManager.cpp">
+      <Filter>07. Resource\04. Font</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetWindow.cpp">
+      <Filter>04. UI\02. WidgetWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetComponent.cpp">
+      <Filter>04. UI\02. WidgetWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneEdit.cpp">
+      <Filter>03. Scene\99. SceneEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowEdit.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Player.cpp">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\PlayerSpace.cpp">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Background.cpp">
+      <Filter>02. GameObject\03. BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\BackgroundSpace.cpp">
+      <Filter>02. GameObject\03. BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\AstroSlug.cpp">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Character.cpp">
+      <Filter>02. GameObject\01. Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CSVEditor.cpp">
+      <Filter>01. GameManager\05. CSV Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\EditViewer.cpp">
+      <Filter>02. GameObject\99. Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Weapons.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Effect.cpp">
+      <Filter>02. GameObject\04. Effect\00. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Explosion.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowSpace.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\AstroSlugSFX.cpp">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Trail.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\PistolHIt.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\RocketLauncherExplosion.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\DamageExplosion.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\AstroTail.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\ColliderLine.cpp">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\LaserDebris.cpp">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\SpaceIntro.cpp">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\IntroRocket.cpp">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\IntroRocketLowest.cpp">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\IntroRocketMid.cpp">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\RocketThrust.cpp">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\JustMovingSFX.cpp">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\JustPlay.cpp">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\JustPlayFollow.cpp">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetProgressBar.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetButton.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetImage.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetNumber.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetText.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetWhiteOut.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetFadeInOut.cpp">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>01. GameManager\06. Score</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\BackObjects.cpp">
+      <Filter>02. GameObject\03. BackGround\01. BackObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\BackModen.cpp">
+      <Filter>02. GameObject\03. BackGround\01. BackObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>02. GameObject\00. GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Projectile.cpp">
+      <Filter>02. GameObject\02. Projectiles\0. Root</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\AstroBomb.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\AstroHMG.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Laser.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Pistol.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\PlayerHMG.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\RocketLauncher.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Shotgun.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Splash.cpp">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\ProjectileEnemy.cpp">
+      <Filter>02. GameObject\02. Projectiles\02. Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Item.cpp">
+      <Filter>02. GameObject\06. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Enemy.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\00. Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\UFO.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\01. UFO</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Meteor.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MeteorBig.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MeteorMid.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MeteorSmall.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MeteorBigHalf.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\DaiManji.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\03. DaiManji</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MiniUFO.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\04. MiniUFO</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\DaiManjiElite.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\03. DaiManji</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Rugname.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\05. Rugname</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\RugnamePart.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\05. Rugname</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\MiniUFOElite.cpp">
+      <Filter>02. GameObject\01. Character\02. Enemy\04. MiniUFO</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOver.cpp">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowGameOver.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\MovingTextImage.cpp">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetScore.cpp">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WidgetTextImage.cpp">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\WindowMissionClear.cpp">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>01. GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>01. GameManager\01. Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>03. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Ref.h">
+      <Filter>01. GameManager\02. RefCount, SharedPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedPtr.h">
+      <Filter>01. GameManager\02. RefCount, SharedPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>03. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>01. GameManager\03. Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>01. GameManager\04. Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\ResourceManager.h">
+      <Filter>07. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Texture\Texture.h">
+      <Filter>07. Resource\01. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Texture\TextureManager.h">
+      <Filter>07. Resource\01. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="flag.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneResource.h">
+      <Filter>03. Scene\01. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Animation\AnimationManager.h">
+      <Filter>07. Resource\02. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Animation\AnimationSequence.h">
+      <Filter>07. Resource\02. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Animation\AnimationInfo.h">
+      <Filter>05. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Animation\Animation.h">
+      <Filter>05. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Camera.h">
+      <Filter>03. Scene\02. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\CollisionManager.h">
+      <Filter>06. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\Collider.h">
+      <Filter>06. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\ColliderBox.h">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneCollision.h">
+      <Filter>03. Scene\03. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\ColliderCircle.h">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Sound\SoundManager.h">
+      <Filter>07. Resource\03. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Sound\Sound.h">
+      <Filter>07. Resource\03. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Widget.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MainScene.h">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\StartScene.h">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowStart.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowEnemyHP.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Font\Font.h">
+      <Filter>07. Resource\04. Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Font\FontManager.h">
+      <Filter>07. Resource\04. Font</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetWindow.h">
+      <Filter>04. UI\02. WidgetWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetComponent.h">
+      <Filter>04. UI\02. WidgetWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneEdit.h">
+      <Filter>03. Scene\99. SceneEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowEdit.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Player.h">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\PlayerSpace.h">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Background.h">
+      <Filter>02. GameObject\03. BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\BackgroundSpace.h">
+      <Filter>02. GameObject\03. BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\AstroSlug.h">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Character.h">
+      <Filter>02. GameObject\01. Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVEditor.h">
+      <Filter>01. GameManager\05. CSV Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\EditViewer.h">
+      <Filter>02. GameObject\99. Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Weapons.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Effect.h">
+      <Filter>02. GameObject\04. Effect\00. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Explosion.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowSpace.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\AstroSlugSFX.h">
+      <Filter>02. GameObject\01. Character\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Trail.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\PistolHit.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\RocketLauncherExplosion.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\DamageExplosion.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\AstroTail.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\ColliderLine.h">
+      <Filter>06. Collision\01. Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\LaserDebris.h">
+      <Filter>02. GameObject\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\SpaceIntro.h">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\IntroRocket.h">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\IntroRocketLowest.h">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\IntroRocketMid.h">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\RocketThrust.h">
+      <Filter>02. GameObject\05. Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\JustMovingSFX.h">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\JustPlay.h">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\JustPlayFollow.h">
+      <Filter>02. GameObject\04. Effect\01. Just Play</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetProgressBar.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetButton.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetImage.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetNumber.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetText.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetWhiteOut.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetFadeInOut.h">
+      <Filter>04. UI\03. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>01. GameManager\06. Score</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\BackObjects.h">
+      <Filter>02. GameObject\03. BackGround\01. BackObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\BackModen.h">
+      <Filter>02. GameObject\03. BackGround\01. BackObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>02. GameObject\00. GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Projectile.h">
+      <Filter>02. GameObject\02. Projectiles\0. Root</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\AstroBomb.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\AstroHMG.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Laser.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Pistol.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\PlayerHMG.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\RocketLauncher.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Shotgun.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Splash.h">
+      <Filter>02. GameObject\02. Projectiles\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\ProjectileEnemy.h">
+      <Filter>02. GameObject\02. Projectiles\02. Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Item.h">
+      <Filter>02. GameObject\06. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Enemy.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\00. Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\UFO.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\01. UFO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Meteor.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MeteorBig.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MeteorMid.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MeteorSmall.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MeteorBigHalf.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\02.Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\DaiManji.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\03. DaiManji</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MiniUFO.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\04. MiniUFO</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\DaiManjiElite.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\03. DaiManji</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Rugname.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\05. Rugname</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\RugnamePart.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\05. Rugname</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\MiniUFOElite.h">
+      <Filter>02. GameObject\01. Character\02. Enemy\04. MiniUFO</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOver.h">
+      <Filter>03. Scene\00. Output</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowGameOver.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\MovingTextImage.h">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetScore.h">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WidgetTextImage.h">
+      <Filter>04. UI\03. Widget\01. TextImage</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WindowMissionClear.h">
+      <Filter>04. UI\00. WindowOutput</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameFramework.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
