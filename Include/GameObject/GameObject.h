@@ -20,7 +20,7 @@ enum class ECullingDelete : UINT8
 	CullingOn = 0b10000000
 };
 
-enum class EMoveToMethod : UINT8	//ÀÌµ¿ ¹æ¹ı. ¾î¶² ¹æ½ÄÀ¸·Î ÀÌµ¿ÇÒÁö Á¤ÇÑ´Ù.
+enum class EMoveToMethod : UINT8	//ì´ë™ ë°©ë²•. ì–´ë–¤ ë°©ì‹ìœ¼ë¡œ ì´ë™í• ì§€ ì •í•œë‹¤.
 {
 	MoveDir,
 	AddForce,
@@ -47,32 +47,32 @@ public:
 	virtual void PostUpdate(float DeltaTime);
 	virtual void Render(HDC hDC, float DeltaTime);
 
-	//¿©±â¼­ ±âº»ÀûÀÎ À§Ä¡ µîÀÇ ¼¼ÆÃ ÀÌÈÄ¿¡ ÇØÁà¾ßÇÏ´Â º¯¼öµéÀ» ¼³Á¤ÇØÁØ´Ù.
+	//ì—¬ê¸°ì„œ ê¸°ë³¸ì ì¸ ìœ„ì¹˜ ë“±ì˜ ì„¸íŒ… ì´í›„ì— í•´ì¤˜ì•¼í•˜ëŠ” ë³€ìˆ˜ë“¤ì„ ì„¤ì •í•´ì¤€ë‹¤.
 	virtual void Start();
 	bool m_Start;
 
 
-protected://À§Ä¡, Å©±â
-	Vector2 m_Dir;	//ÇÃ·¹ÀÌ¾î°¡ ÁöÁ¤ÇÒ ¼ö ÀÖ´Â ¹æÇâ
-	Vector2 m_CalcDir;	//¿òÁ÷ÀÏ ¶§¸¶´Ù ¸Å¹ø °è»êµÇ´Â ¹æÇâ. µû·Î ¼³Á¤ ºÒ°¡
+protected://ìœ„ì¹˜, í¬ê¸°
+	Vector2 m_Dir;	//í”Œë ˆì´ì–´ê°€ ì§€ì •í•  ìˆ˜ ìˆëŠ” ë°©í–¥
+	Vector2 m_CalcDir;	//ì›€ì§ì¼ ë•Œë§ˆë‹¤ ë§¤ë²ˆ ê³„ì‚°ë˜ëŠ” ë°©í–¥. ë”°ë¡œ ì„¤ì • ë¶ˆê°€
 	Vector2 m_Pos;
 	Vector2 m_PrevPos;
 	Vector2 m_Size;
-	bool	m_ForceSizeRender;	//°­Á¦·Î »çÀÌÁî¸¦ ÁöÁ¤ÇØ¼­ Render½ÃÅ²´Ù.
+	bool	m_ForceSizeRender;	//ê°•ì œë¡œ ì‚¬ì´ì¦ˆë¥¼ ì§€ì •í•´ì„œ Renderì‹œí‚¨ë‹¤.
 	Vector2 m_Pivot;
-	float	m_MaxSpeed;	//ÃÖ´ë ¼Óµµ
-	float	m_Speed;		//ÇöÀç ¼Óµµ
-	bool	m_isAccel;		//ÇöÀç °¡¼Ó ÁßÀÎÁö
-	float	m_DeAccel;		//°¨¼Óµµ º¸Á¤°ª. 0(¹Ù·Î¸ØÃã), 1(¸ØÃßÁö ¾Ê°í ÀÌµ¿)
+	float	m_MaxSpeed;	//ìµœëŒ€ ì†ë„
+	float	m_Speed;		//í˜„ì¬ ì†ë„
+	bool	m_isAccel;		//í˜„ì¬ ê°€ì† ì¤‘ì¸ì§€
+	float	m_DeAccel;		//ê°ì†ë„ ë³´ì •ê°’. 0(ë°”ë¡œë©ˆì¶¤), 1(ë©ˆì¶”ì§€ ì•Šê³  ì´ë™)
 	Vector2 m_MoveDist;
 
 	bool	m_MoveToOn;
 	bool	m_SideCollOn;
 	
-	EMoveToMethod m_MoveToMethod;	//ÀÌµ¿ ¸ğµå ON
-	Vector2 m_MoveToDest;	//ÇØ´ç À§Ä¡±îÁö ¾Ë¾Æ¼­ ÀÌµ¿
+	EMoveToMethod m_MoveToMethod;	//ì´ë™ ëª¨ë“œ ON
+	Vector2 m_MoveToDest;	//í•´ë‹¹ ìœ„ì¹˜ê¹Œì§€ ì•Œì•„ì„œ ì´ë™
 
-public:	//À§Ä¡
+public:	//ìœ„ì¹˜
 	void SetForceSizeRender(bool On);
 	void SetDir(float _x, float _y);
 	void SetDirX(float _x);
@@ -89,7 +89,7 @@ public:	//À§Ä¡
 	Vector2 GetCalcDir() const;
 	void SetSideColl(bool On);
 
-	//ÀÌµ¿ °ü·Ã
+	//ì´ë™ ê´€ë ¨
 	void MoveDir(const Vector2& Dir);
 	void MovePos(const Vector2& Pos);
 	void MoveAngle(float Angle);
@@ -100,16 +100,16 @@ public:	//À§Ä¡
 	Vector2 GetSize()	const;
 	void SetPivot(float _x, float _y);
 	Vector2 GetPivot()	const;
-	void AddForce(float Force);	//DeltaTimeÀ» °öÇØ¼­ Àû¿ë. ºÎµå·¯¿î ¿òÁ÷ÀÓÀ» ÁÙ¶§
-	void AddImpact(float Impact);	//DeltaTimeÀ» °öÇÏÁö ¾Ê°í Àû¿ë. °­ÇÑ Ãæ°İ ¶Ç´Â Áï½Ã ÀÌµ¿
+	void AddForce(float Force);	//DeltaTimeì„ ê³±í•´ì„œ ì ìš©. ë¶€ë“œëŸ¬ìš´ ì›€ì§ì„ì„ ì¤„ë•Œ
+	void AddImpact(float Impact);	//DeltaTimeì„ ê³±í•˜ì§€ ì•Šê³  ì ìš©. ê°•í•œ ì¶©ê²© ë˜ëŠ” ì¦‰ì‹œ ì´ë™
 	void SetDeAccel(float DeAccel);
 	
 
 	void MoveToDest(bool On, EMoveToMethod Method = EMoveToMethod::MoveDir, const Vector2& Dest = Vector2(0.f,0.f));
-	bool GetMoveToDone() const;	//ÀÌµ¿ ¸í·ÉÁßÀÌ ¾Æ´ÑÁö È®ÀÎÇÏ´Â ÇÔ¼ö. ÀÌµ¿¸í·ÉÁßÀÌ ¾Æ´Ï¸é true¸¦ ¹İÈ¯.
+	bool GetMoveToDone() const;	//ì´ë™ ëª…ë ¹ì¤‘ì´ ì•„ë‹Œì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜. ì´ë™ëª…ë ¹ì¤‘ì´ ì•„ë‹ˆë©´ trueë¥¼ ë°˜í™˜.
 
 
-protected://¹°¸® Ã³¸®
+protected://ë¬¼ë¦¬ ì²˜ë¦¬
 	bool	m_PhysicsSimulate;
 	bool	m_Ground;
 	float	m_GravityAccel;
@@ -118,7 +118,7 @@ protected://¹°¸® Ã³¸®
 	bool	m_Jump;
 	float	m_JumpVelocity;
 	bool	m_SideWallCheck;
-	bool	m_NoMove; //ÀÌµ¿ ºÒ°¡ ¿©ºÎ
+	bool	m_NoMove; //ì´ë™ ë¶ˆê°€ ì—¬ë¶€
 
 public:
 	void SetNoMove(bool NoMove);
@@ -137,48 +137,48 @@ public:
 
 
 
-protected://´Ş°í ÀÖÀ» À§Á¬µéÀ» ¸ğ¾ÆµÑ À§Á¬ ÄÄÆ÷³ÍÆ®
+protected://ë‹¬ê³  ìˆì„ ìœ„ì ¯ë“¤ì„ ëª¨ì•„ë‘˜ ìœ„ì ¯ ì»´í¬ë„ŒíŠ¸
 	CSharedPtr<class CWidgetComponent> m_WidgetComponent;
 public:
 	void CreateWidgetComponent();
 	class CWidgetComponent* GetWidgetComponent() const;
 
 
-protected://Ãâ·Â »çÀÌÁî Á¶Àı
+protected://ì¶œë ¥ ì‚¬ì´ì¦ˆ ì¡°ì ˆ
 	float m_Scale;
 public:
 	float GetScale() const;
 	void SetScale(float Scale);
 
 
-protected://¼Ò¼Ó°ü°è
+protected://ì†Œì†ê´€ê³„
 	class CScene* m_Scene;
 	class CGameObject* m_MasterObject;
 	std::list<CSharedPtr<CGameObject>> m_SlaveObject;
 	ERenderLayer m_RenderLayer;
 public:
-	//·»´õ¸µ ·¹ÀÌ¾î
+	//ë Œë”ë§ ë ˆì´ì–´
 	ERenderLayer GetRenderLayer()	const;
 	void SetRenderLayer(ERenderLayer Layer);
 
-	//Á¾¼Ó °ÔÀÓ¿ÀºêÁ§Æ® µî·Ï
+	//ì¢…ì† ê²Œì„ì˜¤ë¸Œì íŠ¸ ë“±ë¡
 	virtual void AddObj(CGameObject* Obj);
 
 
-	//ÀÚ½ÅÀÌ ¼Ò¼ÓµÈ ¾À
+	//ìì‹ ì´ ì†Œì†ëœ ì”¬
 	void SetOwnerScene(class CScene* Scene);
 	CScene* GetOwnerScene() const;
 
 
-	//¾ç¹æ ÁÖÁ¾°ü°è ÇØÁ¦.
+	//ì–‘ë°© ì£¼ì¢…ê´€ê³„ í•´ì œ.
 	void DeleteMasterSlave();
 
-	//ÀÌ ÇÔ¼ö´Â ¹Ş´Â ÂÊ¿¡¼­ Ã³¸®ÇØÁÖ´Â ÇÔ¼öÀÌ´Ù.
+	//ì´ í•¨ìˆ˜ëŠ” ë°›ëŠ” ìª½ì—ì„œ ì²˜ë¦¬í•´ì£¼ëŠ” í•¨ìˆ˜ì´ë‹¤.
 	void DeleteSlave(CGameObject* SlavePtr);
 
 
 
-protected://°¢ °ÔÀÓ¿ÀºêÁ§Æ®º° Å¸ÀÓ½ºÄÉÀÏ
+protected://ê° ê²Œì„ì˜¤ë¸Œì íŠ¸ë³„ íƒ€ì„ìŠ¤ì¼€ì¼
 	float m_TimeScaleObj;
 public:
 	float GetTimeScaleObj()	const;
@@ -187,15 +187,15 @@ public:
 
 
 
-protected://ÄğÅ¸ÀÓ È®ÀÎ¿ë
+protected://ì¿¨íƒ€ì„ í™•ì¸ìš©
 		std::vector<CooltimeChecker> m_vecCooltime;
-		//ÀÌ Å¬·¡½º¸¦ »ó¼Ó¹Ş´Â Å¬·¡½ºµéÀÇ Update() ¸Ş¼Òµå¿¡¼­ »ç¿ë.
-		//Update()¸Ş¼Òµå¿¡¼­ ÆíÇÏ°Ô ½ºÅ³ÄğÅ¸ÀÓÀ» Ã¼Å©ÇÏ±â À§ÇØ ¸¸µç ¸Ş¼Òµå
+		//ì´ í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ëŠ” í´ë˜ìŠ¤ë“¤ì˜ Update() ë©”ì†Œë“œì—ì„œ ì‚¬ìš©.
+		//Update()ë©”ì†Œë“œì—ì„œ í¸í•˜ê²Œ ìŠ¤í‚¬ì¿¨íƒ€ì„ì„ ì²´í¬í•˜ê¸° ìœ„í•´ ë§Œë“  ë©”ì†Œë“œ
 		void CheckSkillCooltime(int SkillEnumEnd, float DeltaTime);
 
-		//ÀÌ Å¬·¡½º¸¦ »ó¼Ó¹Ş´Â Å¬·¡½ºµéÀÌ ½ºÅ³ ÄğÅ¸ÀÓÀ» °¡Á®¾ß ÇÒ ¶§,
-		//ÇØ´ç ½ºÅ³ ¸Ş¼Òµå ¾È¿¡¼­ »ç¿ë.
-		//½ºÅ³ ÄğÅ¸ÀÓÀ» µ¿ÀÛ½ÃÅ²´Ù.
+		//ì´ í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ëŠ” í´ë˜ìŠ¤ë“¤ì´ ìŠ¤í‚¬ ì¿¨íƒ€ì„ì„ ê°€ì ¸ì•¼ í•  ë•Œ,
+		//í•´ë‹¹ ìŠ¤í‚¬ ë©”ì†Œë“œ ì•ˆì—ì„œ ì‚¬ìš©.
+		//ìŠ¤í‚¬ ì¿¨íƒ€ì„ì„ ë™ì‘ì‹œí‚¨ë‹¤.
 		void EnterSkillCoolTIme(int SkillEnum);
 
 
@@ -206,26 +206,26 @@ public:
 	void SetInvincible(float Duration = 2.f, bool Flicker = true);
 
 protected:
-	//¸®¼Ò½º
+	//ë¦¬ì†ŒìŠ¤
 	CSharedPtr<class CTexture> m_Texture;
 	CAnimation* m_Animation;
 	EReactionChannel m_MaxReactionChannel;
 
-	//ÇöÀç ¸®¾×¼ÇÀÌ NormalÀÎ »óÅÂ¿¡¼­ Flicker¸¦ ½ÃÀÛÇÏ¸é ¸ğ½ÀÀÌ »ç¶óÁ³´Ù ³ªÅ¸³µ´Ù ÇÏ´Â Á¡¸ê
+	//í˜„ì¬ ë¦¬ì•¡ì…˜ì´ Normalì¸ ìƒíƒœì—ì„œ Flickerë¥¼ ì‹œì‘í•˜ë©´ ëª¨ìŠµì´ ì‚¬ë¼ì¡Œë‹¤ ë‚˜íƒ€ë‚¬ë‹¤ í•˜ëŠ” ì ë©¸
 	EReactionChannel m_CurrentReaction;
-	float m_ReactionTime;	//¸®¾×¼ÇÀ» Áö¼ÓÇÒ ½Ã°£ ÁöÁ¤
-	float m_FlickerFrequency;//¸Â°Å³ª ¹«ÀûÀÏ ‹š(¸®¾×¼Ç ÁßÀÏ‹š) ¹İÂ¦ÀÌ´Â ÁÖ±â °è»ê¿ë. 0.1ÃÊ?
-	bool m_Flicker;		//ÇÃ¸®Ä¿ ÀÌÆåÆ®¸¦ ÁáÀ»¶§ Á¡¸ê ¿©ºÎ¸¦ ÀúÀå
-	bool m_FlickerOn;	//ÇÃ¸®Ä¿ ÀÌÆåÆ®¸¦ ÁÙ°ÍÀÎÁö?
+	float m_ReactionTime;	//ë¦¬ì•¡ì…˜ì„ ì§€ì†í•  ì‹œê°„ ì§€ì •
+	float m_FlickerFrequency;//ë§ê±°ë‚˜ ë¬´ì ì¼ ë–„(ë¦¬ì•¡ì…˜ ì¤‘ì¼ë–„) ë°˜ì§ì´ëŠ” ì£¼ê¸° ê³„ì‚°ìš©. 0.1ì´ˆ?
+	bool m_Flicker;		//í”Œë¦¬ì»¤ ì´í™íŠ¸ë¥¼ ì¤¬ì„ë•Œ ì ë©¸ ì—¬ë¶€ë¥¼ ì €ì¥
+	bool m_FlickerOn;	//í”Œë¦¬ì»¤ ì´í™íŠ¸ë¥¼ ì¤„ê²ƒì¸ì§€?
 
 public:
-	//¸®¾×¼Ç¿¡ µû¸¥ Á¡¸êÀ» ½ÃÀÛ»ê´Ù(³ë¸»»óÅÂ¿¡¼­ Á¡¸ê = ¸ğ½ÀÀÌ »ç¶óÁ³´Ù ³ªÅ¸³µ´Ù ÇÔ)
+	//ë¦¬ì•¡ì…˜ì— ë”°ë¥¸ ì ë©¸ì„ ì‹œì‘ì‚°ë‹¤(ë…¸ë§ìƒíƒœì—ì„œ ì ë©¸ = ëª¨ìŠµì´ ì‚¬ë¼ì¡Œë‹¤ ë‚˜íƒ€ë‚¬ë‹¤ í•¨)
 	void StartReaction(float ReactionDuration, bool FlickerOn, EReactionChannel Reaction = EReactionChannel::Normal);
 
 
 
 protected:
-	//Ãæµ¹Ã¼ ¸®½ºÆ®
+	//ì¶©ëŒì²´ ë¦¬ìŠ¤íŠ¸
 	std::list<CSharedPtr<class CCollider>> m_listCollider;
 	UINT8 m_CullingDeleteFlag;
 
@@ -235,10 +235,10 @@ public:
 	void SetCulling(bool CullingOn);
 	void SetCullingDelete(ECullingDelete Delete, bool On);
 	UINT8 GetCullingDelete() const;
-	void ClearCollider();	//Ãæµ¹Ã¼ ÀüºÎ Á¦°Å
-	bool CheckColliding(CGameObject* Obj);	//ÀÚ½Å°ú Ãæµ¹ÁßÀÎ °ÔÀÓ¿ÀºêÁ§Æ®ÀÎÁö È®ÀÎ
+	void ClearCollider();	//ì¶©ëŒì²´ ì „ë¶€ ì œê±°
+	bool CheckColliding(CGameObject* Obj);	//ìì‹ ê³¼ ì¶©ëŒì¤‘ì¸ ê²Œì„ì˜¤ë¸Œì íŠ¸ì¸ì§€ í™•ì¸
 
-	//ÀÚ½Å¿¡°Ô Ãæµ¹Ã¼¸¦ Ãß°¡ÇÑ´Ù.(T -> Ãæµ¹Ã¼ Å¸ÀÔ(¸ğ¾ç)¿¡ µû¸¥ Å¬·¡½º¸í
+	//ìì‹ ì—ê²Œ ì¶©ëŒì²´ë¥¼ ì¶”ê°€í•œë‹¤.(T -> ì¶©ëŒì²´ íƒ€ì…(ëª¨ì–‘)ì— ë”°ë¥¸ í´ë˜ìŠ¤ëª…
 	template <typename T>
 	T* AddCollider(const std::string& Name)
 	{
@@ -269,8 +269,8 @@ public:
 	);
 
 
-	void CreateAnimation(bool UseHitEffectChannel = false);	//¾Ö´Ï¸ŞÀÌ¼ÇÀ» µ¿ÀûÇÒ´çÇÏ°í ÁÖÀÎ ¿ÀºêÁ§Æ®¿Í ¾ÀÀ» µî·Ï
-	void ResetAnimation(); //¿¡µğÆ®¾À¿¡¼­ »ç¿ëµÊ.
+	void CreateAnimation(bool UseHitEffectChannel = false);	//ì• ë‹ˆë©”ì´ì…˜ì„ ë™ì í• ë‹¹í•˜ê³  ì£¼ì¸ ì˜¤ë¸Œì íŠ¸ì™€ ì”¬ì„ ë“±ë¡
+	void ResetAnimation(); //ì—ë””íŠ¸ì”¬ì—ì„œ ì‚¬ìš©ë¨.
 
 	void AddAnimationInfo(const std::string& AnimName,
 		float PlayTime = 1.f,

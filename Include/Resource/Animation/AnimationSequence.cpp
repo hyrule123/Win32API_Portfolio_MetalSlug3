@@ -21,7 +21,7 @@ ETextureType CAnimationSequence::GetTextureType() const
 	return m_Texture->GetTextureType();
 }
 
-//FrameÀÇ »çÀÌÁî Á¤º¸¸¦ ¾ò¾î¿À´Â ÇÔ¼ö.
+//Frameì˜ ì‚¬ì´ì¦ˆ ì •ë³´ë¥¼ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 const Sprite_FrameData& CAnimationSequence::GetFrameData(int index) const
 {
 	return m_vecFrame[index];
@@ -91,7 +91,7 @@ void CAnimationSequence::AddFrameFrame()
 
 		Sprite_FrameData Data;
 
-		//Vector2 ±¸Á¶Ã¼´Â ÃÊ±âÈ­µÉ ‹š 0, 0À¸·Î ÃÊ±âÈ­µÇ¹Ç·Î Start´Â ±»ÀÌ ¾ÈÇØµµ µÊ.
+		//Vector2 êµ¬ì¡°ì²´ëŠ” ì´ˆê¸°í™”ë  ë–„ 0, 0ìœ¼ë¡œ ì´ˆê¸°í™”ë˜ë¯€ë¡œ StartëŠ” êµ³ì´ ì•ˆí•´ë„ ë¨.
 		Data.End = size;
 
 		m_vecFrame.push_back(Data);

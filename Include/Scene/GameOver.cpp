@@ -6,25 +6,25 @@
 #include "SceneManager.h"
 #include "SceneResource.h"
 
-//·ÎµåÇÒ ¾À
+//ë¡œë“œí•  ì”¬
 #include "SceneEdit.h"
 #include "MainScene.h"
 
-//ÃÊ±âÈ­ ¶§ ÇØ»óµµ ¹Ş¾Æ¿À´Â ¿ëµµ
+//ì´ˆê¸°í™” ë•Œ í•´ìƒë„ ë°›ì•„ì˜¤ëŠ” ìš©ë„
 #include "../GameManager.h"
 
-//¹è°æÈ­¸é
+//ë°°ê²½í™”ë©´
 #include "../GameObject\Background.h"
 
-//À§Á¬
+//ìœ„ì ¯
 #include "../UI/WindowGameOver.h"
 #include "../UI/WidgetTextImage.h"
 
-//Á¡¼ö
+//ì ìˆ˜
 #include "../ScoreManager.h"
 
 
-//Ä«¸Ş¶ó
+//ì¹´ë©”ë¼
 
 CGameOver::CGameOver():
 	m_Window()
@@ -40,7 +40,7 @@ bool CGameOver::Init()
 {
 	CScene::Init();
 
-	//¸®¼Ò½º ·Îµå
+	//ë¦¬ì†ŒìŠ¤ ë¡œë“œ
 	m_SceneResource->LoadCSVPreset(TEXT("UI/BasicFontSilver.csv"));
 	m_SceneResource->LoadTexture("GameOver0", TEXT("UI/GameOver0.bmp"));
 	m_SceneResource->LoadTexture("GameOver1", TEXT("UI/GameOver1.bmp"));
@@ -50,7 +50,7 @@ bool CGameOver::Init()
 
 
 
-	//À©µµ¿ì È£Ãâ
+	//ìœˆë„ìš° í˜¸ì¶œ
 	m_Window = CreateWidgetWindow<CWindowGameOver>("WindowGameOver");
 	
 
@@ -81,7 +81,7 @@ void CGameOver::SetEssential(bool DeathGameOver)
 		Score->SetAlignMode(EAlignMode::Left);
 	}
 
-	//¹è°æÈ­¸é
+	//ë°°ê²½í™”ë©´
 	CBackground* Back = CreateObject<CBackground>("BackGround");
 	if (DeathGameOver)
 	{

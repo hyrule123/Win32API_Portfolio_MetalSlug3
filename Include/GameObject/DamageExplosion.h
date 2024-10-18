@@ -3,10 +3,10 @@
 
 
 
-//½ÇÁ¦·Î ½ºÇÃ·¡½Ã µ¥¹ÌÁö¸¦ Ã¼Å©ÇÔ
-//SetEssentials¸¦ ÅëÇØ ¿øÇÏ´Â Å©±â ÁöÁ¤.
+//ì‹¤ì œë¡œ ìŠ¤í”Œë˜ì‹œ ë°ë¯¸ì§€ë¥¼ ì²´í¬í•¨
+//SetEssentialsë¥¼ í†µí•´ ì›í•˜ëŠ” í¬ê¸° ì§€ì •.
 class CDamageExplosion :
-    public CExplosion
+	public CExplosion
 {
 	friend class CScene;
 

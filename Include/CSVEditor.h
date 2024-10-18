@@ -1,4 +1,4 @@
-﻿#include "GameInfo.h"
+#include "GameInfo.h"
 
 class CCSVEditor
 {

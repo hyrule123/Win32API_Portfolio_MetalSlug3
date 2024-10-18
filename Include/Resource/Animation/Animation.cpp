@@ -28,7 +28,7 @@ CAnimation::CAnimation(const CAnimation& Obj) :
 	auto iterEnd = Obj.m_mapAnimationInfo.end();
 	while (iter != iterEnd)
 	{
-		//º¹»ç »ı¼ºÀÚ¸¦ ÅëÇØ º¹»ç
+		//ë³µì‚¬ ìƒì„±ìë¥¼ í†µí•´ ë³µì‚¬
 		CAnimationInfo* Info = new CAnimationInfo(*(iter->second));
 		std::string Name = iter->first;
 		m_mapAnimationInfo.insert(std::make_pair(Name, Info));
@@ -36,17 +36,17 @@ CAnimation::CAnimation(const CAnimation& Obj) :
 		++iter;
 	}
 
-	//Init() ´Ü°è¿¡¼­ ÃÊ±âÈ­µÇ´Â º¯¼öµé
+	//Init() ë‹¨ê³„ì—ì„œ ì´ˆê¸°í™”ë˜ëŠ” ë³€ìˆ˜ë“¤
 	//m_OwnerObj
 	//std::function<void()> m_CurrentAnimationEndFunc;
 	//CAnimationInfo* m_CurrentAnimation[(int)EAnimationLayer::Max];
-	////ÃÖ´ë ·¹ÀÌ¾î ¹øÈ£¸¦ ÀúÀåÇÏ´Â º¯¼ö. ¼øÈ¸¸¦ µ¹¶§ ÃÖ´ë ·¹ÀÌ¾î ¹øÈ£±îÁö¸¸ µ·´Ù.
+	////ìµœëŒ€ ë ˆì´ì–´ ë²ˆí˜¸ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜. ìˆœíšŒë¥¼ ëŒë•Œ ìµœëŒ€ ë ˆì´ì–´ ë²ˆí˜¸ê¹Œì§€ë§Œ ëˆë‹¤.
 	//int m_HighestLayer;
 }
 
 CAnimation::~CAnimation()
 {
- 	auto	iter = m_mapAnimationInfo.begin();
+	auto	iter = m_mapAnimationInfo.begin();
 	auto	iterEnd = m_mapAnimationInfo.end();
 
 	for (; iter != iterEnd; ++iter)
@@ -59,17 +59,17 @@ void CAnimation::Update(float DeltaTime)
 {
 	for (int i = 0; i <= (int)m_HighestLayer; ++i)
 	{
-		//ÇØ´ç ·¹ÀÌ¾îÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é continue
+		//í•´ë‹¹ ë ˆì´ì–´ì˜ ì• ë‹ˆë©”ì´ì…˜ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ continue
 		if (!m_CurrentAnimation[i])
 			continue;
 
 		CAnimationInfo* Info = m_CurrentAnimation[i];
 
 
-		//½Ã°£ ¸ÕÀú °è»ê
+		//ì‹œê°„ ë¨¼ì € ê³„ì‚°
 		Info->m_Time += DeltaTime * Info->m_PlayScale;
 
-		//durationÀ» »ç¿ëÇÏ´ÂÁö °è»ê
+		//durationì„ ì‚¬ìš©í•˜ëŠ”ì§€ ê³„ì‚°
 		if (Info->m_UseDuration)
 		{
 			Info->m_Duration -= DeltaTime;
@@ -82,19 +82,19 @@ void CAnimation::Update(float DeltaTime)
 
 		bool AnimationEnd = false;
 
-		//ÇÑ ÇÁ·¹ÀÓÀÌ ³Ñ¾î°¥ ½Ã°£ÀÌ Áö³µÀ¸¸é
+		//í•œ í”„ë ˆì„ì´ ë„˜ì–´ê°ˆ ì‹œê°„ì´ ì§€ë‚¬ìœ¼ë©´
 		if (Info->m_Time > Info->m_FrameTime)
 		{
 				
-			//½Ã°£À» µµ·Î ÃÊ±âÈ­ÇÏ°í
+			//ì‹œê°„ì„ ë„ë¡œ ì´ˆê¸°í™”í•˜ê³ 
 			Info->m_Time = 0.f;
 
-			//ÇÁ·¹ÀÓÀ» ±³Ã¼ÇØÁØ´Ù.(¿ªÀç»ıÀÎÁö È®ÀÎÇÏ°í)
+			//í”„ë ˆì„ì„ êµì²´í•´ì¤€ë‹¤.(ì—­ì¬ìƒì¸ì§€ í™•ì¸í•˜ê³ )
 			if (Info->m_Reverse)
 			{
 				--Info->m_Frame;
 
-				//¸¶Áö¸· ÇÁ·¹ÀÓÀÎÁöµµ Ã¼Å©
+				//ë§ˆì§€ë§‰ í”„ë ˆì„ì¸ì§€ë„ ì²´í¬
 				if (Info->m_Frame < 0)
 				{
 					Info->m_Frame = 0;
@@ -106,9 +106,9 @@ void CAnimation::Update(float DeltaTime)
 				++Info->m_Frame;
 
 
-				//Á¤Àç»ıÀÏ °æ¿ì´Â ¸¶Áö¸· ÇÁ·¹ÀÓ ¹øÈ£°¡ ÀüÃ¼ ÇÁ·¹ÀÓ Àå¼ö¿¡ µµ´ŞÇÏ¸é
-				//cf) ¸¶Áö¸· ÇÁ·¹ÀÓ ¹øÈ£(¹è¿­ÀÇ index) + 1  == ÀüÃ¼ ÇÁ·¹ÀÓ Àå¼ö
-				//¶Ç´Â EndFunctionÀÌ È£ÃâµÇ¾ú´Ù¸é ¸¶Áö¸· ÇÁ·¹ÀÓ¿¡ µµ´ŞÇÑ°ÍÀÌ´Ù.
+				//ì •ì¬ìƒì¼ ê²½ìš°ëŠ” ë§ˆì§€ë§‰ í”„ë ˆì„ ë²ˆí˜¸ê°€ ì „ì²´ í”„ë ˆì„ ì¥ìˆ˜ì— ë„ë‹¬í•˜ë©´
+				//cf) ë§ˆì§€ë§‰ í”„ë ˆì„ ë²ˆí˜¸(ë°°ì—´ì˜ index) + 1  == ì „ì²´ í”„ë ˆì„ ì¥ìˆ˜
+				//ë˜ëŠ” EndFunctionì´ í˜¸ì¶œë˜ì—ˆë‹¤ë©´ ë§ˆì§€ë§‰ í”„ë ˆì„ì— ë„ë‹¬í•œê²ƒì´ë‹¤.
 				if (Info->m_Frame == Info->m_Sequence->GetFrameCount())
 				{
 					Info->m_Frame = (int)Info->m_Sequence->GetFrameCount() - 1;
@@ -122,19 +122,19 @@ void CAnimation::Update(float DeltaTime)
 			AnimationEnd = true;
 
 
-		//Notify Ã¼Å© ºÎºĞ
-		//ÇöÀç ÇÁ·¹ÀÓÀ» ¾ò¾î¿Â´Ù.
+		//Notify ì²´í¬ ë¶€ë¶„
+		//í˜„ì¬ í”„ë ˆì„ì„ ì–»ì–´ì˜¨ë‹¤.
 		int index = Info->m_Frame;
 
-		//ÇöÀç ÇÁ·¹ÀÓ ¹øÈ£¿¡ ÇØ´çÇÏ´Â ³ëÆ¼ÆÄÀÌ´Â ³ëÆ¼ÆÄÀÌ ¹è¿­ÀÇ ÀÎµ¦½º¿¡ ÀÖ´Â ÇÔ¼ö¿Í µ¿ÀÏÇÏ´Ù.
-		//¸¸¾à ÀÌ ¹è¿­ÀÌ ºñ¾îÀÖ´Ù¸é ½ºÅµÇØµµ µÊ
+		//í˜„ì¬ í”„ë ˆì„ ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë…¸í‹°íŒŒì´ëŠ” ë…¸í‹°íŒŒì´ ë°°ì—´ì˜ ì¸ë±ìŠ¤ì— ìˆëŠ” í•¨ìˆ˜ì™€ ë™ì¼í•˜ë‹¤.
+		//ë§Œì•½ ì´ ë°°ì—´ì´ ë¹„ì–´ìˆë‹¤ë©´ ìŠ¤í‚µí•´ë„ ë¨
 		if (!Info->m_vecNotify.empty())
 		{
 
 
 			if (!Info->m_vecNotify[index].empty())
 			{
-				//³ëÆ¼ÆÄÀÌ°¡ ÀÖÀ» °æ¿ì ÇØ´ç ³ëÆ¼ÆÄÀÌ ¹è¿­À» ¼øÈ¸ÇÏ¸ç ÀüºÎ ½ÇÇà½ÃÅ²´Ù.
+				//ë…¸í‹°íŒŒì´ê°€ ìˆì„ ê²½ìš° í•´ë‹¹ ë…¸í‹°íŒŒì´ ë°°ì—´ì„ ìˆœíšŒí•˜ë©° ì „ë¶€ ì‹¤í–‰ì‹œí‚¨ë‹¤.
 				size_t size = Info->m_vecNotify[index].size();
 				for (size_t i = 0; i < size; ++i)
 				{
@@ -142,7 +142,7 @@ void CAnimation::Update(float DeltaTime)
 					{
 						Info->m_vecNotify[index][i]->Func();
 				
-						//½ÇÇà½ÃÅ°°í callµµ true·Î º¯°æÇÑ´Ù.
+						//ì‹¤í–‰ì‹œí‚¤ê³  callë„ trueë¡œ ë³€ê²½í•œë‹¤.
 						Info->m_vecNotify[index][i]->Call = true;
 					}
 				}
@@ -158,7 +158,7 @@ void CAnimation::Update(float DeltaTime)
 			
 
 
-		//¾Ö´Ï¸ŞÀÌ¼Ç ³¡ Ã³¸® ºÎºĞ
+		//ì• ë‹ˆë©”ì´ì…˜ ë ì²˜ë¦¬ ë¶€ë¶„
 		if (AnimationEnd)
 		{
 			if (m_CurrentAnimationEndFunc)
@@ -169,21 +169,21 @@ void CAnimation::Update(float DeltaTime)
 			switch (Info->m_LoopFlag)
 			{
 			case ELoopFlag::NoLoop:
-				//¿ªÀç»ıÀÌ¸é ¸¶Áö¸· ÇÁ·¹ÀÓÀÎ 0¹ø ÇÁ·¹ÀÓ¿¡¼­ ½ºÅ¾
+				//ì—­ì¬ìƒì´ë©´ ë§ˆì§€ë§‰ í”„ë ˆì„ì¸ 0ë²ˆ í”„ë ˆì„ì—ì„œ ìŠ¤íƒ‘
 				if (Info->m_Reverse)
 				{
 					Info->m_Frame = 0;
 				}
 
-				//Á¤Àç»ıÀÌ¸é ¸¶Áö¸· ÇÁ·¹ÀÓÀÎ ÀüÃ¼ ÇÁ·¹ÀÓ Àå¼ö -1¿¡¼­ ½ºÅ¾
+				//ì •ì¬ìƒì´ë©´ ë§ˆì§€ë§‰ í”„ë ˆì„ì¸ ì „ì²´ í”„ë ˆì„ ì¥ìˆ˜ -1ì—ì„œ ìŠ¤íƒ‘
 				else
 				{
 					Info->m_Frame = (int)Info->m_Sequence->GetFrameCount() - 1;
 				}
 
-				//¿©±ä ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ıÀÌ ³¡³ª¸é °è¼Ó ¸¶Áö¸· ÇÁ·¹ÀÓ¿¡ ÀÖ±â ¶§¹®¿¡
-				//°è¼Ó ÁøÀÔÇÏ°Ô µÇ¹Ç·Î
-				//Call º¯¼ö¸¦ ÅëÇØ¼­ ÇÑ¹ø¸¸ ½ÇÇàÇÑ´Ù.
+				//ì—¬ê¸´ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒì´ ëë‚˜ë©´ ê³„ì† ë§ˆì§€ë§‰ í”„ë ˆì„ì— ìˆê¸° ë•Œë¬¸ì—
+				//ê³„ì† ì§„ì…í•˜ê²Œ ë˜ë¯€ë¡œ
+				//Call ë³€ìˆ˜ë¥¼ í†µí•´ì„œ í•œë²ˆë§Œ ì‹¤í–‰í•œë‹¤.
 				if ((!Info->m_EndFunction.Call) && Info->m_EndFunction.Func)
 				{
 					Info->m_EndFunction.Func();
@@ -196,40 +196,40 @@ void CAnimation::Update(float DeltaTime)
 				}
 				break;
 			case ELoopFlag::Loop:
-				//°Å±â¿¡ ¿ªÀç»ıÀÌ¸é
+				//ê±°ê¸°ì— ì—­ì¬ìƒì´ë©´
 				if (Info->m_Reverse)
 				{
-					//´Ù½Ã ¸¶Áö¸· ÇÁ·¹ÀÓÀ¸·Î ÀÌµ¿½ÃÄÑ ¿ªÀç»ıÀ» ½ÃÀÛÇÑ´Ù.
+					//ë‹¤ì‹œ ë§ˆì§€ë§‰ í”„ë ˆì„ìœ¼ë¡œ ì´ë™ì‹œì¼œ ì—­ì¬ìƒì„ ì‹œì‘í•œë‹¤.
 					Info->m_Frame = (int)Info->m_Sequence->GetFrameCount() - 1;
 				}
-				//Á¤Àç»ıÀÌ¸é Ã¹ ÇÁ·¹ÀÓ(0)À¸·Î ÀÌµ¿ÇØ¼­ Àç»ıÀ» ½ÃÀÛÇÑ´Ù.
+				//ì •ì¬ìƒì´ë©´ ì²« í”„ë ˆì„(0)ìœ¼ë¡œ ì´ë™í•´ì„œ ì¬ìƒì„ ì‹œì‘í•œë‹¤.
 				else
 				{
 					Info->m_Frame = 0;
 				}
 
-				//EndFunc¸¦ ½ÇÇà
-				//¿©±ä ¾îÂ÷ÇÇ ÇÑ ÇÁ·¹ÀÓ¸¸ µé¾î¿À°í ¹İº¹µÇÁö ¾ÊÀ¸¹Ç·Î ±×³É ½ÇÇàÇØÁÖ¸é µÈ´Ù.
+				//EndFuncë¥¼ ì‹¤í–‰
+				//ì—¬ê¸´ ì–´ì°¨í”¼ í•œ í”„ë ˆì„ë§Œ ë“¤ì–´ì˜¤ê³  ë°˜ë³µë˜ì§€ ì•Šìœ¼ë¯€ë¡œ ê·¸ëƒ¥ ì‹¤í–‰í•´ì£¼ë©´ ëœë‹¤.
 				if (Info->m_EndFunction.Func)
 					Info->m_EndFunction.Func();
 				break;
-			case ELoopFlag::LoopRound://Áö±×Àç±×Çü½ÄÀ¸·Î ÇÁ·¹ÀÓÀ» ¿Õº¹
+			case ELoopFlag::LoopRound://ì§€ê·¸ì¬ê·¸í˜•ì‹ìœ¼ë¡œ í”„ë ˆì„ì„ ì™•ë³µ
 				if (Info->m_Reverse)
 				{
-					//¿ªÀç»ıÀ» ³¡³½´Ù
+					//ì—­ì¬ìƒì„ ëë‚¸ë‹¤
 					Info->m_Reverse = false;
 					++Info->m_Frame;
 				}
 
 				else
 				{
-					//¿ªÀç»ıÀ» ½ÃÀÛÇÑ´Ù.
+					//ì—­ì¬ìƒì„ ì‹œì‘í•œë‹¤.
 					Info->m_Reverse = true;
 					--Info->m_Frame;
 				}
 
-				//EndFunc¸¦ ½ÇÇà
-				//¿©±ä ¾îÂ÷ÇÇ ÇÑ ÇÁ·¹ÀÓ¸¸ µé¾î¿À°í ¹İº¹µÇÁö ¾ÊÀ¸¹Ç·Î ±×³É ½ÇÇàÇØÁÖ¸é µÈ´Ù.
+				//EndFuncë¥¼ ì‹¤í–‰
+				//ì—¬ê¸´ ì–´ì°¨í”¼ í•œ í”„ë ˆì„ë§Œ ë“¤ì–´ì˜¤ê³  ë°˜ë³µë˜ì§€ ì•Šìœ¼ë¯€ë¡œ ê·¸ëƒ¥ ì‹¤í–‰í•´ì£¼ë©´ ëœë‹¤.
 				if (Info->m_EndFunction.Func)
 				{
 					Info->m_EndFunction.Call = true;
@@ -240,10 +240,10 @@ void CAnimation::Update(float DeltaTime)
 			}
 
 
-			//¾ÆÁ÷ ³ëÆ¼ÆÄÀÌ ÃÊ±âÈ­¸¦ ÇÏÁö¾Ê¾Ò´Ù¸é 1È¸ ÃÊ±âÈ­
+			//ì•„ì§ ë…¸í‹°íŒŒì´ ì´ˆê¸°í™”ë¥¼ í•˜ì§€ì•Šì•˜ë‹¤ë©´ 1íšŒ ì´ˆê¸°í™”
 			if (!m_CurrentAnimationNotifyInitCheck)
 			{
-				//³¡¿¡ µµ´ŞÇßÀ½ÀÌ È®ÀÎµÇ¸é ³ëÆ¼ÆÄÀÌ¸¦ ÀüºÎ false·Î ¹Ù²ãÁØ´Ù.
+				//ëì— ë„ë‹¬í–ˆìŒì´ í™•ì¸ë˜ë©´ ë…¸í‹°íŒŒì´ë¥¼ ì „ë¶€ falseë¡œ ë°”ê¿”ì¤€ë‹¤.
 				size_t sizeR = Info->m_vecNotify.size();
 				for (size_t i = 0; i < sizeR; ++i)
 				{
@@ -260,7 +260,7 @@ void CAnimation::Update(float DeltaTime)
 			}
 	
 
-			//ÇÑ¹ø¸¸ Àç»ıÇÏµµ·Ï ¼³Á¤ÇßÀ» °æ¿ì Ã³¸®
+			//í•œë²ˆë§Œ ì¬ìƒí•˜ë„ë¡ ì„¤ì •í–ˆì„ ê²½ìš° ì²˜ë¦¬
 			if (Info->m_PlayOnce)
 			{
 				Info->m_PlayOnce = false;
@@ -269,7 +269,7 @@ void CAnimation::Update(float DeltaTime)
 		}
 		else
 		{
-			//¸¶Áö¸· ÇÁ·¹ÀÓÀÌ ¾Æ´Ï¶ó¸é EndFunctionÀÇ call ¿©ºÎ¸¦ false·Î ÀüÈ¯
+			//ë§ˆì§€ë§‰ í”„ë ˆì„ì´ ì•„ë‹ˆë¼ë©´ EndFunctionì˜ call ì—¬ë¶€ë¥¼ falseë¡œ ì „í™˜
 			Info->m_EndFunction.Call = false;
 			m_CurrentAnimationNotifyInitCheck = false;
 		}
@@ -311,7 +311,7 @@ Vector2 CAnimation::GetAnimSize(const std::string& AnimName, int Frame) const
 Vector2 CAnimation::GetAnimSize(int layer) const
 {
 	if (!m_CurrentAnimation[layer])
-		return Vector2(0, 0);	//ÀÌ»óÇÑ °ªÀ» ¹İÈ¯ÇØÁà¼­ ¿¡·¯ÀÖ´Ù°í ¾Ë·ÁÁÜ
+		return Vector2(0, 0);	//ì´ìƒí•œ ê°’ì„ ë°˜í™˜í•´ì¤˜ì„œ ì—ëŸ¬ìˆë‹¤ê³  ì•Œë ¤ì¤Œ
 
 	int CurrentFrame = m_CurrentAnimation[layer]->m_Frame;
 
@@ -439,25 +439,25 @@ CAnimationInfo* CAnimation::FindAnimInfo(const std::string& AnimName)
 
 bool CAnimation::AddAnimationInfo(const std::string& AnimName,  float PlayTime, ELoopFlag LoopFlag, bool Reverse, float PlayScale, int Layer, float OffsetX, float OffsetY, float PivotX, float PivotY)
 {
-	//ÃÖ´ë ·¹ÀÌ¾î ¼öº¸´Ù ¸¹Àº À§Ä¡¸¦ ·¹ÀÌ¾î ÀÎÀÚ·Î ³ÖÀ¸¸é ±×³É return
+	//ìµœëŒ€ ë ˆì´ì–´ ìˆ˜ë³´ë‹¤ ë§ì€ ìœ„ì¹˜ë¥¼ ë ˆì´ì–´ ì¸ìë¡œ ë„£ìœ¼ë©´ ê·¸ëƒ¥ return
 	if (Layer >= (int)EAnimationLayer::Max || Layer < 0)
 		return false;
 	
-	//¸¸¾à ÃÖ´ë ·¹ÀÌ¾î ¼ö¸¦ ³Ñ¾î°¡´Â ·¹ÀÌ¾î ¹øÈ£°¡ µî·ÏµÇ¾úÀ» °æ¿ì ÇØ´ç ·¹ÀÌ¾î¸¦ ÃÖ°í ¹øÈ£·Î ¹Ù²ãÁÜ.
+	//ë§Œì•½ ìµœëŒ€ ë ˆì´ì–´ ìˆ˜ë¥¼ ë„˜ì–´ê°€ëŠ” ë ˆì´ì–´ ë²ˆí˜¸ê°€ ë“±ë¡ë˜ì—ˆì„ ê²½ìš° í•´ë‹¹ ë ˆì´ì–´ë¥¼ ìµœê³  ë²ˆí˜¸ë¡œ ë°”ê¿”ì¤Œ.
 	if (m_HighestLayer < Layer)
 		m_HighestLayer = Layer;
 
 
 	CAnimationInfo* AnimInfo = FindAnimInfo(AnimName);
 
-	//È¤½Ã³ª ±âÁ¸¿¡ ¸¸µé¾îÁø ¾Ö´Ï¸ŞÀÌ¼Ç Á¤º¸°¡ ÀÖ´Ù¸é ±×°É ¾²¸é µÇ¹Ç·Î true ¸®ÅÏ
+	//í˜¹ì‹œë‚˜ ê¸°ì¡´ì— ë§Œë“¤ì–´ì§„ ì• ë‹ˆë©”ì´ì…˜ ì •ë³´ê°€ ìˆë‹¤ë©´ ê·¸ê±¸ ì“°ë©´ ë˜ë¯€ë¡œ true ë¦¬í„´
 	if (AnimInfo)
 		return true;
 
-	//ÀÏ´Ü AnimInfo¿¡ µî·ÏÇÒ ½ÃÄö½ººÎÅÍ Ã£¾Æº»´Ù.
+	//ì¼ë‹¨ AnimInfoì— ë“±ë¡í•  ì‹œí€€ìŠ¤ë¶€í„° ì°¾ì•„ë³¸ë‹¤.
 	CAnimationSequence* AnimSeq = nullptr;
 
-	//¸¸¾à SceneÀÌ µî·ÏµÇ¾î ÀÖÀ¸¸é SceneResouce¸¦ ÅëÇØ Ã£´Â´Ù.
+	//ë§Œì•½ Sceneì´ ë“±ë¡ë˜ì–´ ìˆìœ¼ë©´ SceneResouceë¥¼ í†µí•´ ì°¾ëŠ”ë‹¤.
 	if (m_Scene)
 	{
 		AnimSeq = m_Scene->GetSceneResource()->FindAnimationSequence(AnimName);
@@ -467,11 +467,11 @@ bool CAnimation::AddAnimationInfo(const std::string& AnimName,  float PlayTime, 
 		AnimSeq = CResourceManager::GetInst()->FindAnimationSequence(AnimName);
 	}
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º »ı¼º¿¡ ½ÇÆĞÇÒ °æ¿ì ¸®ÅÏ
+	//ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ìƒì„±ì— ì‹¤íŒ¨í•  ê²½ìš° ë¦¬í„´
 	if (!AnimSeq)
 		return false;
 
-	//Á¶°ÇÀ» ¸ğµÎ ¸¸Á·ÇßÀ¸¸é µ¿ÀûÇÒ´çÇÏ°í µ¥ÀÌÅÍ¸¦ ¿Å°Ü³Ö´Â´Ù.
+	//ì¡°ê±´ì„ ëª¨ë‘ ë§Œì¡±í–ˆìœ¼ë©´ ë™ì í• ë‹¹í•˜ê³  ë°ì´í„°ë¥¼ ì˜®ê²¨ë„£ëŠ”ë‹¤.
 	AnimInfo = new CAnimationInfo;
 
 	AnimInfo->m_Sequence = AnimSeq;
@@ -483,14 +483,14 @@ bool CAnimation::AddAnimationInfo(const std::string& AnimName,  float PlayTime, 
 	AnimInfo->m_Offset = Vector2(OffsetX, OffsetY);
 	AnimInfo->m_Pivot = Vector2(PivotX, PivotY);
 
-	//ÇÁ·¹ÀÓÅ¸ÀÓÀº Á÷Á¢ °è»êÇØ¼­ ´ëÀÔÇÑ´Ù.
+	//í”„ë ˆì„íƒ€ì„ì€ ì§ì ‘ ê³„ì‚°í•´ì„œ ëŒ€ì…í•œë‹¤.
 	AnimInfo->m_FrameTime = AnimInfo->m_PlayTime / AnimInfo->m_Sequence->GetFrameCount();
 
 	if (m_mapAnimationInfo.empty())
 		m_CurrentAnimation[Layer] = AnimInfo;
 
 
-	//¸ğµÎ ¿Ï·áµÆÀ¸¸é vector¿¡ »ğÀÔÇÑ´Ù.
+	//ëª¨ë‘ ì™„ë£Œëìœ¼ë©´ vectorì— ì‚½ì…í•œë‹¤.
 	m_mapAnimationInfo.insert(std::make_pair(AnimName, AnimInfo));
 
 	return true;
@@ -550,14 +550,14 @@ void CAnimation::SetLayer(const std::string& AnimName, int Layer)
 	if (!Info)
 		return;
 
-	//¸¸¾à ÇöÀç Àç»ıÁßÀÌ¾ú´Ù¸é Àç»ıÀ» ÁßÁöÇÏ°í ¹Ù²ãÁØ´Ù.
+	//ë§Œì•½ í˜„ì¬ ì¬ìƒì¤‘ì´ì—ˆë‹¤ë©´ ì¬ìƒì„ ì¤‘ì§€í•˜ê³  ë°”ê¿”ì¤€ë‹¤.
 	if (m_CurrentAnimation[Info->m_Layer] == Info)
 		StopAnimation(Info->m_Layer);
 
-	//ÃÖ´ë ·¹ÀÌ¾î ¼ö°¡ ´Ã¾î³µ´ÂÁö È®ÀÎÇÏ°í
+	//ìµœëŒ€ ë ˆì´ì–´ ìˆ˜ê°€ ëŠ˜ì–´ë‚¬ëŠ”ì§€ í™•ì¸í•˜ê³ 
 	SetHighestLayer(Layer);
 
-	//°ªÀ» ¹Ù²ãÁØ´Ù.
+	//ê°’ì„ ë°”ê¿”ì¤€ë‹¤.
 	Info->m_Layer = Layer;
 	
 }
@@ -616,7 +616,7 @@ void CAnimation::SetAnimation(const std::string& AnimName, bool PlayOnce)
 }
 
 
-//¼±»ı´Ô ÄÚµå¿Í ´Ù¸£°Ô Â®À½
+//ì„ ìƒë‹˜ ì½”ë“œì™€ ë‹¤ë¥´ê²Œ ì§°ìŒ
 void CAnimation::ChangeAnimation(const std::string& AnimName, bool PlayOnce)
 {
 	CAnimationInfo* Info = FindAnimInfo(AnimName);
@@ -624,7 +624,7 @@ void CAnimation::ChangeAnimation(const std::string& AnimName, bool PlayOnce)
 	if (!Info)
 		return;
 
-	//¸¸¾à ÇöÀç Àç»ıÁßÀÎ ¾Ö´Ï¸ŞÀÌ¼Ç°ú °°Àº ¾Ö´Ï¸ŞÀÌ¼ÇÀÏ °æ¿ì return
+	//ë§Œì•½ í˜„ì¬ ì¬ìƒì¤‘ì¸ ì• ë‹ˆë©”ì´ì…˜ê³¼ ê°™ì€ ì• ë‹ˆë©”ì´ì…˜ì¼ ê²½ìš° return
 	else if (m_CurrentAnimation[Info->m_Layer] == Info)
 		return;
 
@@ -667,7 +667,7 @@ void CAnimation::ChangeAnimationDuration(const std::string& AnimName, float Dura
 		return;
 
 
-	//¸¸¾à ÇöÀç Àç»ıÁßÀÎ ¾Ö´Ï¸ŞÀÌ¼Ç°ú °°Àº ¾Ö´Ï¸ŞÀÌ¼ÇÀÏ °æ¿ì durationÀ» ¼³Á¤ÇÏ°í return
+	//ë§Œì•½ í˜„ì¬ ì¬ìƒì¤‘ì¸ ì• ë‹ˆë©”ì´ì…˜ê³¼ ê°™ì€ ì• ë‹ˆë©”ì´ì…˜ì¼ ê²½ìš° durationì„ ì„¤ì •í•˜ê³  return
 	else if (m_CurrentAnimation[Info->m_Layer] == Info)
 	{
 		m_CurrentAnimation[Info->m_Layer]->m_UseDuration = true;
@@ -706,19 +706,19 @@ void CAnimation::ChangeAnimContinue(const std::string& AnimName, bool PlayOnce)
 
 	if (m_CurrentAnimation[layer])
 	{
-		//¸¸¾à ÇöÀç Àç»ıÁßÀÎ ¾Ö´Ï¸ŞÀÌ¼Ç°ú °°Àº ¾Ö´Ï¸ŞÀÌ¼ÇÀÏ °æ¿ì return
+		//ë§Œì•½ í˜„ì¬ ì¬ìƒì¤‘ì¸ ì• ë‹ˆë©”ì´ì…˜ê³¼ ê°™ì€ ì• ë‹ˆë©”ì´ì…˜ì¼ ê²½ìš° return
 		if(m_CurrentAnimation[layer] == Info)
 			return;
 
-		//¹Ù²Ü Info¸¦ ¹Ì¸® ÃÊ±âÈ­ÇØ³õ°í
+		//ë°”ê¿€ Infoë¥¼ ë¯¸ë¦¬ ì´ˆê¸°í™”í•´ë†“ê³ 
 		Info->Init();
 
-		//1È¸¿ë ÁöÁ¤ ±â´ÉÀ» ÃÊ±âÈ­.
+		//1íšŒìš© ì§€ì • ê¸°ëŠ¥ì„ ì´ˆê¸°í™”.
 		m_CurrentAnimation[layer]->ResetOnce();
 
 		if (Info->m_Sequence->GetFrameCount() > m_CurrentAnimation[layer]->m_Frame)
 		{
-			//±âÁ¸ Àç»ı ÁßÀÌ´ø ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ÇÁ·¹ÀÓ ¹øÈ£¿Í Àç»ıÁßÀÌ´ø ½Ã°£À» º¹»ç
+			//ê¸°ì¡´ ì¬ìƒ ì¤‘ì´ë˜ ì• ë‹ˆë©”ì´ì…˜ì˜ í”„ë ˆì„ ë²ˆí˜¸ì™€ ì¬ìƒì¤‘ì´ë˜ ì‹œê°„ì„ ë³µì‚¬
 			Info->m_Frame = m_CurrentAnimation[layer]->m_Frame;
 			Info->m_Time = m_CurrentAnimation[layer]->m_Time;
 		}
@@ -726,7 +726,7 @@ void CAnimation::ChangeAnimContinue(const std::string& AnimName, bool PlayOnce)
 	}
 	else
 	{
-		//¹Ù²Ü Info¸¦ ¹Ì¸® ÃÊ±âÈ­¸¸ ÇØ³õ°í Àç»ı
+		//ë°”ê¿€ Infoë¥¼ ë¯¸ë¦¬ ì´ˆê¸°í™”ë§Œ í•´ë†“ê³  ì¬ìƒ
 		Info->Init();
 	}
 	Info->m_PlayOnce = PlayOnce;

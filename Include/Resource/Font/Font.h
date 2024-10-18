@@ -3,22 +3,22 @@
 #include "../../Ref.h"
 
 class CFont :
-    public CRef
+	public CRef
 {
-    friend class CFontManager;
+	friend class CFontManager;
 
 private:
-    CFont();
-    ~CFont();
+	CFont();
+	~CFont();
 
 private:
-    LOGFONT m_FontInfo;
-    HFONT   m_hFont;
-    HFONT   m_hPrevFont;
+	LOGFONT m_FontInfo;
+	HFONT   m_hFont;
+	HFONT   m_hPrevFont;
 
 public:
-    bool LoadFontInfo(const std::string& Name, const std::tstring& FontName, int Width, int Height);
-    void SetFont(HDC hDC);
-    void ResetFont(HDC hDC);
+	bool LoadFontInfo(const std::string& Name, const std::tstring& FontName, int Width, int Height);
+	void SetFont(HDC hDC);
+	void ResetFont(HDC hDC);
 };
 

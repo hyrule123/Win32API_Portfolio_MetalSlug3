@@ -2,27 +2,27 @@
 #include "Widget.h"
 #include "WidgetFadeInOut.h"
 
-//ÀÏ¹İ À§Á¬ À©µµ¿ìÀÇ Z¿À´õ´Â 2
+//ì¼ë°˜ ìœ„ì ¯ ìœˆë„ìš°ì˜ Zì˜¤ë”ëŠ” 2
 CWidgetWindow::CWidgetWindow() :
-    m_Scene(nullptr),
-    m_ZOrder(2),
-    m_CheckCollide()
+	m_Scene(nullptr),
+	m_ZOrder(2),
+	m_CheckCollide()
 {
 }
 
 CWidgetWindow::CWidgetWindow(const CWidgetWindow& Obj):
-    CRef(Obj),
-    m_Scene(Obj.m_Scene),
-    m_ZOrder(Obj.m_ZOrder),
-    m_Size(Obj.m_Size),
-    m_Pos(Obj.m_Pos),
-    m_CheckCollide(Obj.m_CheckCollide)
+	CRef(Obj),
+	m_Scene(Obj.m_Scene),
+	m_ZOrder(Obj.m_ZOrder),
+	m_Size(Obj.m_Size),
+	m_Pos(Obj.m_Pos),
+	m_CheckCollide(Obj.m_CheckCollide)
 {
-    //size_t size = Obj.m_vecWidget.size();
-    //for (size_t i = 0; i < size; ++i)
-    //{
-    //    Obj.m_vecWidget[i]()
-    //}
+	//size_t size = Obj.m_vecWidget.size();
+	//for (size_t i = 0; i < size; ++i)
+	//{
+	//    Obj.m_vecWidget[i]()
+	//}
 }
 
 CWidgetWindow::~CWidgetWindow()
@@ -33,234 +33,234 @@ CWidgetWindow::~CWidgetWindow()
 
 bool CWidgetWindow::Init()
 {
-    m_Size = Vector2(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT) * SCREEN_SCALE;
+	m_Size = Vector2(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT) * SCREEN_SCALE;
 
 
-    return true;
+	return true;
 }
 
 CWidgetFadeInOut* CWidgetWindow::FadeInOut(bool isFadeIn)
 {
-    CWidgetFadeInOut* FadeIn = CreateWidget<CWidgetFadeInOut>("Fade");
-    FadeIn->SetEssential(isFadeIn);
+	CWidgetFadeInOut* FadeIn = CreateWidget<CWidgetFadeInOut>("Fade");
+	FadeIn->SetEssential(isFadeIn);
 
-    return FadeIn;
+	return FadeIn;
 }
 
 
 
 CWidget* CWidgetWindow::GetWidget(int Index)
 {
-    return m_vecWidget[Index];
+	return m_vecWidget[Index];
 }
 
 int CWidgetWindow::GetWidgetCount() const
 {
-    return (int)m_vecWidget.size();
+	return (int)m_vecWidget.size();
 }
 
 const Vector2& CWidgetWindow::GetPos() const
 {
-    return m_Pos;
+	return m_Pos;
 }
 
 const Vector2& CWidgetWindow::GetSize() const
 {
-    return m_Size;
+	return m_Size;
 }
 
 bool CWidgetWindow::CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos)
 {
-    Vector2 WindowLT = m_Pos;
+	Vector2 WindowLT = m_Pos;
 
 
-    if (Mousepos.x < WindowLT.x)
-        return false;
-    if(Mousepos.x > (WindowLT.x + m_Size.x))
-        return false;
-    if (Mousepos.y < WindowLT.y)
-        return false;
-    if(Mousepos.y > (WindowLT.y + m_Size.y))
-        return false;
+	if (Mousepos.x < WindowLT.x)
+		return false;
+	if(Mousepos.x > (WindowLT.x + m_Size.x))
+		return false;
+	if (Mousepos.y < WindowLT.y)
+		return false;
+	if(Mousepos.y > (WindowLT.y + m_Size.y))
+		return false;
 
 
-    //ÇØ´ç À§Á¬ À©µµ¿ì°¡ Ãæµ¹ÀÏ °æ¿ì Á¤È®È÷ ¾î¶² À§Á¬°ú Ãæµ¹ ÁßÀÎÁö¸¦ È®ÀÎ.
-    size_t size = m_vecWidget.size();
-    for (size_t i = 0; i < size; ++i)
-    {
-        //¹öÆ°ÀÌ È°¼ºÈ­ µÇ¾îÀÖÀ»¶§¿¡¸¸ °Ë»ç
-        if (!m_vecWidget[i]->GetEnable())
-            continue;
+	//í•´ë‹¹ ìœ„ì ¯ ìœˆë„ìš°ê°€ ì¶©ëŒì¼ ê²½ìš° ì •í™•íˆ ì–´ë–¤ ìœ„ì ¯ê³¼ ì¶©ëŒ ì¤‘ì¸ì§€ë¥¼ í™•ì¸.
+	size_t size = m_vecWidget.size();
+	for (size_t i = 0; i < size; ++i)
+	{
+		//ë²„íŠ¼ì´ í™œì„±í™” ë˜ì–´ìˆì„ë•Œì—ë§Œ ê²€ì‚¬
+		if (!m_vecWidget[i]->GetEnable())
+			continue;
 
-        if (m_vecWidget[i]->CollisionMouse(Mousepos))
-        {
-            //Ãæµ¹ÀÎ À§Á¬ÀÌ ÀÖÀ» °æ¿ì µé¾î¿Â WidgetAddr ÀÎÀÚ¿¡ ÇØ´ç À§Á¬ÀÇ ÁÖ¼Ò¸¦ ³Ö°í ¹İÈ¯.
-            *WidgetAddr = m_vecWidget[i];
-            return true;
-        }
+		if (m_vecWidget[i]->CollisionMouse(Mousepos))
+		{
+			//ì¶©ëŒì¸ ìœ„ì ¯ì´ ìˆì„ ê²½ìš° ë“¤ì–´ì˜¨ WidgetAddr ì¸ìì— í•´ë‹¹ ìœ„ì ¯ì˜ ì£¼ì†Œë¥¼ ë„£ê³  ë°˜í™˜.
+			*WidgetAddr = m_vecWidget[i];
+			return true;
+		}
 
-    }
+	}
 
 
-    return false;
+	return false;
 }
 
 bool CWidgetWindow::SortWidget(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)
 {
-    return Src->GetZOrder() > Dest->GetZOrder();
+	return Src->GetZOrder() > Dest->GetZOrder();
 }
 
 
 int CWidgetWindow::GetZOrder() const
 {
-    return m_ZOrder;
+	return m_ZOrder;
 }
 
 void CWidgetWindow::SetPos(float x, float y)
 {
-    m_Pos.x = x;
-    m_Pos.y = y;
+	m_Pos.x = x;
+	m_Pos.y = y;
 }
 
 void CWidgetWindow::SetPos(const Vector2& Pos)
 {
-    m_Pos = Pos;
+	m_Pos = Pos;
 }
 
 void CWidgetWindow::SetSize(float x, float y)
 {
-    m_Size.x = x;
-    m_Size.y = y;
+	m_Size.x = x;
+	m_Size.y = y;
 }
 
 void CWidgetWindow::SetSize(const Vector2& Size)
 {
-    m_Size = Size;
+	m_Size = Size;
 }
 
 void CWidgetWindow::SetCheckCollide(bool CheckCollide)
 {
-    m_CheckCollide = CheckCollide;
+	m_CheckCollide = CheckCollide;
 }
 
 bool CWidgetWindow::GetCheckCollide() const
 {
-    return m_CheckCollide;
+	return m_CheckCollide;
 }
 
 void CWidgetWindow::SetZOrder(int ZOrder)
 {
-    m_ZOrder = ZOrder;
+	m_ZOrder = ZOrder;
 }
 
 
 void CWidgetWindow::Update(float DeltaTime)
 {
-    auto iter = m_vecWidget.begin();
-    auto iterEnd = m_vecWidget.end();
+	auto iter = m_vecWidget.begin();
+	auto iterEnd = m_vecWidget.end();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            iter = m_vecWidget.erase(iter);
-            iterEnd = m_vecWidget.end();
-        }
-        else if (!(*iter)->GetEnable()) 
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			iter = m_vecWidget.erase(iter);
+			iterEnd = m_vecWidget.end();
+		}
+		else if (!(*iter)->GetEnable()) 
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->Update(DeltaTime);
-        ++iter;
-    }
+		(*iter)->Update(DeltaTime);
+		++iter;
+	}
 
 
 }
 
 void CWidgetWindow::PostUpdate(float DeltaTime)
 {
-    auto iter = m_vecWidget.begin();
-    auto iterEnd = m_vecWidget.end();
+	auto iter = m_vecWidget.begin();
+	auto iterEnd = m_vecWidget.end();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            iter = m_vecWidget.erase(iter);
-            iterEnd = m_vecWidget.end();
-            continue;
-        }
-        else if (!(*iter)->GetEnable())
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			iter = m_vecWidget.erase(iter);
+			iterEnd = m_vecWidget.end();
+			continue;
+		}
+		else if (!(*iter)->GetEnable())
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->PostUpdate(DeltaTime);
-        ++iter;
-    }
+		(*iter)->PostUpdate(DeltaTime);
+		++iter;
+	}
 
-    //»çÀÌÁî°¡ 2 ÀÌ»óÀÌ¸é ³»¸²Â÷¼øÀ¸·Î sort ÇØÁØ´Ù.(Ãæµ¹°Ë»ç = ³»¸²Â÷¼ø)
-    //ÀÌ PostUpdate °úÁ¤ÀÌ ³¡³ª°í
-    //ÀüÃ¼ Ãæµ¹°Ë»ç¸¦ ÇÏ¹Ç·Î Áö±İ Á¤·ÄÇÏ¸é µÈ´Ù.
-    if(m_vecWidget.size() >= 2)
-    { 
-        std::sort(m_vecWidget.begin(), m_vecWidget.end(), CWidgetWindow::SortWidget);
-    }
+	//ì‚¬ì´ì¦ˆê°€ 2 ì´ìƒì´ë©´ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ sort í•´ì¤€ë‹¤.(ì¶©ëŒê²€ì‚¬ = ë‚´ë¦¼ì°¨ìˆœ)
+	//ì´ PostUpdate ê³¼ì •ì´ ëë‚˜ê³ 
+	//ì „ì²´ ì¶©ëŒê²€ì‚¬ë¥¼ í•˜ë¯€ë¡œ ì§€ê¸ˆ ì •ë ¬í•˜ë©´ ëœë‹¤.
+	if(m_vecWidget.size() >= 2)
+	{ 
+		std::sort(m_vecWidget.begin(), m_vecWidget.end(), CWidgetWindow::SortWidget);
+	}
 
 
 }
 
 void CWidgetWindow::Render(HDC hDC, float DeltaTime)
 {
-    //À§¿¡¼­ ³»¸²Â÷¼øÀ¸·Î Á¤·ÄÇßÀ¸¹Ç·Î 
-    //¿ª¼øÀ¸·Î ¼øÈ¸µ¹¸é ¿À¸§Â÷¼øÀ¸·Î ·»´õ¸µµÉ °ÍÀÌ´Ù.
-    auto iter = m_vecWidget.rbegin();
-    auto iterEnd = m_vecWidget.rend();
+	//ìœ„ì—ì„œ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆìœ¼ë¯€ë¡œ 
+	//ì—­ìˆœìœ¼ë¡œ ìˆœíšŒëŒë©´ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë Œë”ë§ë  ê²ƒì´ë‹¤.
+	auto iter = m_vecWidget.rbegin();
+	auto iterEnd = m_vecWidget.rend();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            ++iter;
-            continue;
-        }
-        else if (!(*iter)->GetEnable())
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			++iter;
+			continue;
+		}
+		else if (!(*iter)->GetEnable())
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->Render(hDC, DeltaTime);
-        ++iter;
-    }
+		(*iter)->Render(hDC, DeltaTime);
+		++iter;
+	}
 }
 
 void CWidgetWindow::DeleteWidget(const std::string& Name)
 {
-    CWidget* Widget = FindWidgetCommonType(Name);
-    if (Widget)
-    {
-        Widget->SetActive(false);
-    }
+	CWidget* Widget = FindWidgetCommonType(Name);
+	if (Widget)
+	{
+		Widget->SetActive(false);
+	}
 }
 
 CWidget* CWidgetWindow::FindWidgetCommonType(const std::string& Name)
 {
-    auto iter = m_vecWidget.begin();
-    auto iterEnd = m_vecWidget.end();
+	auto iter = m_vecWidget.begin();
+	auto iterEnd = m_vecWidget.end();
 
-    while (iter != iterEnd)
-    {
-        if ((*iter)->GetName() == Name)
-        {
-            return (*iter);
-        }
+	while (iter != iterEnd)
+	{
+		if ((*iter)->GetName() == Name)
+		{
+			return (*iter);
+		}
 
-        ++iter;
-    }
+		++iter;
+	}
 
-    return nullptr;
+	return nullptr;
 }

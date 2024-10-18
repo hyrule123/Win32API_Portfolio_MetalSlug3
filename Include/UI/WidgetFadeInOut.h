@@ -1,40 +1,40 @@
 #pragma once
 #include "WidgetImage.h"
 class CWidgetFadeInOut :
-    public CWidgetImage
+	public CWidgetImage
 {
 
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetFadeInOut();
-    CWidgetFadeInOut(const CWidgetFadeInOut& widget);
-    virtual ~CWidgetFadeInOut();
+	CWidgetFadeInOut();
+	CWidgetFadeInOut(const CWidgetFadeInOut& widget);
+	virtual ~CWidgetFadeInOut();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 protected:
-    bool m_isFadeIn;    //trueÀÏ ½Ã fadein, falseÀÏ ½Ã fadeout
-    float m_StepMovePos;    //ÇÑ½ºÅÜ¸¶´Ù ¾ó¸¶³ª ÀÌµ¿ÇÒ°ÍÀÎÁö
-    INT8 m_FrameTickLeft;
-    INT8 m_FrameTickSet;
-    bool m_isSet;
-    bool m_End;
+	bool m_isFadeIn;    //trueì¼ ì‹œ fadein, falseì¼ ì‹œ fadeout
+	float m_StepMovePos;    //í•œìŠ¤í…ë§ˆë‹¤ ì–¼ë§ˆë‚˜ ì´ë™í• ê²ƒì¸ì§€
+	INT8 m_FrameTickLeft;
+	INT8 m_FrameTickSet;
+	bool m_isSet;
+	bool m_End;
 	std::function<void()> m_EndFunc;
 public:
-    void SetEssential(bool isFadeIn);
-    void PosCalc();
+	void SetEssential(bool isFadeIn);
+	void PosCalc();
 
 	template <typename T>
 	void AddEndFunction(
 		T* classptr,
 		void (T::* Func)())
 	{
-		//ÇÔ¼ö¿¡ ÀÎÀÚ¸¦ bind
-        m_EndFunc = std::bind(Func, classptr);
+		//í•¨ìˆ˜ì— ì¸ìë¥¼ bind
+		m_EndFunc = std::bind(Func, classptr);
 	}
 
 

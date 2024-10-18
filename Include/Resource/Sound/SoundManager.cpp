@@ -33,25 +33,25 @@ CSoundManager::~CSoundManager()
 
 bool CSoundManager::Init()
 {
-	//½Ã½ºÅÛ »ı¼º
+	//ì‹œìŠ¤í…œ ìƒì„±
 	FMOD_RESULT Result = FMOD::System_Create(&m_System);
 	if (Result != FMOD_OK)
 		return false;
 
-	//ÃÊ±âÈ­
+	//ì´ˆê¸°í™”
 	Result = m_System->init(256, FMOD_INIT_NORMAL, nullptr);
 	if (Result != FMOD_OK)
 		return false;
 
-	//¸¶½ºÅÍ Ã¤³Î ±×·ì »ı¼º ¹× ÀúÀå
+	//ë§ˆìŠ¤í„° ì±„ë„ ê·¸ë£¹ ìƒì„± ë° ì €ì¥
 	Result = m_System->getMasterChannelGroup(&m_MasterGroup);
 	if (Result != FMOD_OK)
 		return false;
 
-	//¸¶½ºÅÍ ±×·ìµµ map¿¡ »ğÀÔ
+	//ë§ˆìŠ¤í„° ê·¸ë£¹ë„ mapì— ì‚½ì…
 	m_mapChannelGroup.insert(std::make_pair("Master", m_MasterGroup));
 
-	//Ãß°¡·Î ¸î°¡Áö Ã¤³Îµµ ¸¸µé¾î³õÀÚ.
+	//ì¶”ê°€ë¡œ ëª‡ê°€ì§€ ì±„ë„ë„ ë§Œë“¤ì–´ë†“ì.
 	CreateSoundChannelGroup("BGM");
 	CreateSoundChannelGroup("SFX");
 	CreateSoundChannelGroup("UI");
@@ -62,7 +62,7 @@ bool CSoundManager::Init()
 
 bool CSoundManager::CreateSoundChannelGroup(const std::string& Name)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖÀ¸¸é ÇØ´ç ´õÀÌ»ó ÁøÇàÇÏÁö ¾Ê°í true¸¦ ¹İÈ¯ 
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆìœ¼ë©´ í•´ë‹¹ ë”ì´ìƒ ì§„í–‰í•˜ì§€ ì•Šê³  trueë¥¼ ë°˜í™˜ 
 	if (FindChannelGroup(Name))
 		return true;
 
@@ -104,12 +104,12 @@ CSound* CSoundManager::FindSound(const std::string& Name)
 
 bool CSoundManager::LoadSound(const std::string& GroupName, const std::string& Name, bool Loop, const char* FileName, const std::string& PathName)
 {
-	//»ç¿îµå Å¬·¡½º¸¦ Ã£°í ÀÖÀ¸¸é true ¹İÈ¯(ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖÀ¸¹Ç·Î)
+	//ì‚¬ìš´ë“œ í´ë˜ìŠ¤ë¥¼ ì°¾ê³  ìˆìœ¼ë©´ true ë°˜í™˜(ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆìœ¼ë¯€ë¡œ)
 	CSound* Sound = FindSound(Name);
 	if (Sound)
 		return true;
 
-	//Ã¤³Î±×·ìÀ» Ã£°í ¾øÀ¸¸é false ¹İÈ¯
+	//ì±„ë„ê·¸ë£¹ì„ ì°¾ê³  ì—†ìœ¼ë©´ false ë°˜í™˜
 	FMOD::ChannelGroup* ChannelGroup = FindChannelGroup(GroupName);
 	if (!ChannelGroup)
 		return false;
@@ -123,7 +123,7 @@ bool CSoundManager::LoadSound(const std::string& GroupName, const std::string& N
 		return false;
 	}
 
-	//Á¦´ë·Î ¸¸µé¾îÁ³À» °æ¿ì ¸Ê¿¡ Ãß°¡
+	//ì œëŒ€ë¡œ ë§Œë“¤ì–´ì¡Œì„ ê²½ìš° ë§µì— ì¶”ê°€
 	m_mapSound.insert(std::make_pair(Name, Sound));
 
 	return true;
@@ -280,6 +280,6 @@ void CSoundManager::ReleaseSound(const std::string& Name)
 
 void CSoundManager::Update()
 {
-	//FMODÀÇ »óÅÂµµ ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+	//FMODì˜ ìƒíƒœë„ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 	m_System->update();
 }

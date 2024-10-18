@@ -4,16 +4,16 @@
 
 #include "../Scene/MainScene.h"
 
-//¹ß»çÃ¼
+//ë°œì‚¬ì²´
 #include "ProjectileEnemy.h"
 
-//ÀÌÆåÆ®
+//ì´í™íŠ¸
 #include "Effect.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 
-//À§Ä¡ °è»ê Ä«¸Ş¶ó
+//ìœ„ì¹˜ ê³„ì‚° ì¹´ë©”ë¼
 
 
 CMiniUFO::CMiniUFO():
@@ -32,7 +32,7 @@ CMiniUFO::CMiniUFO(const CMiniUFO& Obj) :
 
 CMiniUFO::~CMiniUFO()
 {
-	//ÀÚ½ÅÀÌ Á¦°ÅµÇ¾úÀ½À» Àü´Ş
+	//ìì‹ ì´ ì œê±°ë˜ì—ˆìŒì„ ì „ë‹¬
 	CMainScene* Scene = dynamic_cast<CMainScene*>(m_Scene);
 	if (Scene)
 		Scene->AddMiniUFOCounter(-1);
@@ -76,19 +76,19 @@ bool CMiniUFO::Init(CGameObject* Obj)
 	//Coll->SetRadius(50.f);
 
 	//End Function
-	//»ç¸Á¸ğ¼ÇÀÌÈÄ Á¦°Å
+	//ì‚¬ë§ëª¨ì…˜ì´í›„ ì œê±°
 	SetEndFunction<CMiniUFO>("MiniUFODeath", this, &CMiniUFO::MiniUFODeathEndFunc);
-	//°ø°İ
+	//ê³µê²©
 	SetEndFunction<CMiniUFO>("AttackSFX", this, &CMiniUFO::AttackEndFunc);
 
 
-	//¼º°øÀûÀ¸·Î »ı¼ºµÇ¸é ÀÚ½ÅÀÌ µî·ÏµÇ¾úÀ½À» ¾Ë¸²
+	//ì„±ê³µì ìœ¼ë¡œ ìƒì„±ë˜ë©´ ìì‹ ì´ ë“±ë¡ë˜ì—ˆìŒì„ ì•Œë¦¼
 	CMainScene* Scene = dynamic_cast<CMainScene*>(m_Scene);
 	if(Scene)
 		Scene->AddMiniUFOCounter(1);
 		
 
-	// 1/4 È®·ü·Î ¹«±â µå·Ó
+	// 1/4 í™•ë¥ ë¡œ ë¬´ê¸° ë“œë¡­
 	if (rand() % 3 == 0)
 	{
 		int RandWeapon = rand() % ((int)EItemList::Bomb + 1);
@@ -117,7 +117,7 @@ void CMiniUFO::Update(float DeltaTime)
 		}
 	}
 
-	//º¸½ºÀü µ¹ÀÔÀÌ È®ÀÎµÇ¸é Áï½Ã Á¦°Å
+	//ë³´ìŠ¤ì „ ëŒì…ì´ í™•ì¸ë˜ë©´ ì¦‰ì‹œ ì œê±°
 	if (m_MainScene->CheckCutscenePlay())
 	{
 		if(m_HP > 0)
@@ -136,12 +136,12 @@ void CMiniUFO::PostUpdate(float DeltaTime)
 
 int CMiniUFO::InflictDamage(int Damage)
 {
-	//¾ÆÀÌÅÛ µå¶øÀº CEnemy¿¡¼­ Ã³¸®.
+	//ì•„ì´í…œ ë“œëì€ CEnemyì—ì„œ ì²˜ë¦¬.
 	int DMG = CEnemy::InflictDamage(Damage);
 
 	m_HP -= DMG;
 
-	//0.1ÃÊ°£ ÇÇ°İ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ı
+	//0.1ì´ˆê°„ í”¼ê²© ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒ
 	m_HitTimer = 0.1f;
 	ChangeAnimContinue("MiniUFOHit");
 
@@ -149,7 +149,7 @@ int CMiniUFO::InflictDamage(int Damage)
 	{
 		SoundPlay("MiniUFODestroy");
 
-		//ÀÌµ¿ ÁßÁö
+		//ì´ë™ ì¤‘ì§€
 		m_Speed = 0;
 		m_MoveToOn = false;
 
@@ -157,8 +157,8 @@ int CMiniUFO::InflictDamage(int Damage)
 		ItemDrop();
 		ClearCollider();
 
-		//¿©±â¼­´Â °íÀ¯ »ç¸Á ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ı.
-		StopAnimation("AttackSFX");	//°ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç ·¹ÀÌ¾î
+		//ì—¬ê¸°ì„œëŠ” ê³ ìœ  ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒ.
+		StopAnimation("AttackSFX");	//ê³µê²© ì• ë‹ˆë©”ì´ì…˜ ë ˆì´ì–´
 		ChangeAnimation("MiniUFODeath");
 	}
 
@@ -204,7 +204,7 @@ void CMiniUFO::Routine(float DeltaTime)
 			MoveToDest(true, EMoveToMethod::AddForce, Vector2(RandX, RandY));
 		}
 
-		//ÀÌµ¿ Á¾·áµÇ¸é ´ÙÀ½ ·çÆ¾À¸·Î
+		//ì´ë™ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ ë£¨í‹´ìœ¼ë¡œ
 		if (!m_MoveToOn)
 			GoNextRoutine();
 	}
@@ -214,7 +214,7 @@ void CMiniUFO::Routine(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//0~1ÃÊ°£ ´ë±â
+			//0~1ì´ˆê°„ ëŒ€ê¸°
 			m_Timer.InitCooltime((float)(rand()% 11 + 10) / 10.f);
 			m_Timer.EnterCooltime();
 		}
@@ -228,11 +228,11 @@ void CMiniUFO::Routine(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ıÇÏ¸é ¾Ë¾Æ¼­ ÃÑ ¹ß»çÇÔ
+			//ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•˜ë©´ ì•Œì•„ì„œ ì´ ë°œì‚¬í•¨
 			ChangeAnimation("AttackSFX", true);
 		}
 
-		//´Ù½Ã Ã³À½À¸·Î µ¹¾Æ°£´Ù.
+		//ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°„ë‹¤.
 		m_Routine = 0;
 		m_FirstEnter = true;
 	}
@@ -243,7 +243,7 @@ void CMiniUFO::Routine(float DeltaTime)
 
 void CMiniUFO::AttackEndFunc()
 {
-	//ÃÑÀ» ¹ß»ç
+	//ì´ì„ ë°œì‚¬
 	CPlayer* Player = m_Scene->GetPlayer();
 	if (Player)
 	{

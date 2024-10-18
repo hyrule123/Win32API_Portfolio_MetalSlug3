@@ -7,26 +7,26 @@
 #include "../GameManager.h"
 #include "Player.h"
 
-//¹ß»çÃ¼
+//ë°œì‚¬ì²´
 #include "ProjectileEnemy.h"
 
-//¸®¼Ò½º ·Îµå
+//ë¦¬ì†ŒìŠ¤ ë¡œë“œ
 #include "../Scene/SceneResource.h"
 #include "../Resource/Texture/Texture.h"
 
 
-//ÀÌÆåÆ®
+//ì´í™íŠ¸
 #include "Effect.h"
 #include "Explosion.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../Collision/ColliderCircle.h"
 
-//¸ó½ºÅÍ ½ºÆù
+//ëª¬ìŠ¤í„° ìŠ¤í°
 #include "MiniUFO.h"
 
-//À§Ä¡ °è»ê Ä«¸Ş¶ó
+//ìœ„ì¹˜ ê³„ì‚° ì¹´ë©”ë¼
 #include "../Scene/Camera.h"
 
 #include "../UI/WidgetComponent.h"
@@ -102,25 +102,25 @@ bool CDaiManji::Init(CGameObject* Obj)
 	//CColliderCircle* Coll = AddCollider<CColliderCircle>("DaiManji");
 	//Coll->SetRadius(50.f);
 
-	//·£´ıÇÑ xÃàÀÇ È­¸é ¹Û¿¡¼­ »ı¼º
+	//ëœë¤í•œ xì¶•ì˜ í™”ë©´ ë°–ì—ì„œ ìƒì„±
 	m_Pos.x = (float)(rand() % ORIGINAL_GAME_RES_WIDTH);
 	m_Pos.y = -50.f;
 	MoveToDest(true, EMoveToMethod::AddForce, Vector2(m_Pos.x, 80.f));
 
-	//È¸Àü¹İ°æ ¼³Á¤
+	//íšŒì „ë°˜ê²½ ì„¤ì •
 	m_RotatingRadius = 12.f;
 
 
-	//EndFunction µî·Ï.
+	//EndFunction ë“±ë¡.
 	SetEndFunction<CDaiManji>("NormalUFOSpawn", this, &CDaiManji::CreateUFO);
 
 
-	//ÁÖÀÎ ¾ÀÀÇ ÁÖ¼Ò¸¦ ¹Ì¸® ´ÙÀÌ³ª¹Í Ä³½ºÆÃÀ» ÅëÇØ ¹Ş¾Æ³õ´Â´Ù.
+	//ì£¼ì¸ ì”¬ì˜ ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë‹¤ì´ë‚˜ë¯¹ ìºìŠ¤íŒ…ì„ í†µí•´ ë°›ì•„ë†“ëŠ”ë‹¤.
 	m_MainScene = dynamic_cast<CMainScene*>(m_Scene);
 	if (!m_MainScene)
 		return false;
 
-	//»ç¸Á½Ã Æø¹ßÀÌÆåÆ® ½Ã°£ ÃøÁ¤¿ë Å¸ÀÌ¸Ó
+	//ì‚¬ë§ì‹œ í­ë°œì´í™íŠ¸ ì‹œê°„ ì¸¡ì •ìš© íƒ€ì´ë¨¸
 	m_ExplosionTimer.InitCooltime(0.1f);
 
 
@@ -134,17 +134,17 @@ void CDaiManji::Update(float DeltaTime)
 	CEnemy::Update(DeltaTime);
 
 
-	//°¢µµ°¡ 360µµ¸¦ ³Ñ¾î°¡¸é, 360µµ¸¦ •ûÁà¼­ ¼ıÀÚ°¡ ³Ê¹« Ä¿ÁöÁö ¾Êµµ·Ï ÇØÁØ´Ù.
+	//ê°ë„ê°€ 360ë„ë¥¼ ë„˜ì–´ê°€ë©´, 360ë„ë¥¼ ëº´ì¤˜ì„œ ìˆ«ìê°€ ë„ˆë¬´ ì»¤ì§€ì§€ ì•Šë„ë¡ í•´ì¤€ë‹¤.
 	if (m_HP > 0)
 	{
 		m_RotatingAngle += 360.f * DeltaTime;
 		if (m_RotatingAngle >= 1440.f)
 			m_RotatingAngle -= 1440.f;
 
-		//¶óµğ¾È°ªÀ» ±¸ÇÑ´Ù.
+		//ë¼ë””ì•ˆê°’ì„ êµ¬í•œë‹¤.
 		float RotAngleRad = DegreeToRadian(m_RotatingAngle);
 
-		//¶óµğ¾È°ªÀ» ÅëÇØ Áß½ÉÁ¡À» ±¸ÇØ³½´Ù.
+		//ë¼ë””ì•ˆê°’ì„ í†µí•´ ì¤‘ì‹¬ì ì„ êµ¬í•´ë‚¸ë‹¤.
 		m_RenderPos.x = m_Pos.x + (cosf(RotAngleRad) * m_RotatingRadius);
 		m_RenderPos.y = m_Pos.y + (sinf(RotAngleRad) * m_RotatingRadius);
 		if (m_Coll)
@@ -185,7 +185,7 @@ void CDaiManji::PostUpdate(float DeltaTime)
 {
 	CEnemy::PostUpdate(DeltaTime);
 
-	////Ã¼·Â È®ÀÎ
+	////ì²´ë ¥ í™•ì¸
 	//if (m_HP <= 0.f)
 	//	SetActive(false);
 }
@@ -196,7 +196,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 		Start();
 
 
-	//Á¡¸ê ¿©ºÎ °è»ê
+	//ì ë©¸ ì—¬ë¶€ ê³„ì‚°
 	if (m_ReactionTime > 0.f)
 	{
 		m_ReactionTime -= DeltaTime;
@@ -220,7 +220,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 	}
 
 
-	//¸¸¾à Á¡¸ê = trueÀÌ°í EReactionChannel = NormalÀÌ¸é ²¨Á³´Ù ÄÑÁ³´Ù ¹İº¹
+	//ë§Œì•½ ì ë©¸ = trueì´ê³  EReactionChannel = Normalì´ë©´ êº¼ì¡Œë‹¤ ì¼œì¡Œë‹¤ ë°˜ë³µ
 	if (!m_Flicker || m_CurrentReaction != EReactionChannel::Normal)
 	{
 		Vector2 Res;
@@ -242,7 +242,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 
 
 
-		//¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿ì¼±
+		//ì• ë‹ˆë©”ì´ì…˜ì´ ìˆë‹¤ë©´ ì• ë‹ˆë©”ì´ì…˜ì´ ìš°ì„ 
 		if (m_Animation)
 		{
 			for (int i = 0; i <= m_Animation->GetHighestLayer(); ++i)
@@ -256,7 +256,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 				const Sprite_FrameData& FrameData = Current->m_Sequence->GetFrameData(CurrentFrame);
 
 				Vector2 RenderSize = FrameData.End - FrameData.Start;
-				//¾Ö´Ï¸ŞÀÌ¼Ç ÀÚÃ¼ÀÇ ¿ÀÇÁ¼Â °ª + ÇÁ·¹ÀÓ ÀÚÃ¼ÀÇ º¸Á¤ ¿ÀÇÁ¼Â °ª
+				//ì• ë‹ˆë©”ì´ì…˜ ìì²´ì˜ ì˜¤í”„ì…‹ ê°’ + í”„ë ˆì„ ìì²´ì˜ ë³´ì • ì˜¤í”„ì…‹ ê°’
 				Vector2 RenderLT;
 
 				if (m_ForceSizeRender)
@@ -269,9 +269,9 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 				}
 
 
-				//¿ÀºêÁ§Æ® ÄÃ¸µ
-				//È­¸éÀ» ¾È¿¡ ÀÖ´Â CGameObject¸¸ Ãâ·ÂÇØ¼­ ÃÖÀûÈ­ µµ¸ğ
-				//È­¸éÀ» ¹ş¾î³ª¸é µû¶ó´Ù´Ï´Â UIµµ ºñÈ°¼ºÈ­
+				//ì˜¤ë¸Œì íŠ¸ ì»¬ë§
+				//í™”ë©´ì„ ì•ˆì— ìˆëŠ” CGameObjectë§Œ ì¶œë ¥í•´ì„œ ìµœì í™” ë„ëª¨
+				//í™”ë©´ì„ ë²—ì–´ë‚˜ë©´ ë”°ë¼ë‹¤ë‹ˆëŠ” UIë„ ë¹„í™œì„±í™”
 				if (
 					m_CullingDeleteFlag
 					& (UINT)ECullingDelete::CullingOn
@@ -294,7 +294,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 
 				if (Current->m_Sequence->GetTextureType() == ETextureType::Sprite)
 				{
-					//ÇöÀç »óÅÂ È®ÀÎ. ¹× ¸®¾×¼Ç °áÁ¤
+					//í˜„ì¬ ìƒíƒœ í™•ì¸. ë° ë¦¬ì•¡ì…˜ ê²°ì •
 					int ReactionNum = 0;
 					if (m_MaxReactionChannel > EReactionChannel::Normal && !m_Flicker)
 					{
@@ -360,7 +360,7 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 		if (DEBUG_RENDER)
 		{
 
-			//Ãæµ¹Ã¼ ¸®½ºÆ®°¡ ºñ¾îÀÖ´Ù¸é ¾ÈÇØµµ µÊ
+			//ì¶©ëŒì²´ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆë‹¤ë©´ ì•ˆí•´ë„ ë¨
 			if (!m_listCollider.empty())
 			{
 				auto iter = m_listCollider.begin();
@@ -368,14 +368,14 @@ void CDaiManji::Render(HDC hDC, float DeltaTime)
 
 				while (iter != iterEnd)
 				{
-					//¸¸¾à Ãæµ¹Ã¼°¡ Á¦°ÅµÇ±â·Î ¿¹¾à µÇ¾îÀÖ¾ú´Ù¸é
+					//ë§Œì•½ ì¶©ëŒì²´ê°€ ì œê±°ë˜ê¸°ë¡œ ì˜ˆì•½ ë˜ì–´ìˆì—ˆë‹¤ë©´
 					if (!(*iter)->GetActive())
 					{
 						iter++;
 						continue;
 					}
 
-					//¸¸¾à ÀÓ½Ã·Î ºñÈ°¼ºÈ­¸¸ µÇ¾îÀÖ´Ù¸é Ã³¸®ÇÏÁö ¾Ê°í ³Ñ¾î°£´Ù.
+					//ë§Œì•½ ì„ì‹œë¡œ ë¹„í™œì„±í™”ë§Œ ë˜ì–´ìˆë‹¤ë©´ ì²˜ë¦¬í•˜ì§€ ì•Šê³  ë„˜ì–´ê°„ë‹¤.
 					else if (!(*iter)->GetEnable())
 					{
 						iter++;
@@ -403,7 +403,7 @@ int CDaiManji::InflictDamage(int Damage)
 	{
 		StopAnimation((int)EDaiManjiLayerInfo::HatchAction);
 
-		//´ÙÁßÆø¹ß -> Update()¿¡¼­ Ã³¸®
+		//ë‹¤ì¤‘í­ë°œ -> Update()ì—ì„œ ì²˜ë¦¬
 		ClearCollider();
 		m_Coll = nullptr;
 	}
@@ -437,7 +437,7 @@ void CDaiManji::Routine(float DeltaTime)
 	{
 	case (UINT8)EDaiManjiRoutine::Moveto:
 	{
-		//ÀÌµ¿ Á¾·áµÇ¸é ´ÙÀ½ ·çÆ¾À¸·Î
+		//ì´ë™ ì¢…ë£Œë˜ë©´ ë‹¤ìŒ ë£¨í‹´ìœ¼ë¡œ
 		if(!m_MoveToOn)
 			GoNextRoutine();
 	}
@@ -446,7 +446,7 @@ void CDaiManji::Routine(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//3~5ÃÊ¸¶´Ù UFO ÇÏ³ª »ı¼º
+			//3~5ì´ˆë§ˆë‹¤ UFO í•˜ë‚˜ ìƒì„±
 			float WaitTime = (float)(rand() % 10 + 40) / 10.f;
 			m_Timer.InitCooltime(WaitTime);
 			m_Timer.EnterCooltime();
@@ -511,7 +511,7 @@ void CDaiManji::CreateUFO()
 
 void CDaiManji::CloseHatch()
 {
-	StopAnimation((int)EDaiManjiLayerInfo::HatchAction);	//·»´õ¸µ·¹ÀÌ¾î 2 = ÇØÄ¡ ¿¬ ÀÌÈÄ ¾×¼Ç
+	StopAnimation((int)EDaiManjiLayerInfo::HatchAction);	//ë Œë”ë§ë ˆì´ì–´ 2 = í•´ì¹˜ ì—° ì´í›„ ì•¡ì…˜
 	ChangeAnimation("DaiManjiHatchClose");
 }
 

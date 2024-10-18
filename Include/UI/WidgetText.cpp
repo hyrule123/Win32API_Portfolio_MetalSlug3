@@ -169,13 +169,13 @@ void CWidgetText::Render(HDC hDC, float DeltaTime)
 	int CharCount = m_Count;
 	if (m_OneLetterAtTime)
 	{
-		//¼Ò¼öÁ¡ ´Ù ¹ö¸®°í int·Î Çüº¯È¯
+		//ì†Œìˆ˜ì  ë‹¤ ë²„ë¦¬ê³  intë¡œ í˜•ë³€í™˜
 		CharCount = (int)(m_TimeCount / m_Interval);
 
-		//¸¸¾à ÃÖ´ë ÀÚ¸´¼ö±îÁö Ãâ·ÂÀÌ ¿Ï·áµÆÀ¸¸é
+		//ë§Œì•½ ìµœëŒ€ ìë¦¿ìˆ˜ê¹Œì§€ ì¶œë ¥ì´ ì™„ë£Œëìœ¼ë©´
 		if (CharCount > m_Count)
 		{
-			//CharCount¸¦ ±ÛÀÚ ¼ö±îÁö ÁÙÀÎ ´ÙÀ½ ÇÑ±ÛÀÚ¾¿ Ãâ·Â ¸ğµå¸¦ Á¾·áÇÑ´Ù
+			//CharCountë¥¼ ê¸€ì ìˆ˜ê¹Œì§€ ì¤„ì¸ ë‹¤ìŒ í•œê¸€ìì”© ì¶œë ¥ ëª¨ë“œë¥¼ ì¢…ë£Œí•œë‹¤
 			CharCount = m_Count;
 			m_OneLetterAtTime = false;
 		}
@@ -189,7 +189,7 @@ void CWidgetText::Render(HDC hDC, float DeltaTime)
 
 	SetBkMode(hDC, TRANSPARENT);
 
-	// ±×¸²ÀÚ¸¦ Ãâ·ÂÇØ¾ß ÇÑ´Ù¸é ±×¸²ÀÚ ¸ÕÀú Ãâ·ÂÇÑ´Ù.
+	// ê·¸ë¦¼ìë¥¼ ì¶œë ¥í•´ì•¼ í•œë‹¤ë©´ ê·¸ë¦¼ì ë¨¼ì € ì¶œë ¥í•œë‹¤.
 	if (m_Shadow)
 	{
 		Vector2	ShadowPos = RenderPos + m_ShadowOffset;
@@ -198,7 +198,7 @@ void CWidgetText::Render(HDC hDC, float DeltaTime)
 		TextOut(hDC, (int)ShadowPos.x, (int)ShadowPos.y, m_Text, CharCount);
 	}
 
-	// ¸â¹öÇÔ¼ö°¡ ¾Æ´Ñ °°Àº ÀÌ¸§ÀÇ Àü¿ªÇÔ¼ö¸¦ È£ÃâÇÏ°íÀÚ ÇÑ´Ù¸é ¾Õ¿¡ :: À» ºÙ¿©¼­ È£ÃâÇÑ´Ù.
+	// ë©¤ë²„í•¨ìˆ˜ê°€ ì•„ë‹Œ ê°™ì€ ì´ë¦„ì˜ ì „ì—­í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê³ ì í•œë‹¤ë©´ ì•ì— :: ì„ ë¶™ì—¬ì„œ í˜¸ì¶œí•œë‹¤.
 	::SetTextColor(hDC, m_TextColor);
 	TextOut(hDC, (int)RenderPos.x, (int)RenderPos.y, m_Text, CharCount);
 
@@ -210,13 +210,13 @@ void CWidgetText::Render(HDC hDC, const Vector2& Pos, float DeltaTime)
 	int CharCount = m_Count;
 	if (m_OneLetterAtTime)
 	{
-		//¼Ò¼öÁ¡ ´Ù ¹ö¸®°í int·Î Çüº¯È¯
+		//ì†Œìˆ˜ì  ë‹¤ ë²„ë¦¬ê³  intë¡œ í˜•ë³€í™˜
 		CharCount = (int)(m_TimeCount / m_Interval);
 
-		//¸¸¾à ÃÖ´ë ÀÚ¸´¼ö±îÁö Ãâ·ÂÀÌ ¿Ï·áµÆÀ¸¸é
+		//ë§Œì•½ ìµœëŒ€ ìë¦¿ìˆ˜ê¹Œì§€ ì¶œë ¥ì´ ì™„ë£Œëìœ¼ë©´
 		if (CharCount > m_Count)
 		{
-			//CharCount¸¦ ±ÛÀÚ ¼ö±îÁö ÁÙÀÎ ´ÙÀ½ ÇÑ±ÛÀÚ¾¿ Ãâ·Â ¸ğµå¸¦ Á¾·áÇÑ´Ù
+			//CharCountë¥¼ ê¸€ì ìˆ˜ê¹Œì§€ ì¤„ì¸ ë‹¤ìŒ í•œê¸€ìì”© ì¶œë ¥ ëª¨ë“œë¥¼ ì¢…ë£Œí•œë‹¤
 			CharCount = m_Count;
 			m_OneLetterAtTime = false;
 		}
@@ -230,7 +230,7 @@ void CWidgetText::Render(HDC hDC, const Vector2& Pos, float DeltaTime)
 
 	SetBkMode(hDC, TRANSPARENT);
 
-	// ±×¸²ÀÚ¸¦ Ãâ·ÂÇØ¾ß ÇÑ´Ù¸é ±×¸²ÀÚ ¸ÕÀú Ãâ·ÂÇÑ´Ù.
+	// ê·¸ë¦¼ìë¥¼ ì¶œë ¥í•´ì•¼ í•œë‹¤ë©´ ê·¸ë¦¼ì ë¨¼ì € ì¶œë ¥í•œë‹¤.
 	if (m_Shadow)
 	{
 		Vector2	ShadowPos = RenderPos + m_ShadowOffset;
@@ -239,7 +239,7 @@ void CWidgetText::Render(HDC hDC, const Vector2& Pos, float DeltaTime)
 		TextOut(hDC, (int)ShadowPos.x, (int)ShadowPos.y, m_Text, CharCount);
 	}
 
-	// ¸â¹öÇÔ¼ö°¡ ¾Æ´Ñ °°Àº ÀÌ¸§ÀÇ Àü¿ªÇÔ¼ö¸¦ È£ÃâÇÏ°íÀÚ ÇÑ´Ù¸é ¾Õ¿¡ :: À» ºÙ¿©¼­ È£ÃâÇÑ´Ù.
+	// ë©¤ë²„í•¨ìˆ˜ê°€ ì•„ë‹Œ ê°™ì€ ì´ë¦„ì˜ ì „ì—­í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê³ ì í•œë‹¤ë©´ ì•ì— :: ì„ ë¶™ì—¬ì„œ í˜¸ì¶œí•œë‹¤.
 	::SetTextColor(hDC, m_TextColor);
 	TextOut(hDC, (int)RenderPos.x, (int)RenderPos.y, m_Text, CharCount);
 

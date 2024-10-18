@@ -2,38 +2,38 @@
 #include "GameObject.h"
 
 class CProjectile :
-    public CGameObject
+	public CGameObject
 {
-    friend class CScene;
-    
+	friend class CScene;
+	
 protected:
-    int m_Damage;
-    bool m_isReady;
-    
+	int m_Damage;
+	bool m_isReady;
+	
 
 protected:
-    CProjectile();
-    CProjectile(const CProjectile& Obj);
-    virtual ~CProjectile();
+	CProjectile();
+	CProjectile(const CProjectile& Obj);
+	virtual ~CProjectile();
 
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    void SetDamage(int Damage);
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	void SetDamage(int Damage);
 
 
-    virtual void SetEssential(Vector2 Dir, Vector2 Pos);
-    virtual void SetEssential(float DirX, float DirY, float PosX, float PosY);
+	virtual void SetEssential(Vector2 Dir, Vector2 Pos);
+	virtual void SetEssential(float DirX, float DirY, float PosX, float PosY);
 
-    //SetOffset: π›µÂΩ√ ¿ßƒ° º≥¡§ »ƒø° ªÁøÎ«“∞Õ.
-    void SetOffset(const Vector2& Offset);
-    void SetOffset(float x, float y);
-    void SetOffsetX(float x);
-    void SetOffsetY(float y);
+	//SetOffset: Î∞òÎìúÏãú ÏúÑÏπò ÏÑ§Ï†ï ÌõÑÏóê ÏÇ¨Ïö©Ìï†Í≤É.
+	void SetOffset(const Vector2& Offset);
+	void SetOffset(float x, float y);
+	void SetOffsetX(float x);
+	void SetOffsetY(float y);
 
 private:
-    virtual void CollisionBegin(class CCollider* Src, class CCollider* Dest);
+	virtual void CollisionBegin(class CCollider* Src, class CCollider* Dest);
 };
 

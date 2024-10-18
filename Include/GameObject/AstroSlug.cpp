@@ -1,13 +1,13 @@
 #include "AstroSlug.h"
 
-//ÇÃ·¹ÀÌ¾î ÁÖ¼Ò ÁöÁ¤
+//í”Œë ˆì´ì–´ ì£¼ì†Œ ì§€ì •
 #include "../GameManager.h"
 
-//ÇÃ·¹ÀÌ¾î »ı¼º
+//í”Œë ˆì´ì–´ ìƒì„±
 #include "PlayerSpace.h"
 
 
-//SFX È£Ãâ¿ë
+//SFX í˜¸ì¶œìš©
 #include "../Scene/Scene.h"
 #include "../Scene/MainScene.h"
 #include "../Scene/SceneResource.h"
@@ -20,7 +20,7 @@
 
 #include "../Collision/ColliderBox.h"
 
-//¹«±â
+//ë¬´ê¸°
 #include "Pistol.h"
 #include "AstroHMG.h"
 #include "RocketLauncher.h"
@@ -28,10 +28,10 @@
 #include "AstroBomb.h"
 #include "Laser.h"
 
-//½ºÇÃ·¡½Ã µ¥¹ÌÁö
+//ìŠ¤í”Œë˜ì‹œ ë°ë¯¸ì§€
 #include "Splash.h"
 
-//À§Á¬ Á¢±Ù
+//ìœ„ì ¯ ì ‘ê·¼
 #include "../UI/WindowSpace.h"
 #include "../UI/WidgetScore.h"
 
@@ -143,10 +143,10 @@ bool CAstroSlug::Init(CGameObject* Obj)
 {
 	CPlayer::Init(Obj);
 
-	//PlayerÀÇ ÁÖ¼Ò¸¦ CGameManager¿¡ µî·ÏÇÑ´Ù.
+	//Playerì˜ ì£¼ì†Œë¥¼ CGameManagerì— ë“±ë¡í•œë‹¤.
 	CGameManager::GetInst()->SetPlayer(this);
 
-	//ÀÎÇ²Àº µû·Î µî·ÏÇØÁà¾ß ÇÑ´Ù. ¿øÇÏ´ÂÅ¸ÀÌ¹Ö¿¡ ÇÒ°Í.
+	//ì¸í’‹ì€ ë”°ë¡œ ë“±ë¡í•´ì¤˜ì•¼ í•œë‹¤. ì›í•˜ëŠ”íƒ€ì´ë°ì— í• ê²ƒ.
 
 	ChangeAnimation("PlayerRight");
 
@@ -161,25 +161,25 @@ bool CAstroSlug::Init(CGameObject* Obj)
 		("EjectModeDoor", this, &CAstroSlug::EjectModeDoorEnd);
 
 
-	//³ëÆ¼ÆÄÀÌ µî·Ï
-	//¹® 2ÇÁ·¹ÀÓ¶§ SFX È¿°ú Àç»ı
+	//ë…¸í‹°íŒŒì´ ë“±ë¡
+	//ë¬¸ 2í”„ë ˆì„ë•Œ SFX íš¨ê³¼ ì¬ìƒ
 	m_Animation->AddNotify<CAstroSlug>("EjectModeDoor", 2, this, &CAstroSlug::EjectDoorFrame2Notify);
 
 
 
 
-	//À§Ä¡ ¼³Á¤
+	//ìœ„ì¹˜ ì„¤ì •
 	SetPos(50.f, 40.f);
 	SetSize(36.f, 50.f);
 	SetDir(1.f, 0.f);
 	SetPivot(0.5f, 1.f);
 	SetMaxSpeed(150.f);
-	//°¨¼Óµµ
+	//ê°ì†ë„
 	SetDeAccel(0.85f);
 	
 
 
-	//½ºÅ³ ¼³Á¤
+	//ìŠ¤í‚¬ ì„¤ì •
 	m_vecCooltime.resize((size_t)EWeapon::MAX);
 
 	for (int i = 0; i < (int)EWeapon::MAX; ++i)
@@ -210,7 +210,7 @@ bool CAstroSlug::Init(CGameObject* Obj)
 	}
 	
 
-	//Ãæµ¹Ã¼
+	//ì¶©ëŒì²´
 	CColliderBox* Coll = AddCollider<CColliderBox>("AstroColl");
 	Coll->SetSize(m_Size);
 	Coll->SetPivot(0.5f, 1.f);
@@ -223,7 +223,7 @@ bool CAstroSlug::Init(CGameObject* Obj)
 	m_BoostSFXTail = m_Scene->CreateObject<CAstroSlugSFX>("BoostSFXTail", this);
 	m_BoostSFXTail->SetEffect(EEffectType::Loop);
 
-	//°¢ ºÎ½ºÅÍº° ÀÌ¸§À» ¹®ÀÚ¿­ ¹è¿­¿¡ µî·Ï
+	//ê° ë¶€ìŠ¤í„°ë³„ ì´ë¦„ì„ ë¬¸ìì—´ ë°°ì—´ì— ë“±ë¡
 	m_BoosterDirSideName[SmallBoosterNE] = "SmallBoosterNE";
 	m_BoosterDirSideName[SmallBoosterE] = "SmallBoosterE";
 	m_BoosterDirSideName[SmallBoosterSE] = "SmallBoosterSE";
@@ -262,7 +262,7 @@ void CAstroSlug::Update(float DeltaTime)
 	if (m_IntroCutSceneFlags)
 		m_isAfterCutscene = true;
 
-	//ÀÌº¥Æ® ÇÃ·¡±× Ã³¸®
+	//ì´ë²¤íŠ¸ í”Œë˜ê·¸ ì²˜ë¦¬
 	if (m_IntroCutSceneFlags & (UINT8)EIntroCutSceneFlags::IntroCutSceneOn)
 	{
 		EventCutsceneProcess();
@@ -354,7 +354,7 @@ void CAstroSlug::Update(float DeltaTime)
 		m_KnockBack -= DeltaTime;
 		
 
-	//ºÎ½ºÅÍ: ÀüºÎ Ä×´Ù ²°´Ù ÇØÁÜ
+	//ë¶€ìŠ¤í„°: ì „ë¶€ ì¼°ë‹¤ ê»ë‹¤ í•´ì¤Œ
 	if (m_BoostOn)
 	{
 		for (int i = 0; i < EBoosterDirSideMax; ++i)
@@ -407,13 +407,13 @@ void CAstroSlug::SetCutsceneMode(bool On)
 
 	if (m_CutSceneMode)
 	{
-		//ÀÚ½ÅÀÇ Å°¹ÙÀÎµùÀ» ¸ğµÎ Á¦°ÅÇÏ°í ÁÂÃø ±¸¼®À¸·Î Ä³¸¯ÅÍ¸¦ ÀÌµ¿½ÃÅ²´Ù.
+		//ìì‹ ì˜ í‚¤ë°”ì¸ë”©ì„ ëª¨ë‘ ì œê±°í•˜ê³  ì¢Œì¸¡ êµ¬ì„ìœ¼ë¡œ ìºë¦­í„°ë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
 		CInput::GetInst()->DeleteBindClass<CAstroSlug>(this);
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(50.f, 200.f));
 	}
 	else
 	{
-		//´Ù½Ã ÀÔ·ÂÀ» µî·ÏÇÏ°í, Start ÇÔ¼ö¸¦ È£ÃâÇÏ¿© ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
+		//ë‹¤ì‹œ ì…ë ¥ì„ ë“±ë¡í•˜ê³ , Start í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 		Start();
 		RegisterInput();
 	}
@@ -431,7 +431,7 @@ void CAstroSlug::EventCutsceneProcess()
 {
 	if (m_IntroCutSceneFlags & (UINT8)EIntroCutSceneFlags::Action1)
 	{
-		//¸ŞÀÎ¾Àµµ ÆäÀÌÁî ½ÃÀÛ
+		//ë©”ì¸ì”¬ë„ í˜ì´ì¦ˆ ì‹œì‘
 		CMainScene* Scene = dynamic_cast<CMainScene*>(m_Scene);
 		if (Scene)
 			Scene->GoNextPhase();
@@ -495,7 +495,7 @@ void CAstroSlug::EventCutsceneProcess()
 		& (UINT8)EIntroCutSceneFlags::Action5
 		)
 	{
-		if (!m_MoveToOn)	//ÀÌµ¿ÀÌ ³¡³ª¸é °ÔÀÓ ½ÃÀÛ
+		if (!m_MoveToOn)	//ì´ë™ì´ ëë‚˜ë©´ ê²Œì„ ì‹œì‘
 		{
 			SetInvincible(3.f);
 			CJustPlay* JustPlay = m_Scene->CreateObject<CJustPlay>("P1Indicator", this);
@@ -532,7 +532,7 @@ void CAstroSlug::EventCutsceneProcess()
 
 			m_SideCollOn = true;
 
-			//2ÆäÀÌÁî ½ÃÀÛ
+			//2í˜ì´ì¦ˆ ì‹œì‘
 			CMainScene* Scene = dynamic_cast<CMainScene*>(m_Scene);
 			if (Scene)
 				Scene->GoNextPhase();
@@ -564,7 +564,7 @@ int CAstroSlug::InflictDamage(int Damage)
 
 	if (DMG >= 1)
 	{
-		//È÷Æ®Æ÷ÀÎÆ®¿¡ µû¶ó¼­ ¾à°£ÀÇ ³Ë¹é ¹× ÃÑ ÇÏ³ª µå·Ó
+		//íˆíŠ¸í¬ì¸íŠ¸ì— ë”°ë¼ì„œ ì•½ê°„ì˜ ë„‰ë°± ë° ì´ í•˜ë‚˜ ë“œë¡­
 		KnockBack();
 		RifleDrop();
 		SetInvincible();
@@ -754,7 +754,7 @@ void CAstroSlug::KeyDownLeft()
 
 	if (CheckAnimationPlaying("PlayerRight"))
 	{
-		//°í°³µ¹¸²
+		//ê³ ê°œëŒë¦¼
 		SetPlayReverse("PlayerTurnLeftToRight", true, true);
 		ChangeAnimation("PlayerTurnLeftToRight");
 	}
@@ -812,10 +812,10 @@ void CAstroSlug::FireGun()
 	m_isAttack = true;
 
 
-	//¾Æ½ºÆ®·Î ½½·¯±×¿¡¼­ ÇÇ½ºÅçÀº ¾î¶² ¹«±â¸¦ ¾²´ø ¹ß»çµÊ.
+	//ì•„ìŠ¤íŠ¸ë¡œ ìŠ¬ëŸ¬ê·¸ì—ì„œ í”¼ìŠ¤í†¨ì€ ì–´ë–¤ ë¬´ê¸°ë¥¼ ì“°ë˜ ë°œì‚¬ë¨.
 	if (!m_vecCooltime[(int)EWeapon::Pistol].isCooltime)
 	{
-		//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+		//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 		EnterSkillCoolTIme((int)EWeapon::Pistol);
 
 		SoundPlay("AstroPistol");
@@ -824,7 +824,7 @@ void CAstroSlug::FireGun()
 
 
 
-		//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+		//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 		CAstroHMG* HMG = m_Scene->CreateObject<CAstroHMG>("HMG");
 		HMG->SetEssential(Vector2((float)m_PistolFireAngle * 0.1f, -1.f), Vector2(m_Pos.x, m_Pos.y - 80.f));
 
@@ -832,7 +832,7 @@ void CAstroSlug::FireGun()
 		if (m_PistolFireAngle < -1)
 			m_PistolFireAngle = 1;
 
-		//·¹ÀÌÀú È®ÀÎ
+		//ë ˆì´ì € í™•ì¸
 		if (m_CurrentWeapon == EWeapon::Laser)
 		{
 			if (m_isLaserFire[0])
@@ -840,27 +840,27 @@ void CAstroSlug::FireGun()
 
 		}
 
-		//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+		//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 		m_FireBuffer = 0;
 
 		
 	}
 
-	//ÃÑ±¸:  m_Pos·ÎºÎÅÍ ÁÂÃø -25, -65/¿ìÃø +25,-65
+	//ì´êµ¬:  m_Posë¡œë¶€í„° ì¢Œì¸¡ -25, -65/ìš°ì¸¡ +25,-65
 	switch (m_CurrentWeapon)
 	{
 	case EWeapon::HMG:
 		if (!m_vecCooltime[(int)EWeapon::HMG].isCooltime)
 		{
-			//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+			//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 			EnterSkillCoolTIme((int)EWeapon::HMG);
 
 			
-			//ÇØ´ç ·ÎÁ÷Àº ÇØ´ç º¯¼ö¸¦ È®ÀÎÇÏ¿© Updat¿¡¼­ ÀÛ¼ºÇÔ.
+			//í•´ë‹¹ ë¡œì§ì€ í•´ë‹¹ ë³€ìˆ˜ë¥¼ í™•ì¸í•˜ì—¬ Updatì—ì„œ ì‘ì„±í•¨.
 			m_FireHMG = 16;
 
 
-			//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+			//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 			m_FireBuffer = 0;
 		}
 
@@ -869,7 +869,7 @@ void CAstroSlug::FireGun()
 	case EWeapon::Shotgun:
 		if (!m_vecCooltime[(int)EWeapon::Shotgun].isCooltime)
 		{
-			//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+			//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 			EnterSkillCoolTIme((int)EWeapon::Shotgun);
 
 			if (m_PartState[m_FireTurn] == EPartState::NormalRifle)
@@ -882,16 +882,16 @@ void CAstroSlug::FireGun()
 			}
 
 
-			//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+			//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 			m_FireBuffer = 0;
 		}
 		break;
 	case EWeapon::Rocket:
 		if (!m_vecCooltime[(int)EWeapon::Rocket].isCooltime)
 		{
-			if (m_FiredRocket >= 2)	//¸¸¾à ¸Ê¿¡ 2¹ß ÀÌ»ó ·ÎÄÏÀÌ ¹ß»çµÆÀ¸¸é return
+			if (m_FiredRocket >= 2)	//ë§Œì•½ ë§µì— 2ë°œ ì´ìƒ ë¡œì¼“ì´ ë°œì‚¬ëìœ¼ë©´ return
 				break;
-			//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+			//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 			EnterSkillCoolTIme((int)EWeapon::Rocket);
 
 			if (m_PartState[m_FireTurn] == EPartState::NormalRifle)
@@ -904,7 +904,7 @@ void CAstroSlug::FireGun()
 			}
 
 
-			//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+			//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 			m_FireBuffer = 0;
 		}
 		break;
@@ -921,7 +921,7 @@ void CAstroSlug::FireGun()
 				FireLaser(!m_FireTurn);
 			}
 
-			//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+			//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 			m_FireBuffer = 0;
 		}
 		break;
@@ -936,7 +936,7 @@ void CAstroSlug::FireHMG()
 {
 
 
-	//ÇØ´ç ¸Ş¼Òµå´Â 2ÇÁ·¹ÀÓ¿¡ °ÉÃÄ ¹ß»çµÈ´Ù.(¾à°£ÀÇ ÅÒ)
+	//í•´ë‹¹ ë©”ì†Œë“œëŠ” 2í”„ë ˆì„ì— ê±¸ì³ ë°œì‚¬ëœë‹¤.(ì•½ê°„ì˜ í…€)
 
 	if (m_PartState[m_FireTurn] == EPartState::NormalRifle && m_Bullet > 0)
 	{
@@ -944,9 +944,9 @@ void CAstroSlug::FireHMG()
 
 		CAstroSlugSFX* SFX = m_Scene->CreateObject<CAstroSlugSFX>("SideGunFireSFX");
 
-		//ÁÂÃø ÃÑ±¸ m_Pos·ÎºÎÅÍ -25, -65/+25,-65
+		//ì¢Œì¸¡ ì´êµ¬ m_Posë¡œë¶€í„° -25, -65/+25,-65
 		Vector2 Offset = m_Pos;
-		if (!m_FireTurn) //ÁÂÃø
+		if (!m_FireTurn) //ì¢Œì¸¡
 			Offset.x -= m_SideGunOffset.x;
 		else
 			Offset.x += m_SideGunOffset.x;
@@ -955,9 +955,9 @@ void CAstroSlug::FireHMG()
 		SFX->SetPos(Offset);
 
 
-		float RandDir = rand() % 2 == 0 ? -1.f : 1.f;	//·£´ıÇÑ ¹æÇâ ÁöÁ¤
+		float RandDir = rand() % 2 == 0 ? -1.f : 1.f;	//ëœë¤í•œ ë°©í–¥ ì§€ì •
 
-		//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+		//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 		CAstroHMG* HMG = m_Scene->CreateObject<CAstroHMG>("HMG");
 		//HMG->SetEssential(Vector2(0.f, -1.f), Offset);
 		HMG->SetEssential(Vector2(RandDir * 0.03f, -1.f), Offset);
@@ -968,7 +968,7 @@ void CAstroSlug::FireHMG()
 
 
 
-	//¹İ´ë ¹æÇâÀ¸·Î ÀüÈ¯.
+	//ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ì „í™˜.
 	m_FireTurn = !m_FireTurn;
 }
 
@@ -977,9 +977,9 @@ void CAstroSlug::FireShotgun(bool isRight)
 	if (m_Bullet <= 0)
 		return;
 
-	//ÁÂÃø ÃÑ±¸ m_Pos·ÎºÎÅÍ -25, -65/+25,-65
+	//ì¢Œì¸¡ ì´êµ¬ m_Posë¡œë¶€í„° -25, -65/+25,-65
 	Vector2 Offset;
-	if (!isRight) //ÁÂÃø
+	if (!isRight) //ì¢Œì¸¡
 		Offset.x -= m_SideGunOffset.x;
 	else
 		Offset.x += m_SideGunOffset.x;
@@ -987,7 +987,7 @@ void CAstroSlug::FireShotgun(bool isRight)
 
 
 
-	//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+	//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 	CShotgun* Shotgun = m_Scene->CreateObject<CShotgun>("Shotgun");
 	Shotgun->SetEssential(this, Offset);
 
@@ -1003,9 +1003,9 @@ void CAstroSlug::FireRocket(bool isRight)
 
 	CAstroSlugSFX* SFX = m_Scene->CreateObject<CAstroSlugSFX>("RocketLaunch");
 
-	//ÁÂÃø ÃÑ±¸ m_Pos·ÎºÎÅÍ -25, -65/+25,-65
+	//ì¢Œì¸¡ ì´êµ¬ m_Posë¡œë¶€í„° -25, -65/+25,-65
 	Vector2 Offset = m_Pos;
-	if (!isRight) //ÁÂÃø
+	if (!isRight) //ì¢Œì¸¡
 		Offset.x -= m_SideGunOffset.x;
 	else
 		Offset.x += m_SideGunOffset.x;
@@ -1015,7 +1015,7 @@ void CAstroSlug::FireRocket(bool isRight)
 
 	
 
-	//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+	//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 	CRocketLauncher* Rocket = m_Scene->CreateObject<CRocketLauncher>("Rocket");
 	Rocket->SetEssential(Vector2(0.f, -1.f), Offset);
 
@@ -1023,7 +1023,7 @@ void CAstroSlug::FireRocket(bool isRight)
 
 	--m_Bullet;
 	m_WindowSpace->SetBulletLeft(m_Bullet);
-	++m_FiredRocket;	//·ÎÄÏ ¹ß»ç ¼ö Áõ°¡. ÀÌ °ªÀº CRocketLauncherÀÇ ¼Ò¸êÀÚ¿¡¼­ °¨¼ÒÇÔ
+	++m_FiredRocket;	//ë¡œì¼“ ë°œì‚¬ ìˆ˜ ì¦ê°€. ì´ ê°’ì€ CRocketLauncherì˜ ì†Œë©¸ìì—ì„œ ê°ì†Œí•¨
 	m_FireTurn = !m_FireTurn;
 }
 
@@ -1043,7 +1043,7 @@ void CAstroSlug::FireLaser(bool isRight)
 		m_isLaserFire[isRight] = m_Scene->CreateObject<CLaser>("Laser", this);
 
 		Vector2 Offset;
-		if (!isRight) //ÁÂÃø
+		if (!isRight) //ì¢Œì¸¡
 			Offset.x -= m_SideGunOffset.x;
 		else
 			Offset.x += m_SideGunOffset.x;
@@ -1069,7 +1069,7 @@ void CAstroSlug::FireBomb()
 
 	if (!m_vecCooltime[(int)EWeapon::Bomb].isCooltime)
 	{
-		//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+		//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 		EnterSkillCoolTIme((int)EWeapon::Bomb);
 
 
@@ -1110,10 +1110,10 @@ void CAstroSlug::SelfDestruct()
 	m_SelfDestruct = true;
 	m_SideCollOn = false;
 
-	//¿ì¼± ¼Óµµ¸¦ 0À¸·Î(ÇÃ·¹ÀÌ¾î Å»Ãâ ÀÌÈÄ ±Ş°¡¼Ó)
+	//ìš°ì„  ì†ë„ë¥¼ 0ìœ¼ë¡œ(í”Œë ˆì´ì–´ íƒˆì¶œ ì´í›„ ê¸‰ê°€ì†)
 	SetMaxSpeed(0.f);
 
-	//Ãæµ¹Ã¼ ÇÁ·ÎÇÊÀ» PlayerAttackÀ¸·Î ±³Ã¼
+	//ì¶©ëŒì²´ í”„ë¡œí•„ì„ PlayerAttackìœ¼ë¡œ êµì²´
 	auto iter = m_listCollider.begin();
 	auto iterEnd = m_listCollider.end();
 	while (iter != iterEnd)
@@ -1134,7 +1134,7 @@ void CAstroSlug::RifleGet()
 {
 	m_Busy = true;
 
-	//¿ìÃø°ú ÁÂÃø ºÎ½ºÅÍ Àç»ıÀ» Á¤Áö½ÃÅ²´Ù.
+	//ìš°ì¸¡ê³¼ ì¢Œì¸¡ ë¶€ìŠ¤í„° ì¬ìƒì„ ì •ì§€ì‹œí‚¨ë‹¤.
 	m_BoostSFXSide->StopAnimation(1);
 	m_BoostSFXSide->StopAnimation(4);
 
@@ -1152,7 +1152,7 @@ void CAstroSlug::RifleDrop()
 	m_BoostSFXSide->StopAnimation(1);
 	m_BoostSFXSide->StopAnimation(4);
 
-	//¿À¸¥ÂÊ->¿ŞÂÊ ¼øÀ¸·Î ÃÑ ¶³¾îÁü -> È÷Æ®Æ÷ÀÎÆ®·Î ¼öÁ¤ÇÒ°Í
+	//ì˜¤ë¥¸ìª½->ì™¼ìª½ ìˆœìœ¼ë¡œ ì´ ë–¨ì–´ì§ -> íˆíŠ¸í¬ì¸íŠ¸ë¡œ ìˆ˜ì •í• ê²ƒ
 	if (m_PartState[Right] == EPartState::NormalRifle)
 	{
 		m_Busy = true;
@@ -1166,7 +1166,7 @@ void CAstroSlug::RifleDrop()
 		m_isLaserFire[Left] = nullptr;
 	}
 
-	if (m_HP <= 0 || m_Bullet <= 0) //Ã¼·Â ´Ù µÇ¸é µÑ´Ù ¶³¾îÁü
+	if (m_HP <= 0 || m_Bullet <= 0) //ì²´ë ¥ ë‹¤ ë˜ë©´ ë‘˜ë‹¤ ë–¨ì–´ì§
 	{
 		if (m_PartState[Right] == EPartState::NormalRifle)
 		{
@@ -1218,7 +1218,7 @@ void CAstroSlug::Destroy()
 		m_ExplodeRemainTime -= DELTA_TIME;
 	if (m_ExplodeRemainTime < 0.f)
 	{
-		//ÀÌ‹š±îÁöµµ ÇÃ·¹ÀÌ¾î°¡ ¹Ù²îÁö ¾Ê¾ÒÀ¸¸é ÇÃ·¹ÀÌ¾î »ı¼ºÇÏ°í Áï½Ã »ç¸Á
+		//ì´ë–„ê¹Œì§€ë„ í”Œë ˆì´ì–´ê°€ ë°”ë€Œì§€ ì•Šì•˜ìœ¼ë©´ í”Œë ˆì´ì–´ ìƒì„±í•˜ê³  ì¦‰ì‹œ ì‚¬ë§
 		if (m_Scene->GetPlayer() == this)
 		{
 			CPlayerSpace* Player = m_Scene->CreateObject<CPlayerSpace>("PlayerSpace");
@@ -1258,13 +1258,13 @@ void CAstroSlug::Destroy()
 		Trail->SetDir(-1.f, 1.f);
 		Trail->Straight(150.f);
 
-		//È­¸éÀ» ÇÏ¾é°Ô 1ÇÁ·¹ÀÓ°£ ÀüÈ¯
+		//í™”ë©´ì„ í•˜ì–—ê²Œ 1í”„ë ˆì„ê°„ ì „í™˜
 		CGameManager::GetInst()->SetWhiteOut(2);
 
 		SetActive(false);
 	}
 		
-	//HP¸¦ ¸¹ÀÌ ³»·Á³ö¼­ ÇÑ¹ø¸¸ ÁøÀÔÇÏµµ·Ï ÇØÁØ´Ù.
+	//HPë¥¼ ë§ì´ ë‚´ë ¤ë†”ì„œ í•œë²ˆë§Œ ì§„ì…í•˜ë„ë¡ í•´ì¤€ë‹¤.
 	if (m_HP > -10)
 	{
 		m_HP = -100;
@@ -1278,24 +1278,24 @@ void CAstroSlug::Destroy()
 
 		ClearCollider();
 
-		//°¨¼Óµµ¸¦ Å©°Ô ³·Ãß°í
+		//ê°ì†ë„ë¥¼ í¬ê²Œ ë‚®ì¶”ê³ 
 		SetDeAccel(0.96f);
 
-		//´Ù¸¥ ¸ğµç ÀÔ·Â(Çàµ¿)À» Á¦ÇÑÇÏ°í
+		//ë‹¤ë¥¸ ëª¨ë“  ì…ë ¥(í–‰ë™)ì„ ì œí•œí•˜ê³ 
 		CInput::GetInst()->DeleteBindClass<CAstroSlug>(this);
 
-		//ºñ»óÅ»Ãâ¸¸ Å°¸¸ µî·ÏÇÑ´Ù.
+		//ë¹„ìƒíƒˆì¶œë§Œ í‚¤ë§Œ ë“±ë¡í•œë‹¤.
 		CInput::GetInst()->AddBindFunction<CAstroSlug>("Jump",
 			EInput_Type::Down,
 			this, &CAstroSlug::Eject);
 
-		//»¡°²°Ô ¹Ù²ãÁÖ°í
+		//ë¹¨ê°›ê²Œ ë°”ê¿”ì£¼ê³ 
 		StartReaction(5.f, true, EReactionChannel::HitReaction);
 
-		//¹İÂ¦ÀÌÁö ¾Ê°Ô ¹«ÀûÀ¸·Î ¼öµ¿ ¼³Á¤ÇÑ´Ù.(Ãæµ¹Àº °è¼Ó ÀÖ¾î¾ßÇÔ)
+		//ë°˜ì§ì´ì§€ ì•Šê²Œ ë¬´ì ìœ¼ë¡œ ìˆ˜ë™ ì„¤ì •í•œë‹¤.(ì¶©ëŒì€ ê³„ì† ìˆì–´ì•¼í•¨)
 		m_Invincible = 4.f;
 
-		//OUT ¸Ş½ÃÁö Ãâ·Â.
+		//OUT ë©”ì‹œì§€ ì¶œë ¥.
 		CAstroSlugSFX* SFX = m_Scene->CreateObject<CAstroSlugSFX>("SlugOut", this);
 		//SFX->SetSFX("SlugOut");
 		SFX->SetEffect(EEffectType::Duration);
@@ -1307,25 +1307,25 @@ void CAstroSlug::Destroy()
 
 void CAstroSlug::Eject()
 {
-	//ÀÚÆø ÀÔ·Â ¶Ç´Â Ã¼·Â0»óÅÂ¿¡¼­ ÀÔ·ÂÀÌ µé¾î¿ÔÀ» °æ¿ì
+	//ìí­ ì…ë ¥ ë˜ëŠ” ì²´ë ¥0ìƒíƒœì—ì„œ ì…ë ¥ì´ ë“¤ì–´ì™”ì„ ê²½ìš°
 	if (m_ExplodeRemainTime < 2.5f || m_SelfDestruct)
 	{
-		//½Ã°£ÀÌ ³Ê¹« ÀûÀ¸¸é Å»Ãâ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ıÇÒ ½Ã°£¸¸ Ãß°¡ÇØÁÜ
+		//ì‹œê°„ì´ ë„ˆë¬´ ì ìœ¼ë©´ íƒˆì¶œ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒí•  ì‹œê°„ë§Œ ì¶”ê°€í•´ì¤Œ
 		if (m_ExplodeRemainTime < 0.5f)
 			m_ExplodeRemainTime += 0.5f;
 
-		//Å»Ãâ ¾È³»¹® off
+		//íƒˆì¶œ ì•ˆë‚´ë¬¸ off
 		CGameObject* SFX = m_Scene->FindObject("SlugOut");
 		if(SFX)
 			SFX->SetActive(false);
 
-		//Å»ÃâÇÏ´Â ¼ø°£ ¿ìÁÖ¼± Á¶ÀÛ ÁßÁö
+		//íƒˆì¶œí•˜ëŠ” ìˆœê°„ ìš°ì£¼ì„  ì¡°ì‘ ì¤‘ì§€
 		CInput::GetInst()->DeleteBindClass<CAstroSlug>(this);
 
-		//°¨¼Óµµ 0
+		//ê°ì†ë„ 0
 		SetDeAccel(0.f);
 
-		//Å»Ãâ Àå¸é ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+		//íƒˆì¶œ ì¥ë©´ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
 		m_isSeparate = false;
 		ChangeAnimation("EjectMode");
 		ChangeAnimation("EjectModeDoor", true);
@@ -1348,10 +1348,10 @@ void CAstroSlug::EjectDoorFrame2Notify()
 
 void CAstroSlug::EjectModeDoorEnd()
 {
-	//ÇÃ·¹ÀÌ¾î Ã¢ÀÇ Àç»ıÀ» false·Î ÀüÈ¯
+	//í”Œë ˆì´ì–´ ì°½ì˜ ì¬ìƒì„ falseë¡œ ì „í™˜
 	StopAnimation((int)ELayerInfo::PlayerWindow);
 
-	//ÇÃ·¹ÀÌ¾î »ı¼ºÀº ¹® ÆÄ±« ¾Ö´Ï¸ŞÀÌ¼Ç¿¡¼­ ÇÑ´Ù.
+	//í”Œë ˆì´ì–´ ìƒì„±ì€ ë¬¸ íŒŒê´´ ì• ë‹ˆë©”ì´ì…˜ì—ì„œ í•œë‹¤.
 	CAstroSlugSFX* SFX = m_Scene->CreateObject<CAstroSlugSFX>("DetachedDoor");
 	m_Scene->GetSceneResource()->SoundPlay("AstroHatchOpen");
 	//SFX->SetSFX("DetachedDoor");
@@ -1368,16 +1368,16 @@ void CAstroSlug::EjectModeDoorEnd()
 	Player->SlugEjection();
 
 
-	//ÀÚÆø ¸ğµåÀÏ°æ¿ì ¾ÕÀ¸·Î µ¹Áø
-	//¿©±â µé¾î¿À¸é ÇÃ·¹ÀÌ¾î Å»ÃâÀÌ ¿Ï·áµÈ°ÍÀÌ¹Ç·Î ¼ÓµµÁ¦ÇÑÀ» Ç®¾îÁÜ
-	//ÀÌµ¿Àº ¾÷µ¥ÀÌÆ®()¿¡¼­ Ã³¸®
+	//ìí­ ëª¨ë“œì¼ê²½ìš° ì•ìœ¼ë¡œ ëŒì§„
+	//ì—¬ê¸° ë“¤ì–´ì˜¤ë©´ í”Œë ˆì´ì–´ íƒˆì¶œì´ ì™„ë£Œëœê²ƒì´ë¯€ë¡œ ì†ë„ì œí•œì„ í’€ì–´ì¤Œ
+	//ì´ë™ì€ ì—…ë°ì´íŠ¸()ì—ì„œ ì²˜ë¦¬
 	if (m_SelfDestruct)
 	{
 		SetMaxSpeed(600.f);
 		SetDeAccel(1.f);
 
-		//Ãæµ¹Ã¼¸¦ Ã£¾Æ¼­ ÀÚÆø ¿£µåÆã¼ÇÀ¸·Î ±³Ã¼
-		//ÀÏ´ÜÀº Ãæµ¹Ã¼°¡ ÇÏ³ª»ÓÀÌ¹Ç·Î beginÀ» ÅëÇØ¼­ ±³Ã¼ÇØÁàµµ µÉµí.
+		//ì¶©ëŒì²´ë¥¼ ì°¾ì•„ì„œ ìí­ ì—”ë“œí‘ì…˜ìœ¼ë¡œ êµì²´
+		//ì¼ë‹¨ì€ ì¶©ëŒì²´ê°€ í•˜ë‚˜ë¿ì´ë¯€ë¡œ beginì„ í†µí•´ì„œ êµì²´í•´ì¤˜ë„ ë ë“¯.
 		auto iter = m_listCollider.begin();
 		if(iter != m_listCollider.end())
 			(*iter)->SetCollisionBeginFunc<CAstroSlug>(this, &CAstroSlug::SelfDestructCollBegin);
@@ -1392,7 +1392,7 @@ void CAstroSlug::AttackEnd()
 
 void CAstroSlug::KnockBack()
 {
-	//È÷Æ®Æ÷ÀÎÆ®¸¦ ±¸ÇØ¼­ ¹İ´ë¹æÇâÀ¸·Î ³Ë¹é
+	//íˆíŠ¸í¬ì¸íŠ¸ë¥¼ êµ¬í•´ì„œ ë°˜ëŒ€ë°©í–¥ìœ¼ë¡œ ë„‰ë°±
 	SetDir(m_Dir * -1);
 
 	
@@ -1410,14 +1410,14 @@ void CAstroSlug::RegisterAnimName()
 
 void CAstroSlug::RegisterInput()
 {
-	//Á¶ÀÛ °¡´ÉÇØÁö¸é ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
+	//ì¡°ì‘ ê°€ëŠ¥í•´ì§€ë©´ ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 	SetInvincible(3.f);
 	CJustPlay* JustPlay = m_Scene->CreateObject<CJustPlay>("P1Indicator", this);
 	JustPlay->SetDuration(3.f);
 	JustPlay->SetOffset(0.f, -20.f);
 
 
-	//ÀÔ·Â ÃÊ±âÈ­
+	//ì…ë ¥ ì´ˆê¸°í™”
 	CInput::GetInst()->AddBindFunction<CAstroSlug>("MoveLeft",
 		EInput_Type::Down,
 		this, &CAstroSlug::KeyDownLeft);
@@ -1493,11 +1493,11 @@ void CAstroSlug::RegisterInput()
 
 void CAstroSlug::ChangeWeapon(EWeapon Weapon)
 {
-	//ÃÑ È¹µæ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+	//ì´ íšë“ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
 	if(Weapon != EWeapon::Bomb)
 		RifleGet();
 
-	//¹«±â º¯°æ
+	//ë¬´ê¸° ë³€ê²½
 	switch (Weapon)
 	{
 	case EWeapon::HMG:

@@ -1,12 +1,12 @@
 #include "Input.h"
 
-//Ä¿¼­ ¾Ö´Ï¸ŞÀÌ¼Ç ÀúÀå¿ë
+//ì»¤ì„œ ì• ë‹ˆë©”ì´ì…˜ ì €ì¥ìš©
 #include "GameObject/GameObject.h"
 
-//ÅØ½ºÃ³ ·Îµå¿ë
+//í…ìŠ¤ì²˜ ë¡œë“œìš©
 #include "Resource/ResourceManager.h"
 
-//ÇöÀç ¿¡µğÅÍ ¸ğµåÀÎÁö È®ÀÎ¿ë
+//í˜„ì¬ ì—ë””í„° ëª¨ë“œì¸ì§€ í™•ì¸ìš©
 #include "GameManager.h"
 
 DEFINITION_SINGLETON(CInput)
@@ -47,8 +47,8 @@ CInput::~CInput()
 
 		while (iter != iterEnd)
 		{
-			//BindKey¸¦ Á¦°ÅÇÏ±â Àü ±× ¾ÈÀÇ VecFunction ¹è¿­ÀÇ µ¿ÀûÇÒ´çÀ» ¸ÕÀú Á¦°ÅÇÑ´Ù.
-			//ÀÌÂ÷¿ø ¹è¿­ÀÌ¹Ç·Î ¾Ë¸Â°Ô »èÁ¦ÇØÁØ´Ù.
+			//BindKeyë¥¼ ì œê±°í•˜ê¸° ì „ ê·¸ ì•ˆì˜ VecFunction ë°°ì—´ì˜ ë™ì í• ë‹¹ì„ ë¨¼ì € ì œê±°í•œë‹¤.
+			//ì´ì°¨ì› ë°°ì—´ì´ë¯€ë¡œ ì•Œë§ê²Œ ì‚­ì œí•´ì¤€ë‹¤.
 			for (size_t i = 0; i < (int)EInput_Type::End; ++i)
 			{
 				size_t size = iter->second->VecFunction[i].size();
@@ -102,24 +102,24 @@ bool CInput::Init(HWND hWnd)
 	SetKeyCtrl("TimeScaleDown");
 
 
-	//¿¡µ÷ ¸ğµå¿¡¼­ »ç¿ë. ¸¶¿ì½º
+	//ì—ë”§ ëª¨ë“œì—ì„œ ì‚¬ìš©. ë§ˆìš°ìŠ¤
 	AddBindKey("MouseLButton", VK_LBUTTON);
 	AddBindKey("MouseRButton", VK_RBUTTON);
 
 
 
-	//¿¡µ÷¾À ´ÙÀÌ¾ó·Î±× È£Ãâ ´ÜÃàÅ° Ctrl + T
+	//ì—ë”§ì”¬ ë‹¤ì´ì–¼ë¡œê·¸ í˜¸ì¶œ ë‹¨ì¶•í‚¤ Ctrl + T
 	AddBindKey("OpenEditor", 'T');
 	SetKeyCtrl("OpenEditor");
 
 
-	/////////////º¯¼ö ÃÊ±âÈ­/////////
+	/////////////ë³€ìˆ˜ ì´ˆê¸°í™”/////////
 	m_Ctrl = false;
 	m_Alt = false;
 	m_Shift = false;
 
 
-	////Ä¿¼­¿ë ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÀúÀåÇÑ °ÔÀÓ¿ÀºêÁ§Æ® Å¬·¡½º »ı¼º
+	////ì»¤ì„œìš© ì• ë‹ˆë©”ì´ì…˜ì„ ì €ì¥í•œ ê²Œì„ì˜¤ë¸Œì íŠ¸ í´ë˜ìŠ¤ ìƒì„±
 	//m_CursorAnim = new CGameObject;
 	//m_CursorAnim->SetOwnerScene(nullptr);
 	//m_CursorAnim->SetName("CursorAnim");
@@ -129,7 +129,7 @@ bool CInput::Init(HWND hWnd)
 	//	return false;
 	//}
 	//
-	////ÅØ½ºÃ³ ·Îµå ¹× ¾Ö´Ï¸ŞÀÌ¼ÇÈ­
+	////í…ìŠ¤ì²˜ ë¡œë“œ ë° ì• ë‹ˆë©”ì´ì…˜í™”
 	//CResourceManager::GetInst()->LoadTextureByTextureNumbers
 	//(
 	//	"Cursor",
@@ -204,22 +204,22 @@ void CInput::ComputeWorldPos(const Vector2& CamPos)
 
 void CInput::UpdateMouse(float DeltaTime)
 {
-	//¸¶¿ì½º À§Ä¡ ¾÷µ¥ÀÌÆ®
+	//ë§ˆìš°ìŠ¤ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 	POINT PTMouse;
 	GetCursorPos(&PTMouse);
 	ScreenToClient(m_hWnd, &PTMouse);
 
-	//È­¸éÀ» n¹è È®´ëÇßÀ¸¹Ç·Î 
-	//ÁÂÇ¥°ªÀº n¹è ÁÙ¿©Áà¾ß ½ÇÁ¦ ¸¶¿ì½º À§Ä¡¿Í ÀÏÄ¡ÇÏ°Ô ¿òÁ÷ÀÓ.
+	//í™”ë©´ì„ në°° í™•ëŒ€í–ˆìœ¼ë¯€ë¡œ 
+	//ì¢Œí‘œê°’ì€ në°° ì¤„ì—¬ì¤˜ì•¼ ì‹¤ì œ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì™€ ì¼ì¹˜í•˜ê²Œ ì›€ì§ì„.
 
 	PTMouse.x /= SCREEN_SCALE;
 	PTMouse.y /= SCREEN_SCALE;
 
-	//ÀÌµ¿·® ±¸ÇØ³õ°í
+	//ì´ë™ëŸ‰ êµ¬í•´ë†“ê³ 
 	m_MouseMove.x = PTMouse.x - m_MousePos.x;
 	m_MouseMove.y = PTMouse.y - m_MousePos.y;
 
-	//¸¶¿ì½º ÁÂÇ¥ ¾÷µ¥ÀÌÆ®
+	//ë§ˆìš°ìŠ¤ ì¢Œí‘œ ì—…ë°ì´íŠ¸
 	m_MousePos.x = (float)PTMouse.x;
 	m_MousePos.y = (float)PTMouse.y;
 
@@ -228,7 +228,7 @@ void CInput::UpdateMouse(float DeltaTime)
 	
 
 
-	//¿¡µğÆ® ¸ğµåÀÏ¶§´Â ¸¶¿ì½º ¹«Á¶°Ç Ç¥½ÃÇÑ´Ù.
+	//ì—ë””íŠ¸ ëª¨ë“œì¼ë•ŒëŠ” ë§ˆìš°ìŠ¤ ë¬´ì¡°ê±´ í‘œì‹œí•œë‹¤.
 	if (CGameManager::GetInst()->GetEditMode())
 	{
 		m_ShowDefaultCursor = true;
@@ -288,15 +288,15 @@ void CInput::UpdateMouse(float DeltaTime)
 
 
 
-		//¸¶¿ì½º ¾Ö´Ï¸ŞÀÌ¼Ç °ü·Ã
-		////Ä¿¼­°¡ Ã¢ ¾È¿¡ ÀÖ´Âµ¥ Ä¿¼­°¡ º¸ÀÌµµ·Ï ¼³Á¤µÇ¾îÀÖ´Ù¸é false·Î ¹Ù²ãÁÜ
+		//ë§ˆìš°ìŠ¤ ì• ë‹ˆë©”ì´ì…˜ ê´€ë ¨
+		////ì»¤ì„œê°€ ì°½ ì•ˆì— ìˆëŠ”ë° ì»¤ì„œê°€ ë³´ì´ë„ë¡ ì„¤ì •ë˜ì–´ìˆë‹¤ë©´ falseë¡œ ë°”ê¿”ì¤Œ
 		//if (isCursorInside && m_ShowDefaultCursor)
 		//{
 		//	m_ShowDefaultCursor = false;
 		//	ShowCursor(FALSE);
 		//}
 
-		////Ä¿¼­°¡ Ã¢ ¹Û¿¡ ÀÖ´Âµ¥ Ä¿¼­°¡ ¾Èº¸ÀÌµµ·Ï ¼³Á¤µÇ¾îÀÖ´Ù¸é true·Î ¹Ù²ãÁÜ
+		////ì»¤ì„œê°€ ì°½ ë°–ì— ìˆëŠ”ë° ì»¤ì„œê°€ ì•ˆë³´ì´ë„ë¡ ì„¤ì •ë˜ì–´ìˆë‹¤ë©´ trueë¡œ ë°”ê¿”ì¤Œ
 		//else if (!isCursorInside && !m_ShowDefaultCursor)
 		//{
 		//	m_ShowDefaultCursor = true;
@@ -310,25 +310,25 @@ void CInput::UpdateMouse(float DeltaTime)
 
 
 
-	//¸¶¿ì½º Å¬¸¯ ¾÷µ¥ÀÌÆ®
+	//ë§ˆìš°ìŠ¤ í´ë¦­ ì—…ë°ì´íŠ¸
 
-	//¸¸¾à ¸¶¿ì½º°¡ ´­·È´Âµ¥
+	//ë§Œì•½ ë§ˆìš°ìŠ¤ê°€ ëˆŒë ¸ëŠ”ë°
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 	{
-		//Downµµ ¾Æ´Ï°í Pushµµ ¾Æ´Ï¸é Ã³À½À¸·Î ´­¸°°Í
+		//Downë„ ì•„ë‹ˆê³  Pushë„ ì•„ë‹ˆë©´ ì²˜ìŒìœ¼ë¡œ ëˆŒë¦°ê²ƒ
 		if (!m_MouseLDown && !m_MouseLPush)
 		{
 			m_MouseLDown = true;
 			m_MouseLPush = true;
 		}
-		//µÑÁß ÇÏ³ª¶óµµ falseÀÌ¸é ÇöÀç ¹«Á¶°Ç ´©¸£°í ÀÖ´Ù´Â ¶æÀÓ
+		//ë‘˜ì¤‘ í•˜ë‚˜ë¼ë„ falseì´ë©´ í˜„ì¬ ë¬´ì¡°ê±´ ëˆ„ë¥´ê³  ìˆë‹¤ëŠ” ëœ»ì„
 		else
 		{
 			m_MouseLDown = false;
 		}
 	}
 
-	//¸¶¿ì½º°¡ ¾È´­·È´Âµ¥ Push´Â trueÀÌ´Ù -> ¹æ±İ ¶¾°Í
+	//ë§ˆìš°ìŠ¤ê°€ ì•ˆëˆŒë ¸ëŠ”ë° PushëŠ” trueì´ë‹¤ -> ë°©ê¸ˆ ë—€ê²ƒ
 	else if (m_MouseLPush)
 	{
 		m_MouseLDown = false;
@@ -336,7 +336,7 @@ void CInput::UpdateMouse(float DeltaTime)
 		m_MouseLUp = true;
 	}
 
-	//¸¶¿ì½º°¡ ¾È´­·È´Âµ¥ m_MouseUPÀÌ trueÀÌ´Ù -> ¹öÆ° ¶Ã´Ù
+	//ë§ˆìš°ìŠ¤ê°€ ì•ˆëˆŒë ¸ëŠ”ë° m_MouseUPì´ trueì´ë‹¤ -> ë²„íŠ¼ ë—ë‹¤
 	else if(m_MouseLUp)
 	{
 		m_MouseLUp = false;
@@ -374,20 +374,20 @@ void CInput::UpdateKeyState(float DeltaTime)
 		{
 			KeyState* State = iter->second;
 
-			//¹æ±İ Å°°¡ ´­·È´Âµ¥
-			//¹æ±İ Àü ÇÁ·¹ÀÓ¿¡¼­ ´­¸®°Å³ª ´©¸£°í ÀÖÁö ¾Ê¾Ò´Ù?
-			//±×·³ »õ·Î ´­¸°°Å
+			//ë°©ê¸ˆ í‚¤ê°€ ëˆŒë ¸ëŠ”ë°
+			//ë°©ê¸ˆ ì „ í”„ë ˆì„ì—ì„œ ëˆŒë¦¬ê±°ë‚˜ ëˆ„ë¥´ê³  ìˆì§€ ì•Šì•˜ë‹¤?
+			//ê·¸ëŸ¼ ìƒˆë¡œ ëˆŒë¦°ê±°
 			if (!State->Down && !State->Push)
 			{
 				State->Down = true;
 				State->Push = true;
 			}
 
-			//¹æ±İ Å°°¡ ´­·È´Âµ¥
-			//Down Push µÑ Áß ÇÏ³ª¶óµµ ÂüÀÌ´Ù?
-			//Áö±İ °è¼Ó ´©¸£´Â ÁßÀÌ¶ó´Â ¶æ!
-			//Push´Â Ã³À½ ´­·¶À» ‹š true·Î ¹Ù²ã ÁÖ¾úÀ¸¹Ç·Î
-			//Down¸¸ false·Î ¹Ù²ãÁÖ¸é µÈ´Ù.
+			//ë°©ê¸ˆ í‚¤ê°€ ëˆŒë ¸ëŠ”ë°
+			//Down Push ë‘˜ ì¤‘ í•˜ë‚˜ë¼ë„ ì°¸ì´ë‹¤?
+			//ì§€ê¸ˆ ê³„ì† ëˆ„ë¥´ëŠ” ì¤‘ì´ë¼ëŠ” ëœ»!
+			//PushëŠ” ì²˜ìŒ ëˆŒë €ì„ ë–„ trueë¡œ ë°”ê¿” ì£¼ì—ˆìœ¼ë¯€ë¡œ
+			//Downë§Œ falseë¡œ ë°”ê¿”ì£¼ë©´ ëœë‹¤.
 			else
 			{
 				State->Down = false;
@@ -398,11 +398,11 @@ void CInput::UpdateKeyState(float DeltaTime)
 		{
 			KeyState* State = iter->second;
 
-			//Àü ÇÁ·¹ÀÓ±îÁö ¹æ±İ ´­·¶´ø, ´©¸£°í ÀÖ¾ú´ø
-			// ¾Æ¹«Æ° ´©¸£°í ÀÖ¾úÀ¸¸é Push´Â ¹«.Á¶.°Ç ÂüÀÌ´Ù
-			//±Ùµ¥ Áö±İ ÇÁ·¹ÀÓ¿¡¼­ ´©¸£Áö ¾Ê¾Ò´Ù?(else ÁøÀÔ)
-			//±×·³ Áö±İ ¸· ¶¾°Å³×?
-			//UpÀ» true ·Î
+			//ì „ í”„ë ˆì„ê¹Œì§€ ë°©ê¸ˆ ëˆŒë €ë˜, ëˆ„ë¥´ê³  ìˆì—ˆë˜
+			// ì•„ë¬´íŠ¼ ëˆ„ë¥´ê³  ìˆì—ˆìœ¼ë©´ PushëŠ” ë¬´.ì¡°.ê±´ ì°¸ì´ë‹¤
+			//ê·¼ë° ì§€ê¸ˆ í”„ë ˆì„ì—ì„œ ëˆ„ë¥´ì§€ ì•Šì•˜ë‹¤?(else ì§„ì…)
+			//ê·¸ëŸ¼ ì§€ê¸ˆ ë§‰ ë—€ê±°ë„¤?
+			//Upì„ true ë¡œ
 			if (State->Push)
 			{
 				State->Down = false;
@@ -411,9 +411,9 @@ void CInput::UpdateKeyState(float DeltaTime)
 			}
 
 
-			//ÀÌ¹ø ÇÁ·¹ÀÓ¿¡¼­ ¾È ´­·¶´Âµ¥
-			//Àü ÇÁ·¹ÀÓ¿¡¼­ ´­·¶´Ù?
-			//Up¸¦ ´Ù½Ã ¿øÀ§Ä¡·Î(Up´Â ¹æ±İ ¶¾ ÇÑ ÇÁ·¹ÀÓ¸¸ µ¿ÀÛÇÑ´Ù)
+			//ì´ë²ˆ í”„ë ˆì„ì—ì„œ ì•ˆ ëˆŒë €ëŠ”ë°
+			//ì „ í”„ë ˆì„ì—ì„œ ëˆŒë €ë‹¤?
+			//Upë¥¼ ë‹¤ì‹œ ì›ìœ„ì¹˜ë¡œ(UpëŠ” ë°©ê¸ˆ ë—€ í•œ í”„ë ˆì„ë§Œ ë™ì‘í•œë‹¤)
 			else if (State->Up)
 			{
 				State->Up = false;
@@ -437,7 +437,7 @@ void CInput::UpdateBindKey(float DeltaTime)
 
 		
 
-		//DownÀÌ ´­·È°í, ±â´É Å°µéÀÇ ÀÔ·Âµµ Á¶°Ç°ú ¸ğµÎ µ¿ÀÏÇÒ ¶§
+		//Downì´ ëˆŒë ¸ê³ , ê¸°ëŠ¥ í‚¤ë“¤ì˜ ì…ë ¥ë„ ì¡°ê±´ê³¼ ëª¨ë‘ ë™ì¼í•  ë•Œ
 		if (bind->BindKeyState->Down &&
 			bind->Ctrl == m_Ctrl &&
 			bind->Alt == m_Alt &&
@@ -447,8 +447,8 @@ void CInput::UpdateBindKey(float DeltaTime)
 
 			for(size_t i = 0; i < size; ++i)
 			{ 
-				//Down½Ã ½ÇÇà µî·ÏÇÑ ÇÔ¼ö¸¦ ÀüºÎ ½ÇÇàÇÑ´Ù.
-				//¾øÀ¸¸é ½ÇÇà ¾ÈµÇ´Ï±î µî·Ï ¾ÈÇßÀ¸¸é ±×³É ³Ñ¾î°¡Áü
+				//Downì‹œ ì‹¤í–‰ ë“±ë¡í•œ í•¨ìˆ˜ë¥¼ ì „ë¶€ ì‹¤í–‰í•œë‹¤.
+				//ì—†ìœ¼ë©´ ì‹¤í–‰ ì•ˆë˜ë‹ˆê¹Œ ë“±ë¡ ì•ˆí–ˆìœ¼ë©´ ê·¸ëƒ¥ ë„˜ì–´ê°€ì§
 				bind->VecFunction[(int)EInput_Type::Down][i]->func();
 			}
 			
@@ -465,8 +465,8 @@ void CInput::UpdateBindKey(float DeltaTime)
 
 			for (size_t i = 0; i < size; ++i)
 			{
-				//Down½Ã ½ÇÇà µî·ÏÇÑ ÇÔ¼ö¸¦ ÀüºÎ ½ÇÇàÇÑ´Ù.
-				//¾øÀ¸¸é ½ÇÇà ¾ÈµÇ´Ï±î µî·Ï ¾ÈÇßÀ¸¸é ±×³É ³Ñ¾î°¡Áü
+				//Downì‹œ ì‹¤í–‰ ë“±ë¡í•œ í•¨ìˆ˜ë¥¼ ì „ë¶€ ì‹¤í–‰í•œë‹¤.
+				//ì—†ìœ¼ë©´ ì‹¤í–‰ ì•ˆë˜ë‹ˆê¹Œ ë“±ë¡ ì•ˆí–ˆìœ¼ë©´ ê·¸ëƒ¥ ë„˜ì–´ê°€ì§
 				bind->VecFunction[(int)EInput_Type::Push][i]->func();
 			}
 
@@ -482,8 +482,8 @@ void CInput::UpdateBindKey(float DeltaTime)
 
 			for (size_t i = 0; i < size; ++i)
 			{
-				//Down½Ã ½ÇÇà µî·ÏÇÑ ÇÔ¼ö¸¦ ÀüºÎ ½ÇÇàÇÑ´Ù.
-				//¾øÀ¸¸é ½ÇÇà ¾ÈµÇ´Ï±î µî·Ï ¾ÈÇßÀ¸¸é ±×³É ³Ñ¾î°¡Áü
+				//Downì‹œ ì‹¤í–‰ ë“±ë¡í•œ í•¨ìˆ˜ë¥¼ ì „ë¶€ ì‹¤í–‰í•œë‹¤.
+				//ì—†ìœ¼ë©´ ì‹¤í–‰ ì•ˆë˜ë‹ˆê¹Œ ë“±ë¡ ì•ˆí–ˆìœ¼ë©´ ê·¸ëƒ¥ ë„˜ì–´ê°€ì§
 				bind->VecFunction[(int)EInput_Type::Up][i]->func();
 			}
 

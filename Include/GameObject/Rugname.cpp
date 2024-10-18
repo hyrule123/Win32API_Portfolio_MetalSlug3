@@ -28,7 +28,7 @@ bool CRugname::Init(CGameObject* Obj)
 	SoundPlay("LowPitchThrust");
 	SoundPlay("RugName");
 
-	//¶ó±×³×ÀÓ ·Îµå
+	//ë¼ê·¸ë„¤ìž„ ë¡œë“œ
 	m_RugNameLower = m_Scene->CreateObject<CRugnamePart>("RugnameLower", this);
 	m_RugNameLower->SetEssential(ERugnameLayer::Lower);
 	m_RugNameUpper = m_Scene->CreateObject<CRugnamePart>("RugnameUpper", this);

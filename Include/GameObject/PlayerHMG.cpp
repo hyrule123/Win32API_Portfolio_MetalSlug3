@@ -1,10 +1,10 @@
 #include "PlayerHMG.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../../Include/Scene/Scene.h"
 
-//ÃÑ¾Ë ÀÌÆåÆ® »ı¼º¿ë
+//ì´ì•Œ ì´í™íŠ¸ ìƒì„±ìš©
 #include "PistolHit.h"
 
 #include "../Scene/SceneResource.h"
@@ -37,13 +37,13 @@ bool CPlayerHMG::Init(CGameObject* Obj)
 
 	SetRenderLayer(ERenderLayer::EffectLow);
 
-	//Ãæµ¹Ã¼ ¼³Á¤
+	//ì¶©ëŒì²´ ì„¤ì •
 	CColliderBox* Coll = AddCollider<CColliderBox>("Bullet");
 
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetSize(m_Size);
 
-	//È£Ãâ ÇÔ¼ö ¼³Á¤
+	//í˜¸ì¶œ í•¨ìˆ˜ ì„¤ì •
 	Coll->SetCollisionBeginFunc(this, &CPlayerHMG::CollisionBegin);
 
 	m_isReady = true;
@@ -76,7 +76,7 @@ void CPlayerHMG::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 	CPistolHit* Effect = m_Scene->CreateObject<CPistolHit>("BulletSFX");
 
-	//¾à°£ ·£´ıÇÏ°Ô ÇÇ°İÀÌÆåÆ® Ç¥½Ã
+	//ì•½ê°„ ëœë¤í•˜ê²Œ í”¼ê²©ì´í™íŠ¸ í‘œì‹œ
 	if (Effect)
 	{
 		Vector2 Pos = Src->GetHitPoint();

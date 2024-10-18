@@ -7,7 +7,7 @@
 #include "../Scene/SceneManager.h"
 #include "../Resource/Texture/Texture.h"
 
-//·£´ı³Ñ¹ö ¹Ş¾Æ¿À±âÀ§ÇÔ
+//ëœë¤ë„˜ë²„ ë°›ì•„ì˜¤ê¸°ìœ„í•¨
 #include "../GameManager.h"
 
 
@@ -24,7 +24,7 @@ CLaserDebris::CLaserDebris() :
 
 CLaserDebris::CLaserDebris(const CLaserDebris& Obj) :
 	CJustMovingSFX(Obj),
-	m_ColorNum{},	//Init¿¡¼­ ÃÊ±âÈ­
+	m_ColorNum{},	//Initì—ì„œ ì´ˆê¸°í™”
 	m_Index(Obj.m_Index),
 	m_ChangeIndex(Obj.m_ChangeIndex),
 	m_Force(Obj.m_Force)
@@ -140,7 +140,7 @@ void CLaserDebris::Render(HDC hDC, float DeltaTime)
 		Pos = m_Pos - Camera->GetPos();
 	}
 
-	//¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿ì¼±
+	//ì• ë‹ˆë©”ì´ì…˜ì´ ìˆë‹¤ë©´ ì• ë‹ˆë©”ì´ì…˜ì´ ìš°ì„ 
 	if (m_Animation)
 	{
 		for (int i = 0; i <= m_Animation->GetHighestLayer(); ++i)
@@ -175,7 +175,7 @@ void CLaserDebris::Render(HDC hDC, float DeltaTime)
 		}
 
 
-		//2ÇÁ·¹ÀÓ¸¶´Ù ÇÑ¹ø¾¿ ·¹ÀÌÀú »ö»óÀ» ¹Ù²ãÁØ´Ù.
+		//2í”„ë ˆì„ë§ˆë‹¤ í•œë²ˆì”© ë ˆì´ì € ìƒ‰ìƒì„ ë°”ê¿”ì¤€ë‹¤.
 		if (m_ChangeIndex)
 			m_Index = rand() % 4;
 		m_ChangeIndex = !m_ChangeIndex;
@@ -185,7 +185,7 @@ void CLaserDebris::Render(HDC hDC, float DeltaTime)
 	if (DEBUG_RENDER)
 	{
 
-		//Ãæµ¹Ã¼ ¸®½ºÆ®°¡ ºñ¾îÀÖ´Ù¸é ¾ÈÇØµµ µÊ
+		//ì¶©ëŒì²´ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆë‹¤ë©´ ì•ˆí•´ë„ ë¨
 		if (!m_listCollider.empty())
 		{
 			auto iter = m_listCollider.begin();
@@ -193,14 +193,14 @@ void CLaserDebris::Render(HDC hDC, float DeltaTime)
 
 			while (iter != iterEnd)
 			{
-				//¸¸¾à Ãæµ¹Ã¼°¡ Á¦°ÅµÇ±â·Î ¿¹¾à µÇ¾îÀÖ¾ú´Ù¸é
+				//ë§Œì•½ ì¶©ëŒì²´ê°€ ì œê±°ë˜ê¸°ë¡œ ì˜ˆì•½ ë˜ì–´ìˆì—ˆë‹¤ë©´
 				if (!(*iter)->GetActive())
 				{
 					iter++;
 					continue;
 				}
 
-				//¸¸¾à ÀÓ½Ã·Î ºñÈ°¼ºÈ­¸¸ µÇ¾îÀÖ´Ù¸é Ã³¸®ÇÏÁö ¾Ê°í ³Ñ¾î°£´Ù.
+				//ë§Œì•½ ì„ì‹œë¡œ ë¹„í™œì„±í™”ë§Œ ë˜ì–´ìˆë‹¤ë©´ ì²˜ë¦¬í•˜ì§€ ì•Šê³  ë„˜ì–´ê°„ë‹¤.
 				else if (!(*iter)->GetEnable())
 				{
 					iter++;

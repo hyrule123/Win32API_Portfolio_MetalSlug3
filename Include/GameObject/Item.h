@@ -4,7 +4,7 @@
 
 
 class CItem :
-    public CGameObject
+	public CGameObject
 {
 	friend class CScene;
 protected:

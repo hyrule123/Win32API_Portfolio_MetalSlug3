@@ -2,10 +2,10 @@
 #include "Effect.h"
 
 
-//SetEssentialÀ» ÅëÇØ¼­ ¹İµå½Ã Æø¹ßÃ¼ÀÇ Å©±â¸¦ ÁöÁ¤ÇØÁÙ°Í
+//SetEssentialì„ í†µí•´ì„œ ë°˜ë“œì‹œ í­ë°œì²´ì˜ í¬ê¸°ë¥¼ ì§€ì •í•´ì¤„ê²ƒ
 
 class CExplosion :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 

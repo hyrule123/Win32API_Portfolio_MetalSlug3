@@ -6,121 +6,121 @@
 #include "Widget.h"
 
 class CWidgetWindow :
-    public CRef
+	public CRef
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CWidgetWindow();
+	CWidgetWindow();
 
-    CWidgetWindow(const CWidgetWindow& Obj);
-    virtual ~CWidgetWindow();
+	CWidgetWindow(const CWidgetWindow& Obj);
+	virtual ~CWidgetWindow();
 public:
-    virtual bool Init();
-    class CWidgetFadeInOut* FadeInOut(bool isFadeIn);
-
-
-
-protected:
-    class CScene* m_Scene;
-
-    bool m_CheckCollide;
-public:
-    void SetCheckCollide(bool CheckCollide);
-    bool GetCheckCollide() const;
-
-
-protected://À§Á¬ À©µµ¿ìÀÇ Ãâ·Â ¼ø¼­ Á¤·ÄÀ» À§ÇÑ º¯¼ö
-    int         m_ZOrder;
-public:
-    void SetZOrder(int ZOrder);
-    int GetZOrder() const;
-
-protected://À§Á¬ ¸ñ·Ï 
-    std::vector<CSharedPtr<class CWidget>>  m_vecWidget;
-public:
-    class CWidget* GetWidget(int Index);
-    int GetWidgetCount()    const;
-
-
-
-
-protected://À§Ä¡
-    Vector2     m_Pos;
-public:
-    void SetPos(float x, float y);
-    void SetPos(const Vector2& Pos);
-    const Vector2& GetPos()	const;
-
-
-
-protected://»çÀÌÁî
-    Vector2     m_Size;
-public:
-    void SetSize(float x, float y);
-    void SetSize(const Vector2& Size);
-    const Vector2& GetSize()	const;
-
-
-public:
-    virtual bool CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos);
+	virtual bool Init();
+	class CWidgetFadeInOut* FadeInOut(bool isFadeIn);
 
 
 
 protected:
-    static bool SortWidget(
-        const CSharedPtr<CWidget>& Src,
-        const CSharedPtr<CWidget>& Dest
-    );
+	class CScene* m_Scene;
+
+	bool m_CheckCollide;
+public:
+	void SetCheckCollide(bool CheckCollide);
+	bool GetCheckCollide() const;
 
 
-public://¾÷µ¥ÀÌÆ® ¹× Ãâ·Â
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+protected://ìœ„ì ¯ ìœˆë„ìš°ì˜ ì¶œë ¥ ìˆœì„œ ì •ë ¬ì„ ìœ„í•œ ë³€ìˆ˜
+	int         m_ZOrder;
+public:
+	void SetZOrder(int ZOrder);
+	int GetZOrder() const;
+
+protected://ìœ„ì ¯ ëª©ë¡ 
+	std::vector<CSharedPtr<class CWidget>>  m_vecWidget;
+public:
+	class CWidget* GetWidget(int Index);
+	int GetWidgetCount()    const;
 
 
 
-public://À§Á¬ Å½»ö/»ı¼º/»èÁ¦
 
-    void DeleteWidget(const std::string& Name);
-
-    CWidget* FindWidgetCommonType(const std::string& Name);
-
-    template <typename T>
-    T* FindWidget(const std::string& Name)
-    {
-        size_t  Size = m_vecWidget.size();
-
-        for (size_t i = 0; i < Size; ++i)
-        {
-            if (m_vecWidget[i]->GetName() == Name)
-                return (T*)(*m_vecWidget[i]);
-        }
-
-        return nullptr;
-    }
+protected://ìœ„ì¹˜
+	Vector2     m_Pos;
+public:
+	void SetPos(float x, float y);
+	void SetPos(const Vector2& Pos);
+	const Vector2& GetPos()	const;
 
 
-    template <typename T>
-    T* CreateWidget(const std::string& Name)
-    {
-        T* Widget = new T;
 
-        Widget->SetName(Name);
-        Widget->m_Scene = m_Scene;
-        Widget->m_Owner = this;
+protected://ì‚¬ì´ì¦ˆ
+	Vector2     m_Size;
+public:
+	void SetSize(float x, float y);
+	void SetSize(const Vector2& Size);
+	const Vector2& GetSize()	const;
 
-        if (!Widget->Init())
-        {
-            SAFE_DELETE(Widget);
-            return nullptr;
-        }
 
-        m_vecWidget.push_back(Widget);
+public:
+	virtual bool CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos);
 
-        return (T*)Widget;
-    }
+
+
+protected:
+	static bool SortWidget(
+		const CSharedPtr<CWidget>& Src,
+		const CSharedPtr<CWidget>& Dest
+	);
+
+
+public://ì—…ë°ì´íŠ¸ ë° ì¶œë ¥
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+
+
+
+public://ìœ„ì ¯ íƒìƒ‰/ìƒì„±/ì‚­ì œ
+
+	void DeleteWidget(const std::string& Name);
+
+	CWidget* FindWidgetCommonType(const std::string& Name);
+
+	template <typename T>
+	T* FindWidget(const std::string& Name)
+	{
+		size_t  Size = m_vecWidget.size();
+
+		for (size_t i = 0; i < Size; ++i)
+		{
+			if (m_vecWidget[i]->GetName() == Name)
+				return (T*)(*m_vecWidget[i]);
+		}
+
+		return nullptr;
+	}
+
+
+	template <typename T>
+	T* CreateWidget(const std::string& Name)
+	{
+		T* Widget = new T;
+
+		Widget->SetName(Name);
+		Widget->m_Scene = m_Scene;
+		Widget->m_Owner = this;
+
+		if (!Widget->Init())
+		{
+			SAFE_DELETE(Widget);
+			return nullptr;
+		}
+
+		m_vecWidget.push_back(Widget);
+
+		return (T*)Widget;
+	}
 
 };
 

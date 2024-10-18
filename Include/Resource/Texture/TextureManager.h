@@ -30,7 +30,7 @@ private:
 	bool LoadTextureFullPath(const std::string& Name, const std::tstring& FullPath, EReactionChannel MaxChannel = EReactionChannel::Normal);
 
 
-	//Frame Çü½Ä µî·Ï ¸Ş¼Òµå
+	//Frame í˜•ì‹ ë“±ë¡ ë©”ì†Œë“œ
 	bool LoadTextureByTextureNumbers(const std::string& Name,
 		const std::tstring& FolderPath, int NumberOfTexture, const std::string& PathName = TEXTURE_PATH);
 
@@ -38,7 +38,7 @@ private:
 	bool LoadTextureFullPath(const std::string& Name, const std::vector<std::tstring>& vecFullPath);
 
 
-	//¼¼ÀÌºê, ·Îµå °ü·Ã
+	//ì„¸ì´ë¸Œ, ë¡œë“œ ê´€ë ¨
 	CTexture* LoadTexture(FILE* File);
 
 };

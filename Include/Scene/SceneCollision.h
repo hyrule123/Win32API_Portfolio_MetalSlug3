@@ -10,16 +10,16 @@ private:
 	CSceneCollision();
 	~CSceneCollision();
 
-	//m_vecColliderÀ» Ãæµ¹ Ã¤³Î ¼ö¿¡ ¸Â°Ô »ı¼º.
+	//m_vecColliderì„ ì¶©ëŒ ì±„ë„ ìˆ˜ì— ë§ê²Œ ìƒì„±.
 	std::vector<class CCollider*>	m_vecCollider[(int)ECollisionChannel::Max];
-	//ÇöÀç ¸¶¿ì½º Æ÷ÀÎÅÍ¿Í Ãæµ¹ ÁßÀÎ Ãæµ¹Ã¼ ÁÖ¼Ò¸¦ ÀúÀåÇØ³õ´Â ¿ëµµ.
+	//í˜„ì¬ ë§ˆìš°ìŠ¤ í¬ì¸í„°ì™€ ì¶©ëŒ ì¤‘ì¸ ì¶©ëŒì²´ ì£¼ì†Œë¥¼ ì €ì¥í•´ë†“ëŠ” ìš©ë„.
 	class CCollider* m_MouseColliding;
 
-	//À§Á¬ Ãæµ¹ Ã³¸®¿ë ´ë±â¿­. À§Á¬ À©µµ¿ìÀÇ °¹¼ö´Â ¸¹Áö ¾ÊÀ» °ÍÀÌ¹Ç·Î capacity¸¦±âº»°ªÀ¸·Î ³ÀµĞ´Ù.
+	//ìœ„ì ¯ ì¶©ëŒ ì²˜ë¦¬ìš© ëŒ€ê¸°ì—´. ìœ„ì ¯ ìœˆë„ìš°ì˜ ê°¯ìˆ˜ëŠ” ë§ì§€ ì•Šì„ ê²ƒì´ë¯€ë¡œ capacityë¥¼ê¸°ë³¸ê°’ìœ¼ë¡œ ëƒ…ë‘”ë‹¤.
 	std::vector<class CWidgetWindow*> m_vecWidgetWindow;
 	class CWidget* m_MouseCollidingWidget;
 
-	//¸Å ÇÁ·¹ÀÓ CollManagerÀÇ ÁÖ¼Ò¸¦ ÂüÁ¶ÇØ¾ß ÇÏ±â ¶§¹®¿¡ ¾Æ¿¹ ÁÖ¼Ò¸¦ ¹Ì¸® ¹Ş¾Æ³õ´Â´Ù.
+	//ë§¤ í”„ë ˆì„ CollManagerì˜ ì£¼ì†Œë¥¼ ì°¸ì¡°í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì— ì•„ì˜ˆ ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë°›ì•„ë†“ëŠ”ë‹¤.
 	class CCollisionManager* m_CollManager;
 
 
@@ -27,7 +27,7 @@ public:
 	void AddCollider(CCollider* Col);
 	void CollisionUpdate();
 	void CollisionUpdateMouse();
-	bool DeleteCollider(CCollider* Col);	//vecCollider¿¡ »ğÀÔµÈ ÀÚ½ÅÀÇ Ãæµ¹Ã¼¸¦ »èÁ¦ÇÑ´Ù.(¼Ò¸êÀÚ¿¡¼­ È£Ãâ)
+	bool DeleteCollider(CCollider* Col);	//vecColliderì— ì‚½ì…ëœ ìì‹ ì˜ ì¶©ëŒì²´ë¥¼ ì‚­ì œí•œë‹¤.(ì†Œë©¸ìì—ì„œ í˜¸ì¶œ)
 
 };
 

@@ -3,7 +3,7 @@
 
 CFont::CFont()	:
 	m_FontInfo{},
-    m_hFont{},
+	m_hFont{},
 	m_hPrevFont(0)
 {
 }
@@ -16,41 +16,41 @@ CFont::~CFont()
 
 bool CFont::LoadFontInfo(const std::string& Name, const std::tstring& FontName, int Width, int Height)
 {
-    /*
-    #define FW_DONTCARE         0
-    #define FW_THIN             100
-    #define FW_EXTRALIGHT       200
-    #define FW_LIGHT            300
-    #define FW_NORMAL           400
-    #define FW_MEDIUM           500
-    #define FW_SEMIBOLD         600
-    #define FW_BOLD             700
-    #define FW_EXTRABOLD        800
-    #define FW_HEAVY            900
-    */
-    m_FontInfo.lfWidth = (LONG)Width;
-    m_FontInfo.lfHeight = (LONG)Height;
-    m_FontInfo.lfCharSet = HANGEUL_CHARSET;
-    m_FontInfo.lfWeight = FW_NORMAL;    // ±Ω±‚
-    m_FontInfo.lfItalic = 0;            // ±‚øÔ±‚
-    m_FontInfo.lfEscapement = 1;        // πÊ«‚
-    m_FontInfo.lfUnderline = 0;         // πÿ¡Ÿ
-    m_FontInfo.lfStrikeOut = 0;         // √Îº“º±
-    m_FontInfo.lfPitchAndFamily = 2;    // ¿⁄∞£
+	/*
+	#define FW_DONTCARE         0
+	#define FW_THIN             100
+	#define FW_EXTRALIGHT       200
+	#define FW_LIGHT            300
+	#define FW_NORMAL           400
+	#define FW_MEDIUM           500
+	#define FW_SEMIBOLD         600
+	#define FW_BOLD             700
+	#define FW_EXTRABOLD        800
+	#define FW_HEAVY            900
+	*/
+	m_FontInfo.lfWidth = (LONG)Width;
+	m_FontInfo.lfHeight = (LONG)Height;
+	m_FontInfo.lfCharSet = HANGEUL_CHARSET;
+	m_FontInfo.lfWeight = FW_NORMAL;    // ÍµµÍ∏∞
+	m_FontInfo.lfItalic = 0;            // Í∏∞Ïö∏Í∏∞
+	m_FontInfo.lfEscapement = 1;        // Î∞©Ìñ•
+	m_FontInfo.lfUnderline = 0;         // Î∞ëÏ§Ñ
+	m_FontInfo.lfStrikeOut = 0;         // Ï∑®ÏÜåÏÑ†
+	m_FontInfo.lfPitchAndFamily = 2;    // ÏûêÍ∞Ñ
 
-    lstrcpy(m_FontInfo.lfFaceName, FontName.c_str());
+	lstrcpy(m_FontInfo.lfFaceName, FontName.c_str());
 
-    m_hFont = CreateFontIndirect(&m_FontInfo);
+	m_hFont = CreateFontIndirect(&m_FontInfo);
 
 	return m_hFont == nullptr ? false : true;
 }
 
 void CFont::SetFont(HDC hDC)
 {
-    m_hPrevFont = (HFONT)SelectObject(hDC, m_hFont);
+	m_hPrevFont = (HFONT)SelectObject(hDC, m_hFont);
 }
 
 void CFont::ResetFont(HDC hDC)
 {
-    SelectObject(hDC, m_hPrevFont);
+	SelectObject(hDC, m_hPrevFont);
 }

@@ -1,18 +1,18 @@
 #pragma once
 #include "Scene.h"
 class CGameOver :
-    public CScene
+	public CScene
 {
-    friend class CSceneManager;
+	friend class CSceneManager;
 
 protected:
-    CGameOver();
-    virtual ~CGameOver();
-    class CWindowGameOver* m_Window;
+	CGameOver();
+	virtual ~CGameOver();
+	class CWindowGameOver* m_Window;
 
 public:
-    virtual bool Init();
-    virtual void SetEssential(bool DeathGameOver);
+	virtual bool Init();
+	virtual void SetEssential(bool DeathGameOver);
 
 
 };

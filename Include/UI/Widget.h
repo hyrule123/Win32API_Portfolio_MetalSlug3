@@ -5,69 +5,69 @@
 
 
 class CWidget :
-    public CRef
+	public CRef
 {
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidget();
-    CWidget(const CWidget& widget);
-    virtual ~CWidget();
+	CWidget();
+	CWidget(const CWidget& widget);
+	virtual ~CWidget();
 public:
-    virtual bool Init();
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
+	virtual bool Init();
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
 
 protected:
-    bool m_Start;
-    class CScene* m_Scene;
-    class CWidgetWindow* m_Owner;
+	bool m_Start;
+	class CScene* m_Scene;
+	class CWidgetWindow* m_Owner;
 
 protected:
-    int     m_ZOrder;
+	int     m_ZOrder;
 public:
-    int GetZOrder() const;
-    void SetZOrder(int ZOrder);
+	int GetZOrder() const;
+	void SetZOrder(int ZOrder);
 
 
-protected://À§Ä¡ =( + ¿ÀÇÁ¼Â)À¸·Î Ãâ·Â À§Ä¡¸¦ Á¤ÇØÁÙ ¼ö ÀÖ´Ù.
-    Vector2 m_Pos;
-    Vector2 m_Offset;
+protected://ìœ„ì¹˜ =( + ì˜¤í”„ì…‹)ìœ¼ë¡œ ì¶œë ¥ ìœ„ì¹˜ë¥¼ ì •í•´ì¤„ ìˆ˜ ìˆë‹¤.
+	Vector2 m_Pos;
+	Vector2 m_Offset;
 public:
-    const Vector2& GetPos()	const;
-    void SetPos(float _x, float _y);
-    void SetPos(const Vector2& Pos);
-    void SetOffset(float _x, float _y);
+	const Vector2& GetPos()	const;
+	void SetPos(float _x, float _y);
+	void SetPos(const Vector2& Pos);
+	void SetOffset(float _x, float _y);
 
 
 
 
 
 protected:
-    Vector2 m_Size;
+	Vector2 m_Size;
 public:
-    //WidgetImage¿¡¼­ °¡»óÇÔ¼ö·Î »ç¿ëÁß.
-    virtual void SetSize(float _x, float _y);
-    virtual void SetSize(const Vector2& Size);
-    const Vector2& GetSize()	const;
+	//WidgetImageì—ì„œ ê°€ìƒí•¨ìˆ˜ë¡œ ì‚¬ìš©ì¤‘.
+	virtual void SetSize(float _x, float _y);
+	virtual void SetSize(const Vector2& Size);
+	const Vector2& GetSize()	const;
 
 
 
 
-protected://Ãæµ¹ °ü·Ã ¸Ş¼Òµå
-    bool    m_MouseHovered;
-    bool    m_SkipCollisionCheck;
+protected://ì¶©ëŒ ê´€ë ¨ ë©”ì†Œë“œ
+	bool    m_MouseHovered;
+	bool    m_SkipCollisionCheck;
 public:
-    void SetSkipCollisionCheck(bool SkipCollisionCheck);
-    bool CollisionMouse(const Vector2& Pos);
+	void SetSkipCollisionCheck(bool SkipCollisionCheck);
+	bool CollisionMouse(const Vector2& Pos);
 
 
 public:
-    virtual void CollisionMouseHoveredCallback(const Vector2& Pos);
-    virtual void CollisionMouseReleaseCallback();
+	virtual void CollisionMouseHoveredCallback(const Vector2& Pos);
+	virtual void CollisionMouseReleaseCallback();
 
 
 

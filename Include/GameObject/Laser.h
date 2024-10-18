@@ -3,57 +3,57 @@
 
 
 class CLaser :
-    public CProjectile
+	public CProjectile
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
 
-    class CColliderLine* m_Coll;
-    class CGameObject* m_CollidingObj;
-    float m_CollidingObjYPos;  //ÇöÀç Ãæµ¹ÁßÀÎ °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ y°ª
+	class CColliderLine* m_Coll;
+	class CGameObject* m_CollidingObj;
+	float m_CollidingObjYPos;  //í˜„ì¬ ì¶©ëŒì¤‘ì¸ ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ yê°’
 
-    UINT8 m_ColorNum[4];    //4°¡Áö »ö»ó ÄÃ·¯
-    UINT8 m_Index;
-    bool  m_ChangeIndex;
+	UINT8 m_ColorNum[4];    //4ê°€ì§€ ìƒ‰ìƒ ì»¬ëŸ¬
+	UINT8 m_Index;
+	bool  m_ChangeIndex;
 
-    float m_KeepFire;    //°è¼Ó ¹ß»ç ÁßÀÎÁö
-    float m_KeepFireRefVal;
+	float m_KeepFire;    //ê³„ì† ë°œì‚¬ ì¤‘ì¸ì§€
+	float m_KeepFireRefVal;
 
-    float m_DamageFreq;  //µ¥¹ÌÁö¸¦ ÁÖ´Â ºóµµ¼ö. ·¹ÀÌÀú Á¸Àç ½Ã°£¿¡ ¸ÂÃß¾î¼­ °è»êµÈ´Ù.
-    float m_DamageFreqRefVal;
+	float m_DamageFreq;  //ë°ë¯¸ì§€ë¥¼ ì£¼ëŠ” ë¹ˆë„ìˆ˜. ë ˆì´ì € ì¡´ì¬ ì‹œê°„ì— ë§ì¶”ì–´ì„œ ê³„ì‚°ëœë‹¤.
+	float m_DamageFreqRefVal;
 
-    Vector2 m_Offset;
+	Vector2 m_Offset;
 
-    bool m_TurnOff; //·¹ÀÌÀú ¹ß»ç Á¾·áµÉ ¶§ ÇÑ¹ø¸¸ ½ÇÇàµÉ¼öÀÖ°Ô ÇÏ´Â º¯¼ö
+	bool m_TurnOff; //ë ˆì´ì € ë°œì‚¬ ì¢…ë£Œë  ë•Œ í•œë²ˆë§Œ ì‹¤í–‰ë ìˆ˜ìˆê²Œ í•˜ëŠ” ë³€ìˆ˜
 
 protected:
-    CLaser();
-    CLaser(const CLaser& Obj);
-    virtual ~CLaser();
+	CLaser();
+	CLaser(const CLaser& Obj);
+	virtual ~CLaser();
 
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    virtual bool LoadResource();
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool LoadResource();
 
-    void SetKeepFire(bool KeepFire);
-    float GetKeepFire() const;
-    void LaserLineOffEnd();
-    void LaserHitNotify();
+	void SetKeepFire(bool KeepFire);
+	float GetKeepFire() const;
+	void LaserLineOffEnd();
+	void LaserHitNotify();
 
 
-    virtual void SetEssential(const Vector2& Dir, const Vector2& Pos, const Vector2& Offset);
-    virtual void SetEssential(float DirX, float DirY, float PosX, float PosY, float OffsetX, float OffsetY);
+	virtual void SetEssential(const Vector2& Dir, const Vector2& Pos, const Vector2& Offset);
+	virtual void SetEssential(float DirX, float DirY, float PosX, float PosY, float OffsetX, float OffsetY);
 
 
 
 private:
-    void CollisionBegin(class CCollider* Src, class CCollider* Dest);
-    void CollisionEnd(class CCollider* Src, class CCollider* Dest);
-    static bool SortCollY(const CSharedPtr<class CCollider>& Src, const CSharedPtr<class CCollider>& Dest);
+	void CollisionBegin(class CCollider* Src, class CCollider* Dest);
+	void CollisionEnd(class CCollider* Src, class CCollider* Dest);
+	static bool SortCollY(const CSharedPtr<class CCollider>& Src, const CSharedPtr<class CCollider>& Dest);
 };
 

@@ -7,10 +7,10 @@
 #include "../Resource/Animation/AnimationInfo.h"
 #include "../Resource/Animation/Animation.h"
 
-//¸¶¿ì½º À§Ä¡ Ç¥½Ã
+//ë§ˆìš°ìŠ¤ ìœ„ì¹˜ í‘œì‹œ
 #include "../Input.h"
 
-//½ÊÀÚ ¾È³»´«±Ý »ö±ò º¯°æ
+//ì‹­ìž ì•ˆë‚´ëˆˆê¸ˆ ìƒ‰ê¹” ë³€ê²½
 #include "../GameManager.h"
 
 CEditViewer::CEditViewer()
@@ -70,7 +70,7 @@ void CEditViewer::ViewAnimation(const std::string& AnimName, float PlayTime, ELo
 		Info->m_LoopFlag = LoopFlag;
 		Info->m_PlayScale = PlayScale;
 		Info->m_Reverse = Reverse;
-		SetLayer(AnimName, Layer);//·¹ÀÌ¾îÀÇ °æ¿ì Ãß°¡ °è»êÀÌ ÇÊ¿äÇÏ¹Ç·Î ¸Þ¼Òµå·Î
+		SetLayer(AnimName, Layer);//ë ˆì´ì–´ì˜ ê²½ìš° ì¶”ê°€ ê³„ì‚°ì´ í•„ìš”í•˜ë¯€ë¡œ ë©”ì†Œë“œë¡œ
 		Info->m_Offset.x = OffsetX;
 		Info->m_Offset.y = OffsetY;
 		Info->m_Pivot.x = PivotX;

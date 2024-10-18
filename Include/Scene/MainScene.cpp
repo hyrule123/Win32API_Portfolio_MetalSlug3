@@ -3,7 +3,7 @@
 #include "../Input.h"
 #include "GameOver.h"
 
-//»ç¿ëÇÏ´Â °ÔÀÓ¿ÀºêÁ§Æ®
+//ì‚¬ìš©í•˜ëŠ” ê²Œì„ì˜¤ë¸Œì íŠ¸
 #include "../GameObject/AstroSlug.h"
 #include "../GameObject/AstroSlugSFX.h"
 #include "../GameObject/PlayerSpace.h"
@@ -33,16 +33,16 @@
 
 
 
-//»ç¿ëÇÏ´Â UI
+//ì‚¬ìš©í•˜ëŠ” UI
 #include "../UI/WindowSpace.h"
 #include "../UI/WidgetFadeInOut.h"
 
 #include "SceneResource.h"
 
-//Camera Ã³¸®
+//Camera ì²˜ë¦¬
 #include "Camera.h"
 
-//ÃÊ±âÈ­ ¶§ ÇØ»óµµ ¹Ş¾Æ¿À´Â ¿ëµµ
+//ì´ˆê¸°í™” ë•Œ í•´ìƒë„ ë°›ì•„ì˜¤ëŠ” ìš©ë„
 #include "../GameManager.h"
 
 #include "../GameObject/DaiManji.h"
@@ -75,19 +75,19 @@ bool CMainScene::Init()
 
 	LoadResource();
 
-	//Ä«¸Ş¶ó ÁØºñ
+	//ì¹´ë©”ë¼ ì¤€ë¹„
 	GetCamera()->SetRes((float)ORIGINAL_GAME_RES_WIDTH, 
 		(float)ORIGINAL_GAME_RES_HEIGHT);
 	GetCamera()->SetWorldRes(ORIGINAL_GAME_RES_WIDTH, 
 		ORIGINAL_GAME_RES_HEIGHT * 2.f);
 	GetCamera()->SetTargetPivot(0.5f, 0.8f);
 
-	//À§Á¬
+	//ìœ„ì ¯
 	CWindowSpace* WindowSpace = CreateWidgetWindow<CWindowSpace>("WindowSpace");
 
 
 
-	//¹é±×¶ó¿îµå 
+	//ë°±ê·¸ë¼ìš´ë“œ 
 	m_BackGround = CreateObject<CBackgroundSpace>("BackGround");
 	
 
@@ -96,7 +96,7 @@ bool CMainScene::Init()
 
 
 	
-	//0ÆäÀÌÁî ÁØºñ
+	//0í˜ì´ì¦ˆ ì¤€ë¹„
 	m_Timer0.InitCooltime(0.3f);
 	m_Timer0.EnterCooltime();
 	m_Timer1.InitCooltime(0.5f);
@@ -115,7 +115,7 @@ void CMainScene::Update(float DeltaTime)
 
 	if (m_PhaseFlags)
 	{
-		//ÆäÀÌÁî 0¿¡¼­ ¿ìÁÖ¼± ´Ù¼ö »ı¼º
+		//í˜ì´ì¦ˆ 0ì—ì„œ ìš°ì£¼ì„  ë‹¤ìˆ˜ ìƒì„±
 		if (m_PhaseFlags <= ESPhase5_UFOPhase2)
 		{
 			m_Timer1.UpdateCooltime(DeltaTime);
@@ -272,12 +272,12 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 	{
 	case ESPhase1_Wait:
 	{
-		//ÄğÅ¸ÀÓ ¾÷µ¥ÀÌÆ®¸¦ ÇØÁà¼­ µÚÂÊ È¿°úµé »ı¼º
+		//ì¿¨íƒ€ì„ ì—…ë°ì´íŠ¸ë¥¼ í•´ì¤˜ì„œ ë’¤ìª½ íš¨ê³¼ë“¤ ìƒì„±
 		if (!m_Timer0.UpdateCooltime(DeltaTime))
 		{
 
 		}
-		else//1ÆäÀÌÁî °â Å×½ºÆ® ±¸¿ª
+		else//1í˜ì´ì¦ˆ ê²¸ í…ŒìŠ¤íŠ¸ êµ¬ì—­
 		{
 
 			GoNextPhase();
@@ -296,7 +296,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//Å°¸ó½ºÅÍ 1¸¶¸®
+			//í‚¤ëª¬ìŠ¤í„° 1ë§ˆë¦¬
 			CUFO* UFO = CreateObject<CUFO>("UFO1");
 			if (UFO)
 			{
@@ -308,7 +308,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 		}
 		break;
 	}
-	case ESPhase4_1_Wait:	//3ÃÊ ´ë±âÈÄ ´ÙÀ½ ÆäÀÌÁî
+	case ESPhase4_1_Wait:	//3ì´ˆ ëŒ€ê¸°í›„ ë‹¤ìŒ í˜ì´ì¦ˆ
 	{
 		if (CheckFirstEnter())
 			m_Timer0.InitCooltime(3.f);
@@ -318,11 +318,11 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 
 		break;
 	}
-	case ESPhase5_UFOPhase2://Å°¸ó½ºÅÍ ÀâÈ÷¸é ³Ñ¾î¿È
+	case ESPhase5_UFOPhase2://í‚¤ëª¬ìŠ¤í„° ì¡íˆë©´ ë„˜ì–´ì˜´
 	{
 		if (CheckFirstEnter())
 		{
-			//Å°¸ó½ºÅÍ 2¸¶¸® »ı¼ºÇÏ°í ´ÙÀ½ÆäÀÌÁî ÀÌµ¿.
+			//í‚¤ëª¬ìŠ¤í„° 2ë§ˆë¦¬ ìƒì„±í•˜ê³  ë‹¤ìŒí˜ì´ì¦ˆ ì´ë™.
 			CUFO* UFO = CreateObject<CUFO>("UFO1");
 			if (UFO)
 				UFO->SetKeyMonster();
@@ -345,16 +345,16 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 			GoNextPhase();
 	}
 		break;
-	case ESPhase7_Meteor://¿î¼® ÆäÀÌÁî
+	case ESPhase7_Meteor://ìš´ì„ í˜ì´ì¦ˆ
 	{
 		if (CheckFirstEnter())
 		{
-			//ÀÌ¹ø ÆäÀÌÁî Å¸ÀÌ¸Ó ¼ÂÆÃ
-			m_Timer0.InitCooltime(30.f);	//ÆäÀÌÁî ³Ñ¾î°¡±âÀ§ÇÑ Å¸ÀÌ¸Ó
+			//ì´ë²ˆ í˜ì´ì¦ˆ íƒ€ì´ë¨¸ ì…‹íŒ…
+			m_Timer0.InitCooltime(30.f);	//í˜ì´ì¦ˆ ë„˜ì–´ê°€ê¸°ìœ„í•œ íƒ€ì´ë¨¸
 			m_Timer0.EnterCooltime();
-			m_Timer1.InitCooltime(0.3f);	//¼ÒÇü¿î¼® »ı¼º¿ë Å¸ÀÌ¸Ó
-			m_Timer2.InitCooltime(0.5f);	//ÁßÇü ¿î¼® »ı¼º¿ë Å¸ÀÓ¸Ó
-			m_Counter = 0;					//Æ¯Á¤ ¹øÂ° ÁßÇü ¿î¼®Àº ¾ÆÀÌÅÛ µå¶ø
+			m_Timer1.InitCooltime(0.3f);	//ì†Œí˜•ìš´ì„ ìƒì„±ìš© íƒ€ì´ë¨¸
+			m_Timer2.InitCooltime(0.5f);	//ì¤‘í˜• ìš´ì„ ìƒì„±ìš© íƒ€ì„ë¨¸
+			m_Counter = 0;					//íŠ¹ì • ë²ˆì§¸ ì¤‘í˜• ìš´ì„ì€ ì•„ì´í…œ ë“œë
 		}
 		
 		if (m_Timer0.UpdateCooltime(DeltaTime))
@@ -364,7 +364,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 	}
 		break;
 
-	case ESPhase8_BigMeteor0://´ëÇü ¿î¼® ÆäÀÌÁî
+	case ESPhase8_BigMeteor0://ëŒ€í˜• ìš´ì„ í˜ì´ì¦ˆ
 	{
 		if (CheckFirstEnter())
 		{
@@ -386,7 +386,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 		break;
 	}
 	
-	case ESPhase9_BigMeteor1://´ëÇü ¿î¼® ÆäÀÌÁî
+	case ESPhase9_BigMeteor1://ëŒ€í˜• ìš´ì„ í˜ì´ì¦ˆ
 	{
 		if (CheckFirstEnter())
 		{
@@ -413,7 +413,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 		}
 		break;
 	}
-	case ESPhase10_BigMeteor2://´ëÇü ¿î¼® ÆäÀÌÁî
+	case ESPhase10_BigMeteor2://ëŒ€í˜• ìš´ì„ í˜ì´ì¦ˆ
 	{
 		if (CheckFirstEnter())
 		{
@@ -434,7 +434,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 		}
 		break;
 	}
-	case ESPhase11_BigMeteor3://´ëÇü ¿î¼® ÆäÀÌÁî ¸¶Áö¸·
+	case ESPhase11_BigMeteor3://ëŒ€í˜• ìš´ì„ í˜ì´ì¦ˆ ë§ˆì§€ë§‰
 	{
 		if (CheckFirstEnter())
 		{
@@ -475,7 +475,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//ÆóÇã ¹× ¿ìÁÖ¼± »ı¼ºÀ» À§ÇÑ Å¸ÀÌ¸Ó ÃÊ±âÈ­
+			//íí—ˆ ë° ìš°ì£¼ì„  ìƒì„±ì„ ìœ„í•œ íƒ€ì´ë¨¸ ì´ˆê¸°í™”
 			m_Timer1.InitCooltime(0.2f);
 
 
@@ -643,7 +643,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 			m_Timer2.InitCooltime(0.3f);
 		}
 
-		if (m_Timer0.UpdateCooltime(DeltaTime))//ÀÌ°Å ³¡³ª¸é ´ÙÀ½ÆäÀÌÁî·Î
+		if (m_Timer0.UpdateCooltime(DeltaTime))//ì´ê±° ëë‚˜ë©´ ë‹¤ìŒí˜ì´ì¦ˆë¡œ
 			GoNextPhase();
 
 		break;
@@ -765,7 +765,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 	{
 		if (CheckFirstEnter())
 		{
-			//¹è°æ ¿ìÁÖ¼±
+			//ë°°ê²½ ìš°ì£¼ì„ 
 			m_Timer1.InitCooltime(1.f);
 
 			CDaiManji* Dai = CreateObject<CDaiManji>("DaiManji");
@@ -873,7 +873,7 @@ void CMainScene::PhaseUpdate(float DeltaTime)
 			if (!GameOver)
 				return;
 
-			//Á×¾î¼­ °ÔÀÓ¿À¹öµÆ´Ù°í ¾Ë·ÁÁÜ.
+			//ì£½ì–´ì„œ ê²Œì„ì˜¤ë²„ëë‹¤ê³  ì•Œë ¤ì¤Œ.
 			GameOver->SetEssential(false);
 
 		}
@@ -988,7 +988,7 @@ void CMainScene::KeyMonsterDead()
 
 void CMainScene::LoadResource()
 {
-	//¸®¼Ò½º ¹Ì¸® ·Îµå - °ÔÀÓ¿ÀºêÁ§Æ®
+	//ë¦¬ì†ŒìŠ¤ ë¯¸ë¦¬ ë¡œë“œ - ê²Œì„ì˜¤ë¸Œì íŠ¸
 	CreateOriginalObj<CPlayerSpace>("PlayerSpace");
 	CreateOriginalObj<CAstroSlug>("AstroSlug");
 	CreateOriginalObj<CAstroSlugSFX>("AstroSlugSFX");
@@ -1012,7 +1012,7 @@ void CMainScene::LoadResource()
 	CreateOriginalObj<CBackObjects>("BackObjects");
 	CreateOriginalObj<CDaiManjiElite>("DaiManjiElite");
 
-	//¸®¼Ò½º - »ç¿îµå
+	//ë¦¬ì†ŒìŠ¤ - ì‚¬ìš´ë“œ
 
 	GetSceneResource()->LoadSound("SFX", "MissionComplete", false, "MissionComplete.mp3");
 	GetSceneResource()->LoadSound("UI", "OK", false, "OK.mp3");
@@ -1073,7 +1073,7 @@ void CMainScene::LoadResource()
 	GetSceneResource()->LoadSound("SFX", "GetShotgun", false, "Item/GetShotgun.mp3");
 
 	
-	//¸®¼Ò½º ¹Ì¸® ·Îµå - ÅØ½ºÃ³
+	//ë¦¬ì†ŒìŠ¤ ë¯¸ë¦¬ ë¡œë“œ - í…ìŠ¤ì²˜
 	m_SceneResource->LoadCSVPreset(TEXT("UI/BasicFontSilver.csv"));
 	m_SceneResource->LoadCSVPreset(TEXT("UI/BasicFontGold.csv"));
 	m_SceneResource->LoadCSVPreset(TEXT("UI/ScoreNumber.csv"));

@@ -37,7 +37,7 @@ bool CIntroRocket::Init(CGameObject* Obj)
 {
 	CGameObject::Init(Obj);
 
-	//¿ÀºêÁ§Æ® ÄÃ¸µÇØÁ¦.
+	//ì˜¤ë¸Œì íŠ¸ ì»¬ë§í•´ì œ.
 	SetCulling(false);
 
 	m_Size.Set(150.f, 1250.f);
@@ -49,7 +49,7 @@ bool CIntroRocket::Init(CGameObject* Obj)
 		SetEndFunction<CIntroRocket>("CapSeparateSFX", this, &CIntroRocket::SeparateSFXNotify);
 	}
 
-	//·ÎÄÏ ºĞ¸®¹× Á¡È­ ½ÃÁ¡ ÁöÁ¤
+	//ë¡œì¼“ ë¶„ë¦¬ë° ì í™” ì‹œì  ì§€ì •
 	m_TriggerYPos = 30.f;
 
 	return true;
@@ -86,7 +86,7 @@ void CIntroRocket::SideThrustStartEndFunc()
 
 void CIntroRocket::SideThrustMaxEndFunc()
 {
-	//¾²·¯½ºÆ® Á¡È­
+	//ì“°ëŸ¬ìŠ¤íŠ¸ ì í™”
 }
 
 void CIntroRocket::SeparateSFXNotify()

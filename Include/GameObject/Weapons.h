@@ -2,7 +2,7 @@
 #include "Effect.h"
 
 class CWeapons :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 

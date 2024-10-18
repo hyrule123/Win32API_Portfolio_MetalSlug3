@@ -1,9 +1,9 @@
 #pragma once
 #include "JustMovingSFX.h"
 
-//AstroSlug Àü¿ë Å¬·¡½º. ´Ù¸¥ Å¬·¡½º »ç¿ë X
+//AstroSlug ì „ìš© í´ë˜ìŠ¤. ë‹¤ë¥¸ í´ë˜ìŠ¤ ì‚¬ìš© X
 class CAstroTail :
-    public CJustMovingSFX
+	public CJustMovingSFX
 {
 	friend class CScene;
 

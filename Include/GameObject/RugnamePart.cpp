@@ -27,7 +27,7 @@ bool CRugnamePart::Init(CGameObject* Obj)
 
 	SetCullingDelete(ECullingDelete::All, false);
 
-	//Æ®·¹ÀÏ ÀÌÆåÆ®ÀÇ ·»´õ¸µ ·¹ÀÌ¾î´Â default
+	//íŠ¸ë ˆì¼ ì´í™íŠ¸ì˜ ë Œë”ë§ ë ˆì´ì–´ëŠ” default
 	m_RenderLayer = ERenderLayer::Default;
 
 	SetEffect(EEffectType::Loop);

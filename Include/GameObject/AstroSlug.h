@@ -80,43 +80,43 @@ public:
 	virtual void GetGas();
 
 
-	bool m_isSeparate; //ºĞ¸®µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÎÁö ¾Æ´ÑÁö È®ÀÎ
-	EPartState m_PartState[2]; //0=ÁÂ, 1 = ¿ì
-	float m_SyncTimer;//½Ã°£À» °è»êÇØ¼­ ÁÂ/¿ìÃø ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ½ÌÅ©½ÃÅ´
+	bool m_isSeparate; //ë¶„ë¦¬ëœ ì• ë‹ˆë©”ì´ì…˜ì¸ì§€ ì•„ë‹Œì§€ í™•ì¸
+	EPartState m_PartState[2]; //0=ì¢Œ, 1 = ìš°
+	float m_SyncTimer;//ì‹œê°„ì„ ê³„ì‚°í•´ì„œ ì¢Œ/ìš°ì¸¡ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹±í¬ì‹œí‚´
 	float m_SyncTimerMax;
 
 	EWeapon m_CurrentWeapon;
 	bool m_Busy;
-	float m_KnockBack;	//³Ë¹é½Ã È°¼ºÈ­. Á¶ÀÛ ºÒ°¡´ÉÇÔ
+	float m_KnockBack;	//ë„‰ë°±ì‹œ í™œì„±í™”. ì¡°ì‘ ë¶ˆê°€ëŠ¥í•¨
 
 	Vector2 m_SideGunOffset;
-	int m_PistolFireAngle;	//1,0,-1À» ¿Ô´Ù°¬´Ù ÇÏ¸é¼­ ÆòÅ¸ÀÇ °¢µµ¸¦ ¹Ì¹¦ÇÏ°Ô º¯È¯
-	int m_FireBuffer; //¼±ÀÔ·Â ¹öÆÛ
-	bool m_FireTurn;	//¼¦°Ç, ¹Ì»çÀÏ µî ¼ø¼­°¡ ÀÖ´Â ¹«±âµé ¾îµğ¼­ ¹ß»çÇØ¾ß ÇÏ´ÂÁö
+	int m_PistolFireAngle;	//1,0,-1ì„ ì™”ë‹¤ê°”ë‹¤ í•˜ë©´ì„œ í‰íƒ€ì˜ ê°ë„ë¥¼ ë¯¸ë¬˜í•˜ê²Œ ë³€í™˜
+	int m_FireBuffer; //ì„ ì…ë ¥ ë²„í¼
+	bool m_FireTurn;	//ìƒ·ê±´, ë¯¸ì‚¬ì¼ ë“± ìˆœì„œê°€ ìˆëŠ” ë¬´ê¸°ë“¤ ì–´ë””ì„œ ë°œì‚¬í•´ì•¼ í•˜ëŠ”ì§€
 	int m_FireHMG;
-	bool m_BombTurn;	//ÆøÅºÀÇ ¼ø¼­°¡ ¾îµğºÎÅÍ ³ª°¡¾ßÇÏ´ÂÁö
+	bool m_BombTurn;	//í­íƒ„ì˜ ìˆœì„œê°€ ì–´ë””ë¶€í„° ë‚˜ê°€ì•¼í•˜ëŠ”ì§€
 
 	float m_ExplodeRemainTime;
 	bool m_SelfDestruct;
 
-	//ºÎ½ºÅÍ °ü·Ã ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı½ÃÄÑÁÙ SFX
+	//ë¶€ìŠ¤í„° ê´€ë ¨ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒì‹œì¼œì¤„ SFX
 	bool m_BoostOn; 
-	class CAstroSlugSFX* m_BoostSFXSide;	//ºÎ½ºÅÍ »çÀÌµå Ãø¸é(º»Ã¼º¸´Ù ³ôÀº ·¹ÀÌ¾î¿¡ ±×·Á¾ß ÇÔ)
-	class CAstroSlugSFX* m_BoostSFXTail;	//ºÎ½ºÅÍ ²¿¸® ¸é(º»Ã¼º¸´Ù ³·Àº ·¹ÀÌ¾î)
-	std::string m_BoosterDirSideName[EBoosterDirSideMax];	//ºÎ½ºÅÍ ¹æÇâ ÀÌ¸§ ÀúÀå¿ë (»çÀÌµå)
-	std::string m_BoosterDirTailName[EBoosterDirTailMax];	//²¿¸®
-	float m_BoostDuration;	//ºÎ½ºÆ® ¸î ÃÊ Áö¼Ó½ÃÅ³°ÇÁö »çÀü¿¡ ÁöÁ¤
+	class CAstroSlugSFX* m_BoostSFXSide;	//ë¶€ìŠ¤í„° ì‚¬ì´ë“œ ì¸¡ë©´(ë³¸ì²´ë³´ë‹¤ ë†’ì€ ë ˆì´ì–´ì— ê·¸ë ¤ì•¼ í•¨)
+	class CAstroSlugSFX* m_BoostSFXTail;	//ë¶€ìŠ¤í„° ê¼¬ë¦¬ ë©´(ë³¸ì²´ë³´ë‹¤ ë‚®ì€ ë ˆì´ì–´)
+	std::string m_BoosterDirSideName[EBoosterDirSideMax];	//ë¶€ìŠ¤í„° ë°©í–¥ ì´ë¦„ ì €ì¥ìš© (ì‚¬ì´ë“œ)
+	std::string m_BoosterDirTailName[EBoosterDirTailMax];	//ê¼¬ë¦¬
+	float m_BoostDuration;	//ë¶€ìŠ¤íŠ¸ ëª‡ ì´ˆ ì§€ì†ì‹œí‚¬ê±´ì§€ ì‚¬ì „ì— ì§€ì •
 
-	//ÀÌµ¿ ÀÔ·ÂÀ» Çß´ÂÁö È®ÀÎ
+	//ì´ë™ ì…ë ¥ì„ í–ˆëŠ”ì§€ í™•ì¸
 	bool m_isKeyDown;
 
-	//ÇöÀç ·¹ÀÌÀú ¹ß»çÁßÀÎÁö È®ÀÎ. °è¼Ó ¹ß»çÁßÀÌ¸é ·¹ÀÌÀú¿¡ Àü´Ş
-	//·¹ÀÌÀú Áö¼Ó ¹ß»ç°¡ offµÇ´Â ¼ø°£ ·¹ÀÌÀú ÀÌ º¯¼ö¿¡ Àü´ŞÇÏ°í ¹Ù·Î ¿¬°á ÇØÁ¦
+	//í˜„ì¬ ë ˆì´ì € ë°œì‚¬ì¤‘ì¸ì§€ í™•ì¸. ê³„ì† ë°œì‚¬ì¤‘ì´ë©´ ë ˆì´ì €ì— ì „ë‹¬
+	//ë ˆì´ì € ì§€ì† ë°œì‚¬ê°€ offë˜ëŠ” ìˆœê°„ ë ˆì´ì € ì´ ë³€ìˆ˜ì— ì „ë‹¬í•˜ê³  ë°”ë¡œ ì—°ê²° í•´ì œ
 	CSharedPtr<class CLaser> m_isLaserFire[LeftRightMax];
 
-	//ÄÆ¾À °ü·Ã º¯¼öµé
+	//ì»·ì”¬ ê´€ë ¨ ë³€ìˆ˜ë“¤
 	UINT8 m_IntroCutSceneFlags;
-	Vector2 m_CutSceneOffset;	//ÄÆ¾À Áß¿¡ À§Ä¡ º¸Á¤À» ÇØ¾ß ÇÏ´Â °æ¿ì
+	Vector2 m_CutSceneOffset;	//ì»·ì”¬ ì¤‘ì— ìœ„ì¹˜ ë³´ì •ì„ í•´ì•¼ í•˜ëŠ” ê²½ìš°
 	float m_CutSceneTimer;
 
 	bool m_isAttack;
@@ -125,7 +125,7 @@ public:
 private:
 	void CheckParts();
 
-	//ÀÌµ¿ °ü·Ã
+	//ì´ë™ ê´€ë ¨
 	void MoveLeft();
 	void MoveRight();
 	void MoveUp();
@@ -137,7 +137,7 @@ private:
 
 	void PlayerTurnLeftToRightEnd();
 
-	//XÅ° °ø°İ
+	//Xí‚¤ ê³µê²©
 	void FireGunBuffer();
 	void FireGun();
 	void FireHMG();
@@ -156,20 +156,20 @@ private:
 	void ChangeRocketLauncher();
 	void ChangeLaser();
 
-	//ZÅ° °ø°İ(ÆøÅº)
+	//Zí‚¤ ê³µê²©(í­íƒ„)
 	void FireBomb();
 
-	//cÅ° ºÎ½ºÅÍ(Á¡ÇÁÅ°)
+	//cí‚¤ ë¶€ìŠ¤í„°(ì í”„í‚¤)
 	void Boost();
 	void BoostEnd();
 
 	
-	//ÀÚÆø
+	//ìí­
 	void SelfDestruct();
 
-	//Æø¹ß
-	void Destroy();	//Æø¹ß
-	void Eject();	//ÇÃ·¹ÀÌ¾î Å»Ãâ
+	//í­ë°œ
+	void Destroy();	//í­ë°œ
+	void Eject();	//í”Œë ˆì´ì–´ íƒˆì¶œ
 	void EjectDoorFrame2Notify();
 	void EjectModeDoorEnd();
 
@@ -185,7 +185,7 @@ private:
 	void DebugDamage();
 	void SelfDestructCollBegin(class CCollider* Src, class CCollider* Dest);
 
-	bool m_isAfterCutscene;	//ÄÆ¾À ½ÃÀÛ ÀüÀÎÁö È®ÀÎ
+	bool m_isAfterCutscene;	//ì»·ì”¬ ì‹œì‘ ì „ì¸ì§€ í™•ì¸
 	bool m_CutSceneMode;
 	bool m_TailBoosterOn;
 public:

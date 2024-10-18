@@ -1,30 +1,30 @@
 #pragma once
 #include "Background.h"
 
-//¡æΩ∫≈©∑—
+//Ï¢ÖÏä§ÌÅ¨Î°§
 class CBackgroundSpace :
-    public CBackground
+	public CBackground
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CBackgroundSpace();
-    CBackgroundSpace(const CBackgroundSpace& Obj);
-    ~CBackgroundSpace();
+	CBackgroundSpace();
+	CBackgroundSpace(const CBackgroundSpace& Obj);
+	~CBackgroundSpace();
 public:
-    bool Init(CGameObject* Obj = nullptr);
-    void Start();
-    void Update(float DeltaTime);
-    void Render(HDC hDC, float DeltaTime);
+	bool Init(CGameObject* Obj = nullptr);
+	void Start();
+	void Update(float DeltaTime);
+	void Render(HDC hDC, float DeltaTime);
 
 protected:
 
-    float m_ScrollingSpeed;
-    float m_ScrollPos;
-    float m_AdjustSpeed;
+	float m_ScrollingSpeed;
+	float m_ScrollPos;
+	float m_AdjustSpeed;
 public:
-    void SetSpeed(float ScrollingSpeed);
-    void SetSpeedSoft(float AdjustSpeed, float SpeedPerSec);
+	void SetSpeed(float ScrollingSpeed);
+	void SetSpeedSoft(float AdjustSpeed, float SpeedPerSec);
 };
 
 

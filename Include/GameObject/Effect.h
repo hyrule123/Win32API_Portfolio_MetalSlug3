@@ -15,7 +15,7 @@ protected:
 	float m_Duration;
 	float m_Time;
 	Vector2 m_Offset;
-	bool m_isReady; //»ı¼º ÁØºñ°¡ ¿Ï·áµÇ¾ú´ÂÁö È®ÀÎ. ÁØºñ ¾ÈµÈÃ¤·Î Updateµé¾î°¡¸é ¹Ù·Î Á¦°Å
+	bool m_isReady; //ìƒì„± ì¤€ë¹„ê°€ ì™„ë£Œë˜ì—ˆëŠ”ì§€ í™•ì¸. ì¤€ë¹„ ì•ˆëœì±„ë¡œ Updateë“¤ì–´ê°€ë©´ ë°”ë¡œ ì œê±°
 
 public:
 	virtual bool Init(CGameObject* Obj = nullptr);
@@ -23,7 +23,7 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void PostUpdate(float DeltaTime);
 	virtual void Render(HDC hDC, float DeltaTime);
-	virtual void SetEssential(const Vector2& Pos);	//¹İµå½Ã ¼³Á¤ÇØ¾ß ÇÏ´Â º¯¼ö
+	virtual void SetEssential(const Vector2& Pos);	//ë°˜ë“œì‹œ ì„¤ì •í•´ì•¼ í•˜ëŠ” ë³€ìˆ˜
 
 protected:
 	void EffectEnd();

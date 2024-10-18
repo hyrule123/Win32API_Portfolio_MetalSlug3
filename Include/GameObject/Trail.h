@@ -2,9 +2,9 @@
 #include "Effect.h"
 
 
-//ÀÜÇØ°¡ ³¯¾Æ°¡¸é¼­ Æø¹ß ÀÌÆåÆ®¸¦ ³²±è.
+//ì”í•´ê°€ ë‚ ì•„ê°€ë©´ì„œ í­ë°œ ì´í™íŠ¸ë¥¼ ë‚¨ê¹€.
 class CTrail :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 
@@ -20,14 +20,14 @@ public:
 protected:
 	float m_Frequency;
 	float m_FrequencyMax;
-public://ÀÌ¹ÌÁö »ı¼º ÁÖ±â¸¦ ¼³Á¤ÇÏÁö ¾ÊÀ¸¸é ÀÛµ¿ ºÒ°¡.
+public://ì´ë¯¸ì§€ ìƒì„± ì£¼ê¸°ë¥¼ ì„¤ì •í•˜ì§€ ì•Šìœ¼ë©´ ì‘ë™ ë¶ˆê°€.
 	void SetFrequency(float Frequency);
 
 protected:
 	float m_Force;
 public:
-	void Trajectory(float Force);	//±ËÀûÀ» ±×¸®¸ç ÆøÆÄ ÀÌÆåÆ®
-	void Straight(float Force);	//Á÷¼± ¹æÇâÀ¸·Î ÆøÆÄ ÀÌÆåÆ®
+	void Trajectory(float Force);	//ê¶¤ì ì„ ê·¸ë¦¬ë©° í­íŒŒ ì´í™íŠ¸
+	void Straight(float Force);	//ì§ì„  ë°©í–¥ìœ¼ë¡œ í­íŒŒ ì´í™íŠ¸
 
 public:
 	virtual void Update(float DeltaTime);

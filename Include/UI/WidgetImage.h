@@ -3,45 +3,45 @@
 
 
 class CWidgetImage :
-    public CWidget
+	public CWidget
 {
 
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetImage();
-    CWidgetImage(const CWidgetImage& widget);
-    virtual ~CWidgetImage();
+	CWidgetImage();
+	CWidgetImage(const CWidgetImage& widget);
+	virtual ~CWidgetImage();
 public:
-    virtual bool Init();
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool Init();
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 
 
-protected://ÅØ½ºÃ³
-    CSharedPtr<class CTexture>  m_Texture;
+protected://í…ìŠ¤ì²˜
+	CSharedPtr<class CTexture>  m_Texture;
 
 
 protected:
-    bool m_isSizeSet;
+	bool m_isSizeSet;
 public:
-    void SetSize(float _x, float _y);
-    void SetSize(const Vector2& Size);
+	void SetSize(float _x, float _y);
+	void SetSize(const Vector2& Size);
 
 
 
-    //¿øº» ÀÌ¹ÌÁöÀÇ ¾îµğºÎÅÍ ¾îµğ±îÁö Ãâ·ÂÇÒ°ÍÀÎÁö ¼³Á¤
-    BoxInfo m_ImageRenderRange;
-    //À§ÀÇ°ªÀ» ¼³Á¤ÇÏÁö ¾Ê¾Ò´Ù¸é ±×³É ÀÌ¹ÌÁö size¸¸Å­ Ãâ·Â
-    bool m_isRangeSet;
+	//ì›ë³¸ ì´ë¯¸ì§€ì˜ ì–´ë””ë¶€í„° ì–´ë””ê¹Œì§€ ì¶œë ¥í• ê²ƒì¸ì§€ ì„¤ì •
+	BoxInfo m_ImageRenderRange;
+	//ìœ„ì˜ê°’ì„ ì„¤ì •í•˜ì§€ ì•Šì•˜ë‹¤ë©´ ê·¸ëƒ¥ ì´ë¯¸ì§€ sizeë§Œí¼ ì¶œë ¥
+	bool m_isRangeSet;
 public:
-    void SetRange(const Vector2& Start, const Vector2& End);
+	void SetRange(const Vector2& Start, const Vector2& End);
 
-    //ÅØ½ºÃ³ ¼³Á¤ - ÅØ½ºÃ³ ·Îµù ¸ÕÀú ÇÑµÚ »ç¿ëÇÒ°Í.
-    bool SetTexture(const std::string& Name);
+	//í…ìŠ¤ì²˜ ì„¤ì • - í…ìŠ¤ì²˜ ë¡œë”© ë¨¼ì € í•œë’¤ ì‚¬ìš©í• ê²ƒ.
+	bool SetTexture(const std::string& Name);
 
 
 

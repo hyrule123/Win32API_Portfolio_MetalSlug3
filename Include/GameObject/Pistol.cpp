@@ -1,11 +1,11 @@
 #include "Pistol.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderCircle.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//ÃÑ¾Ë ÀÌÆåÆ® »ı¼º¿ë
+//ì´ì•Œ ì´í™íŠ¸ ìƒì„±ìš©
 #include "PistolHit.h"
 
 #include "../ScoreManager.h"
@@ -34,17 +34,17 @@ bool CPistol::Init(CGameObject* Obj)
 	SetSize(6.f, 10.f);
 	SetPivot(0.5f, 0.5f);
 
-	//·»´õ¸µ·¹ÀÌ¾î
+	//ë Œë”ë§ë ˆì´ì–´
 	SetRenderLayer(ERenderLayer::EffectLow);
 
 
-	//Ãæµ¹Ã¼ ¼³Á¤
+	//ì¶©ëŒì²´ ì„¤ì •
 	CColliderCircle* Coll = AddCollider<CColliderCircle>("Bullet");
 
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetRadius(m_Size.x);
 
-	//È£Ãâ ÇÔ¼ö ¼³Á¤
+	//í˜¸ì¶œ í•¨ìˆ˜ ì„¤ì •
 	Coll->SetCollisionBeginFunc(this, &CPistol::CollisionBegin);
 
 	m_Scene->GetSceneResource()->SoundPlay("Pistol");
@@ -74,7 +74,7 @@ void CPistol::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 	CPistolHit* Effect = m_Scene->CreateObject<CPistolHit>("BulletSFX");
 
-	//¾à°£ ·£´ıÇÏ°Ô ÇÇ°İÀÌÆåÆ® Ç¥½Ã
+	//ì•½ê°„ ëœë¤í•˜ê²Œ í”¼ê²©ì´í™íŠ¸ í‘œì‹œ
 	if (Effect)
 	{
 		Vector2 Pos = Src->GetHitPoint();

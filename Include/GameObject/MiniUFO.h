@@ -16,7 +16,7 @@ enum class EMiniUFOLayerInfo
 };
 
 class CMiniUFO :
-    public CEnemy
+	public CEnemy
 {
 	friend class CScene;
 
@@ -34,8 +34,8 @@ public:
 	virtual void SetEssential(float DestPosX);
 
 protected:
-	//¸Â¾ÒÀ» ¶§ÀÇ ¹øÈ£¸¦ ÀúÀå(È÷Æ®ÀÌÆåÆ® »ı¼º ÈÄ ¿ø·¡´ë·Î µ¹¾Æ°¡´Â ¿ëµµ)
-	//¾È ¸Â¾ÒÀ» °æ¿ì -1
+	//ë§ì•˜ì„ ë•Œì˜ ë²ˆí˜¸ë¥¼ ì €ì¥(íˆíŠ¸ì´í™íŠ¸ ìƒì„± í›„ ì›ë˜ëŒ€ë¡œ ëŒì•„ê°€ëŠ” ìš©ë„)
+	//ì•ˆ ë§ì•˜ì„ ê²½ìš° -1
 
 	//void CollBegin(class CCollider* Src, class CCollider* Dest);
 private:

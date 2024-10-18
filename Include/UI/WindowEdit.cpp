@@ -1,9 +1,9 @@
 #include "WindowEdit.h"
 
-//ÅØ½ºÆ® Ãâ·Â
+//í…ìŠ¤íŠ¸ ì¶œë ¥
 #include "WidgetText.h"
 
-//Ä«¸Ş¶ó À§Ä¡ ÃßÀû
+//ì¹´ë©”ë¼ ìœ„ì¹˜ ì¶”ì 
 #include "../Scene/Scene.h"
 
 #include "../Input.h"

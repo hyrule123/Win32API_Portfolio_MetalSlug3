@@ -58,25 +58,25 @@ void CTextureManager::ReleaseTexture(const std::string& Name)
 bool CTextureManager::LoadTexture(const std::string& Name, const std::tstring& FileName, const std::string& PathName, EReactionChannel MaxChannel)
 {
 
-	//¸¸¾à ÇØ´ç ÀÌ¸§À¸·Î »ı¼ºµÈ ÅØ½ºÃ³°¡ ÀÖ´Ù¸é ±×´ë·Î return ÇÑ´Ù.
+	//ë§Œì•½ í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ìƒì„±ëœ í…ìŠ¤ì²˜ê°€ ìˆë‹¤ë©´ ê·¸ëŒ€ë¡œ return í•œë‹¤.
 	if (FindTexture(Name))
 		return false;
 
 
-	//Åë°úÇßÀ¸¸é »õ ÅØ½ºÃ³¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+	//í†µê³¼í–ˆìœ¼ë©´ ìƒˆ í…ìŠ¤ì²˜ë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 	CTexture* NewTex = new CTexture;
 
 	NewTex->SetName(Name);
 
 
-	//ÅØ½ºÃ³ ·Îµå¸¦ ½ÃµµÇÏ°í, ½ÇÆĞÇÏ¸é µµ·Î »èÁ¦ÇÏ°í false ¸®ÅÏ
+	//í…ìŠ¤ì²˜ ë¡œë“œë¥¼ ì‹œë„í•˜ê³ , ì‹¤íŒ¨í•˜ë©´ ë„ë¡œ ì‚­ì œí•˜ê³  false ë¦¬í„´
 	if (!NewTex->LoadTexture(FileName, PathName, MaxChannel))
 	{
 		SAFE_DELETE(NewTex);
 		return false;
 	}
 
-	//¼º°øÇßÀ¸¸é map¿¡ ÀúÀå
+	//ì„±ê³µí–ˆìœ¼ë©´ mapì— ì €ì¥
 	m_mapTexture.insert(std::make_pair(Name, NewTex));
 
 	return true;
@@ -84,24 +84,24 @@ bool CTextureManager::LoadTexture(const std::string& Name, const std::tstring& F
 
 bool CTextureManager::LoadTextureFullPath(const std::string& Name, const std::tstring& FullPath, EReactionChannel MaxChannel)
 {
-	//¸¸¾à ÇØ´ç ÀÌ¸§À¸·Î »ı¼ºµÈ ÅØ½ºÃ³°¡ ÀÖ´Ù¸é ÀÖ´Â °ÍÀÌ¹Ç·Î ¸¸µé¾îÁ³´Ù°í ¾Ë·ÁÁÖ°í return
+	//ë§Œì•½ í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ìƒì„±ëœ í…ìŠ¤ì²˜ê°€ ìˆë‹¤ë©´ ìˆëŠ” ê²ƒì´ë¯€ë¡œ ë§Œë“¤ì–´ì¡Œë‹¤ê³  ì•Œë ¤ì£¼ê³  return
 	if (FindTexture(Name))
 		return true;
 
 
-	//Åë°úÇßÀ¸¸é »õ ÅØ½ºÃ³¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+	//í†µê³¼í–ˆìœ¼ë©´ ìƒˆ í…ìŠ¤ì²˜ë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 	CTexture* NewTex = new CTexture;
 
 	NewTex->SetName(Name);
 
-	//ÅØ½ºÃ³ ·Îµå¸¦ ½ÃµµÇÏ°í, ½ÇÆĞÇÏ¸é µµ·Î »èÁ¦ÇÏ°í false ¸®ÅÏ
+	//í…ìŠ¤ì²˜ ë¡œë“œë¥¼ ì‹œë„í•˜ê³ , ì‹¤íŒ¨í•˜ë©´ ë„ë¡œ ì‚­ì œí•˜ê³  false ë¦¬í„´
 	if (!NewTex->LoadTextureFullPath(FullPath, MaxChannel))
 	{
 		SAFE_DELETE(NewTex);
 		return false;
 	}
 
-	//¼º°øÇßÀ¸¸é map¿¡ ÀúÀå
+	//ì„±ê³µí–ˆìœ¼ë©´ mapì— ì €ì¥
 	m_mapTexture.insert(std::make_pair(Name, NewTex));
 
 	return true;
@@ -111,27 +111,27 @@ bool CTextureManager::LoadTextureFullPath(const std::string& Name, const std::ts
 bool CTextureManager::LoadTextureByTextureNumbers(const std::string& Name,
 	const std::tstring& FolderPath, int NumberOfTexture, const std::string& PathName)
 {
-	//¸¸¾à ÇØ´ç ÀÌ¸§À¸·Î »ı¼ºµÈ ÅØ½ºÃ³°¡ ÀÖ´Ù¸é ±×´ë·Î return ÇÑ´Ù.
+	//ë§Œì•½ í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ìƒì„±ëœ í…ìŠ¤ì²˜ê°€ ìˆë‹¤ë©´ ê·¸ëŒ€ë¡œ return í•œë‹¤.
 	if (FindTexture(Name))
 		return false;
 
 
-	//Åë°úÇßÀ¸¸é »õ ÅØ½ºÃ³¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+	//í†µê³¼í–ˆìœ¼ë©´ ìƒˆ í…ìŠ¤ì²˜ë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 	CTexture* NewTex = new CTexture;
 
 	NewTex->SetName(Name);
 
-	//ÅØ½ºÃ³ ·Îµå¸¦ ½ÃµµÇÏ°í, ½ÇÆĞÇÏ¸é µµ·Î »èÁ¦ÇÏ°í false ¸®ÅÏ
+	//í…ìŠ¤ì²˜ ë¡œë“œë¥¼ ì‹œë„í•˜ê³ , ì‹¤íŒ¨í•˜ë©´ ë„ë¡œ ì‚­ì œí•˜ê³  false ë¦¬í„´
 	if (!NewTex->LoadTextureByTextureNumbers(FolderPath, NumberOfTexture, PathName))
 	{
 		SAFE_DELETE(NewTex);
 		return false;
 	}
 
-	//ÆÄÀÏ ÀÌ¸§À» º¤ÅÍ¿¡ ³Ö¾î¼­ ·ÎµåÇÒ °æ¿ì ÇÁ·¹ÀÓ Å¸ÀÔÀÏ¼ö¹Û¿¡ ¾ø´Ù.
+	//íŒŒì¼ ì´ë¦„ì„ ë²¡í„°ì— ë„£ì–´ì„œ ë¡œë“œí•  ê²½ìš° í”„ë ˆì„ íƒ€ì…ì¼ìˆ˜ë°–ì— ì—†ë‹¤.
 	NewTex->m_TextureType = ETextureType::Frame;
 
-	//¼º°øÇßÀ¸¸é map¿¡ ÀúÀå
+	//ì„±ê³µí–ˆìœ¼ë©´ mapì— ì €ì¥
 	m_mapTexture.insert(std::make_pair(Name, NewTex));
 
 	return true;
@@ -142,27 +142,27 @@ bool CTextureManager::LoadTextureByTextureNumbers(const std::string& Name,
 
 bool CTextureManager::LoadTexture(const std::string& Name, const std::vector<std::tstring>& vecFileName, const std::string& PathName)
 {
-	//¸¸¾à ÇØ´ç ÀÌ¸§À¸·Î »ı¼ºµÈ ÅØ½ºÃ³°¡ ÀÖ´Ù¸é ±×´ë·Î return ÇÑ´Ù.
+	//ë§Œì•½ í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ìƒì„±ëœ í…ìŠ¤ì²˜ê°€ ìˆë‹¤ë©´ ê·¸ëŒ€ë¡œ return í•œë‹¤.
 	if (FindTexture(Name))
 		return false;
 
 
-	//Åë°úÇßÀ¸¸é »õ ÅØ½ºÃ³¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+	//í†µê³¼í–ˆìœ¼ë©´ ìƒˆ í…ìŠ¤ì²˜ë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 	CTexture* NewTex = new CTexture;
 
 	NewTex->SetName(Name);
 
-	//ÅØ½ºÃ³ ·Îµå¸¦ ½ÃµµÇÏ°í, ½ÇÆĞÇÏ¸é µµ·Î »èÁ¦ÇÏ°í false ¸®ÅÏ
+	//í…ìŠ¤ì²˜ ë¡œë“œë¥¼ ì‹œë„í•˜ê³ , ì‹¤íŒ¨í•˜ë©´ ë„ë¡œ ì‚­ì œí•˜ê³  false ë¦¬í„´
 	if (!NewTex->LoadTexture(vecFileName, PathName))
 	{
 		SAFE_DELETE(NewTex);
 		return false;
 	}
 
-	//ÆÄÀÏ ÀÌ¸§À» º¤ÅÍ¿¡ ³Ö¾î¼­ ·ÎµåÇÒ °æ¿ì ÇÁ·¹ÀÓ Å¸ÀÔÀÏ¼ö¹Û¿¡ ¾ø´Ù.
+	//íŒŒì¼ ì´ë¦„ì„ ë²¡í„°ì— ë„£ì–´ì„œ ë¡œë“œí•  ê²½ìš° í”„ë ˆì„ íƒ€ì…ì¼ìˆ˜ë°–ì— ì—†ë‹¤.
 	NewTex->m_TextureType = ETextureType::Frame;
 
-	//¼º°øÇßÀ¸¸é map¿¡ ÀúÀå
+	//ì„±ê³µí–ˆìœ¼ë©´ mapì— ì €ì¥
 	m_mapTexture.insert(std::make_pair(Name, NewTex));
 
 	return true;
@@ -170,27 +170,27 @@ bool CTextureManager::LoadTexture(const std::string& Name, const std::vector<std
 
 bool CTextureManager::LoadTextureFullPath(const std::string& Name, const std::vector<std::tstring>& vecFullPath)
 {
-	//¸¸¾à ÇØ´ç ÀÌ¸§À¸·Î »ı¼ºµÈ ÅØ½ºÃ³°¡ ÀÖ´Ù¸é ±×´ë·Î return ÇÑ´Ù.
+	//ë§Œì•½ í•´ë‹¹ ì´ë¦„ìœ¼ë¡œ ìƒì„±ëœ í…ìŠ¤ì²˜ê°€ ìˆë‹¤ë©´ ê·¸ëŒ€ë¡œ return í•œë‹¤.
 	if (FindTexture(Name))
 		return false;
 
 
-	//Åë°úÇßÀ¸¸é »õ ÅØ½ºÃ³¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+	//í†µê³¼í–ˆìœ¼ë©´ ìƒˆ í…ìŠ¤ì²˜ë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 	CTexture* NewTex = new CTexture;
 
 	NewTex->SetName(Name);
 
-	//ÅØ½ºÃ³ ·Îµå¸¦ ½ÃµµÇÏ°í, ½ÇÆĞÇÏ¸é µµ·Î »èÁ¦ÇÏ°í false ¸®ÅÏ
+	//í…ìŠ¤ì²˜ ë¡œë“œë¥¼ ì‹œë„í•˜ê³ , ì‹¤íŒ¨í•˜ë©´ ë„ë¡œ ì‚­ì œí•˜ê³  false ë¦¬í„´
 	if (!NewTex->LoadTextureFullPath(vecFullPath))
 	{
 		SAFE_DELETE(NewTex);
 		return false;
 	}
 
-	//ÆÄÀÏ ÀÌ¸§À» º¤ÅÍ¿¡ ³Ö¾î¼­ ·ÎµåÇÒ °æ¿ì ÇÁ·¹ÀÓ Å¸ÀÔÀÏ¼ö¹Û¿¡ ¾ø´Ù.
+	//íŒŒì¼ ì´ë¦„ì„ ë²¡í„°ì— ë„£ì–´ì„œ ë¡œë“œí•  ê²½ìš° í”„ë ˆì„ íƒ€ì…ì¼ìˆ˜ë°–ì— ì—†ë‹¤.
 	NewTex->m_TextureType = ETextureType::Frame;
 
-	//¼º°øÇßÀ¸¸é map¿¡ ÀúÀå
+	//ì„±ê³µí–ˆìœ¼ë©´ mapì— ì €ì¥
 	m_mapTexture.insert(std::make_pair(Name, NewTex));
 
 	return true;
@@ -198,7 +198,7 @@ bool CTextureManager::LoadTextureFullPath(const std::string& Name, const std::ve
 
 CTexture* CTextureManager::LoadTexture(FILE* File)
 {
-	// °°Àº ÀÌ¸§À¸·Î ÀúÀåµÈ°Ô ÀÖ´Ù¸é Àß¸øµÈ°ÍÀÌ´Ù.
+	// ê°™ì€ ì´ë¦„ìœ¼ë¡œ ì €ì¥ëœê²Œ ìˆë‹¤ë©´ ì˜ëª»ëœê²ƒì´ë‹¤.
 	CTexture* Texture = new CTexture;
 
 

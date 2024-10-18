@@ -1,9 +1,9 @@
 #pragma once
 #include "Effect.h"
 
-//¸¹ÀÌ »ı¼ºµÇ¾î¾ß ÇÏ¹Ç·Î ÇØ´ç Á¤º¸¸¸ µé°í ÀÖ°Ô ÇØ¼­ ÃÖ´ëÇÑ °¡º±°Ô »ı¼º
+//ë§ì´ ìƒì„±ë˜ì–´ì•¼ í•˜ë¯€ë¡œ í•´ë‹¹ ì •ë³´ë§Œ ë“¤ê³  ìˆê²Œ í•´ì„œ ìµœëŒ€í•œ ê°€ë³ê²Œ ìƒì„±
 class CPistolHit :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 

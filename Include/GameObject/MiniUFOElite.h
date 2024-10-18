@@ -1,7 +1,7 @@
 #pragma once
 #include "MiniUFO.h"
 class CMiniUFOElite :
-    public CMiniUFO
+	public CMiniUFO
 {
 
 	friend class CScene;
@@ -20,15 +20,15 @@ public:
 	virtual int InflictDamage(int Damage);
 
 protected:
-	//¸Â¾ÒÀ» ¶§ÀÇ ¹øÈ£¸¦ ÀúÀå(È÷Æ®ÀÌÆåÆ® »ı¼º ÈÄ ¿ø·¡´ë·Î µ¹¾Æ°¡´Â ¿ëµµ)
-	//¾È ¸Â¾ÒÀ» °æ¿ì -1
+	//ë§ì•˜ì„ ë•Œì˜ ë²ˆí˜¸ë¥¼ ì €ì¥(íˆíŠ¸ì´í™íŠ¸ ìƒì„± í›„ ì›ë˜ëŒ€ë¡œ ëŒì•„ê°€ëŠ” ìš©ë„)
+	//ì•ˆ ë§ì•˜ì„ ê²½ìš° -1
 
 	//void CollBegin(class CCollider* Src, class CCollider* Dest);
 private:
 	class CMainScene* m_MainScene;
 	CooltimeChecker m_Timer;
 	float m_HitTimer;
-	INT8 m_SerialFire;	//¿¬¼Ó 3¹ß ¹ß»ç
+	INT8 m_SerialFire;	//ì—°ì† 3ë°œ ë°œì‚¬
 	bool m_InAction;
 	virtual void Routine(float DeltaTime);
 	void AttackEndFunc();

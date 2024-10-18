@@ -1,4 +1,4 @@
-﻿#include "DaiManjiElite.h"
+#include "DaiManjiElite.h"
 
 #include "DaiManji.h"
 

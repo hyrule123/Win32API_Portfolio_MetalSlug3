@@ -1,6 +1,6 @@
 #include "BackgroundSpace.h"
 
-//ÅØ½ºÃ³ ÁÖ¼Ò µé°íÀÖÀ» ¿ëµµ
+//í…ìŠ¤ì²˜ ì£¼ì†Œ ë“¤ê³ ìˆì„ ìš©ë„
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 #include "../Resource/Texture/Texture.h"
@@ -94,13 +94,13 @@ void CBackgroundSpace::Render(HDC hDC, float DeltaTime)
 	if (m_Texture)
 	{
 
-		//Ãâ·ÂÇÒ ÀÌ¹ÌÁöÀÇ 'ºÎºĞ' °è»ê
+		//ì¶œë ¥í•  ì´ë¯¸ì§€ì˜ 'ë¶€ë¶„' ê³„ì‚°
 		int Top = (int)m_ScrollPos % (int)m_Size.y;
 		int Bottom = (int)(m_ScrollPos + ORIGINAL_GAME_RES_HEIGHT) % (int)m_Size.y;
 		int Split = (int)ORIGINAL_GAME_RES_HEIGHT - Bottom;
 
 
-		//Ä«¸Ş¶ó°¡ ÀÌ¹ÌÁö ¹ÛÀ¸·Î ³ª°¡Áö ¾Ê¾ÒÀ» °æ¿ì´Â ÇÑ¹ø¸¸ Ãâ·Â
+		//ì¹´ë©”ë¼ê°€ ì´ë¯¸ì§€ ë°–ìœ¼ë¡œ ë‚˜ê°€ì§€ ì•Šì•˜ì„ ê²½ìš°ëŠ” í•œë²ˆë§Œ ì¶œë ¥
 		if (Split < 0)
 		{
 			if (m_Texture->GetColorKeyEnable())
@@ -126,8 +126,8 @@ void CBackgroundSpace::Render(HDC hDC, float DeltaTime)
 			}
 		}
 
-		//Ä«¸Ş¶ó°¡ ÀÌ¹ÌÁö ¹ÛÀ¸·Î ³ª°¬À» °æ¿ì´Â Àß¸° ºÎºĞ¸¸Å­ À§¿¡¼­ ¶â¾î¿Í¼­
-		//2¹ø Ãâ·Â
+		//ì¹´ë©”ë¼ê°€ ì´ë¯¸ì§€ ë°–ìœ¼ë¡œ ë‚˜ê°”ì„ ê²½ìš°ëŠ” ì˜ë¦° ë¶€ë¶„ë§Œí¼ ìœ„ì—ì„œ ëœ¯ì–´ì™€ì„œ
+		//2ë²ˆ ì¶œë ¥
 		else
 		{
 			if (m_Texture->GetColorKeyEnable())

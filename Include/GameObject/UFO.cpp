@@ -4,23 +4,23 @@
 #include "../GameManager.h"
 #include "Player.h"
 
-//¹ß»çÃ¼
+//ë°œì‚¬ì²´
 #include "ProjectileEnemy.h"
 
-//¸®¼Ò½º ·Îµå
+//ë¦¬ì†ŒìŠ¤ ë¡œë“œ
 #include "../Scene/SceneResource.h"
 #include "../Resource/Texture/Texture.h"
 
 
-//ÀÌÆåÆ®
+//ì´í™íŠ¸
 #include "Effect.h"
 #include "Explosion.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../Collision/ColliderCircle.h"
 
-//À§Ä¡ °è»ê Ä«¸Ş¶ó
+//ìœ„ì¹˜ ê³„ì‚° ì¹´ë©”ë¼
 #include "../Scene/Camera.h"
 
 
@@ -73,7 +73,7 @@ bool CUFO::Init(CGameObject* Obj)
 	//CColliderCircle* Coll = AddCollider<CColliderCircle>("UFO");
 	//Coll->SetRadius(50.f);
 
-	//·£´ıÇÑ xÃàÀÇ È­¸é ¹Û¿¡¼­ »ı¼º
+	//ëœë¤í•œ xì¶•ì˜ í™”ë©´ ë°–ì—ì„œ ìƒì„±
 	m_Pos.x = (float)(rand() % ORIGINAL_GAME_RES_WIDTH);
 	m_Pos.y = -50.f;
 
@@ -99,7 +99,7 @@ void CUFO::PostUpdate(float DeltaTime)
 {
 	CCharacter::PostUpdate(DeltaTime);
 
-	////Ã¼·Â È®ÀÎ
+	////ì²´ë ¥ í™•ì¸
 	//if (m_HP <= 0.f)
 	//	SetActive(false);
 }
@@ -112,7 +112,7 @@ void CUFO::Render(HDC hDC, float DeltaTime)
 
 int CUFO::InflictDamage(int Damage)
 {
-	//¾ÆÀÌÅÛ µå¶øÀº CEnemy¿¡¼­ Ã³¸®.
+	//ì•„ì´í…œ ë“œëì€ CEnemyì—ì„œ ì²˜ë¦¬.
 	int DMG = CEnemy::InflictDamage(Damage);
 	
 	m_HP -= DMG;
@@ -157,7 +157,7 @@ void CUFO::Routine(float DeltaTime)
 	{
 	case (UINT8)EUFORoutine::Moveto:
 	{
-		//10~100 »çÀÌÀÇ À§Ä¡¿¡ ·£´ıÀ¸·Î ÀÌµ¿ÇÑ´Ù.
+		//10~100 ì‚¬ì´ì˜ ìœ„ì¹˜ì— ëœë¤ìœ¼ë¡œ ì´ë™í•œë‹¤.
 		int RandPosX = rand() % ORIGINAL_GAME_RES_WIDTH + 15;
 		if (RandPosX > ORIGINAL_GAME_RES_WIDTH)
 			RandPosX -= 100;
@@ -166,10 +166,10 @@ void CUFO::Routine(float DeltaTime)
 
 		MoveToDest(true, EMoveToMethod::AddImpact, Vector2((float)RandPosX, (float)RandPosY));
 
-		//1ÃÊ~2ÃÊ ´ë±â
+		//1ì´ˆ~2ì´ˆ ëŒ€ê¸°
 		float rnd = (float)(rand() % 11 + 20);
 		rnd /= 10.f;
-		//Å¸ÀÌ¸Ó on
+		//íƒ€ì´ë¨¸ on
 		m_Timer.InitCooltime(rnd);
 		m_Timer.EnterCooltime();
 
@@ -189,7 +189,7 @@ void CUFO::Routine(float DeltaTime)
 		if (Player)
 			Pos = Player->GetPos();
 
-		//xÃà ·£´ı
+		//xì¶• ëœë¤
 		int rnd = rand() % 6;
 		rnd *= rnd % 2 == 0 ? -1 : 1;
 		Pos.x += (float)rnd;
@@ -214,7 +214,7 @@ void CUFO::Routine(float DeltaTime)
 	break;
 	case (UINT8)EUFORoutine::Attack:
 	{
-		//ÀÌµ¿ÀÌ ³¡³ª¸é ·¹ÀÌÀú¸¦ ¹ß»çÇÏ°í ´ÙÀ½ ÆäÀÌÁî¿¡¼­ Àá½Ã ´ë±â½ÃÅ²´Ù.
+		//ì´ë™ì´ ëë‚˜ë©´ ë ˆì´ì €ë¥¼ ë°œì‚¬í•˜ê³  ë‹¤ìŒ í˜ì´ì¦ˆì—ì„œ ì ì‹œ ëŒ€ê¸°ì‹œí‚¨ë‹¤.
 		if (!m_Timer.UpdateCooltime(DeltaTime))
 		{
 			m_Animation->SetAnimation("UFO_Attack", true);
@@ -231,21 +231,21 @@ void CUFO::Routine(float DeltaTime)
 
 			++m_Routine;
 
-			//Å°¸ó½ºÅÍÀÏ °æ¿ì Á×À»‹š±îÁö Ã³À½ºÎÅÍ ´Ù½Ã ¹İº¹ÇÑ´Ù.
+			//í‚¤ëª¬ìŠ¤í„°ì¼ ê²½ìš° ì£½ì„ë–„ê¹Œì§€ ì²˜ìŒë¶€í„° ë‹¤ì‹œ ë°˜ë³µí•œë‹¤.
 			if (m_isKey)
 			{
 				m_Routine = 0;
 			}
 			else
 			{
-				//Å°¸ó½ºÅÍ°¡ ¾Æ´Ò °æ¿ì ¹Ù±ùÀ¸·Î µµ¸Á°£ ÈÄ Á¦°Å
+				//í‚¤ëª¬ìŠ¤í„°ê°€ ì•„ë‹ ê²½ìš° ë°”ê¹¥ìœ¼ë¡œ ë„ë§ê°„ í›„ ì œê±°
 				MoveToDest(true, EMoveToMethod::AddImpact, Vector2(m_Pos.x, m_Pos.y - 500.f));
 			}
 		}
 		break;
 	case (UINT8)EUFORoutine::Flee:
 	{
-		//ÀÌµ¿ÀÌ ³¡³ª¸é Á¦°ÅµÈ´Ù
+		//ì´ë™ì´ ëë‚˜ë©´ ì œê±°ëœë‹¤
 		if (!m_MoveToOn)
 		{
 			SetActive(false);

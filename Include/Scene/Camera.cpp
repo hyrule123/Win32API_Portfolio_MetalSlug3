@@ -28,7 +28,7 @@ void CCamera::Update(float DeltaTime)
 		}
 		else
 		{
-			//Ä«¸Þ¶óÀÇ ÁÂÃø »ó´Ü À§Ä¡(±×¸®±â ½ÃÀÛÇÒ °÷)
+			//ì¹´ë©”ë¼ì˜ ì¢Œì¸¡ ìƒë‹¨ ìœ„ì¹˜(ê·¸ë¦¬ê¸° ì‹œìž‘í•  ê³³)
 			m_Pos = m_Target->GetPos() - m_TargetPivot * m_Resolution + m_TargetOffset;
 		}
 
@@ -52,7 +52,7 @@ void CCamera::Update(float DeltaTime)
 		m_Pos.y = m_WorldResolution.y - m_Resolution.y;
 	}
 
-	//Ä«¸Þ¶ó À§Ä¡ ¾÷µ¥ÀÌÆ® ¿Ï·áµÇ¾úÀ¸¹Ç·Î ¸¶¿ì½º ÀÎ°ÔÀÓ À§Ä¡ ¾÷µ¥ÀÌÆ®
+	//ì¹´ë©”ë¼ ìœ„ì¹˜ ì—…ë°ì´íŠ¸ ì™„ë£Œë˜ì—ˆìœ¼ë¯€ë¡œ ë§ˆìš°ìŠ¤ ì¸ê²Œìž„ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 	CInput::GetInst()->ComputeWorldPos(m_Pos);
 }
 

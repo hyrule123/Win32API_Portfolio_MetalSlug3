@@ -29,21 +29,21 @@ bool CMeteorMid::Init(CGameObject* Obj)
 
 
 
-	//Ã¼·Â 30
+	//ì²´ë ¥ 30
 	m_HP = 30;
 
 	SetRenderLayer(ERenderLayer::Enemy);
 	SetAnimation("MeteorMid");
 
-	//»çÀÌÁî´Â Å©±â¿¡ ¸Â°Ô ÁöÁ¤
+	//ì‚¬ì´ì¦ˆëŠ” í¬ê¸°ì— ë§ê²Œ ì§€ì •
 	m_Size = m_Animation->GetAnimSize();
 	SetPivot(0.5f, 1.f);
 
-	//À§Ä¡ ÁöÁ¤
+	//ìœ„ì¹˜ ì§€ì •
 	m_Pos.x = (float)(rand() % ORIGINAL_GAME_RES_WIDTH);
 	m_Pos.y = -100.f;
 
-	//¸ñÇ¥À§Ä¡ ÁöÁ¤
+	//ëª©í‘œìœ„ì¹˜ ì§€ì •
 	Vector2 Dest;
 	Dest.x = (float)(rand() % ORIGINAL_GAME_RES_WIDTH);
 	Dest.y = (float)ORIGINAL_GAME_RES_HEIGHT + 100.f;
@@ -52,7 +52,7 @@ bool CMeteorMid::Init(CGameObject* Obj)
 
 	SetMaxSpeed((float)(rand() % 201 + 100));
 
-	//Ãæµ¹Ã¼ »ı¼º
+	//ì¶©ëŒì²´ ìƒì„±
 	CColliderCircle* Coll = AddCollider< CColliderCircle>("MeteorMid");
 	Coll->SetRadius(m_Size.x * m_Pivot.x);
 	Coll->SetCollisionBeginFunc< CMeteorMid>(this, &CMeteorMid::CollisionBegin);

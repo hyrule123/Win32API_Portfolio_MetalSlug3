@@ -13,7 +13,7 @@ enum class EDirSpace
 	MAX
 };
 
-//ÇöÀç ¾×¼Ç
+//í˜„ì¬ ì•¡ì…˜
 enum class EDirAction
 {
 	Idle_Pistol,
@@ -21,7 +21,7 @@ enum class EDirAction
 	Idle_Rifle,
 	Attack_HMG,
 	Attack_Shotgun,
-	Attack_Rocket,	//·ÎÄÏ, ·¹ÀÌÀú µî ´Ù¾çÇÏ°Ô »ç¿ëµÊ,
+	Attack_Rocket,	//ë¡œì¼“, ë ˆì´ì € ë“± ë‹¤ì–‘í•˜ê²Œ ì‚¬ìš©ë¨,
 	Attack_Laser,
 	Rifle_Drop,
 	Slug_Ejection,
@@ -58,43 +58,43 @@ public:
 protected:
 
 
-	//ÇöÀç ÁÂ¿ì ¹æÇâ°ú Çàµ¿À» ÀúÀåÇÏ´Â º¯¼ö(¹ØÀÇ ÇÔ¼ö¸¦ ÀÌ¿ëÇØ¼­¸¸ º¯°æ)
-	//ÆÇÁ¤ ±âÁØÀº m_DirTimeMax, m_DitTimeÀÇ ÃÖ´ñ°ªÀº m_DirTime + m_Tolerance
+	//í˜„ì¬ ì¢Œìš° ë°©í–¥ê³¼ í–‰ë™ì„ ì €ì¥í•˜ëŠ” ë³€ìˆ˜(ë°‘ì˜ í•¨ìˆ˜ë¥¼ ì´ìš©í•´ì„œë§Œ ë³€ê²½)
+	//íŒì • ê¸°ì¤€ì€ m_DirTimeMax, m_DitTimeì˜ ìµœëŒ“ê°’ì€ m_DirTime + m_Tolerance
 	float m_DirTime;
-	//ÀÌµ¿ÁßÀÎ ¹æÇâ¿¡ µû¶ó +-DeltaTimeÀ» ÇØÁÙ º¯¼ö.
-	//¾÷µ¥ÀÌÆ® ¼ø¼­´Â Input->Update->PostUpdate->Render
+	//ì´ë™ì¤‘ì¸ ë°©í–¥ì— ë”°ë¼ +-DeltaTimeì„ í•´ì¤„ ë³€ìˆ˜.
+	//ì—…ë°ì´íŠ¸ ìˆœì„œëŠ” Input->Update->PostUpdate->Render
 	float m_DirTimeMax;
 	float m_DirTimeMaxHalf;
-	float m_Tolerance; //ºÎµ¿¼Ò¼öÁ¡ ¿ÀÂ÷ Çã¿ë¹üÀ§ ¼³Á¤(Á» Å©°Ô)
+	float m_Tolerance; //ë¶€ë™ì†Œìˆ˜ì  ì˜¤ì°¨ í—ˆìš©ë²”ìœ„ ì„¤ì •(ì¢€ í¬ê²Œ)
 
 	EDirAction m_CurrentAct;
 	EDirAction m_PrevAct;
 	EDirSpace m_CurrentDir;
 	EDirSpace m_PrevDir;
 	EWeapon m_CurrentWeapon;
-	bool m_NoActionChange; //È°¼ºÈ­ ½Ã ´Ù¸¥ ¾×¼Ç ºÒ°¡´É
+	bool m_NoActionChange; //í™œì„±í™” ì‹œ ë‹¤ë¥¸ ì•¡ì…˜ ë¶ˆê°€ëŠ¥
 
-	//¹æÇâ°ú ¾×¼Ç¿¡ µû¸¥ ÀûÀıÇÑ ¾Ö´Ï¸ŞÀÌ¼Ç ÀÌ¸§À» ÀúÀåÇÏ´Â ¹®ÀÚ¿­ ¹è¿­
+	//ë°©í–¥ê³¼ ì•¡ì…˜ì— ë”°ë¥¸ ì ì ˆí•œ ì• ë‹ˆë©”ì´ì…˜ ì´ë¦„ì„ ì €ì¥í•˜ëŠ” ë¬¸ìì—´ ë°°ì—´
 	std::string m_vecAnimName[(int)EDirSpace::MAX][(int)EDirAction::MAX];
-	//ºÎ½ºÅÍ ÀÌ¸§ ÀúÀå
+	//ë¶€ìŠ¤í„° ì´ë¦„ ì €ì¥
 	std::string m_vecTailBoosterName[(int)EDirSpace::MAX];
-	//ÁÂ¿ì(2)¿¡ ´ëÇÑ ¹æÇâº° Ãø¸é ºÎ½ºÅÍ ¿ÀÇÁ¼Â°ª
+	//ì¢Œìš°(2)ì— ëŒ€í•œ ë°©í–¥ë³„ ì¸¡ë©´ ë¶€ìŠ¤í„° ì˜¤í”„ì…‹ê°’
 	Vector2 m_vecSideBoosterOffset[(int)EDirSpace::MAX][LeftRightEnd];
 
 	INT8 m_HMGDir;
-	int	 m_HMGQueue;		//³²Àº ¹ß»ç ¼ö
-	bool m_GunFired;		//ÃÑÀ» ¹ß»çÇßÀ» ¶§ Çàµ¿ºÒ°¡ È®ÀÎ º¯¼ö
+	int	 m_HMGQueue;		//ë‚¨ì€ ë°œì‚¬ ìˆ˜
+	bool m_GunFired;		//ì´ì„ ë°œì‚¬í–ˆì„ ë•Œ í–‰ë™ë¶ˆê°€ í™•ì¸ ë³€ìˆ˜
 	CooltimeChecker m_HMGDelay;
-	class CLaser* m_isLaserFire;	//·¹ÀÌÀú ¹ß»çÇß´ÂÁö È®ÀÎ¿ë
+	class CLaser* m_isLaserFire;	//ë ˆì´ì € ë°œì‚¬í–ˆëŠ”ì§€ í™•ì¸ìš©
 
 	Vector2 m_Offset;
 	bool m_BombTurn;
 
 
 protected:
-	//ÇöÀç ¾×¼ÇÀ» °è»êÇÏ´Â ¸Ş¼Òµå
+	//í˜„ì¬ ì•¡ì…˜ì„ ê³„ì‚°í•˜ëŠ” ë©”ì†Œë“œ
 	void ComputeCurrentDir(float DeltaTime);
-	void ComputeCurrentAct(float DeltaTime); //¾×¼ÇÀÌ º¯°æµÉ¶§¸¶´Ù »ç¿ë
+	void ComputeCurrentAct(float DeltaTime); //ì•¡ì…˜ì´ ë³€ê²½ë ë•Œë§ˆë‹¤ ì‚¬ìš©
 
 
 
@@ -109,12 +109,12 @@ private:
 
 	void IdleStatusNotify();
 
-	void FireGun();//¿©±â¼± ¼±ÀÔ·Â °¹¼ö¸¸ ´Ã·ÁÁÜ
-	void FireGunCheck();//¿©±â¼± ¼±ÀÔ·Â ¼ö¿¡ µû¶ó¼­ ¹ß»ç
+	void FireGun();//ì—¬ê¸°ì„  ì„ ì…ë ¥ ê°¯ìˆ˜ë§Œ ëŠ˜ë ¤ì¤Œ
+	void FireGunCheck();//ì—¬ê¸°ì„  ì„ ì…ë ¥ ìˆ˜ì— ë”°ë¼ì„œ ë°œì‚¬
 	void AttackEnd();
 	void HMGLaserAtkEnd();
 
-	//ÀÌÇÏ °³º° ¹«±â 
+	//ì´í•˜ ê°œë³„ ë¬´ê¸° 
 	void FireHMG();
 	void FireLaser();
 	void FireRocket();

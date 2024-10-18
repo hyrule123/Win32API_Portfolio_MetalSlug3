@@ -1,67 +1,67 @@
 #pragma once
 #include "Widget.h"
 class CWidgetText :
-    public CWidget
+	public CWidget
 {
-    friend class CWidgetComponent;
-    friend class CWidgetWindow;
+	friend class CWidgetComponent;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetText();
-    CWidgetText(const CWidgetText& widget);
-    virtual ~CWidgetText();
+	CWidgetText();
+	CWidgetText(const CWidgetText& widget);
+	virtual ~CWidgetText();
 public:
-    virtual bool Init();
+	virtual bool Init();
 
 
-protected://Ãâ·ÂÇÒ ÅØ½ºÆ® ÀúÀå
-    TCHAR* m_Text;
-    int    m_Count;
-    int    m_Capacity;
+protected://ì¶œë ¥í•  í…ìŠ¤íŠ¸ ì €ì¥
+	TCHAR* m_Text;
+	int    m_Count;
+	int    m_Capacity;
 public:
-    void SetText(const std::tstring& Text);
-    void AddText(const TCHAR Text);
-    void AddText(const std::tstring& Text);
-    void pop_back();
-    void clear();
+	void SetText(const std::tstring& Text);
+	void AddText(const TCHAR Text);
+	void AddText(const std::tstring& Text);
+	void pop_back();
+	void clear();
 
 
-protected://ÅØ½ºÆ® »ö ÁöÁ¤
-    COLORREF    m_TextColor;
+protected://í…ìŠ¤íŠ¸ ìƒ‰ ì§€ì •
+	COLORREF    m_TextColor;
 public:
-    void SetColor(unsigned char r, unsigned char g, unsigned char b);
+	void SetColor(unsigned char r, unsigned char g, unsigned char b);
 
 
-protected://ÆùÆ® ÁöÁ¤
-    CSharedPtr<class CFont> m_Font;
+protected://í°íŠ¸ ì§€ì •
+	CSharedPtr<class CFont> m_Font;
 public:
-    void SetFont(const std::string& Name);
+	void SetFont(const std::string& Name);
 
 
-protected://ÇÑ ±ÛÀÚ¾¿ Ãâ·ÂÇÒ°ÍÀÎÁö
-    bool m_OneLetterAtTime;
-    float m_Interval; //Ãâ·Â ½Ã°£ °£°İ
-    float m_TimeCount;
+protected://í•œ ê¸€ìì”© ì¶œë ¥í• ê²ƒì¸ì§€
+	bool m_OneLetterAtTime;
+	float m_Interval; //ì¶œë ¥ ì‹œê°„ ê°„ê²©
+	float m_TimeCount;
 public:
-    void SetOneLetterAtTime(bool Enable = true);
-    void SetInterval(float Interval);
+	void SetOneLetterAtTime(bool Enable = true);
+	void SetInterval(float Interval);
 
 
-protected://±×¸²ÀÚ »ç¿ë ¿©ºÎ / »ö»ó, ¶³¾îÁ® ÀÖÀ» °Å¸®ÁöÁ¤
-    bool        m_Shadow;
-    COLORREF    m_ShadowColor;
-    Vector2     m_ShadowOffset;
+protected://ê·¸ë¦¼ì ì‚¬ìš© ì—¬ë¶€ / ìƒ‰ìƒ, ë–¨ì–´ì ¸ ìˆì„ ê±°ë¦¬ì§€ì •
+	bool        m_Shadow;
+	COLORREF    m_ShadowColor;
+	Vector2     m_ShadowOffset;
 public:
-    void SetTextShadowColor(unsigned char r, unsigned char g, unsigned char b);
-    void EnableShadow(bool Shadow = true);
-    void SetShadowOffset(float x, float y);
+	void SetTextShadowColor(unsigned char r, unsigned char g, unsigned char b);
+	void EnableShadow(bool Shadow = true);
+	void SetShadowOffset(float x, float y);
 
 
 
 public:
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
 };
 

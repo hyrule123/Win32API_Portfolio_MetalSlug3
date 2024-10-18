@@ -4,44 +4,44 @@
 
 enum ESpacePhase
 {
-    ESPhase0,
-    ESPhase1_Wait,
-    ESPhase2_Wait,
-    ESPhase3_Wait,
-    ESPhase4_UFOSpawn1,
-    ESPhase4_1_Wait,
-    ESPhase5_UFOPhase2,
-    ESPhase6_1_Wait,
-    ESPhase7_Meteor,
-    ESPhase8_BigMeteor0,
-    ESPhase9_BigMeteor1,
-    ESPhase10_BigMeteor2,
-    ESPhase11_BigMeteor3,
-    ESPhase12_UFO0,
-    ESPhase12_1_Wait,
-    ESPhase13_UFO1,
-    ESPhase13_1_Wait,
-    ESPhase14_UFO2,
-    ESPhase14_1_Wait,
-    ESPhase15_UFO3,
-    ESPhase15_1_Wait,
-    ESPhase16_Meteor1,
-    ESPhase17_Meteor2,
-    ESPhase18_Meteor3,
-    ESPhase19_Meteor4,
-    ESPhase20_DaiManji1,
-    ESPhase20_1_Wait,
-    ESPhase21_DaiManjiElite,
-    ESPhase22_Ending1,
-    ESPhase23_Ending2,
-    ESPhase24_Ending3
+	ESPhase0,
+	ESPhase1_Wait,
+	ESPhase2_Wait,
+	ESPhase3_Wait,
+	ESPhase4_UFOSpawn1,
+	ESPhase4_1_Wait,
+	ESPhase5_UFOPhase2,
+	ESPhase6_1_Wait,
+	ESPhase7_Meteor,
+	ESPhase8_BigMeteor0,
+	ESPhase9_BigMeteor1,
+	ESPhase10_BigMeteor2,
+	ESPhase11_BigMeteor3,
+	ESPhase12_UFO0,
+	ESPhase12_1_Wait,
+	ESPhase13_UFO1,
+	ESPhase13_1_Wait,
+	ESPhase14_UFO2,
+	ESPhase14_1_Wait,
+	ESPhase15_UFO3,
+	ESPhase15_1_Wait,
+	ESPhase16_Meteor1,
+	ESPhase17_Meteor2,
+	ESPhase18_Meteor3,
+	ESPhase19_Meteor4,
+	ESPhase20_DaiManji1,
+	ESPhase20_1_Wait,
+	ESPhase21_DaiManjiElite,
+	ESPhase22_Ending1,
+	ESPhase23_Ending2,
+	ESPhase24_Ending3
 
 
 };
 
 
 class CMainScene :
-    public CScene
+	public CScene
 {
 	friend class CSceneManager;
 
@@ -50,50 +50,50 @@ protected:
 	virtual ~CMainScene();
 public:
 	virtual bool Init();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 protected:
-    class CBackgroundSpace* m_BackGround;
+	class CBackgroundSpace* m_BackGround;
 
 
-private://Phase °ü·Ã º¯¼ö ¸Ş¼Òµå ¸ğÀ½
-    UINT8 m_PhaseFlags;
-    CooltimeChecker m_Timer0;
-    CooltimeChecker m_Timer1;
-    CooltimeChecker m_Timer2;
+private://Phase ê´€ë ¨ ë³€ìˆ˜ ë©”ì†Œë“œ ëª¨ìŒ
+	UINT8 m_PhaseFlags;
+	CooltimeChecker m_Timer0;
+	CooltimeChecker m_Timer1;
+	CooltimeChecker m_Timer2;
 
-    INT16 m_Counter;
-    INT16 m_KeyMonsterCounter;
-    INT16 m_MiniUFOCounter;
-    INT16 m_MiniUFOMax;
-    bool m_FirstPhaseEnter;
-    bool m_InCutscene;
+	INT16 m_Counter;
+	INT16 m_KeyMonsterCounter;
+	INT16 m_MiniUFOCounter;
+	INT16 m_MiniUFOMax;
+	bool m_FirstPhaseEnter;
+	bool m_InCutscene;
 public:
-    void GoNextPhase();//´ÙÀ½ ÆäÀÌÁî ÁøÀÔ½Ã ¹İµå½Ã ÀÌ ÇÔ¼ö¸¦ ÅëÇØ ÁøÀÔÇÒ°Í
-    bool CheckFirstEnter();  //ÆäÀÌ½º Ã¹ÁøÀÔ È®ÀÎ¿ë ÇÔ¼ö
-    void AddMiniUFOCounter(int Num);
-    bool GetMiniUFOCounter() const; //°¹¼ö¸¦ ¹İÈ¯ÇÏÁö ¾Ê°í Ãß°¡·Î »ı¼ºÇØµµ µÇ´ÂÁö¸¦ ¹İÈ¯
-    void SetCutsceneMode(bool On);
-    bool CheckCutscenePlay() const;
+	void GoNextPhase();//ë‹¤ìŒ í˜ì´ì¦ˆ ì§„ì…ì‹œ ë°˜ë“œì‹œ ì´ í•¨ìˆ˜ë¥¼ í†µí•´ ì§„ì…í• ê²ƒ
+	bool CheckFirstEnter();  //í˜ì´ìŠ¤ ì²«ì§„ì… í™•ì¸ìš© í•¨ìˆ˜
+	void AddMiniUFOCounter(int Num);
+	bool GetMiniUFOCounter() const; //ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•˜ì§€ ì•Šê³  ì¶”ê°€ë¡œ ìƒì„±í•´ë„ ë˜ëŠ”ì§€ë¥¼ ë°˜í™˜
+	void SetCutsceneMode(bool On);
+	bool CheckCutscenePlay() const;
 
 
 
 public:
-    
-    void SetScrollMapSpeed(float Speed);
-    void SetScrollMapSpeedSoft(float AdjustSpeed, float SpeedPerSec);
-    void KeyMonsterDead();
+	
+	void SetScrollMapSpeed(float Speed);
+	void SetScrollMapSpeedSoft(float AdjustSpeed, float SpeedPerSec);
+	void KeyMonsterDead();
 
 
 private:
-    void LoadResource();
-    void PhaseUpdate(float DeltaTime);
+	void LoadResource();
+	void PhaseUpdate(float DeltaTime);
 
-    //±â´Ù¸®´Â ÆäÀÌÁî¿ë ÇÔ¼ö. ÆäÀÌÁî ¾È¿¡¼­ »ç¿ëÇÏ´Â ¿ëµµÀÓ.
-    void WaitPhase(float WaitTime, float DeltaTime);
-    EItemList RandItem();
-    EItemList RandWeapon();
+	//ê¸°ë‹¤ë¦¬ëŠ” í˜ì´ì¦ˆìš© í•¨ìˆ˜. í˜ì´ì¦ˆ ì•ˆì—ì„œ ì‚¬ìš©í•˜ëŠ” ìš©ë„ì„.
+	void WaitPhase(float WaitTime, float DeltaTime);
+	EItemList RandItem();
+	EItemList RandWeapon();
 };
 

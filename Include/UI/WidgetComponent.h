@@ -2,28 +2,28 @@
 #include "WidgetWindow.h"
 
 class CWidgetComponent :
-    public CWidgetWindow
+	public CWidgetWindow
 {
-    friend class CScene;
-    friend class CGameObject;
+	friend class CScene;
+	friend class CGameObject;
 
 protected:
-    CWidgetComponent();
-    CWidgetComponent(const CWidgetComponent& widget);
-    virtual ~CWidgetComponent();
+	CWidgetComponent();
+	CWidgetComponent(const CWidgetComponent& widget);
+	virtual ~CWidgetComponent();
 
-public://¾Æ·¡ ¸Ş¼ÒµåµéÀº ÀçÁ¤ÀÇÇÏ°í ºÎ¸ğÀÇ ¸Ş¼Òµå¸¦ È£ÃâÇÏÁö ¾ÊÀ» °ÍÀÓ. Ãæµ¹Ã³¸® X
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+public://ì•„ë˜ ë©”ì†Œë“œë“¤ì€ ì¬ì •ì˜í•˜ê³  ë¶€ëª¨ì˜ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ì§€ ì•Šì„ ê²ƒì„. ì¶©ëŒì²˜ë¦¬ X
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 private:
-    class CGameObject* m_OwnerGameObj;
+	class CGameObject* m_OwnerGameObj;
 
 
 protected:
-    virtual bool CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos);
+	virtual bool CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos);
 
 
 };

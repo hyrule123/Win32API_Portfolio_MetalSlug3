@@ -5,7 +5,7 @@
 
 #include "../Scene/SceneResource.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 
 #include "../UI/WindowSpace.h"
@@ -44,10 +44,10 @@ bool CPlayer::Init(CGameObject* Obj)
 {
 	CCharacter::Init(Obj);
 
-	//ÄÃ¸µ ÇØÁ¦
+	//ì»¬ë§ í•´ì œ
 	SetCullingDelete(ECullingDelete::All, false);
 
-	//PlayerÀÇ ÁÖ¼Ò¸¦ CGameManager¿¡ µî·ÏÇÑ´Ù.
+	//Playerì˜ ì£¼ì†Œë¥¼ CGameManagerì— ë“±ë¡í•œë‹¤.
 	CGameManager::GetInst()->SetPlayer((CPlayer*)this);
 	m_Scene->SetPlayer((CPlayer*)this);
 
@@ -71,7 +71,7 @@ void CPlayer::PostUpdate(float DeltaTime)
 
 	CGameManager::GetInst()->DebugTextOut("RocketNum", m_FiredRocket);
 
-	//ÄðÅ¸ÀÓ °è»ê
+	//ì¿¨íƒ€ìž„ ê³„ì‚°
 	CheckSkillCooltime((int)EWeapon::MAX, DeltaTime);
 
 }

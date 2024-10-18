@@ -34,14 +34,14 @@ public:	/////////////////////// Font ///////////////////////////////
 
 
 public://////////////////////////// SOUND ///////////////////////////
-//»ı¼º
+//ìƒì„±
 	bool CreateSoundChannelGroup(const std::string& Name);
 
-	//Å½»ö
+	//íƒìƒ‰
 	FMOD::ChannelGroup* FindChannelGroup(const std::string& Name);
 	class CSound* FindSound(const std::string& Name);
 
-	//·Îµù
+	//ë¡œë”©
 	bool LoadSound(
 		const std::string& GroupName,
 		const std::string& Name,
@@ -49,7 +49,7 @@ public://////////////////////////// SOUND ///////////////////////////
 		const char* FileName,
 		const std::string& PathName = SOUND_PATH);
 
-	//±âÅ¸ ¼³Á¤
+	//ê¸°íƒ€ ì„¤ì •
 	bool SetMasterVolume(int Volume);
 	bool SetVolume(const std::string& GroupName, int Volume);
 	bool SoundPlay(const std::string& Name);
@@ -101,7 +101,7 @@ public:	//////////////////////// ANIMATION ///////////////////////////////
 
 	void ClearAnimSeq();
 
-	//°ÔÀÓ¿ÀºêÁ§Æ® ´Ü°è ÀÌÇÏÀÇ ¸®¼Ò½º±îÁö¸¸ ·ÎµåÇÑ´Ù. GameObject ¿ÜÀÇ ´Ù¸¥ ¿ÀºêÁ§Æ®¿¡¼­ »ç¿ëÇÏ±â À§ÇÔ
+	//ê²Œì„ì˜¤ë¸Œì íŠ¸ ë‹¨ê³„ ì´í•˜ì˜ ë¦¬ì†ŒìŠ¤ê¹Œì§€ë§Œ ë¡œë“œí•œë‹¤. GameObject ì™¸ì˜ ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•¨
 	bool LoadCSVPreset(
 		const std::tstring& CSVFileName,
 		const std::string& PathName = DATA_PATH
@@ -129,7 +129,7 @@ public:	//////////////////////// ANIMATION ///////////////////////////////
 	bool LoadTextureFullPath(const std::string& Name, const std::vector<std::tstring>& vecFullPath);
 
 
-	//¼¼ÀÌºê, ·Îµå
+	//ì„¸ì´ë¸Œ, ë¡œë“œ
 	class CTexture* LoadTexture(FILE* File);
 	////////////////////////////////////////////////////////////////////
 

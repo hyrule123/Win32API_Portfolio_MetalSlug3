@@ -1,6 +1,6 @@
 #include "WidgetTextImage.h"
 
-//ÅØ½ºÃ³ ·Îµå¿ë
+//í…ìŠ¤ì²˜ ë¡œë“œìš©
 #include "../Resource/ResourceManager.h"
 #include "../Resource/Texture/Texture.h"
 #include "../Resource/Animation/AnimationSequence.h"
@@ -143,7 +143,7 @@ void CWidgetTextImage::SetScale(float Scale)
 
 void CWidgetTextImage::CalcTextLen()
 {
-	//¿ì¼± °¡Àå ³¡ºÎºÐÀ» °è»êÇØ¼­ ³¡ºÎºÐºÎÅÍ ±ÛÀÚ¸¦ ±×·Á³ª°¡¾ßÇÑ´Ù.(¿ÞÂÊÁ¤·Ä)
+	//ìš°ì„  ê°€ìž¥ ëë¶€ë¶„ì„ ê³„ì‚°í•´ì„œ ëë¶€ë¶„ë¶€í„° ê¸€ìžë¥¼ ê·¸ë ¤ë‚˜ê°€ì•¼í•œë‹¤.(ì™¼ìª½ì •ë ¬)
 	int size = (int)m_Text.size();
 	for (int i = size - 1; i >= 0; --i)
 	{
@@ -233,7 +233,7 @@ void CWidgetTextImage::Render(HDC hDC, float DeltaTime)
 	if (m_FlickerSwitch && m_ColorFlicker == EReactionChannel::Normal)
 		return;
 
-	//¼ýÀÚ°¡ Ãâ·ÂµÉ ÁÂÇ¥
+	//ìˆ«ìžê°€ ì¶œë ¥ë  ì¢Œí‘œ
 	Vector2 RenderLT = m_Pos + m_Offset + m_Owner->GetPos();
 	if (m_TextImage)
 	{
@@ -254,10 +254,10 @@ void CWidgetTextImage::Render(HDC hDC, float DeltaTime)
 
 		for (int i = size -1 ; i >= 0; --i)
 		{
-			//ÇØ´ç ¼ýÀÚÀÇ ¾Æ½ºÅ° ÄÚµå·Î ÅØ½ºÃ³ÀÇ ºÎºÐÀ» ºÒ·¯¿Â´Ù.
+			//í•´ë‹¹ ìˆ«ìžì˜ ì•„ìŠ¤í‚¤ ì½”ë“œë¡œ í…ìŠ¤ì²˜ì˜ ë¶€ë¶„ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
 			char AsciiCode = m_Text[i];
 
-			//ÇØ´ç ±ÛÀÚÀÇ Æø°ú ÀÚ°£¸¸Å­ ¼ýÀÚ¸¦ •ûÁØ´Ù.
+			//í•´ë‹¹ ê¸€ìžì˜ í­ê³¼ ìžê°„ë§Œí¼ ìˆ«ìžë¥¼ ëº´ì¤€ë‹¤.
 			RenderLT.x -= (m_vecCharWidth[AsciiCode] + m_Kerning);
 
 
@@ -267,7 +267,7 @@ void CWidgetTextImage::Render(HDC hDC, float DeltaTime)
 
 				int NowColor = 0;	//(int)EReactionChannel::Normal
 
-				//º¯°æµÈ »ö±òÀÌ ·ÎµùµÇ¾îÀÖÁö ¾ÊÀ¸¸é º¯°æ ºÒ°¡´É
+				//ë³€ê²½ëœ ìƒ‰ê¹”ì´ ë¡œë”©ë˜ì–´ìžˆì§€ ì•Šìœ¼ë©´ ë³€ê²½ ë¶ˆê°€ëŠ¥
 				if (m_FlickerSwitch && m_TextImage->GetTexture()->GetTextureNumbers() > (int)m_ColorFlicker)
 				{
 					NowColor = (int)m_ColorFlicker;

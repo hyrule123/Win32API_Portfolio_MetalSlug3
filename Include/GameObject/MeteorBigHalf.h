@@ -3,26 +3,26 @@
 
 enum class EMeteorBigHalfPart
 {
-    Left,
-    Right
+	Left,
+	Right
 };
 
 class CMeteorBigHalf :
-    public CMeteor
+	public CMeteor
 {
-    friend class CScene;
+	friend class CScene;
 protected:
-    CMeteorBigHalf();
-    CMeteorBigHalf(const CMeteorBigHalf& Obj);
-    virtual ~CMeteorBigHalf();
+	CMeteorBigHalf();
+	CMeteorBigHalf(const CMeteorBigHalf& Obj);
+	virtual ~CMeteorBigHalf();
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void SetEssential(const Vector2& Pos, EMeteorBigHalfPart Part);
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void SetEssential(const Vector2& Pos, EMeteorBigHalfPart Part);
 
 private:
-    EMeteorBigHalfPart m_Part;
+	EMeteorBigHalfPart m_Part;
 
 };
 

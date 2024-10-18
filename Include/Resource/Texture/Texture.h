@@ -7,109 +7,109 @@
 
 struct ImageInfo
 {
-    HDC         hMemDC;
-    HBITMAP     hBmp;
-    HBITMAP     hPrevBmp;
-    BITMAP      BmpInfo;
-    bool        ColorKeyEnable;
-    COLORREF    ColorKey;
-    TCHAR       FileName[MAX_PATH];
-    TCHAR       FullPath[MAX_PATH];
-    std::string PathName;
+	HDC         hMemDC;
+	HBITMAP     hBmp;
+	HBITMAP     hPrevBmp;
+	BITMAP      BmpInfo;
+	bool        ColorKeyEnable;
+	COLORREF    ColorKey;
+	TCHAR       FileName[MAX_PATH];
+	TCHAR       FullPath[MAX_PATH];
+	std::string PathName;
 
-    ImageInfo():
-        hMemDC(0),
-        hBmp(0),
-        hPrevBmp(0),
-        BmpInfo{},
-        ColorKeyEnable(false),
-        ColorKey(RGB(255, 0, 255)),
-        FileName{},
-        FullPath{}
-    {}
+	ImageInfo():
+		hMemDC(0),
+		hBmp(0),
+		hPrevBmp(0),
+		BmpInfo{},
+		ColorKeyEnable(false),
+		ColorKey(RGB(255, 0, 255)),
+		FileName{},
+		FullPath{}
+	{}
 
-    ~ImageInfo()
-    {
-        //¿ø·¡ ³¢¿öÁ® ÀÖ´ø ±×¸®±â µµ±¸·Î ´Ù½Ã °¥¾Æ³¢¿öÁÖ°í,
-        SelectObject(hMemDC, hPrevBmp);
+	~ImageInfo()
+	{
+		//ì›ë˜ ë¼ì›Œì ¸ ìˆë˜ ê·¸ë¦¬ê¸° ë„êµ¬ë¡œ ë‹¤ì‹œ ê°ˆì•„ë¼ì›Œì£¼ê³ ,
+		SelectObject(hMemDC, hPrevBmp);
 
-        //ÀÌ¹ÌÁö°¡ µé¾îÀÖ´ø ±×¸®±â µµ±¸¸¦ »èÁ¦ÇÏ°í,
-        DeleteObject(hBmp);
+		//ì´ë¯¸ì§€ê°€ ë“¤ì–´ìˆë˜ ê·¸ë¦¬ê¸° ë„êµ¬ë¥¼ ì‚­ì œí•˜ê³ ,
+		DeleteObject(hBmp);
 
-        //¸¶Áö¸·À¸·Î ±×¸®±â µµ±¸¸¦ Á¦°ÅÇÑ´Ù.
-        DeleteDC(hMemDC);
-    }
+		//ë§ˆì§€ë§‰ìœ¼ë¡œ ê·¸ë¦¬ê¸° ë„êµ¬ë¥¼ ì œê±°í•œë‹¤.
+		DeleteDC(hMemDC);
+	}
 };
 
 
 class CTexture :
-    public CRef
+	public CRef
 {
-    friend class CTextureManager;
+	friend class CTextureManager;
 
 private:
-    CTexture();
-    ~CTexture();
+	CTexture();
+	~CTexture();
 
 
 private:
-    ETextureType m_TextureType;
-    std::vector<ImageInfo*> m_vecImageInfo;
+	ETextureType m_TextureType;
+	std::vector<ImageInfo*> m_vecImageInfo;
 
 
 public:
 
-    HBITMAP* GetHBITMAP(int index = 0);
-    BITMAP GetBITMAP(int index = 0);
+	HBITMAP* GetHBITMAP(int index = 0);
+	BITMAP GetBITMAP(int index = 0);
 
-    int GetTextureNumbers() const;
+	int GetTextureNumbers() const;
 
-    //ºñÆ®¸Ê ÀÌ¹ÌÁö¸¦ »ı¼ºÇÒ ¶§ ÀúÀåµÈ ÀÌ¹ÌÁö »çÀÌÁî¸¦ ¹Ş¾Æ¿È
-    Vector2 GetTextureSize(int index = 0)  const;
+	//ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ë¥¼ ìƒì„±í•  ë•Œ ì €ì¥ëœ ì´ë¯¸ì§€ ì‚¬ì´ì¦ˆë¥¼ ë°›ì•„ì˜´
+	Vector2 GetTextureSize(int index = 0)  const;
 
 
-    ETextureType GetTextureType()   const;
+	ETextureType GetTextureType()   const;
 
-    HDC GetDC(int index = 0) const;
+	HDC GetDC(int index = 0) const;
 
-    void SetColorKey(unsigned char r = 255, 
-        unsigned char g = 0, 
-        unsigned char b = 255, 
-        int index = -1);
+	void SetColorKey(unsigned char r = 255, 
+		unsigned char g = 0, 
+		unsigned char b = 255, 
+		int index = -1);
 
-    COLORREF GetColorKey(int index = 0)  const;
+	COLORREF GetColorKey(int index = 0)  const;
 
-    bool GetColorKeyEnable(int index = 0)  const;
+	bool GetColorKeyEnable(int index = 0)  const;
 
-    int GetMaxReactionChannel() const;
+	int GetMaxReactionChannel() const;
 
 
 private:
-    //Texture ·Îµù °ü·Ã
+	//Texture ë¡œë”© ê´€ë ¨
 
-    //Sprite Çü½Ä
-    bool LoadTexture(const std::tstring& FileName, const std::string& PathName = TEXTURE_PATH, EReactionChannel MaxChannel = EReactionChannel::Normal);
-    bool LoadTextureFullPath(const std::tstring& FullPath, EReactionChannel MaxChannel = EReactionChannel::Normal);
+	//Sprite í˜•ì‹
+	bool LoadTexture(const std::tstring& FileName, const std::string& PathName = TEXTURE_PATH, EReactionChannel MaxChannel = EReactionChannel::Normal);
+	bool LoadTextureFullPath(const std::tstring& FullPath, EReactionChannel MaxChannel = EReactionChannel::Normal);
 
 
 
-    //Frame Çü½Ä µî·Ï ¸Ş¼Òµå
-    bool LoadTextureByTextureNumbers(const std::tstring& FolderPath, int NumberOfTexture, const std::string& PathName = TEXTURE_PATH);
+	//Frame í˜•ì‹ ë“±ë¡ ë©”ì†Œë“œ
+	bool LoadTextureByTextureNumbers(const std::tstring& FolderPath, int NumberOfTexture, const std::string& PathName = TEXTURE_PATH);
 
-    bool LoadTexture(const std::vector<std::tstring>& vecFileName, const std::string& PathName = TEXTURE_PATH);
-    bool LoadTextureFullPath(const std::vector<std::tstring>& vecFullPath);
+	bool LoadTexture(const std::vector<std::tstring>& vecFileName, const std::string& PathName = TEXTURE_PATH);
+	bool LoadTextureFullPath(const std::vector<std::tstring>& vecFullPath);
 
 private:
-    //ÆÄÀÏ·ÎºÎÅÍ ·ÎµåÇÒ ¶§ »ç¿ëÇÏ´Â ¸Ş¼Òµå.
-    //ÀÌ¹ÌÁöÆÄÀÏ 1°³
-    bool LoadTexture(ImageInfo* Info, const TCHAR* FileName,
-        const std::string& PathName = TEXTURE_PATH);
-    bool LoadTextureFullPath(ImageInfo* Info, const TCHAR* FullPath);
+	//íŒŒì¼ë¡œë¶€í„° ë¡œë“œí•  ë•Œ ì‚¬ìš©í•˜ëŠ” ë©”ì†Œë“œ.
+	//ì´ë¯¸ì§€íŒŒì¼ 1ê°œ
+	bool LoadTexture(ImageInfo* Info, const TCHAR* FileName,
+		const std::string& PathName = TEXTURE_PATH);
+	bool LoadTextureFullPath(ImageInfo* Info, const TCHAR* FullPath);
 
-    //ÀÌ¹ÌÁöÆÄÀÏ ¿©·¯°³
-    bool LoadTexture(std::vector<ImageInfo*>* vecInfo, const std::vector<std::wstring>& vecFileName,
-        const std::string& PathName = TEXTURE_PATH);
-    bool LoadTextureFullPath(std::vector<ImageInfo*>* vecInfo, const std::vector<std::wstring>& vecFullPath);
+	//ì´ë¯¸ì§€íŒŒì¼ ì—¬ëŸ¬ê°œ
+	bool LoadTexture(std::vector<ImageInfo*>* vecInfo, const std::vector<std::wstring>& vecFileName,
+		const std::string& PathName = TEXTURE_PATH);
+	bool LoadTextureFullPath(std::vector<ImageInfo*>* vecInfo, const std::vector<std::wstring>& vecFullPath);
 
 
 

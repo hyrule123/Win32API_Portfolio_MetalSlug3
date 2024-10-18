@@ -2,20 +2,20 @@
 #include "WidgetTextImage.h"
 
 class CWidgetScore :
-    public CWidgetTextImage
+	public CWidgetTextImage
 {
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetScore();
-    CWidgetScore(const CWidgetScore& widget);
-    virtual ~CWidgetScore();
+	CWidgetScore();
+	CWidgetScore(const CWidgetScore& widget);
+	virtual ~CWidgetScore();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 private:
-    float m_Timer;
+	float m_Timer;
 };
 

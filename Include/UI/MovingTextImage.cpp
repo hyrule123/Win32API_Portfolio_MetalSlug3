@@ -1,6 +1,6 @@
 #include "MovingTextImage.h"
 
-//ÅØ½ºÃ³ ·Îµå¿ë
+//í…ìŠ¤ì²˜ ë¡œë“œìš©
 #include "../Resource/ResourceManager.h"
 #include "../Resource/Texture/Texture.h"
 #include "../Resource/Animation/AnimationSequence.h"
@@ -47,7 +47,7 @@ void CMovingTextImage::Update(float DeltaTime)
 
 		MoveDir(DeltaTime);
 
-		//¸ñÇ¥ À§Ä¡¿¡¼­ ÇöÀç À§Ä¡¸¦ »« °Å¸®°¡ ÃÖ´ë ÀÌµ¿ °¡´É°Å¸®º¸´Ù ÀÛÀ» °æ¿ì ÀÌµ¿ Á¾·á
+		//ëª©í‘œ ìœ„ì¹˜ì—ì„œ í˜„ì¬ ìœ„ì¹˜ë¥¼ ëº€ ê±°ë¦¬ê°€ ìµœëŒ€ ì´ë™ ê°€ëŠ¥ê±°ë¦¬ë³´ë‹¤ ì‘ì„ ê²½ìš° ì´ë™ ì¢…ë£Œ
 		Vector2 Sub = m_MoveToDest - m_Pos;
 		if (hypotf(Sub.x, Sub.y) < m_MaxSpeed * DeltaTime)
 		{

@@ -28,7 +28,7 @@ private:
 
 private:
 	CAnimationInfo* m_CurrentAnimation[(int)EAnimationLayer::Max];
-	//ÃÖ´ë ·¹ÀÌ¾î ¹øÈ£¸¦ ÀúÀåÇÏ´Â º¯¼ö. ¼øÈ¸¸¦ µ¹¶§ ÃÖ´ë ·¹ÀÌ¾î ¹øÈ£±îÁö¸¸ µ·´Ù.
+	//ìµœëŒ€ ë ˆì´ì–´ ë²ˆí˜¸ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜. ìˆœíšŒë¥¼ ëŒë•Œ ìµœëŒ€ ë ˆì´ì–´ ë²ˆí˜¸ê¹Œì§€ë§Œ ëˆë‹¤.
 	int m_HighestLayer;
 public:
 	int GetHighestLayer() const;
@@ -45,7 +45,7 @@ public:
 
 	void SyncPlayTime(int srclayer, int destlayer);
 
-	//ÇöÀç Àç»ıÁßÀÎ ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ·çÇÁ¿©ºÎ¸¦ true·Î ÀüÈ¯
+	//í˜„ì¬ ì¬ìƒì¤‘ì¸ ì• ë‹ˆë©”ì´ì…˜ì˜ ë£¨í”„ì—¬ë¶€ë¥¼ trueë¡œ ì „í™˜
 	void SetLoopFlag(int Layer = 0, ELoopFlag LoopFlag = ELoopFlag::Loop);
 
 	int GetCurrFrameNum(int layer = 0)	const;
@@ -66,7 +66,7 @@ public:
 	void SetOffset(const std::string& AnimName, float OffsetX, float OffsetY);
 	void SetPivot(const std::string& AnimName, float PivotX, float PivotY);
 
-	//ÇÑ¹ø¸¸ ¿ªÀç»ı °¡´É. ´Ù¸¥ ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î ±³Ã¼µÇ¸é ÃÊ±âÈ­.
+	//í•œë²ˆë§Œ ì—­ì¬ìƒ ê°€ëŠ¥. ë‹¤ë¥¸ ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ êµì²´ë˜ë©´ ì´ˆê¸°í™”.
 	void SetPlayReverse(const std::string& AnimName, bool Reverse, bool Once);
 
 
@@ -76,14 +76,14 @@ public:
 	void SetAnimationDuration(const std::string& AnimName, float Duration);
 	void ChangeAnimationDuration(const std::string& AnimName, float Duration);
 
-	//ÇöÀç ÇÁ·¹ÀÓ ¹øÈ£¿Í Àç»ıµÈ ½Ã°£À» À¯ÁöÇÑÃ¤·Î ¾Ö´Ï¸ŞÀÌ¼Ç ÀüÈ¯
+	//í˜„ì¬ í”„ë ˆì„ ë²ˆí˜¸ì™€ ì¬ìƒëœ ì‹œê°„ì„ ìœ ì§€í•œì±„ë¡œ ì• ë‹ˆë©”ì´ì…˜ ì „í™˜
 	void ChangeAnimContinue(const std::string& AnimName, bool PlayOnce = false);
 	bool CheckAnimationPlaying(const std::string& AnimName);
 
 
 
 
-	//µî·ÏÇÏ¸é ¸ğµç ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ıÀÌ ³¡³¯ °æ¿ì °øÅëÀûÀ¸·Î È£ÃâµÈ´Ù.
+	//ë“±ë¡í•˜ë©´ ëª¨ë“  ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒì´ ëë‚  ê²½ìš° ê³µí†µì ìœ¼ë¡œ í˜¸ì¶œëœë‹¤.
 	template <typename T>
 	void SetCurrentAnimEndFunc(T* Obj, void(T::* Func)())
 	{

@@ -5,22 +5,22 @@
 
 enum class EMeteorSize
 {
-    Small,
-    Midium,
-    Big
+	Small,
+	Midium,
+	Big
 };
 
 
 class CMeteor :
-    public CEnemy
+	public CEnemy
 {
-    friend class CScene;
+	friend class CScene;
 protected:
-    CMeteor();
-    CMeteor(const CMeteor& Obj);
-    virtual ~CMeteor();
+	CMeteor();
+	CMeteor(const CMeteor& Obj);
+	virtual ~CMeteor();
 public:
-    virtual bool LoadResource();
-    virtual bool Init(CGameObject* Obj = nullptr);
+	virtual bool LoadResource();
+	virtual bool Init(CGameObject* Obj = nullptr);
 };
 

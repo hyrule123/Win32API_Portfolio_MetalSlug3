@@ -1,11 +1,11 @@
 #pragma once
 #include "Effect.h"
 
-//´Ü¼ø ÀÌÆåÆ® Àç»ý Å¬·¡½º
-//¿©±â¿¡ ·ÎµåÇØ³õÀº ÀÌÆåÆ®¸¦ ÀÌ¸§À¸·Î »ý¼ºÇÏ¸é ÀÚµ¿À¸·Î ÇØ´ç ÀÌÆåÆ®¸¦ Àç»ýÇÑ´Ù.
-//¹Ýµå½Ã À§Ä¡¸¦ ¼³Á¤ÇØÁÙ°Í.(SetEssential)
+//ë‹¨ìˆœ ì´íŽ™íŠ¸ ìž¬ìƒ í´ëž˜ìŠ¤
+//ì—¬ê¸°ì— ë¡œë“œí•´ë†“ì€ ì´íŽ™íŠ¸ë¥¼ ì´ë¦„ìœ¼ë¡œ ìƒì„±í•˜ë©´ ìžë™ìœ¼ë¡œ í•´ë‹¹ ì´íŽ™íŠ¸ë¥¼ ìž¬ìƒí•œë‹¤.
+//ë°˜ë“œì‹œ ìœ„ì¹˜ë¥¼ ì„¤ì •í•´ì¤„ê²ƒ.(SetEssential)
 class CJustPlay :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 

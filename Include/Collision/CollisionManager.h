@@ -7,7 +7,7 @@ class CCollisionManager
 {
 
 private:
-	//°¢ Ã¤³Îº°·Î ÇÏ³ªÀÇ ÇÁ·ÎÆÄÀÏ º¸À¯. ÃÊ±âÈ­ ¶§ °¢ ÇÁ·ÎÆÄÀÏÀ» ¼³Á¤
+	//ê° ì±„ë„ë³„ë¡œ í•˜ë‚˜ì˜ í”„ë¡œíŒŒì¼ ë³´ìœ . ì´ˆê¸°í™” ë•Œ ê° í”„ë¡œíŒŒì¼ì„ ì„¤ì •
 	CollisionProfile* m_vecProfile[(int)ECollisionChannel::Max];
 
 public:
@@ -34,15 +34,15 @@ public:
 		class CColliderBox* Dest
 	);
 
-	//¼±-¿ø
+	//ì„ -ì›
 	bool CollisionLineToCircle(class CColliderLine* Src, class CColliderCircle* Dest);
 	bool CollisionCircleToLine(class CColliderCircle* Src, class CColliderLine* Dest);
 
-	//¼±-»ç°¢Çü
+	//ì„ -ì‚¬ê°í˜•
 	bool CollisionLineToBox(class CColliderLine* Src, class CColliderBox* Dest);
 	bool CollisionBoxToLine(class CColliderBox* Src, class CColliderLine* Dest);
 
-	//¼±-¼±
+	//ì„ -ì„ 
 	bool CollisionLineToLine(class CColliderLine* Src, class CColliderLine* Dest);
 
 
@@ -76,10 +76,10 @@ protected:
 private:
 	float PointLineDistance(const Vector2& Point, const Vector2& LineStart, const Vector2& LineEnd);
 
-	//ºÎÈ£¸¸ Ã¼Å©ÇÔ.
+	//ë¶€í˜¸ë§Œ ì²´í¬í•¨.
 	float PointLineSignCheck(const Vector2& Point, const Vector2& LineStart, const Vector2& LineEnd);
 
-	//°Å¸®¸¦ È®ÀÎÇÏ¿© °¡±î¿î °Å¸®¿Í ¸Õ °Å¸®ÀÇ º¤ÅÍ¸¦ »ğÀÔ
+	//ê±°ë¦¬ë¥¼ í™•ì¸í•˜ì—¬ ê°€ê¹Œìš´ ê±°ë¦¬ì™€ ë¨¼ ê±°ë¦¬ì˜ ë²¡í„°ë¥¼ ì‚½ì…
 	void ComputeDistance(const Vector2& Start, Vector2& Near, Vector2& Far);
 
 public:
@@ -97,14 +97,14 @@ public:
 public:
 	CollisionProfile* GetCollisionProfile(ECollisionChannel Channel);
 
-	//ProfileÀ» »ç¿ëÇÏ´Â Ãæµ¹Ã¼°¡ Channel°ú ¾î¶² »óÈ£ÀÛ¿ëÀ» ÇÒ°ÍÀÎÁö ¼³Á¤
-	//(±âº»°ª: true)
+	//Profileì„ ì‚¬ìš©í•˜ëŠ” ì¶©ëŒì²´ê°€ Channelê³¼ ì–´ë–¤ ìƒí˜¸ì‘ìš©ì„ í• ê²ƒì¸ì§€ ì„¤ì •
+	//(ê¸°ë³¸ê°’: true)
 	void SetProfile(ECollisionChannel Profile, 
 		ECollisionChannel Channel, 
 		bool isCollide = true);
 
-	//ProfileÀ» »ç¿ëÇÏ´Â Ãæµ¹Ã¼ÀÇ ¸ğµç »óÈ£ÀÛ¿ëÀ» ÀÎÀÚ·Î µé¾î¿Â InteractionÀ¸·Î ¼³Á¤ÇÑ´Ù.
-	//(±âº»°ª: true)
+	//Profileì„ ì‚¬ìš©í•˜ëŠ” ì¶©ëŒì²´ì˜ ëª¨ë“  ìƒí˜¸ì‘ìš©ì„ ì¸ìë¡œ ë“¤ì–´ì˜¨ Interactionìœ¼ë¡œ ì„¤ì •í•œë‹¤.
+	//(ê¸°ë³¸ê°’: true)
 	void SetProfileAll(ECollisionChannel Profile, 
 		bool isCollide = true);
 

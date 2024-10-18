@@ -3,38 +3,38 @@
 
 
 class CLaserDebris :
-    public CJustMovingSFX
+	public CJustMovingSFX
 {
 
-    friend class CScene;
+	friend class CScene;
 
 protected:
 
-    UINT8 m_ColorNum[4];    //4∞°¡ˆ ªˆªÛ ƒ√∑Ø
-    UINT8 m_Index;
-    bool  m_ChangeIndex;
+	UINT8 m_ColorNum[4];    //4Í∞ÄÏßÄ ÏÉâÏÉÅ Ïª¨Îü¨
+	UINT8 m_Index;
+	bool  m_ChangeIndex;
 
-    Vector2 m_Offset;
-    float m_Force;
+	Vector2 m_Offset;
+	float m_Force;
 
 
 
 protected:
-    CLaserDebris();
-    CLaserDebris(const CLaserDebris& Obj);
-    virtual ~CLaserDebris();
+	CLaserDebris();
+	CLaserDebris(const CLaserDebris& Obj);
+	virtual ~CLaserDebris();
 
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    virtual bool LoadResource();
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool LoadResource();
 
 
-    virtual void SetEssential(const Vector2& Dir, const Vector2& Pos, const Vector2& Offset, float Force);
-    virtual void SetEssential(float DirX, float DirY, float PosX, float PosY, float OffsetX, float OffsetY, float Force);
-    void Trajectory(float Force);
+	virtual void SetEssential(const Vector2& Dir, const Vector2& Pos, const Vector2& Offset, float Force);
+	virtual void SetEssential(float DirX, float DirY, float PosX, float PosY, float OffsetX, float OffsetY, float Force);
+	void Trajectory(float Force);
 };
 

@@ -2,7 +2,7 @@
 #include "Character.h"
 
 class CBackModen :
-    public CCharacter
+	public CCharacter
 {
 	friend class CScene;
 protected:

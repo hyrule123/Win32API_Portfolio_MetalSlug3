@@ -4,7 +4,7 @@
 
 #include "../Collision/ColliderBox.h"
 
-//Æø¹ß
+//í­ë°œ
 #include "Explosion.h"
 
 CBackObjects::CBackObjects():
@@ -76,23 +76,23 @@ void CBackObjects::SetEssential(EBackObjType Type)
 	{
 	case EBackObjType::SmallAstro:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		SetAnimation("SmallAstroBody");
 		SetAnimation("SmallAstroWindow");
 		SetAnimation("SmallAstroTail");
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = 250.f;
 		SetCullingDelete(ECullingDelete::Top, true);
 
-		SetRenderLayer(ERenderLayer::Back);	//·»´õ¸µ ·¹ÀÌ¾î
-		SetMaxSpeed(50.f);	//ÀÌµ¿¼Óµµ
+		SetRenderLayer(ERenderLayer::Back);	//ë Œë”ë§ ë ˆì´ì–´
+		SetMaxSpeed(50.f);	//ì´ë™ì†ë„
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y - 600.f));
 
-		//Ãæµ¹Ã¼ »ı¼º, Å©±â ÁöÁ¤
+		//ì¶©ëŒì²´ ìƒì„±, í¬ê¸° ì§€ì •
 		CColliderBox* Coll = AddCollider<CColliderBox>("SmallAstroColl");
 		Coll->SetCollisionProfile(ECollisionChannel::BackAlly);
 		Coll->SetPivot(0.5f, 1.f);
@@ -103,23 +103,23 @@ void CBackObjects::SetEssential(EBackObjType Type)
 		break;
 	case EBackObjType::BigAstro:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		SetAnimation("BigAstroBody");
 		SetAnimation("BigAstroWindow");
 		SetAnimation("BigAstroTail");
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = 300.f;
 		SetCullingDelete(ECullingDelete::Top, true);
 
 		SetRenderLayer(ERenderLayer::BackFront);
 		SetMaxSpeed(100.f);
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y - 600.f));
 
 
-		//Ãæµ¹Ã¼ »ı¼º, Å©±â ÁöÁ¤
+		//ì¶©ëŒì²´ ìƒì„±, í¬ê¸° ì§€ì •
 		CColliderBox* Coll = AddCollider<CColliderBox>("BigAstroColl");
 		Coll->SetCollisionProfile(ECollisionChannel::BackAlly);
 		Coll->SetPivot(0.5f, 1.f);
@@ -129,21 +129,21 @@ void CBackObjects::SetEssential(EBackObjType Type)
 		break;
 	case EBackObjType::LaserBack:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		SetAnimation("LaserBack");
 
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = -100.f;
 		SetCullingDelete(ECullingDelete::Bottom, true);
 
 		SetRenderLayer(ERenderLayer::Back);
 		SetMaxSpeed(100.f);
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y + 500.f));
 
-		//Ãæµ¹Ã¼ »ı¼º, Å©±â ÁöÁ¤
+		//ì¶©ëŒì²´ ìƒì„±, í¬ê¸° ì§€ì •
 		CColliderBox* Coll = AddCollider<CColliderBox>("LaserBack");
 		Coll->SetCollisionProfile(ECollisionChannel::BackEnemy);
 		Coll->SetPivot(0.5f, 1.f);
@@ -155,21 +155,21 @@ void CBackObjects::SetEssential(EBackObjType Type)
 
 	case EBackObjType::LaserFront:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		SetAnimation("LaserFront");
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = -100.f;
 		SetCullingDelete(ECullingDelete::Bottom, true);
 
 		SetRenderLayer(ERenderLayer::BackFront);
 		SetMaxSpeed(150.f);
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y + 500.f));
 
 
-		//Ãæµ¹Ã¼ »ı¼º, Å©±â ÁöÁ¤
+		//ì¶©ëŒì²´ ìƒì„±, í¬ê¸° ì§€ì •
 		CColliderBox* Coll = AddCollider<CColliderBox>("Laser");
 		Coll->SetCollisionProfile(ECollisionChannel::BackEnemy);
 		Coll->SetPivot(0.5f, 1.f);
@@ -180,42 +180,42 @@ void CBackObjects::SetEssential(EBackObjType Type)
 	break;
 	case EBackObjType::DebrisBig:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		std::string debris = "DebrisBig";
 		debris += std::to_string(rand() % 5);
 
 		SetAnimation(debris);
 
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = -50.f;
 		SetCullingDelete(ECullingDelete::Bottom, true);
 
 		SetRenderLayer(ERenderLayer::BackFront);
 		SetMaxSpeed(40.f);
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y + 500.f));
 	}
 		break;
 
 	case EBackObjType::DebrisSmall:
 	{
-		//¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+		//ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 		std::string debris = "DebrisSmall";
 		debris += std::to_string(rand() % 7);
 
 		SetAnimation(debris);
 
 
-		//ÀÌµ¿ À§Ä¡ ÁöÁ¤ ¹× ÄÃ¸µ ¼³Á¤
+		//ì´ë™ ìœ„ì¹˜ ì§€ì • ë° ì»¬ë§ ì„¤ì •
 		m_Pos.y = -50.f;
 		SetCullingDelete(ECullingDelete::Bottom, true);
 
 		SetRenderLayer(ERenderLayer::BackFront);
 		SetMaxSpeed(20.f);
 
-		//MoveTo ÁöÁ¤
+		//MoveTo ì§€ì •
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(m_Pos.x, m_Pos.y + 500.f));
 
 	}

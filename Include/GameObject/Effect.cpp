@@ -22,7 +22,7 @@ CEffect::CEffect(const CEffect& Obj):
 	m_isReady(),
 	m_Time()
 {
-	//À§ÀÇ º¯¼öµé ¸ğµÎ Init ÀÌÈÄ¿¡ ¼³Á¤µÇ´Â º¯¼öµéÀÓ
+	//ìœ„ì˜ ë³€ìˆ˜ë“¤ ëª¨ë‘ Init ì´í›„ì— ì„¤ì •ë˜ëŠ” ë³€ìˆ˜ë“¤ì„
 }
 
 CEffect::~CEffect()
@@ -41,10 +41,10 @@ bool CEffect::Init(CGameObject* Obj)
 	CGameObject::Init(Obj);
 
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á ÇÔ¼öµµ µî·Ï
+	//ì• ë‹ˆë©”ì´ì…˜ì— ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ í•¨ìˆ˜ë„ ë“±ë¡
 	m_Animation->SetCurrentAnimEndFunc<CEffect>(this, &CEffect::EffectEnd);
 
-	//¸¶½ºÅÍ ¿ÀºêÁ§Æ®°¡ µî·ÏµÇ¾î ÀÖÀ¸¸é bool m_MasterObjectµµ true·Î ¹Ù²ãÁØ´Ù.
+	//ë§ˆìŠ¤í„° ì˜¤ë¸Œì íŠ¸ê°€ ë“±ë¡ë˜ì–´ ìˆìœ¼ë©´ bool m_MasterObjectë„ trueë¡œ ë°”ê¿”ì¤€ë‹¤.
 
 
 	return true;
@@ -89,7 +89,7 @@ void CEffect::SetEssential(const Vector2& Pos)
 
 void CEffect::EffectEnd()
 {
-	//¸¸¾à ÇÑ¹ø¸¸ Àç»ıÀÌ¶ó¸é ¹Ù·Î false
+	//ë§Œì•½ í•œë²ˆë§Œ ì¬ìƒì´ë¼ë©´ ë°”ë¡œ false
 	if (m_EffectType == EEffectType::Once)
 	{
 		SetActive(false);

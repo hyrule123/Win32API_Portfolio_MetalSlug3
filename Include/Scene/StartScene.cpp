@@ -4,14 +4,14 @@
 #include "SceneManager.h"
 #include "SceneResource.h"
 
-//·ÎµåÇÒ ¾À
+//ë¡œë“œí•  ì”¬
 #include "SceneEdit.h"
 #include "MainScene.h"
 
-//ÃÊ±âÈ­ ¶§ ÇØ»óµµ ¹Ş¾Æ¿À´Â ¿ëµµ
+//ì´ˆê¸°í™” ë•Œ í•´ìƒë„ ë°›ì•„ì˜¤ëŠ” ìš©ë„
 #include "../GameManager.h"
 
-//¹è°æÈ­¸é
+//ë°°ê²½í™”ë©´
 #include "../GameObject\Background.h"
 
 #include "../UI/WindowStart.h"
@@ -19,7 +19,7 @@
 #include "../UI/WidgetTextImage.h"
 
 
-//Ä«¸Ş¶ó
+//ì¹´ë©”ë¼
 
 CStartScene::CStartScene()
 {
@@ -34,22 +34,22 @@ bool CStartScene::Init()
 {
 	CScene::Init();
 
-	//À½·® ÁöÁ¤
+	//ìŒëŸ‰ ì§€ì •
 	GetSceneResource()->SetMasterVolume(25);
 
 
-	//¸®¼Ò½º ·Îµå
+	//ë¦¬ì†ŒìŠ¤ ë¡œë“œ
 	m_SceneResource->LoadCSVPreset(TEXT("UI/BasicFontSilver.csv"));
 	m_SceneResource->LoadCSVPreset(TEXT("UI/BasicFontGold.csv"));
 	m_SceneResource->LoadCSVPreset(TEXT("UI/ScoreNumber.csv"));
 	m_SceneResource->LoadCSVPreset(TEXT("UI/MissionFont.csv"));
 	
-	//¹è°æÈ­¸é
+	//ë°°ê²½í™”ë©´
 	//CreateObject<CBackground>("BackGround");
 
 
 
-	//À©µµ¿ì È£Ãâ
+	//ìœˆë„ìš° í˜¸ì¶œ
 	CreateWidgetWindow<CWindowStart>("WindowStart");
 
 

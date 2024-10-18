@@ -1,7 +1,7 @@
 #pragma once
 #include "JustPlay.h"
 class CJustMovingSFX :
-    public CJustPlay
+	public CJustPlay
 {
 	friend class CScene;
 

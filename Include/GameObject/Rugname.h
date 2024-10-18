@@ -2,9 +2,9 @@
 #include "GameObject.h"
 
 
-//´Ü¼øÇÏ°Ô RugHimeÀÇ À§Ä¡Á¤º¸¸¦ ¸ğ¾Æ¼­ ÀúÀåÇÏ´Â Å¬·¡½º.
+//ë‹¨ìˆœí•˜ê²Œ RugHimeì˜ ìœ„ì¹˜ì •ë³´ë¥¼ ëª¨ì•„ì„œ ì €ì¥í•˜ëŠ” í´ë˜ìŠ¤.
 class CRugname :
-    public CGameObject
+	public CGameObject
 {
 	friend class CScene;
 
@@ -20,7 +20,7 @@ public:
 	virtual bool LoadResource();
 
 private:
-    class CRugnamePart* m_RugNameLower;
-    class CRugnamePart* m_RugNameUpper;
+	class CRugnamePart* m_RugNameLower;
+	class CRugnamePart* m_RugNameUpper;
 };
 

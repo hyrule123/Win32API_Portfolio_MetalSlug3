@@ -1,9 +1,9 @@
 #pragma once
 #include "GameObject.h"
 
-//¸ğµç ·ÎÄÏÀÇ °øÅë Å¬·¡½º.
+//ëª¨ë“  ë¡œì¼“ì˜ ê³µí†µ í´ë˜ìŠ¤.
 class CIntroRocket :
-    public CGameObject
+	public CGameObject
 {
 	friend class CScene;
 protected:

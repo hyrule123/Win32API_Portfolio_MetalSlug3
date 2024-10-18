@@ -3,46 +3,46 @@
 
 
 class CWidgetNumber :
-    public CWidget
+	public CWidget
 {
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetNumber();
-    CWidgetNumber(const CWidgetNumber& widget);
-    virtual ~CWidgetNumber();
+	CWidgetNumber();
+	CWidgetNumber(const CWidgetNumber& widget);
+	virtual ~CWidgetNumber();
 public:
-    virtual bool Init();
+	virtual bool Init();
 
 
-protected://ÅØ½ºÃ³
-    CSharedPtr<class CAnimationSequence>  m_NumberImage;
+protected://í…ìŠ¤ì²˜
+	CSharedPtr<class CAnimationSequence>  m_NumberImage;
 public:
 
-    //ÅØ½ºÃ³ ¼³Á¤ - ÅØ½ºÃ³ ·Îµù ¸ÕÀú ÇÑµÚ »ç¿ëÇÒ°Í.
-    bool SetNumberImage(const std::string& Name);
+	//í…ìŠ¤ì²˜ ì„¤ì • - í…ìŠ¤ì²˜ ë¡œë”© ë¨¼ì € í•œë’¤ ì‚¬ìš©í• ê²ƒ.
+	bool SetNumberImage(const std::string& Name);
 
 
-protected://¼ıÀÚ ÁöÁ¤
-    int m_Number;
-    //ÇÑ´ÜÀ§¾¿ ¶¼¾î¼­ ¼ıÀÚ¸¦ ÀúÀåÇÒ º¤ÅÍ¿Í ½ºÅÃ
-    std::vector<int> m_NumberVec;
-    std::stack<int> m_NumberStack;
+protected://ìˆ«ì ì§€ì •
+	int m_Number;
+	//í•œë‹¨ìœ„ì”© ë–¼ì–´ì„œ ìˆ«ìë¥¼ ì €ì¥í•  ë²¡í„°ì™€ ìŠ¤íƒ
+	std::vector<int> m_NumberVec;
+	std::stack<int> m_NumberStack;
 public:
-    void SetNumber(int Num);
-    void AddNumber(int Num);
+	void SetNumber(int Num);
+	void AddNumber(int Num);
 
 
-protected://¼ıÀÚ ÀÌ¹ÌÁö¸¦ È®´ëÇÏ°í ½ÍÀ» °æ¿ì
-    float m_Scale;
+protected://ìˆ«ì ì´ë¯¸ì§€ë¥¼ í™•ëŒ€í•˜ê³  ì‹¶ì„ ê²½ìš°
+	float m_Scale;
 public:
-    void SetScale(float Scale);
+	void SetScale(float Scale);
 
 
 
 public:
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 };
 

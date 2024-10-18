@@ -32,8 +32,8 @@ struct KeyState
 
 struct BindFunction
 {
-	void* Obj; //ÇÔ¼ö¸¦ È£ÃâÇÑ À§Ä¡
-	std::function<void()> func;	//bindµÈ ÇÔ¼ö°¡ µé¾î°¥ º¯¼ö
+	void* Obj; //í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œ ìœ„ì¹˜
+	std::function<void()> func;	//bindëœ í•¨ìˆ˜ê°€ ë“¤ì–´ê°ˆ ë³€ìˆ˜
 
 	BindFunction():
 		Obj(nullptr)
@@ -50,7 +50,7 @@ struct BindKey
 	bool Alt;
 	bool Shift;
 
-	//¹è¿­À» 3°³ -> EInput_Type::End°³ ¸¸Å­ »ı¼º(0 -> Down,1 -> Push ,2 -> Up)
+	//ë°°ì—´ì„ 3ê°œ -> EInput_Type::Endê°œ ë§Œí¼ ìƒì„±(0 -> Down,1 -> Push ,2 -> Up)
 	std::vector<BindFunction*> VecFunction[(int)EInput_Type::End];
 	
 
@@ -77,7 +77,7 @@ private:
 	std::unordered_map<unsigned char, KeyState*> m_mapKeyState;
 	std::unordered_map<std::string, BindKey*> m_mapBindKey;
 
-	//Á¶ÇÕÅ° ´­·È´ÂÁö ¿©ºÎ ÀúÀå¿ë
+	//ì¡°í•©í‚¤ ëˆŒë ¸ëŠ”ì§€ ì—¬ë¶€ ì €ì¥ìš©
 	bool m_Ctrl;
 	bool m_Alt;
 	bool m_Shift;
@@ -86,7 +86,7 @@ private:
 
 
 
-private:	//////////////////¸¶¿ì½º °ü·Ã/////////////////
+private:	//////////////////ë§ˆìš°ìŠ¤ ê´€ë ¨/////////////////
 	Vector2 m_MousePos;
 	Vector2 m_MouseWorldPos;
 	Vector2 m_MouseMove;
@@ -94,10 +94,10 @@ private:	//////////////////¸¶¿ì½º °ü·Ã/////////////////
 	bool m_MouseLDown;
 	bool m_MouseLPush;
 	bool m_MouseLUp;
-	float m_CursorShowTimeLeft;	//½Ã°£ÀÌ Áö³ª¸é ¸¶¿ì½º Ä¿¼­ Ç¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	float m_CursorShowTimeLeft;	//ì‹œê°„ì´ ì§€ë‚˜ë©´ ë§ˆìš°ìŠ¤ ì»¤ì„œ í‘œì‹œë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	float m_CursorShowTimeSet;
 
-	//¸¶¿ì½º ¾Ö´Ï¸ŞÀÌ¼ÇÀ» µé°íÀÖÀ» CGameObject¸¦ µû·Î »ı¼ºÇÑ´Ù.
+	//ë§ˆìš°ìŠ¤ ì• ë‹ˆë©”ì´ì…˜ì„ ë“¤ê³ ìˆì„ CGameObjectë¥¼ ë”°ë¡œ ìƒì„±í•œë‹¤.
 	//class CSharedPtr<class CGameObject> m_CursorAnim;
 	bool m_ShowDefaultCursor;
 public:
@@ -108,7 +108,7 @@ public:
 	bool GetMouseLPush() const;
 	bool GetMouseLUp() const;
 
-	//ÀÎ°ÔÀÓ ¸¶¿ì½º ÁÂÇ¥ ¾÷µ¥ÀÌÆ®¿ë ¸Ş¼Òµå
+	//ì¸ê²Œì„ ë§ˆìš°ìŠ¤ ì¢Œí‘œ ì—…ë°ì´íŠ¸ìš© ë©”ì†Œë“œ
 	void ComputeWorldPos(const Vector2& CamPos);
 	////////////////////////////////////////
 
@@ -136,33 +136,33 @@ public:
 		T* classptr,
 		void (T::* Func)())
 	{
-		//ÀÏ´Ü ÇÔ¼ö¸¦ µî·ÏÇÏ°íÀÚ ÇÏ´Â bindkey°¡ ÀÖ´ÂÁöºÎÅÍ È®ÀÎ
+		//ì¼ë‹¨ í•¨ìˆ˜ë¥¼ ë“±ë¡í•˜ê³ ì í•˜ëŠ” bindkeyê°€ ìˆëŠ”ì§€ë¶€í„° í™•ì¸
 		BindKey* bindkey = FindBindKey(Name);
 
-		//¾øÀ¸¸é ¸®ÅÏ
+		//ì—†ìœ¼ë©´ ë¦¬í„´
 		if (!bindkey)
 			return;
 
-		//Ã£¾ÒÀ¸¸é ÇÔ¼ö µî·ÏÀıÂ÷ ÁøÇà -> µî·Ï¿ë ±¸Á¶Ã¼ »ı¼º
+		//ì°¾ì•˜ìœ¼ë©´ í•¨ìˆ˜ ë“±ë¡ì ˆì°¨ ì§„í–‰ -> ë“±ë¡ìš© êµ¬ì¡°ì²´ ìƒì„±
 		BindFunction* bindfunc = new BindFunction;
 
-		//È£ÃâÀÚ ÁÖ¼Ò µî·Ï
+		//í˜¸ì¶œì ì£¼ì†Œ ë“±ë¡
 		bindfunc->Obj = classptr;
 		
-		//ÇÔ¼ö¿¡ ÀÎÀÚ¸¦ bind
+		//í•¨ìˆ˜ì— ì¸ìë¥¼ bind
 		bindfunc->func = std::bind(Func, classptr);
 
-		//¿Ï·áµÇ¾úÀ¸¸é VecFunction¿¡ »ğÀÔ
+		//ì™„ë£Œë˜ì—ˆìœ¼ë©´ VecFunctionì— ì‚½ì…
 		bindkey->VecFunction[(int)Type].push_back(bindfunc);
 
 	}
 
 
-	//¾Æ¿¹ Äİ¹éÇÔ¼ö¸¦ ½Ï Á¦°ÅÇØ¹ö¸®´Â ¸Ş¼Òµå
+	//ì•„ì˜ˆ ì½œë°±í•¨ìˆ˜ë¥¼ ì‹¹ ì œê±°í•´ë²„ë¦¬ëŠ” ë©”ì†Œë“œ
 	void ClearCallback();
 
-	//ÇØ´ç Å¬·¡½º Æ÷ÀÎÅÍ¿¡ ÇØ´çÇÏ´Â ÀÔ·Â ¹ÙÀÎµùÀ» ÀüºÎ Á¦°ÅÇÏ´Â ¸Ş¼Òµå
-	//ÀÔ·ÂÀ» ÇÒ´çÇÑ Å¬·¡½ºÀÇ ¼Ò¸êÀÚ¿¡ ÇØ´ç ¸Ş¼Òµå¸¦ ÀÚ½ÅÀÇ ÁÖ¼Ò¸¦ ÀÎÀÚ·Î Àü´ŞÇÏ¸é µÈ´Ù.
+	//í•´ë‹¹ í´ë˜ìŠ¤ í¬ì¸í„°ì— í•´ë‹¹í•˜ëŠ” ì…ë ¥ ë°”ì¸ë”©ì„ ì „ë¶€ ì œê±°í•˜ëŠ” ë©”ì†Œë“œ
+	//ì…ë ¥ì„ í• ë‹¹í•œ í´ë˜ìŠ¤ì˜ ì†Œë©¸ìì— í•´ë‹¹ ë©”ì†Œë“œë¥¼ ìì‹ ì˜ ì£¼ì†Œë¥¼ ì¸ìë¡œ ì „ë‹¬í•˜ë©´ ëœë‹¤.
 	template <typename T>
 	void DeleteBindClass(T* ClassPtr)
 	{
@@ -172,26 +172,26 @@ public:
 		while (iter != iterEnd)
 		{
 
-			//ÀÌÂ÷¿ø ¹è¿­ÀÇ ÇàÀ» ¼øÈ¸ÇÑ´Ù.
+			//ì´ì°¨ì› ë°°ì—´ì˜ í–‰ì„ ìˆœíšŒí•œë‹¤.
 			for (size_t i = 0; i < (size_t)EInput_Type::End; ++i)
 			{
 
-				//ÀÌÂ÷¿ø ¹è¿­ÀÇ ¿­À» iterator·Î ¼øÈ¸ÇÑ´Ù(erase ÇÔ¼ö »ç¿ëÇÏ±â À§ÇÔ)
+				//ì´ì°¨ì› ë°°ì—´ì˜ ì—´ì„ iteratorë¡œ ìˆœíšŒí•œë‹¤(erase í•¨ìˆ˜ ì‚¬ìš©í•˜ê¸° ìœ„í•¨)
 				std::vector<BindFunction*>::iterator VecIter = iter->second->VecFunction[i].begin();
 				std::vector<BindFunction*>::iterator VecIterEnd = iter->second->VecFunction[i].end();
 
 				while (VecIter != VecIterEnd)
 				{
-					//µé¾î¿Â ÀÎÀÚ¿Í ÇÔ¼öÆ÷ÀÎÅÍ¿¡ µî·ÏµÈ °´Ã¼ ÁÖ¼Ò¿Í °°À¸¸é
+					//ë“¤ì–´ì˜¨ ì¸ìì™€ í•¨ìˆ˜í¬ì¸í„°ì— ë“±ë¡ëœ ê°ì²´ ì£¼ì†Œì™€ ê°™ìœ¼ë©´
 					if ((*VecIter)->Obj == ClassPtr)
 					{
-						//µ¿Àû ÇÒ´çÀ» ¿ì¼± ÇØÁ¦ÇÏ°í
+						//ë™ì  í• ë‹¹ì„ ìš°ì„  í•´ì œí•˜ê³ 
 						SAFE_DELETE((*VecIter));
 
-						//ÇØ´ç ÀÚ¸®¸¦ erase()¸¦ ÅëÇØ Á¦°Å + ¾ÕÀ¸·Î ¹Ğ±â ÇØÁØ´Ù.
+						//í•´ë‹¹ ìë¦¬ë¥¼ erase()ë¥¼ í†µí•´ ì œê±° + ì•ìœ¼ë¡œ ë°€ê¸° í•´ì¤€ë‹¤.
 						VecIter = iter->second->VecFunction[i].erase(VecIter);
 
-						//»õ·Î iteratorÀÇ³¡ÀÚ¸®¸¦ ¹Ş´Â´Ù.
+						//ìƒˆë¡œ iteratorì˜ëìë¦¬ë¥¼ ë°›ëŠ”ë‹¤.
 						VecIterEnd = iter->second->VecFunction[i].end();						
 						continue;
 					}

@@ -32,7 +32,7 @@ private:
 	bool AddAnimationFrameFrame(const std::string& Name);
 
 	
-	//¿¡µğÆ® ¸ğµå¿ë ·ÎµåµÈ AnimationSequence¸¦ ¸ğµÎ Á¦°ÅÇÏ´Â ¸Ş¼Òµå
+	//ì—ë””íŠ¸ ëª¨ë“œìš© ë¡œë“œëœ AnimationSequenceë¥¼ ëª¨ë‘ ì œê±°í•˜ëŠ” ë©”ì†Œë“œ
 	void ClearAnimSeq();
 
 };

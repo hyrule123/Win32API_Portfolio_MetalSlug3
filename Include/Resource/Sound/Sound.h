@@ -4,48 +4,48 @@
 
 
 class CSound :
-    public CRef
+	public CRef
 {
-    friend class CSoundManager;
+	friend class CSoundManager;
 
 private:
-    CSound();
-    ~CSound();
-    void Init();
+	CSound();
+	~CSound();
+	void Init();
 
-    FMOD::System* m_System;
-    FMOD::Sound* m_Sound;
-    FMOD::ChannelGroup* m_ChannelGroup;
-    FMOD::Channel* m_Channel;
+	FMOD::System* m_System;
+	FMOD::Sound* m_Sound;
+	FMOD::ChannelGroup* m_ChannelGroup;
+	FMOD::Channel* m_Channel;
 
-    //∑Á«¡ ∞¸∑√
-    bool m_isLoop;
+	//Î£®ÌîÑ Í¥ÄÎ†®
+	bool m_isLoop;
 public:
-    bool GetLoop() const;
+	bool GetLoop() const;
 
-    
-    //¿Áª˝ ∞¸∑√
+	
+	//Ïû¨ÏÉù Í¥ÄÎ†®
 private:
-    //bool m_isPlaying;
+	//bool m_isPlaying;
 public:
-    bool GetPlaying() const;
+	bool GetPlaying() const;
 
-    void Play();
-    void Stop();
-    void Pause();
-    void Resume();
-    void FadeIn(float Duration);
-    void FadeOut(float Duration);
-    void SetNoDelay();
+	void Play();
+	void Stop();
+	void Pause();
+	void Resume();
+	void FadeIn(float Duration);
+	void FadeOut(float Duration);
+	void SetNoDelay();
 
-    
+	
 
-    //ªÁøÓµÂ ∑ŒµÂ
-    bool LoadSound(FMOD::System* System, 
-        FMOD::ChannelGroup* Group, 
-        bool Loop, 
-        const char* FileName, 
-        const std::string& PathName = SOUND_PATH);
+	//ÏÇ¨Ïö¥Îìú Î°úÎìú
+	bool LoadSound(FMOD::System* System, 
+		FMOD::ChannelGroup* Group, 
+		bool Loop, 
+		const char* FileName, 
+		const std::string& PathName = SOUND_PATH);
 
 };
 

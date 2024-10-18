@@ -19,7 +19,7 @@ enum class EDaiManjiLayerInfo
 
 
 class CDaiManji :
-    public CEnemy
+	public CEnemy
 {
 	friend class CScene;
 
@@ -39,13 +39,13 @@ public:
 	void SetBoss(bool isBoss);
 
 protected:
-	bool m_isBoss;	//º¸½º´Â Çàµ¿ÆĞÅÏÀ» ¾à°£ ´Ù¸£°Ô
+	bool m_isBoss;	//ë³´ìŠ¤ëŠ” í–‰ë™íŒ¨í„´ì„ ì•½ê°„ ë‹¤ë¥´ê²Œ
 	float m_RotatingAngle;
-	Vector2 m_RenderPos;	//m_Pos¸¦ Áß½ÉÀ¸·Î UFO°¡ È¸ÀüÇÑ´Ù.
-	float m_RotatingRadius;	//È¸Àü Áö¸§
+	Vector2 m_RenderPos;	//m_Posë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ UFOê°€ íšŒì „í•œë‹¤.
+	float m_RotatingRadius;	//íšŒì „ ì§€ë¦„
 	class CColliderCircle* m_Coll;
 
-	//UFO ¼ÒÈ¯ °ü·Ã.
+	//UFO ì†Œí™˜ ê´€ë ¨.
 	INT8 m_UFOSpawnQueue;
 	INT8 m_UFOSpawnMAX;
 	class CMainScene* m_MainScene;
@@ -60,8 +60,8 @@ protected:
 	float	m_DeathTimer;
 	virtual void Routine(float DeltaTime);
 	void SpawnMiniUFO();
-	void EndFuncSpawn();	//UFO ½ºÆù ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ı. ÇØÄ¡°¡ ¿­¸®°í³ª¼­ ½ÇÇàµÇ´Â EndFunction
-	void CreateUFO();		//½ÇÁ¦·Î UFO¸¦ »ı¼º
+	void EndFuncSpawn();	//UFO ìŠ¤í° ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒ. í•´ì¹˜ê°€ ì—´ë¦¬ê³ ë‚˜ì„œ ì‹¤í–‰ë˜ëŠ” EndFunction
+	void CreateUFO();		//ì‹¤ì œë¡œ UFOë¥¼ ìƒì„±
 	void CloseHatch();
 };
 

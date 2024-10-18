@@ -27,7 +27,7 @@ CDamageExplosion::CDamageExplosion(const CDamageExplosion& Obj):
 	{
 		m_Coll = AddCollider<CColliderCircle>("ExplosionCollider");
 		
-		//±íÀº º¹»ç
+		//ê¹Šì€ ë³µì‚¬
 		*m_Coll = *Obj.m_Coll;
 	}
 }
@@ -61,11 +61,11 @@ void CDamageExplosion::SetEssential(EExplosionSize ExplosionSize, const Vector2&
 	CExplosion::SetEssential(ExplosionSize, Pos);
 
 
-	//2ÇÁ·¹ÀÓ ³ëÆ¼ÆÄÀÌ »ı¼º
+	//2í”„ë ˆì„ ë…¸í‹°íŒŒì´ ìƒì„±
 	AddNotify<CDamageExplosion>(m_vecSizeName[(int)ExplosionSize], 2, this, &CDamageExplosion::Frame2Notify);
 
 
-	//Ãæµ¹Ã¼ »ı¼º
+	//ì¶©ëŒì²´ ìƒì„±
 	m_Coll = AddCollider<CColliderCircle>("ExplosionColl");
 	m_Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 
@@ -107,6 +107,6 @@ void CDamageExplosion::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 void CDamageExplosion::Frame2Notify()
 {
-	//ÀÚ½ÅÀÇ Ãæµ¹Ã¼ Á¦°Å
+	//ìì‹ ì˜ ì¶©ëŒì²´ ì œê±°
 	ClearCollider();
 }

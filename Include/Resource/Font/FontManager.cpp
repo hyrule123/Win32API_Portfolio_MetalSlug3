@@ -13,7 +13,7 @@ CFontManager::~CFontManager()
 {
 	size_t size = m_LoadedFontFullpath.size();
 
-	for (size_t i = 0; i < size; ++i) 
+	for (size_t i = 0; i < size; ++i)
 	{
 		RemoveFontResource(m_LoadedFontFullpath[i].c_str());
 	}
@@ -22,16 +22,16 @@ CFontManager::~CFontManager()
 bool CFontManager::Init()
 {
 	LoadFontResource(TEXT("Noto Sans KR Black.otf"));
-	LoadFontResource(TEXT("�ձٸ��.otf"));
+	LoadFontResource(TEXT("둥근모꼴.otf"));
 
 
 	LoadFontInfo("DefaultFont", TEXT("Noto Sans KR Black"), 0, 0);
-	LoadFontInfo("PixelFont", TEXT("�ձٸ��"), 12, 12);
+	LoadFontInfo("PixelFont", TEXT("둥근모꼴"), 12, 12);
 
 	return true;
 }
 
-bool CFontManager::LoadFontInfo(const std::string& Name, const std::tstring& FontName, 
+bool CFontManager::LoadFontInfo(const std::string& Name, const std::tstring& FontName,
 	int Width, int Height)
 {
 	CFont* Font = FindFont(Name);
@@ -57,7 +57,7 @@ bool CFontManager::LoadFontInfo(const std::string& Name, const std::tstring& Fon
 }
 
 bool CFontManager::LoadFontResource(
-	const std::tstring& FontFileName, 
+	const std::tstring& FontFileName,
 	const std::string& PathName)
 {
 	TCHAR	FullPath[MAX_PATH] = {};

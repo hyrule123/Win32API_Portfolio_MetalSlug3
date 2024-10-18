@@ -63,7 +63,7 @@ void CEnemy::PostUpdate(float DeltaTime)
 {
 	CCharacter::PostUpdate(DeltaTime);
 
-	////Ã¼·Â È®ÀÎ
+	////ì²´ë ¥ í™•ì¸
 	//if (m_HP <= 0.f)
 	//	SetActive(false);
 

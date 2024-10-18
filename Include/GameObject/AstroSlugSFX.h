@@ -2,10 +2,10 @@
 #include "Effect.h"
 
 
-//»ç¿ë¹ý: µû¶ó´Ù³à¾ß ÇÒ °æ¿ì ÁÖÀÎ ¿ÀºêÁ§Æ®¸¦ ³Ö°í »ý¼º
-//ÀÏ¹ÝÀûÀÎ °æ¿ì ±×³É »ý¼º
+//ì‚¬ìš©ë²•: ë”°ë¼ë‹¤ë…€ì•¼ í•  ê²½ìš° ì£¼ì¸ ì˜¤ë¸Œì íŠ¸ë¥¼ ë„£ê³  ìƒì„±
+//ì¼ë°˜ì ì¸ ê²½ìš° ê·¸ëƒ¥ ìƒì„±
 class CAstroSlugSFX :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 protected:
@@ -23,7 +23,7 @@ public:
 
 
 public:
-	//¾Æ½ºÆ®·Î ½½·¯±×¿¡¼­ Á¢±ÙÇÏ´Â ÇÔ¼ö. Å×ÀÏ ºÎ½ºÆ® ²¨Áú‹š ¿ªÀç»ý¿ë
+	//ì•„ìŠ¤íŠ¸ë¡œ ìŠ¬ëŸ¬ê·¸ì—ì„œ ì ‘ê·¼í•˜ëŠ” í•¨ìˆ˜. í…Œì¼ ë¶€ìŠ¤íŠ¸ êº¼ì§ˆë–„ ì—­ìž¬ìƒìš©
 	void TailBoost1ReverseSet();
 
 private:

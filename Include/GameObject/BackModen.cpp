@@ -36,7 +36,7 @@ void CBackModen::Update(float DeltaTime)
 
 	if (m_HP <= 0)
 	{
-		//Æø¹ß Àç»ý ¹× »ç¸Á¸ð¼Ç
+		//í­ë°œ ìž¬ìƒ ë° ì‚¬ë§ëª¨ì…˜
 	}
 
 

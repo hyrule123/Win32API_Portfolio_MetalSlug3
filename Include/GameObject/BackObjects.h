@@ -1,7 +1,7 @@
 #pragma once
 #include "Character.h"
 
-//ÇÊ¼ö: SetObjType
+//í•„ìˆ˜: SetObjType
 
 
 enum class EBackObjType
@@ -16,7 +16,7 @@ enum class EBackObjType
 };
 
 class CBackObjects :
-    public CCharacter
+	public CCharacter
 {
 	friend class CScene;
 

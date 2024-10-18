@@ -11,15 +11,15 @@
 #include "../GameObject/GameObject.h"
 
 CWidgetComponent::CWidgetComponent():
-    m_OwnerGameObj(nullptr)
+	m_OwnerGameObj(nullptr)
 {
-	//°ÔÀÓ¿ÀºêÁ§Æ®¿¡ ºÙ¾î¼­ Ãâ·ÂµÇ´Â UI°¡ Á¤º¸ Ç¥½Ã UIº¸´Ù À§¿¡ ¿Ã¶ó°¡¸é ¾ÈµÇ¹Ç·Î ZOrder = 0
+	//ê²Œìž„ì˜¤ë¸Œì íŠ¸ì— ë¶™ì–´ì„œ ì¶œë ¥ë˜ëŠ” UIê°€ ì •ë³´ í‘œì‹œ UIë³´ë‹¤ ìœ„ì— ì˜¬ë¼ê°€ë©´ ì•ˆë˜ë¯€ë¡œ ZOrder = 0
 	m_ZOrder = 0;
 }
 
 CWidgetComponent::CWidgetComponent(const CWidgetComponent& widget):
 	CWidgetWindow(widget),
-    m_OwnerGameObj(nullptr)
+	m_OwnerGameObj(nullptr)
 {
 }
 
@@ -34,93 +34,93 @@ bool CWidgetComponent::Init()
 	return true;
 }
 
-//Ãæµ¹Ã³¸® ¾È ÇÔ
+//ì¶©ëŒì²˜ë¦¬ ì•ˆ í•¨
 bool CWidgetComponent::CollisionMouse(CWidget** WidgetAddr, const Vector2& Mousepos)
 {
-    return false;
+	return false;
 }
 
 
 void CWidgetComponent::Update(float DeltaTime)
 {
-    //°¡Àå ¸ÕÀú ÇÒ°Í: ÁÖÀÎÀÇ ·»´õ¸µ À§Ä¡¸¦ UI»óÀÇ À§Ä¡·Î º¯È¯ÇÏ±â.
-    m_Pos = m_OwnerGameObj->GetPos() - m_Scene->GetCamera()->GetPos();
+	//ê°€ìž¥ ë¨¼ì € í• ê²ƒ: ì£¼ì¸ì˜ ë Œë”ë§ ìœ„ì¹˜ë¥¼ UIìƒì˜ ìœ„ì¹˜ë¡œ ë³€í™˜í•˜ê¸°.
+	m_Pos = m_OwnerGameObj->GetPos() - m_Scene->GetCamera()->GetPos();
 
 
-    auto iter = m_vecWidget.begin();
-    auto iterEnd = m_vecWidget.end();
+	auto iter = m_vecWidget.begin();
+	auto iterEnd = m_vecWidget.end();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            iter = m_vecWidget.erase(iter);
-            iterEnd = m_vecWidget.end();
-        }
-        else if (!(*iter)->GetEnable())
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			iter = m_vecWidget.erase(iter);
+			iterEnd = m_vecWidget.end();
+		}
+		else if (!(*iter)->GetEnable())
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->Update(DeltaTime);
-        ++iter;
-    }
+		(*iter)->Update(DeltaTime);
+		++iter;
+	}
 
 }
 
 void CWidgetComponent::PostUpdate(float DeltaTime)
 {
-    auto iter = m_vecWidget.begin();
-    auto iterEnd = m_vecWidget.end();
+	auto iter = m_vecWidget.begin();
+	auto iterEnd = m_vecWidget.end();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            iter = m_vecWidget.erase(iter);
-            iterEnd = m_vecWidget.end();
-        }
-        else if (!(*iter)->GetEnable())
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			iter = m_vecWidget.erase(iter);
+			iterEnd = m_vecWidget.end();
+		}
+		else if (!(*iter)->GetEnable())
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->PostUpdate(DeltaTime);
-        ++iter;
-    }
+		(*iter)->PostUpdate(DeltaTime);
+		++iter;
+	}
 
 
-    if (m_vecWidget.size() >= 2)
-    {
-        //¸Þ¼Òµå¸¦ »õ·Î ¸¸µé±âº¸´Ù´Â ³»¸²Â÷¼øÀ¸·Î Á¤·ÄÇÑ µÚ ¿ª¼øÀ¸·Î ¼øÈ¸ÇØ¼­ ¿À¸§Â÷¼øÀ¸·Î ·»´õ¸µ
-        std::sort(m_vecWidget.begin(), m_vecWidget.end(), CWidgetWindow::SortWidget);
-    }
+	if (m_vecWidget.size() >= 2)
+	{
+		//ë©”ì†Œë“œë¥¼ ìƒˆë¡œ ë§Œë“¤ê¸°ë³´ë‹¤ëŠ” ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œ ë’¤ ì—­ìˆœìœ¼ë¡œ ìˆœíšŒí•´ì„œ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë Œë”ë§
+		std::sort(m_vecWidget.begin(), m_vecWidget.end(), CWidgetWindow::SortWidget);
+	}
 
 }
 
 void CWidgetComponent::Render(HDC hDC, float DeltaTime)
 {
-    auto iter = m_vecWidget.rbegin();
-    auto iterEnd = m_vecWidget.rend();
+	auto iter = m_vecWidget.rbegin();
+	auto iterEnd = m_vecWidget.rend();
 
-    while (iter != iterEnd)
-    {
-        if (!(*iter)->GetActive())
-        {
-            ++iter;
-            continue;
-        }
-        else if (!(*iter)->GetEnable())
-        {
-            ++iter;
-            continue;
-        }
+	while (iter != iterEnd)
+	{
+		if (!(*iter)->GetActive())
+		{
+			++iter;
+			continue;
+		}
+		else if (!(*iter)->GetEnable())
+		{
+			++iter;
+			continue;
+		}
 
-        (*iter)->Render(hDC, DeltaTime);
-        ++iter;
-    }
+		(*iter)->Render(hDC, DeltaTime);
+		++iter;
+	}
 }
 
 

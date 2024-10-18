@@ -1,35 +1,35 @@
 #include "WidgetButton.h"
 
 
-//ÀÚ½ÅÀÌ µé¾î°¥ À§Á¬À©µµ¿ì ÀúÀå¿ë
+//ìžì‹ ì´ ë“¤ì–´ê°ˆ ìœ„ì ¯ìœˆë„ìš° ì €ìž¥ìš©
 #include "WidgetWindow.h"
 
 
-//¸®¼Ò½º ·Îµù¿ë
+//ë¦¬ì†ŒìŠ¤ ë¡œë”©ìš©
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//¸®¼Ò½º
+//ë¦¬ì†ŒìŠ¤
 #include "../Resource/Sound/Sound.h"
 #include "../Resource/Texture/Texture.h"
 
-//ÅØ½ºÃ³ ¾øÀ» °æ¿ì µµÇü ±×¸®±â¿ë(hPen, hBrush)
+//í…ìŠ¤ì²˜ ì—†ì„ ê²½ìš° ë„í˜• ê·¸ë¦¬ê¸°ìš©(hPen, hBrush)
 #include "../GameManager.h"
 
-//¸¶¿ì½º ÀÔ·Â ¹Þ¾Æ¿À±â
+//ë§ˆìš°ìŠ¤ ìž…ë ¥ ë°›ì•„ì˜¤ê¸°
 #include "../Input.h"
 
 
 CWidgetButton::CWidgetButton() :
-    m_Texture(nullptr),
-    m_SoundState{},
-    m_ButtonStateData{},
-    m_ButtonState(EButtonState::Normal)
+	m_Texture(nullptr),
+	m_SoundState{},
+	m_ButtonStateData{},
+	m_ButtonState(EButtonState::Normal)
 {
 }
 
 CWidgetButton::CWidgetButton(const CWidgetButton& widget):
-    CWidget(widget)
+	CWidget(widget)
 {
 }
 
@@ -39,43 +39,43 @@ CWidgetButton::~CWidgetButton()
 
 bool CWidgetButton::Init()
 {
-    return true;
+	return true;
 }
 
 
-//ÅØ½ºÃ³ °ü·Ã, ÅØ½ºÃ³¸¦ ·ÎµåÇÑ µÚ »ç¿ëÇÒ°Í.
+//í…ìŠ¤ì²˜ ê´€ë ¨, í…ìŠ¤ì²˜ë¥¼ ë¡œë“œí•œ ë’¤ ì‚¬ìš©í• ê²ƒ.
 bool CWidgetButton::SetTexture(const std::string& Name)
 {
-    CTexture* Texture = m_Scene->GetSceneResource()->FindTexture(Name);
+	CTexture* Texture = m_Scene->GetSceneResource()->FindTexture(Name);
 
-    if (!Texture)
-        return false;
+	if (!Texture)
+		return false;
 
-    m_Texture = Texture;
-    return true;
+	m_Texture = Texture;
+	return true;
 }
 void CWidgetButton::SetButtonStateData(EButtonState State, const Vector2& Start, const Vector2& End)
 {
-    m_ButtonStateData[(int)State].Start = Start;
-    m_ButtonStateData[(int)State].End = End;
+	m_ButtonStateData[(int)State].Start = Start;
+	m_ButtonStateData[(int)State].End = End;
 }
 void CWidgetButton::EnableButton(bool Enable)
 {
-    m_ButtonState = Enable ? EButtonState::Normal : EButtonState::Disabled;
+	m_ButtonState = Enable ? EButtonState::Normal : EButtonState::Disabled;
 }
 //=================================================================================
 
 
-//»ç¿îµå °ü·Ã. »ç¿îµå¸¦ ·ÎµåÇÑµÚ »ç¿ëÇÒ°Í
+//ì‚¬ìš´ë“œ ê´€ë ¨. ì‚¬ìš´ë“œë¥¼ ë¡œë“œí•œë’¤ ì‚¬ìš©í• ê²ƒ
 bool CWidgetButton::SetSound(EButtonSoundState State, const std::string& Name)
 {
-    CSound* Sound = m_Scene->GetSceneResource()->FindSound(Name);
+	CSound* Sound = m_Scene->GetSceneResource()->FindSound(Name);
 
-    if (!Sound)
-        return false;
+	if (!Sound)
+		return false;
 
-    m_SoundState[(int)State] = Sound;
-    return true;
+	m_SoundState[(int)State] = Sound;
+	return true;
 }
 //========================================================================
 
@@ -83,140 +83,140 @@ bool CWidgetButton::SetSound(EButtonSoundState State, const std::string& Name)
 
 void CWidgetButton::Update(float DeltaTime)
 {
-    //¹öÆ°ÀÇ »çÀÌÁî = ÇöÀç ¹öÆ°ÀÇ »óÅÂ¿¡ ÇØ´çÇÏ´Â ÀÌ¹ÌÁöÀÇ Å©±â.
-    if(m_Texture)
-    { 
-        //m_Size = m_ButtonStateData[(int)m_ButtonState].End - m_ButtonStateData[(int)m_ButtonState].Start;
-    }
+	//ë²„íŠ¼ì˜ ì‚¬ì´ì¦ˆ = í˜„ìž¬ ë²„íŠ¼ì˜ ìƒíƒœì— í•´ë‹¹í•˜ëŠ” ì´ë¯¸ì§€ì˜ í¬ê¸°.
+	if(m_Texture)
+	{ 
+		//m_Size = m_ButtonStateData[(int)m_ButtonState].End - m_ButtonStateData[(int)m_ButtonState].Start;
+	}
 
-    //¹öÆ° »óÅÂ°¡ Disabled°¡ ¾Æ´Ò °æ¿ì¿¡¸¸ Ã³¸®ÇÑ´Ù.
-    if (m_ButtonState != EButtonState::Disabled)
-    {
-        //ÀÎÇ² Å¬·¡½º ÁÖ¼Ò¸¦ ¹Ì¸® ¹Þ¾Æ³õÀ½
-        CInput* Input = CInput::GetInst();
+	//ë²„íŠ¼ ìƒíƒœê°€ Disabledê°€ ì•„ë‹ ê²½ìš°ì—ë§Œ ì²˜ë¦¬í•œë‹¤.
+	if (m_ButtonState != EButtonState::Disabled)
+	{
+		//ì¸í’‹ í´ëž˜ìŠ¤ ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë°›ì•„ë†“ìŒ
+		CInput* Input = CInput::GetInst();
 
-        //¸¶¿ì½º°¡ ÇØ´ç ¹öÆ° À§·Î ¿Ã¶ó¿ÍÀÖÀ» ¶§
-        if (m_MouseHovered)
-        {
-            //¸¸¾à ¹öÆ° Å¬¸¯ÀÌ ÀÖ¾ú´Ù¸é
-            if (Input->GetMouseLDown())
-            {
-                m_ButtonState = EButtonState::Click;
-            }
-            //¸¸¾à °è¼Ó ´©¸£°í ÀÖ´Â ÁßÀÌ¶ó¸é Å¬¸¯»óÅÂ À¯Áö
-            else if (
-                m_ButtonState == EButtonState::Click &&
-                Input->GetMouseLPush()
-                )
-            {
-                m_ButtonState = EButtonState::Click;
-            }
-            //Å¬¸¯ »óÅÂ¿¡¼­ ¹öÆ°ÀÌ ¿Ã¶ó°£ °Ô °¨ÁöµÇ¾ú´Ù¸é ÄÝ¹éÇÔ¼ö¿Í È¿°úÀ½ È£Ãâ
-            else if (
-                m_ButtonState == EButtonState::Click &&
-                Input->GetMouseLUp()
-                )
-            {
-                if (m_Callback[(int)EButtonSoundState::Click])
-                    m_Callback[(int)EButtonSoundState::Click]();
-                if (m_SoundState[(int)EButtonSoundState::Click])
-                    m_SoundState[(int)EButtonSoundState::Click]->Play();
+		//ë§ˆìš°ìŠ¤ê°€ í•´ë‹¹ ë²„íŠ¼ ìœ„ë¡œ ì˜¬ë¼ì™€ìžˆì„ ë•Œ
+		if (m_MouseHovered)
+		{
+			//ë§Œì•½ ë²„íŠ¼ í´ë¦­ì´ ìžˆì—ˆë‹¤ë©´
+			if (Input->GetMouseLDown())
+			{
+				m_ButtonState = EButtonState::Click;
+			}
+			//ë§Œì•½ ê³„ì† ëˆ„ë¥´ê³  ìžˆëŠ” ì¤‘ì´ë¼ë©´ í´ë¦­ìƒíƒœ ìœ ì§€
+			else if (
+				m_ButtonState == EButtonState::Click &&
+				Input->GetMouseLPush()
+				)
+			{
+				m_ButtonState = EButtonState::Click;
+			}
+			//í´ë¦­ ìƒíƒœì—ì„œ ë²„íŠ¼ì´ ì˜¬ë¼ê°„ ê²Œ ê°ì§€ë˜ì—ˆë‹¤ë©´ ì½œë°±í•¨ìˆ˜ì™€ íš¨ê³¼ìŒ í˜¸ì¶œ
+			else if (
+				m_ButtonState == EButtonState::Click &&
+				Input->GetMouseLUp()
+				)
+			{
+				if (m_Callback[(int)EButtonSoundState::Click])
+					m_Callback[(int)EButtonSoundState::Click]();
+				if (m_SoundState[(int)EButtonSoundState::Click])
+					m_SoundState[(int)EButtonSoundState::Click]->Play();
 
-                //±×¸®°í ±â´ÉÀ» È£ÃâÇßÀ¸¹Ç·Î ´Ù½Ã ¿ø»óº¹±Í(¸¶¿ì½º ¿Ã¶ó¿Â»óÅÂ)
-                m_ButtonState = EButtonState::MouseHovered;
-            }
+				//ê·¸ë¦¬ê³  ê¸°ëŠ¥ì„ í˜¸ì¶œí–ˆìœ¼ë¯€ë¡œ ë‹¤ì‹œ ì›ìƒë³µê·€(ë§ˆìš°ìŠ¤ ì˜¬ë¼ì˜¨ìƒíƒœ)
+				m_ButtonState = EButtonState::MouseHovered;
+			}
 
-            //¹öÆ° Å¬¸¯ÀÌ ¾øÀ¸¸é ±×³É ±×´ë·Î ³ÀµÒ
-            else
-            {
-                m_ButtonState = EButtonState::MouseHovered;
-            }
-            
+			//ë²„íŠ¼ í´ë¦­ì´ ì—†ìœ¼ë©´ ê·¸ëƒ¥ ê·¸ëŒ€ë¡œ ëƒ…ë‘ 
+			else
+			{
+				m_ButtonState = EButtonState::MouseHovered;
+			}
+			
 
-        }
-        //ÀüºÎ ¾Æ´Ï¸é ÀÏ¹Ý »óÅÂ·Î º¹±Í
-        else
-        {
-            m_ButtonState = EButtonState::Normal;
-        }
-    }
+		}
+		//ì „ë¶€ ì•„ë‹ˆë©´ ì¼ë°˜ ìƒíƒœë¡œ ë³µê·€
+		else
+		{
+			m_ButtonState = EButtonState::Normal;
+		}
+	}
 
-    
+	
 }
 
 void CWidgetButton::PostUpdate(float DeltaTime)
 {
-    
+	
 }
 
 void CWidgetButton::Render(HDC hDC, float DeltaTime)
 {
 
-    if (m_Texture)
-    {
-        
-        Vector2 RenderLT = m_Pos + m_Owner->GetPos();
+	if (m_Texture)
+	{
+		
+		Vector2 RenderLT = m_Pos + m_Owner->GetPos();
 
-        int index = (int)m_ButtonState;
+		int index = (int)m_ButtonState;
 
-        Vector2 TextureSize = m_ButtonStateData[index].End - m_ButtonStateData[index].Start;
+		Vector2 TextureSize = m_ButtonStateData[index].End - m_ButtonStateData[index].Start;
 
-        if (m_Texture->GetColorKeyEnable())
-        {
-            TransparentBlt(hDC,
-                (int)RenderLT.x, (int)RenderLT.y,
-                (int)m_Size.x, (int)m_Size.y,
-                m_Texture->GetDC(), 
-                (int)m_ButtonStateData[index].Start.x, (int)m_ButtonStateData[index].Start.y,
-                (int)TextureSize.x, (int)TextureSize.y,
-                m_Texture->GetColorKey());
+		if (m_Texture->GetColorKeyEnable())
+		{
+			TransparentBlt(hDC,
+				(int)RenderLT.x, (int)RenderLT.y,
+				(int)m_Size.x, (int)m_Size.y,
+				m_Texture->GetDC(), 
+				(int)m_ButtonStateData[index].Start.x, (int)m_ButtonStateData[index].Start.y,
+				(int)TextureSize.x, (int)TextureSize.y,
+				m_Texture->GetColorKey());
 
-        }
-        else
-        {
-            StretchBlt(hDC,
-                (int)RenderLT.x, (int)RenderLT.y,
-                (int)m_Size.x, (int)m_Size.y,
-                m_Texture->GetDC(), 
-                (int)m_ButtonStateData[index].Start.x, (int)m_ButtonStateData[index].Start.y,
-                (int)TextureSize.x, (int)TextureSize.y,
-                SRCCOPY);
-        }
-    }
-    else //ÅØ½ºÃ³°¡ ¾øÀ»¶§
-    {
-        HBRUSH Brush = CGameManager::GetInst()->GetBrush(EBrushType::Green);
+		}
+		else
+		{
+			StretchBlt(hDC,
+				(int)RenderLT.x, (int)RenderLT.y,
+				(int)m_Size.x, (int)m_Size.y,
+				m_Texture->GetDC(), 
+				(int)m_ButtonStateData[index].Start.x, (int)m_ButtonStateData[index].Start.y,
+				(int)TextureSize.x, (int)TextureSize.y,
+				SRCCOPY);
+		}
+	}
+	else //í…ìŠ¤ì²˜ê°€ ì—†ì„ë•Œ
+	{
+		HBRUSH Brush = CGameManager::GetInst()->GetBrush(EBrushType::Green);
 
-        //¸¶¿ì½º°¡ ¿Ã¶ó¿ÍÀÖÀ¸¸é »¡°£»öÀ¸·Î º¯È¯
-        if (m_ButtonState == EButtonState::MouseHovered)
-        {
-            Brush = CGameManager::GetInst()->GetBrush(EBrushType::Red);
-        }
-        //Å¬¸¯ÇÏ¸é blue
-        else if (m_ButtonState == EButtonState::Click)
-        {
-            Brush = CGameManager::GetInst()->GetBrush(EBrushType::Blue);
-        }
-        //ºñÈ°¼ºÈ­ ½Ã¿¡´Â °ËÁ¤
-        else if (m_ButtonState == EButtonState::Disabled)
-        {
-            Brush = CGameManager::GetInst()->GetBrush(EBrushType::Black);
-        }
+		//ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ì™€ìžˆìœ¼ë©´ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ë³€í™˜
+		if (m_ButtonState == EButtonState::MouseHovered)
+		{
+			Brush = CGameManager::GetInst()->GetBrush(EBrushType::Red);
+		}
+		//í´ë¦­í•˜ë©´ blue
+		else if (m_ButtonState == EButtonState::Click)
+		{
+			Brush = CGameManager::GetInst()->GetBrush(EBrushType::Blue);
+		}
+		//ë¹„í™œì„±í™” ì‹œì—ëŠ” ê²€ì •
+		else if (m_ButtonState == EButtonState::Disabled)
+		{
+			Brush = CGameManager::GetInst()->GetBrush(EBrushType::Black);
+		}
 
-        HBRUSH PrevBrush = (HBRUSH)SelectObject(hDC, Brush);
+		HBRUSH PrevBrush = (HBRUSH)SelectObject(hDC, Brush);
 
 
-        //WidgetWindowÀÇ À§Ä¡¿¡ ´õÇØ Ç¥½ÃµÉ »ó´ë À§Ä¡¸¦ ±¸ÇÑ´Ù.
-        Vector2 PosLT = m_Pos + m_Owner->GetPos();
+		//WidgetWindowì˜ ìœ„ì¹˜ì— ë”í•´ í‘œì‹œë  ìƒëŒ€ ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
+		Vector2 PosLT = m_Pos + m_Owner->GetPos();
 
-        Rectangle(hDC,
-            (int)PosLT.x,
-            (int)PosLT.y,
-            (int)(PosLT.x + m_Size.x),
-            (int)(PosLT.y + m_Size.y));
+		Rectangle(hDC,
+			(int)PosLT.x,
+			(int)PosLT.y,
+			(int)(PosLT.x + m_Size.x),
+			(int)(PosLT.y + m_Size.y));
 
-        SelectObject(hDC, PrevBrush);
-    }
+		SelectObject(hDC, PrevBrush);
+	}
 }
 
 void CWidgetButton::Render(HDC hDC, const Vector2& Pos, float DeltaTime)
@@ -225,16 +225,16 @@ void CWidgetButton::Render(HDC hDC, const Vector2& Pos, float DeltaTime)
 
 void CWidgetButton::CollisionMouseHoveredCallback(const Vector2& Pos)
 {
-    CWidget::CollisionMouseHoveredCallback(Pos);
+	CWidget::CollisionMouseHoveredCallback(Pos);
 
-    if (m_SoundState[(int)EButtonSoundState::MouseHovered])
-    {
-        m_SoundState[(int)EButtonSoundState::MouseHovered]->Play();
-    }
+	if (m_SoundState[(int)EButtonSoundState::MouseHovered])
+	{
+		m_SoundState[(int)EButtonSoundState::MouseHovered]->Play();
+	}
 
 }
 
 void CWidgetButton::CollisionMouseReleaseCallback()
 {
-    CWidget::CollisionMouseReleaseCallback();
+	CWidget::CollisionMouseReleaseCallback();
 }

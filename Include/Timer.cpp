@@ -14,7 +14,7 @@ CTimer::~CTimer()
 
 void CTimer::Init()
 {
-	//°íÇØ»óµµ Å¸ÀÌ¸ÓÀÇ 1ÃÊ´ç Áøµ¿¼ö¸¦ ¾ò¾î¿Â´Ù.
+	//ê³ í•´ìƒë„ íƒ€ì´ë¨¸ì˜ 1ì´ˆë‹¹ ì§„ë™ìˆ˜ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	QueryPerformanceFrequency(&m_Freq);
 	QueryPerformanceCounter(&m_LastTime);
 

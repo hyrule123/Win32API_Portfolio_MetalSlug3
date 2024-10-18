@@ -3,91 +3,89 @@
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//»õ·Î¿î ¾À ÀüÈ¯À» À§ÇØ Æ÷ÇÔ
+//ìƒˆë¡œìš´ ì”¬ ì „í™˜ì„ ìœ„í•´ í¬í•¨
 #include "../Input.h"
 #include "../Scene/SceneManager.h"
 #include "../Scene/MainScene.h"
 
-//¹è°æÈ­¸é
+//ë°°ê²½í™”ë©´
 #include "WidgetImage.h"
 
-//¹öÆ°
+//ë²„íŠ¼
 #include "WidgetButton.h"
 
-//ÅØ½ºÆ®, ÅØ½ºÆ®ÀÌ¹ÌÁö
+//í…ìŠ¤íŠ¸, í…ìŠ¤íŠ¸ì´ë¯¸ì§€
 #include "WidgetText.h"
 #include "WidgetTextImage.h"
 
-//È­¸é ÇØ»óµµ ¾ò¾î¿À±â À§ÇÔ
+//í™”ë©´ í•´ìƒë„ ì–»ì–´ì˜¤ê¸° ìœ„í•¨
 #include "../GameManager.h"
 
-//¿¡µ÷¾À 
+//ì—ë”§ì”¬ 
 #include "../Scene/SceneEdit.h"
 
-//ÆäÀÌµåÀÎ, ÆäÀÌµå¾Æ¿ô
+//í˜ì´ë“œì¸, í˜ì´ë“œì•„ì›ƒ
 #include "WidgetFadeInOut.h"
 
-//Å×½ºÆ®¿ë. È®ÀÎÈÄ Áö¿ï°Í
+//í…ŒìŠ¤íŠ¸ìš©. í™•ì¸í›„ ì§€ìš¸ê²ƒ
 #include "MovingTextImage.h"
 
 
 CWindowStart::CWindowStart():
-    m_PlayGameDelayOn(),
-    m_Delay(2.f)
+	m_PlayGameDelayOn(),
+	m_Delay(2.f)
 {
 }
 
 CWindowStart::~CWindowStart()
 {
-    CInput::GetInst()->DeleteBindClass<CWindowStart>(this);
+	CInput::GetInst()->DeleteBindClass<CWindowStart>(this);
 }
 
 bool CWindowStart::Init()
 {
-    if (!CWidgetWindow::Init())
-        return false;
+	if (!CWidgetWindow::Init())
+		return false;
 
-    SetSize(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
+	SetSize(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
 
-    //¹è°æÈ­¸é »ı¼º
-    CWidgetImage* Image = CreateWidget<CWidgetImage>("StartSceneBack");
-    m_Scene->GetSceneResource()->LoadTexture(
-        "StartSceneBack", TEXT("Background/StartSceneBack.bmp"));
-    Image->SetTexture("StartSceneBack");
+	//ë°°ê²½í™”ë©´ ìƒì„±
+	CWidgetImage* Image = CreateWidget<CWidgetImage>("StartSceneBack");
+	m_Scene->GetSceneResource()->LoadTexture(
+		"StartSceneBack", TEXT("Background/StartSceneBack.bmp"));
+	Image->SetTexture("StartSceneBack");
 
 
-    {
-        //ÅØ½ºÆ®ÀÌ¹ÌÁö Ãâ·Â
-        CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("GamePlayText");
-        Text->SetTextImage("BasicFontSilver");
-        Text->SetPos(ORIGINAL_GAME_RES_WIDTH / 2, 170);
-        Text->SetText("Press 1 Key to Insert Coin");
-        Text->SetFlicker(10000.f, 0.8f);
-        Text->SetAlignMode(EAlignMode::Mid);
-    }
+	{
+		//í…ìŠ¤íŠ¸ì´ë¯¸ì§€ ì¶œë ¥
+		CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("GamePlayText");
+		Text->SetTextImage("BasicFontSilver");
+		Text->SetPos(ORIGINAL_GAME_RES_WIDTH / 2, 170);
+		Text->SetText("Press 1 Key to Insert Coin");
+		Text->SetFlicker(10000.f, 0.8f);
+		Text->SetAlignMode(EAlignMode::Mid);
+	}
 
 #ifdef _DEBUG
-    {
-        CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("EditModeText");
-        Text->SetTextImage("BasicFontSilver");
-        Text->SetPos(100, 214);
-        Text->SetText("Ctrl + E to Enter Edit Mode");
-        Text->SetFlicker(10000.f, 0.8f);
-    }
+	{
+		CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("EditModeText");
+		Text->SetTextImage("BasicFontSilver");
+		Text->SetPos(100, 214);
+		Text->SetText("Ctrl + E to Enter Edit Mode");
+		Text->SetFlicker(10000.f, 0.8f);
+	}
 
-    CInput::GetInst()->AddBindFunction<CWindowStart>("EditMode", EInput_Type::Down, this, &CWindowStart::OpenEditScene);
+	CInput::GetInst()->AddBindFunction<CWindowStart>("EditMode", EInput_Type::Down, this, &CWindowStart::OpenEditScene);
 #endif
 
 
 
 
-    CInput::GetInst()->AddBindFunction<CWindowStart>("PlayGame", EInput_Type::Down, this, &CWindowStart::PlayGame);
+	CInput::GetInst()->AddBindFunction<CWindowStart>("PlayGame", EInput_Type::Down, this, &CWindowStart::PlayGame);
 
-    //»ç¿ëÇÒ »ç¿îµå µî·Ï
-    m_Scene->GetSceneResource()->LoadSound("UI", "OK", false, "OK.mp3");
-    //WidgetButton->SetSound(EButtonSoundState::Click, "OK");
-
-
+	//ì‚¬ìš©í•  ì‚¬ìš´ë“œ ë“±ë¡
+	m_Scene->GetSceneResource()->LoadSound("UI", "OK", false, "OK.mp3");
+	//WidgetButton->SetSound(EButtonSoundState::Click, "OK");
 
 
 
@@ -97,118 +95,120 @@ bool CWindowStart::Init()
 
 
 
-    //{
-    //    //¹öÆ° »ı¼º, »ç¿îµå, Å¬¸¯ µî·Ï °úÁ¤
-    //    //1. ¹öÆ° »ı¼º
-    //    CWidgetButton* WidgetButton = CreateWidget<CWidgetButton>("WidgetButton");
-    //    //2. Ãâ·Â À§Ä¡¿Í »çÀÌÁî ¼³Á¤
-    //    WidgetButton->SetPos(150.f, 110.f);
-    //    WidgetButton->SetSize(30.f, 30.f);
-    //    //3. ÅØ½ºÃ³ ·Îµå
-    //    m_Scene->GetSceneResource()->LoadTexture("NormalButton", TEXT("UI/Button_Normal.bmp"));
-    //    WidgetButton->SetTexture("NormalButton");
-    //    //4. »ç¿îµå ·Îµå ¹× µî·Ï
-    //    m_Scene->GetSceneResource()->LoadSound("UI", "OK", false, "OK.mp3");
-    //    WidgetButton->SetSound(EButtonSoundState::Click, "OK");
-    //    //5. ¹öÆ° »óÅÂº° Ãâ·Â ÀÌ¹ÌÁö ½ºÇÁ¶óÀÌÆ® ÁÂÇ¥ ¼³Á¤
-    //    for (int i = 0; i < 4; ++i)
-    //    {
-    //        WidgetButton->SetButtonStateData((EButtonState)i, Vector2(200.f * i, 0.f), Vector2(200.f * (i + 1), 100.f));
-    //    }
-    //    //6. ¹öÆ° »ç¿ë ¿©ºÎ ¼³Á¤
-    //    WidgetButton->EnableButton(true);
-    //    //7. Å¬¸¯½Ã È£ÃâÇÒ Äİ¹é ÇÔ¼ö ÁÖ¼Ò ¼³Á¤
-    //    WidgetButton->SetCallback<CWindowStart>(EButtonSoundState::Click, this, &CWindowStart::StartButtonClickCallback);
-    //    // ¿Ï·á //
-    //}
-
-    //{
-    //    //Edit¹öÆ° »ı¼º, »ç¿îµå, Å¬¸¯ µî·Ï °úÁ¤
-    //    //1. ¹öÆ° »ı¼º
-    //    CWidgetButton* WidgetButton = CreateWidget<CWidgetButton>("EditButton");
-    //    //2. Ãâ·Â À§Ä¡¿Í »çÀÌÁî ¼³Á¤
-    //    WidgetButton->SetPos(150.f, 150.f);
-    //    WidgetButton->SetSize(30.f, 30.f);
-    //    //3. ÅØ½ºÃ³ ·Îµå
-    //    m_Scene->GetSceneResource()->LoadTexture("EditButton", TEXT("UI/Button_Edit.bmp"));
-    //    WidgetButton->SetTexture("EditButton");
-    //    //4. »ç¿îµå ·Îµå ¹× µî·Ï
-    //  WidgetButton->SetSound(EButtonSoundState::Click, "OK");
-    //    //5. ¹öÆ° »óÅÂº° Ãâ·Â ÀÌ¹ÌÁö ½ºÇÁ¶óÀÌÆ® ÁÂÇ¥ ¼³Á¤
-    //    for (int i = 0; i < 4; ++i)
-    //    {
-    //        WidgetButton->SetButtonStateData((EButtonState)i, Vector2(200.f * i, 0.f), Vector2(200.f * (i + 1), 100.f));
-    //    }
-    //    //6. ¹öÆ° »ç¿ë ¿©ºÎ ¼³Á¤
-    //    WidgetButton->EnableButton(true);
-    //    //7. Å¬¸¯½Ã È£ÃâÇÒ Äİ¹é ÇÔ¼ö ÁÖ¼Ò ¼³Á¤
-    //    WidgetButton->SetCallback<CWindowStart>(EButtonSoundState::Click, this, &CWindowStart::EditButtonClickCallback);
-    //    // ¿Ï·á //
-    //}
 
 
-    ////ÅØ½ºÆ® Ãâ·Â
-    //CWidgetText* TestText = CreateWidget<CWidgetText>("TestText");
-    //TestText->SetPos(60.f, 115.f);
-    //TestText->SetOneLetterAtTime(); //ÇÑ±ÛÀÚ¾¿ Ãâ·Â ¸ğµå »ç¿ë ¼³Á¤
-    //TestText->SetInterval(0.5f);
+	//{
+	//    //ë²„íŠ¼ ìƒì„±, ì‚¬ìš´ë“œ, í´ë¦­ ë“±ë¡ ê³¼ì •
+	//    //1. ë²„íŠ¼ ìƒì„±
+	//    CWidgetButton* WidgetButton = CreateWidget<CWidgetButton>("WidgetButton");
+	//    //2. ì¶œë ¥ ìœ„ì¹˜ì™€ ì‚¬ì´ì¦ˆ ì„¤ì •
+	//    WidgetButton->SetPos(150.f, 110.f);
+	//    WidgetButton->SetSize(30.f, 30.f);
+	//    //3. í…ìŠ¤ì²˜ ë¡œë“œ
+	//    m_Scene->GetSceneResource()->LoadTexture("NormalButton", TEXT("UI/Button_Normal.bmp"));
+	//    WidgetButton->SetTexture("NormalButton");
+	//    //4. ì‚¬ìš´ë“œ ë¡œë“œ ë° ë“±ë¡
+	//    m_Scene->GetSceneResource()->LoadSound("UI", "OK", false, "OK.mp3");
+	//    WidgetButton->SetSound(EButtonSoundState::Click, "OK");
+	//    //5. ë²„íŠ¼ ìƒíƒœë³„ ì¶œë ¥ ì´ë¯¸ì§€ ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œ ì„¤ì •
+	//    for (int i = 0; i < 4; ++i)
+	//    {
+	//        WidgetButton->SetButtonStateData((EButtonState)i, Vector2(200.f * i, 0.f), Vector2(200.f * (i + 1), 100.f));
+	//    }
+	//    //6. ë²„íŠ¼ ì‚¬ìš© ì—¬ë¶€ ì„¤ì •
+	//    WidgetButton->EnableButton(true);
+	//    //7. í´ë¦­ì‹œ í˜¸ì¶œí•  ì½œë°± í•¨ìˆ˜ ì£¼ì†Œ ì„¤ì •
+	//    WidgetButton->SetCallback<CWindowStart>(EButtonSoundState::Click, this, &CWindowStart::StartButtonClickCallback);
+	//    // ì™„ë£Œ //
+	//}
 
-    ////ÀÏ´Ü ÆùÆ®¸¦ Å«°É·Î ÇÏ³ª ·ÎµùÇØ³õ°í ÇØ´ç ÆùÆ® »ç¿ë ¼³Á¤
-    //TestText->SetFont("PixelFont");
-    //TestText->SetColor(255, 0, 0);
-    //TestText->EnableShadow();
-    //TestText->SetText(TEXT("°ÔÀÓ ½ÃÀÛ!"));
+	//{
+	//    //Editë²„íŠ¼ ìƒì„±, ì‚¬ìš´ë“œ, í´ë¦­ ë“±ë¡ ê³¼ì •
+	//    //1. ë²„íŠ¼ ìƒì„±
+	//    CWidgetButton* WidgetButton = CreateWidget<CWidgetButton>("EditButton");
+	//    //2. ì¶œë ¥ ìœ„ì¹˜ì™€ ì‚¬ì´ì¦ˆ ì„¤ì •
+	//    WidgetButton->SetPos(150.f, 150.f);
+	//    WidgetButton->SetSize(30.f, 30.f);
+	//    //3. í…ìŠ¤ì²˜ ë¡œë“œ
+	//    m_Scene->GetSceneResource()->LoadTexture("EditButton", TEXT("UI/Button_Edit.bmp"));
+	//    WidgetButton->SetTexture("EditButton");
+	//    //4. ì‚¬ìš´ë“œ ë¡œë“œ ë° ë“±ë¡
+	//  WidgetButton->SetSound(EButtonSoundState::Click, "OK");
+	//    //5. ë²„íŠ¼ ìƒíƒœë³„ ì¶œë ¥ ì´ë¯¸ì§€ ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œ ì„¤ì •
+	//    for (int i = 0; i < 4; ++i)
+	//    {
+	//        WidgetButton->SetButtonStateData((EButtonState)i, Vector2(200.f * i, 0.f), Vector2(200.f * (i + 1), 100.f));
+	//    }
+	//    //6. ë²„íŠ¼ ì‚¬ìš© ì—¬ë¶€ ì„¤ì •
+	//    WidgetButton->EnableButton(true);
+	//    //7. í´ë¦­ì‹œ í˜¸ì¶œí•  ì½œë°± í•¨ìˆ˜ ì£¼ì†Œ ì„¤ì •
+	//    WidgetButton->SetCallback<CWindowStart>(EButtonSoundState::Click, this, &CWindowStart::EditButtonClickCallback);
+	//    // ì™„ë£Œ //
+	//}
 
-    return true;
+
+	////í…ìŠ¤íŠ¸ ì¶œë ¥
+	//CWidgetText* TestText = CreateWidget<CWidgetText>("TestText");
+	//TestText->SetPos(60.f, 115.f);
+	//TestText->SetOneLetterAtTime(); //í•œê¸€ìì”© ì¶œë ¥ ëª¨ë“œ ì‚¬ìš© ì„¤ì •
+	//TestText->SetInterval(0.5f);
+
+	////ì¼ë‹¨ í°íŠ¸ë¥¼ í°ê±¸ë¡œ í•˜ë‚˜ ë¡œë”©í•´ë†“ê³  í•´ë‹¹ í°íŠ¸ ì‚¬ìš© ì„¤ì •
+	//TestText->SetFont("PixelFont");
+	//TestText->SetColor(255, 0, 0);
+	//TestText->EnableShadow();
+	//TestText->SetText(TEXT("ê²Œì„ ì‹œì‘!"));
+
+	return true;
 }
 
 void CWindowStart::Update(float DeltaTime)
 {
-    CWidgetWindow::Update(DeltaTime);
+	CWidgetWindow::Update(DeltaTime);
 
-    if (m_PlayGameDelayOn)
-    {
-        m_Delay -= DeltaTime;
-        if (m_Delay < 0.f)
-        {
-            CWidgetFadeInOut* FadeOut = CreateWidget<CWidgetFadeInOut>("WidgetFadeOut");
-            FadeOut->SetEssential(false);
-            FadeOut->AddEndFunction< CWindowStart>(this, &CWindowStart::PlayGameCallback);
-        }
-    }
+	if (m_PlayGameDelayOn)
+	{
+		m_Delay -= DeltaTime;
+		if (m_Delay < 0.f)
+		{
+			CWidgetFadeInOut* FadeOut = CreateWidget<CWidgetFadeInOut>("WidgetFadeOut");
+			FadeOut->SetEssential(false);
+			FadeOut->AddEndFunction< CWindowStart>(this, &CWindowStart::PlayGameCallback);
+		}
+	}
 }
 
 
 
 void CWindowStart::PlayGameCallback()
 {
-    CSceneManager::GetInst()->CreateScene<CMainScene>();
+	CSceneManager::GetInst()->CreateScene<CMainScene>();
 }
 
 
 void CWindowStart::OpenEditScene()
 {
-    CSceneManager::GetInst()->CreateScene<CSceneEdit>();
+	CSceneManager::GetInst()->CreateScene<CSceneEdit>();
 }
 
 void CWindowStart::PlayGame()
 {
-    CInput::GetInst()->DeleteBindClass< CWindowStart>(this);
+	CInput::GetInst()->DeleteBindClass< CWindowStart>(this);
 
-    CWidgetTextImage* Text = FindWidget<CWidgetTextImage>("GamePlayText");
-    if (Text)
-        Text->SetFlicker(1.f, 0.3f);
+	CWidgetTextImage* Text = FindWidget<CWidgetTextImage>("GamePlayText");
+	if (Text)
+		Text->SetFlicker(1.f, 0.3f);
 
 
 #ifdef _DEBUG
-    Text = nullptr;
-    Text = FindWidget<CWidgetTextImage>("EditModeText");
-    if (Text)
-        Text->SetActive(false);
+	Text = nullptr;
+	Text = FindWidget<CWidgetTextImage>("EditModeText");
+	if (Text)
+		Text->SetActive(false);
 #endif
 
-    m_Scene->GetSceneResource()->SoundPlay("OK");
+	m_Scene->GetSceneResource()->SoundPlay("OK");
 
-    m_PlayGameDelayOn = true;
+	m_PlayGameDelayOn = true;
 }
 

@@ -1,19 +1,19 @@
 #pragma once
 #include "WidgetWindow.h"
 class CWindowEdit :
-    public CWidgetWindow
+	public CWidgetWindow
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CWindowEdit();
-    virtual ~CWindowEdit();
+	CWindowEdit();
+	virtual ~CWindowEdit();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
 
 
 protected:
-    class CWidgetText* m_Text;
+	class CWidgetText* m_Text;
 };
 

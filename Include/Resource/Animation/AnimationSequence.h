@@ -4,41 +4,41 @@
 #include "../../GameInfo.h"
 
 class CAnimationSequence :
-    public CRef
+	public CRef
 {
-    friend class CAnimationManager;
+	friend class CAnimationManager;
 
-    //ÆíÁı±â¿¡¼­ ÀÚÀ¯·Ó°Ô °ü¸®ÇÒ ¼ö ÀÖµµ·Ï
-    friend class CSceneEdit;
+	//í¸ì§‘ê¸°ì—ì„œ ììœ ë¡­ê²Œ ê´€ë¦¬í•  ìˆ˜ ìˆë„ë¡
+	friend class CSceneEdit;
 
 private:
-    CSharedPtr<class CTexture> m_Texture;
-    std::vector<Sprite_FrameData> m_vecFrame;
+	CSharedPtr<class CTexture> m_Texture;
+	std::vector<Sprite_FrameData> m_vecFrame;
 
-    CAnimationSequence();
-    ~CAnimationSequence();
+	CAnimationSequence();
+	~CAnimationSequence();
 
 
 public:
-    class CTexture* GetTexture()   const;
-    ETextureType GetTextureType()   const;
-    const Sprite_FrameData& GetFrameData(int index)   const;
-    std::vector<Sprite_FrameData> GetFrameDataAll();
-    bool m_AnimLoaded;
-    size_t GetFrameCount() const;
-    
+	class CTexture* GetTexture()   const;
+	ETextureType GetTextureType()   const;
+	const Sprite_FrameData& GetFrameData(int index)   const;
+	std::vector<Sprite_FrameData> GetFrameDataAll();
+	bool m_AnimLoaded;
+	size_t GetFrameCount() const;
+	
 
 private:
-    void SetAnimLoaded(bool isLoaded = true);
-    bool CheckAnimLoaded() const;
-    //Sprite Çü½ÄÀÇ ÅØ½ºÃ³ Å¸ÀÔÀ» »ç¿ëÇÒ ‹š ¼öµ¿À¸·Î Àâ¾ÆÁÙ ¸Ş¼Òµå
-    void AddSpriteFrame(const Vector2& start, const Vector2& end, const Vector2& Offset);
-    void AddSpriteFrame(float PosX, float PosY, float SizeX, float SizeY, float OffsetX = 0.f, float OffsetY = 0.f);
+	void SetAnimLoaded(bool isLoaded = true);
+	bool CheckAnimLoaded() const;
+	//Sprite í˜•ì‹ì˜ í…ìŠ¤ì²˜ íƒ€ì…ì„ ì‚¬ìš©í•  ë–„ ìˆ˜ë™ìœ¼ë¡œ ì¡ì•„ì¤„ ë©”ì†Œë“œ
+	void AddSpriteFrame(const Vector2& start, const Vector2& end, const Vector2& Offset);
+	void AddSpriteFrame(float PosX, float PosY, float SizeX, float SizeY, float OffsetX = 0.f, float OffsetY = 0.f);
 
 
-    //Frame Çü½ÄÀÇ ÅØ½ºÃ³ Å¸ÀÔÀ» »ç¿ëÇÒ ‹š ¾Ö´Ï¸ŞÀÌ¼Ç ÇÁ·¹ÀÓÀ» ÀÌ¹ÌÁö »çÀÌÁî¿¡ ¸Â°Ô ÀÚµ¿ »ı¼ºÇØÁÖ´Â ¸Ş¼Òµå.
-    void AddFrameFrame();
-    
+	//Frame í˜•ì‹ì˜ í…ìŠ¤ì²˜ íƒ€ì…ì„ ì‚¬ìš©í•  ë–„ ì• ë‹ˆë©”ì´ì…˜ í”„ë ˆì„ì„ ì´ë¯¸ì§€ ì‚¬ì´ì¦ˆì— ë§ê²Œ ìë™ ìƒì„±í•´ì£¼ëŠ” ë©”ì†Œë“œ.
+	void AddFrameFrame();
+	
 
 
 

@@ -1,74 +1,74 @@
 #pragma once
 #include "Widget.h"
 
-//ÅØ½ºÃ³ ÇüÅÂÀÇ ¾ËÆÄºªÀ» Ãâ·Â. ¾ËÆÄºªÀº ¼ø¼­´ë·Î Áı¾î³ÖÀ»°Í
-//1. SetTextImage() -> »ç¿ëÇÒ ÅØ½ºÃ³ ¹× ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º ·Îµå
-//2. SetKerning() - ÀÚ°£ ¼³Á¤
-//3. SetAlign() - Á¤·Ä ¹æ½Ä ¼³Á¤
+//í…ìŠ¤ì²˜ í˜•íƒœì˜ ì•ŒíŒŒë²³ì„ ì¶œë ¥. ì•ŒíŒŒë²³ì€ ìˆœì„œëŒ€ë¡œ ì§‘ì–´ë„£ì„ê²ƒ
+//1. SetTextImage() -> ì‚¬ìš©í•  í…ìŠ¤ì²˜ ë° ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ë¡œë“œ
+//2. SetKerning() - ìê°„ ì„¤ì •
+//3. SetAlign() - ì •ë ¬ ë°©ì‹ ì„¤ì •
 
 
 
 
 class CWidgetTextImage :
-    public CWidget
+	public CWidget
 {
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetTextImage();
-    CWidgetTextImage(const CWidgetTextImage& widget);
-    virtual ~CWidgetTextImage();
+	CWidgetTextImage();
+	CWidgetTextImage(const CWidgetTextImage& widget);
+	virtual ~CWidgetTextImage();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 
-protected://ÅØ½ºÃ³
-    CSharedPtr<class CAnimationSequence>  m_TextImage;
+protected://í…ìŠ¤ì²˜
+	CSharedPtr<class CAnimationSequence>  m_TextImage;
 public:
 
-    //ÅØ½ºÃ³ ¼³Á¤ - ÅØ½ºÃ³ ·Îµù ¸ÕÀú ÇÑµÚ »ç¿ëÇÒ°Í.
-    bool SetTextImage(const std::string& Name);
+	//í…ìŠ¤ì²˜ ì„¤ì • - í…ìŠ¤ì²˜ ë¡œë”© ë¨¼ì € í•œë’¤ ì‚¬ìš©í• ê²ƒ.
+	bool SetTextImage(const std::string& Name);
 
 
-protected://¹®ÀÚ ÁöÁ¤
-    std::string m_Text;
-    UINT8 m_Kerning; //ÀÚ°£.
-    std::vector<INT16> m_vecCharWidth;  //¹®ÀÚÀÇ °³º° xÃà ±æÀÌ. ¹®ÀÚº°·Î ´Ù¸¦ ¼ö ÀÖÀ¸¹Ç·Î vector·Î
-    //¹®ÀÚÀÇ yÃà ±æÀÌ´Â m_Size.y¿¡ ÀúÀåÇÑ´Ù.
-    int m_RenderPosX;   //ÇöÀç ¹®ÀÚ¿­ÀÇ xÃàÀÇ ±æÀÌ¸¦ ÀúÀå. ¸Å¹ø °è»ê ½Ã ºÎ´ãÀÌ µÇ¹Ç·Î ÅØ½ºÆ® Ãß°¡½Ã¿¡ °è»ê
-    EAlignMode m_AlignMode;
+protected://ë¬¸ì ì§€ì •
+	std::string m_Text;
+	UINT8 m_Kerning; //ìê°„.
+	std::vector<INT16> m_vecCharWidth;  //ë¬¸ìì˜ ê°œë³„ xì¶• ê¸¸ì´. ë¬¸ìë³„ë¡œ ë‹¤ë¥¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ vectorë¡œ
+	//ë¬¸ìì˜ yì¶• ê¸¸ì´ëŠ” m_Size.yì— ì €ì¥í•œë‹¤.
+	int m_RenderPosX;   //í˜„ì¬ ë¬¸ìì—´ì˜ xì¶•ì˜ ê¸¸ì´ë¥¼ ì €ì¥. ë§¤ë²ˆ ê³„ì‚° ì‹œ ë¶€ë‹´ì´ ë˜ë¯€ë¡œ í…ìŠ¤íŠ¸ ì¶”ê°€ì‹œì— ê³„ì‚°
+	EAlignMode m_AlignMode;
 public:
-    void SetText(const std::string& Txt);
-    void AddText(const std::string& Txt);
-    void SetText(int Num);
-    void AddText(int Num);      //¼ıÀÚ¸¦ ´õÇØÁÜ
-    void SetBulletLeft(int Num);    //0ÀÏ ‹š ¹«ÇÑ Æ¯¼ö¹®ÀÚ¸¦ Ç¥½ÃÇÑ´Ù.
-    void SetScore(int Score);       //¾ÕÀÚ¸®¿¡ 0À» ½áÁØ´Ù.
-    void SetKerning(INT8 Kerning);
-    void SetAlignMode(EAlignMode AlignMode);
+	void SetText(const std::string& Txt);
+	void AddText(const std::string& Txt);
+	void SetText(int Num);
+	void AddText(int Num);      //ìˆ«ìë¥¼ ë”í•´ì¤Œ
+	void SetBulletLeft(int Num);    //0ì¼ ë–„ ë¬´í•œ íŠ¹ìˆ˜ë¬¸ìë¥¼ í‘œì‹œí•œë‹¤.
+	void SetScore(int Score);       //ì•ìë¦¬ì— 0ì„ ì¨ì¤€ë‹¤.
+	void SetKerning(INT8 Kerning);
+	void SetAlignMode(EAlignMode AlignMode);
 
 
-protected://¼ıÀÚ ÀÌ¹ÌÁö¸¦ È®´ëÇÏ°í ½ÍÀ» °æ¿ì
-    float m_Scale;
+protected://ìˆ«ì ì´ë¯¸ì§€ë¥¼ í™•ëŒ€í•˜ê³  ì‹¶ì„ ê²½ìš°
+	float m_Scale;
 public:
-    void SetScale(float Scale);
+	void SetScale(float Scale);
 
 private:
-    void CalcTextLen();
+	void CalcTextLen();
 
 protected:
 	CooltimeChecker m_Flicker;
-    CooltimeChecker m_FlickerDuration;
-    bool            m_FlickerSwitch;
-    EReactionChannel m_ColorFlicker;
+	CooltimeChecker m_FlickerDuration;
+	bool            m_FlickerSwitch;
+	EReactionChannel m_ColorFlicker;
 public:
-    void SetFlicker(float Duration, float Frequency);
-    void SetColorFlicker(float Duration, float Frequency, EReactionChannel ColorFlicker);
-    void SetColor(float Duration, EReactionChannel ColorFlicker);
-    bool GetFlickerDone() const;
+	void SetFlicker(float Duration, float Frequency);
+	void SetColorFlicker(float Duration, float Frequency, EReactionChannel ColorFlicker);
+	void SetColor(float Duration, EReactionChannel ColorFlicker);
+	bool GetFlickerDone() const;
  
 };
 

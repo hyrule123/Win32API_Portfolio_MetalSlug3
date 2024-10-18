@@ -7,8 +7,8 @@ struct AnimationNotify
 {
 	
 
-	//±¸Á¶Ã¼¿¡ Frame °ªÀ» ÀúÀåÇÏ´Â ´ë½Å,
-	//Notify¸¦ È£ÃâÇÒ Frame ¹øÈ£¸¦ vector ¹øÈ£¿Í ÀÏÄ¡ÇÏ°Ô ¼³Á¤ÇÏ·Á°í ÇÔ
+	//êµ¬ì¡°ì²´ì— Frame ê°’ì„ ì €ìž¥í•˜ëŠ” ëŒ€ì‹ ,
+	//Notifyë¥¼ í˜¸ì¶œí•  Frame ë²ˆí˜¸ë¥¼ vector ë²ˆí˜¸ì™€ ì¼ì¹˜í•˜ê²Œ ì„¤ì •í•˜ë ¤ê³  í•¨
 	//int Frame;
 	bool Call;
 	std::function<void()> Func;
@@ -43,62 +43,62 @@ private:
 	CAnimationInfo(const CAnimationInfo& Obj);
 	~CAnimationInfo();
 
-public://ÀÌ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» Ã³À½ Àç»ýÇÏ´Â »óÅÂ·Î º¹±¸ÇÏ´Â ¸Þ¼Òµå
+public://ì´ ì• ë‹ˆë©”ì´ì…˜ì„ ì²˜ìŒ ìž¬ìƒí•˜ëŠ” ìƒíƒœë¡œ ë³µêµ¬í•˜ëŠ” ë©”ì†Œë“œ
 	void Init();
 
 private:
-	//ÀÌ Å¬·¡½º°¡ µé°íÀÖ´Â ¾Ö´Ï¸ÞÀÌ¼Ç ½ÃÄö½ºÀÇ ÁÖ¼Ò
-	CSharedPtr<CAnimationSequence> m_Sequence; //0 = ÀÏ¹ÝÃ¤³Î, 1 = È÷Æ®ÀÌÆåÆ®Ã¤³Î
+	//ì´ í´ëž˜ìŠ¤ê°€ ë“¤ê³ ìžˆëŠ” ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ì˜ ì£¼ì†Œ
+	CSharedPtr<CAnimationSequence> m_Sequence; //0 = ì¼ë°˜ì±„ë„, 1 = ížˆíŠ¸ì´íŽ™íŠ¸ì±„ë„
 
-	//¾ó¸¶³ª ¶³¾îÁ®¼­ Àç»ýµÉ °ÍÀÎÁö?
+	//ì–¼ë§ˆë‚˜ ë–¨ì–´ì ¸ì„œ ìž¬ìƒë  ê²ƒì¸ì§€?
 	Vector2 m_Offset;
 
-	//¾Ö´Ï¸ÞÀÌ¼Ç ÀÚÃ¼ÀÇ ÇÇ¹þ °ª
+	//ì• ë‹ˆë©”ì´ì…˜ ìžì²´ì˜ í”¼ë²— ê°’
 	Vector2 m_Pivot;
 
-	//¸î ¹øÂ° ·¹ÀÌ¾î¿¡¼­ Àç»ýµÇ¾î¾ß ÇÏ´ÂÁö?
+	//ëª‡ ë²ˆì§¸ ë ˆì´ì–´ì—ì„œ ìž¬ìƒë˜ì–´ì•¼ í•˜ëŠ”ì§€?
 	int m_Layer;
 	
-	//Áö±Ý ¸î ÇÁ·¹ÀÓÀÌ Àç»ýµÇ°í ÀÖ´ÂÁö?
+	//ì§€ê¸ˆ ëª‡ í”„ë ˆìž„ì´ ìž¬ìƒë˜ê³  ìžˆëŠ”ì§€?
 	int m_Frame;
 
-	//ÇÁ·¹ÀÓÀÌ ¹Ù²î°í ¸îÃÊ Èê·¶´ÂÁö(´ÙÀ½ ÇÁ·¹ÀÓ ±³Ã¼±îÁö ¾ó¸¶³ª ³²¾Ò´ÂÁö)
+	//í”„ë ˆìž„ì´ ë°”ë€Œê³  ëª‡ì´ˆ í˜ë €ëŠ”ì§€(ë‹¤ìŒ í”„ë ˆìž„ êµì²´ê¹Œì§€ ì–¼ë§ˆë‚˜ ë‚¨ì•˜ëŠ”ì§€)
 	float m_Time;
 	
 	
-	//ÇÑ ÇÁ·¹ÀÓ¿¡ ¸î ÃÊ °É¸±°ÍÀÎÁö
+	//í•œ í”„ë ˆìž„ì— ëª‡ ì´ˆ ê±¸ë¦´ê²ƒì¸ì§€
 	float m_FrameTime;
 
-	//ÃÑ Àç»ý ½Ã°£
+	//ì´ ìž¬ìƒ ì‹œê°„
 	float m_PlayTime;
 
-	//Àç»ý ¼Óµµ
-	//ex)½½·Î¿ì µîÀ¸·Î ÀÎÇØ ´À·ÁÁö¸é ±×¿¡ µû¶ó ÇÁ·¹ÀÓ ÀüÈ¯ ¼Óµµµµ °¨¼Ò)
+	//ìž¬ìƒ ì†ë„
+	//ex)ìŠ¬ë¡œìš° ë“±ìœ¼ë¡œ ì¸í•´ ëŠë ¤ì§€ë©´ ê·¸ì— ë”°ë¼ í”„ë ˆìž„ ì „í™˜ ì†ë„ë„ ê°ì†Œ)
 	float m_PlayScale;
 
-	//³¡³ªµµ ¹Ýº¹Àç»ý ÇÒ °ÍÀÎÁö ¿©ºÎ
+	//ëë‚˜ë„ ë°˜ë³µìž¬ìƒ í•  ê²ƒì¸ì§€ ì—¬ë¶€
 	ELoopFlag m_LoopFlag;
-	//³¡³ª¸é CurrentAnimation ¸ñ·Ï¿¡¼­ ¾Æ¿¹ ³ª°¡¼­ 
-	//Àç»ýÀ» ÁßÁöÇÒ °ÍÀÎÁö ¿©ºÎ
+	//ëë‚˜ë©´ CurrentAnimation ëª©ë¡ì—ì„œ ì•„ì˜ˆ ë‚˜ê°€ì„œ 
+	//ìž¬ìƒì„ ì¤‘ì§€í•  ê²ƒì¸ì§€ ì—¬ë¶€
 	bool	m_PlayOnce;
 	bool	m_UseDuration;
 	float	m_Duration;
 
-	//¿ªÀç»ý ¿©ºÎ
-	//Temp: ÇÑ¹ø¸¸ ¿ªÀç»ý. ChangeAnimation ¶Ç´Â Àç»ýÀÌ ³¡³µÀ» °æ¿ì Reverse ÇØÁ¦
+	//ì—­ìž¬ìƒ ì—¬ë¶€
+	//Temp: í•œë²ˆë§Œ ì—­ìž¬ìƒ. ChangeAnimation ë˜ëŠ” ìž¬ìƒì´ ëë‚¬ì„ ê²½ìš° Reverse í•´ì œ
 	bool m_Reverse;
 	bool m_ReverseOnce;
 
-	//Àç»ýÀÌ Á¾·áµÇ¾úÀ» °æ¿ì È£ÃâÇÒ ¸Þ¼Òµå
-	//·çÇÁ°¡ ¾Æ´Ò °æ¿ì ³¡ ÇÁ·¹ÀÓ¿¡¼­ °íÁ¤µÇ´Âµ¥,
-	//ÇØ´ç »óÅÂ¿¡¼­ ÇÑ¹ø¸¸ È£ÃâÀÌ µÉ¼ö ÀÖµµ·Ï AnimationNotify ±¸Á¶Ã¼¸¦ »ç¿ëÇÑ´Ù.
+	//ìž¬ìƒì´ ì¢…ë£Œë˜ì—ˆì„ ê²½ìš° í˜¸ì¶œí•  ë©”ì†Œë“œ
+	//ë£¨í”„ê°€ ì•„ë‹ ê²½ìš° ë í”„ë ˆìž„ì—ì„œ ê³ ì •ë˜ëŠ”ë°,
+	//í•´ë‹¹ ìƒíƒœì—ì„œ í•œë²ˆë§Œ í˜¸ì¶œì´ ë ìˆ˜ ìžˆë„ë¡ AnimationNotify êµ¬ì¡°ì²´ë¥¼ ì‚¬ìš©í•œë‹¤.
 	AnimationNotify m_EndFunction;
-	//Temp: ÇÑ¹ø¸¸ EnFunction µî·Ï. ChangeAnimation ¶Ç´Â EndFunctionÀÌ ½ÇÇàµÇ¸é
-	//Endfunction ÇØÁ¦.
+	//Temp: í•œë²ˆë§Œ EnFunction ë“±ë¡. ChangeAnimation ë˜ëŠ” EndFunctionì´ ì‹¤í–‰ë˜ë©´
+	//Endfunction í•´ì œ.
 	bool m_EndFuncOnce;
 
-	//µ¿ÀûÇÒ´çµÈ ³ëÆ¼ÆÄÀÌ ±¸Á¶Ã¼¸¦ ¸ð¾Æ¼­ º¸°ü - ÀÌÂ÷¿ø ¹è¿­ ±¸Á¶
-	//[i][j] i-> ÇÁ·¹ÀÓ ¹øÈ£, j->ÇØ´ç ÇÁ·¹ÀÓ¿¡¼­ Àç»ýÇÒ Notify ÇÔ¼ö ¹øÈ£
+	//ë™ì í• ë‹¹ëœ ë…¸í‹°íŒŒì´ êµ¬ì¡°ì²´ë¥¼ ëª¨ì•„ì„œ ë³´ê´€ - ì´ì°¨ì› ë°°ì—´ êµ¬ì¡°
+	//[i][j] i-> í”„ë ˆìž„ ë²ˆí˜¸, j->í•´ë‹¹ í”„ë ˆìž„ì—ì„œ ìž¬ìƒí•  Notify í•¨ìˆ˜ ë²ˆí˜¸
 	std::vector<std::vector<AnimationNotify*>> m_vecNotify;
 
 
@@ -106,7 +106,7 @@ public:
 
 	bool GetReverse() const;
 	float GetPlayTime() const;
-	//ÇÑ¹ø¸¸ ÀÛµ¿ÇÏ´Â ±â´ÉµéÀ» ÃÊ±âÈ­(Reverse, EndFunction)
+	//í•œë²ˆë§Œ ìž‘ë™í•˜ëŠ” ê¸°ëŠ¥ë“¤ì„ ì´ˆê¸°í™”(Reverse, EndFunction)
 	void ResetOnce();
 
 	const std::string& GetName();
@@ -125,18 +125,18 @@ public:
 	{
 		AnimationNotify* Notify = new AnimationNotify;
 
-		//±âÁ¸ ¹æ½Ä
+		//ê¸°ì¡´ ë°©ì‹
 		//Notify->Frame = Frame;
 
 		Notify->Func = std::bind(Func, Obj);
 
-		//ÇÁ·¹ÀÓ ¼ö¿Í °°°Ô vector »çÀÌÁî¸¦ ¹Ì¸® È®º¸
+		//í”„ë ˆìž„ ìˆ˜ì™€ ê°™ê²Œ vector ì‚¬ì´ì¦ˆë¥¼ ë¯¸ë¦¬ í™•ë³´
 		m_vecNotify.resize(m_Sequence->GetFrameCount());
 
 		if (Frame >= m_vecNotify.size())
 			return;
 
-		//notyfy¸¦ È£ÃâÇÏ°í ½ÍÀº Frame ¹øÈ£¿Í °°Àº index¿¡ notify¸¦ »ðÀÔ.
+		//notyfyë¥¼ í˜¸ì¶œí•˜ê³  ì‹¶ì€ Frame ë²ˆí˜¸ì™€ ê°™ì€ indexì— notifyë¥¼ ì‚½ìž….
 		m_vecNotify[Frame].push_back(Notify);
 	}
 

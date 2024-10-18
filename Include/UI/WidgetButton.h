@@ -3,71 +3,71 @@
 
 
 class CWidgetButton :
-    public CWidget
+	public CWidget
 {
-    friend class CWidgetWindow;
+	friend class CWidgetWindow;
 
 protected:
-    CWidgetButton();
-    CWidgetButton(const CWidgetButton& widget);
-    virtual ~CWidgetButton();
+	CWidgetButton();
+	CWidgetButton(const CWidgetButton& widget);
+	virtual ~CWidgetButton();
 public:
-    virtual bool Init();
+	virtual bool Init();
 
 
 
-protected://ÅØ½ºÃ³
-    CSharedPtr<class CTexture>  m_Texture;
+protected://í…ìŠ¤ì²˜
+	CSharedPtr<class CTexture>  m_Texture;
 public:
-    //ÅØ½ºÃ³ ¼³Á¤ - ÅØ½ºÃ³ ·Îµù ¸ÕÀú ÇÑµÚ »ç¿ëÇÒ°Í.
-    bool SetTexture(const std::string& Name);
+	//í…ìŠ¤ì²˜ ì„¤ì • - í…ìŠ¤ì²˜ ë¡œë”© ë¨¼ì € í•œë’¤ ì‚¬ìš©í• ê²ƒ.
+	bool SetTexture(const std::string& Name);
 //=======================================================================
 
 
 
 
-protected://¹öÆ° »óÅÂ °ü·Ã
-    EButtonState           m_ButtonState;
-    Sprite_FrameData      m_ButtonStateData[(int)EButtonState::Max];
+protected://ë²„íŠ¼ ìƒíƒœ ê´€ë ¨
+	EButtonState           m_ButtonState;
+	Sprite_FrameData      m_ButtonStateData[(int)EButtonState::Max];
 public:
-    void SetButtonStateData(EButtonState State, const Vector2& Start, const Vector2& End);
-    void EnableButton(bool Enable);
+	void SetButtonStateData(EButtonState State, const Vector2& Start, const Vector2& End);
+	void EnableButton(bool Enable);
 //====================================================================
 
 
 
 
-protected://»ç¿îµå °ü·Ã
-    CSharedPtr<class CSound>    m_SoundState[(int)EButtonSoundState::Max];
-    //¼Ò¸® ¼³Á¤ - ¸¶Âù°¡Áö·Î »ç¿îµå ·Îµù ¸ÕÀú ÇÑµÚ »ç¿ëÇÒ°Í
+protected://ì‚¬ìš´ë“œ ê´€ë ¨
+	CSharedPtr<class CSound>    m_SoundState[(int)EButtonSoundState::Max];
+	//ì†Œë¦¬ ì„¤ì • - ë§ˆì°¬ê°€ì§€ë¡œ ì‚¬ìš´ë“œ ë¡œë”© ë¨¼ì € í•œë’¤ ì‚¬ìš©í• ê²ƒ
 public:
-    bool SetSound(EButtonSoundState State, const std::string& Name);
+	bool SetSound(EButtonSoundState State, const std::string& Name);
 //====================================================================
 
-    
+	
 
 
-protected://¸¶¿ì½º Äİ¹é °ü·Ã
+protected://ë§ˆìš°ìŠ¤ ì½œë°± ê´€ë ¨
 
-    //EButtonStateº°·Î Äİ¹éÇÔ¼ö¸¦ µî·ÏÇÏ°í ÀúÀåÇØ³õ±â À§ÇÑ ¿ëµµÀÇ ¹è¿­
-    std::function<void()>   m_Callback[(int)EButtonSoundState::Max];
+	//EButtonStateë³„ë¡œ ì½œë°±í•¨ìˆ˜ë¥¼ ë“±ë¡í•˜ê³  ì €ì¥í•´ë†“ê¸° ìœ„í•œ ìš©ë„ì˜ ë°°ì—´
+	std::function<void()>   m_Callback[(int)EButtonSoundState::Max];
 public:
-    virtual void CollisionMouseHoveredCallback(const Vector2& Pos);
-    virtual void CollisionMouseReleaseCallback();
+	virtual void CollisionMouseHoveredCallback(const Vector2& Pos);
+	virtual void CollisionMouseReleaseCallback();
 
-    template <typename T>
-    void SetCallback(EButtonSoundState State, T* Obj, void(T::* Func)())
-    {
-        m_Callback[(int)State] = std::bind(Func, Obj);
-    }
+	template <typename T>
+	void SetCallback(EButtonSoundState State, T* Obj, void(T::* Func)())
+	{
+		m_Callback[(int)State] = std::bind(Func, Obj);
+	}
 //======================================================================
 
 
 public:
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
-    virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Render(HDC hDC, const Vector2& Pos, float DeltaTime);
 
 
 

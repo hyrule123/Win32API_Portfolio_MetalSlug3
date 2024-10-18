@@ -34,7 +34,7 @@ bool CSound::GetPlaying() const
 
 	if (m_Channel)
 	{
-		//±Ùµ¥ °Å±â¼­ Àç»ý ÁßÀÏ °æ¿ì
+		//ê·¼ë° ê±°ê¸°ì„œ ìž¬ìƒ ì¤‘ì¼ ê²½ìš°
 		m_Channel->isPlaying(&Playing);
 	}
 
@@ -50,16 +50,16 @@ void CSound::Play()
 
 void CSound::Stop()
 {
-	//Ã¤³Î¿¡ ÇÒ´çµÇ¾î ÀÖÀ» °æ¿ì
+	//ì±„ë„ì— í• ë‹¹ë˜ì–´ ìžˆì„ ê²½ìš°
 	if (m_Channel)
 	{
 		bool Playing = false;
 
-		//±Ùµ¥ °Å±â¼­ Àç»ý ÁßÀÏ °æ¿ì
+		//ê·¼ë° ê±°ê¸°ì„œ ìž¬ìƒ ì¤‘ì¼ ê²½ìš°
 		m_Channel->isPlaying(&Playing);
 		if (Playing)
 		{
-			//Àç»ýÀ» ¸ØÃß°í Ã¤³Î°úÀÇ ¿¬°áÀ» ÇØÁ¦ÇÑ´Ù.
+			//ìž¬ìƒì„ ë©ˆì¶”ê³  ì±„ë„ê³¼ì˜ ì—°ê²°ì„ í•´ì œí•œë‹¤.
 			m_Channel->stop();
 			m_Channel = nullptr;
 		}
@@ -241,7 +241,7 @@ bool CSound::LoadSound(FMOD::System* System, FMOD::ChannelGroup* Group, bool Loo
 	m_ChannelGroup = Group;
 	m_isLoop = Loop;
 
-	//ÁÖ¼Ò¸¦ ¹Þ¾Æ¿Â´Ù.
+	//ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	char FullPath[MAX_PATH] = {};
 	const PathInfo* Info = CPathManager::GetInst()->FindPath(PathName);
 	if (Info)
@@ -251,7 +251,7 @@ bool CSound::LoadSound(FMOD::System* System, FMOD::ChannelGroup* Group, bool Loo
 	strcat_s(FullPath, FileName);
 
 
-	//·çÇÁ ¿©ºÎ¸¦ È®ÀÎÇÏ°í ¼³Á¤ÇÑ´Ù.
+	//ë£¨í”„ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ê³  ì„¤ì •í•œë‹¤.
 	FMOD_MODE Mode = FMOD_DEFAULT;
 	if (Loop)
 	{
@@ -259,7 +259,7 @@ bool CSound::LoadSound(FMOD::System* System, FMOD::ChannelGroup* Group, bool Loo
 	}
 
 
-	//¸¸µç º¯¼öµéÀ» ÀÎÀÚ·Î ³Ñ°Ü¼­ »ç¿îµå¸¦ ¸¸µé°í ½ÇÆÐÇÏ¸é false¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	//ë§Œë“  ë³€ìˆ˜ë“¤ì„ ì¸ìžë¡œ ë„˜ê²¨ì„œ ì‚¬ìš´ë“œë¥¼ ë§Œë“¤ê³  ì‹¤íŒ¨í•˜ë©´ falseë¥¼ ë°˜í™˜í•œë‹¤.
 	if (FMOD_OK != m_System->createSound(FullPath, Mode, nullptr, &m_Sound))
 	{
 		return false;

@@ -1,21 +1,21 @@
 #include "WindowEnemyHP.h"
 
-//ÇÁ·Î±×·¹½º ¹Ù
+//í”„ë¡œê·¸ë ˆìŠ¤ ë°”
 #include "WidgetProgressBar.h"
 
-//¼ıÀÚ
+//ìˆ«ì
 #include "WidgetNumber.h"
 
-//ÀÌ¹ÌÁö ·Îµå¿ë
+//ì´ë¯¸ì§€ ë¡œë“œìš©
 #include "../Scene/SceneManager.h"
 #include "../Scene/SceneResource.h"
 #include "../Resource/Texture/Texture.h"
 
-//¸ó½ºÅÍ À§Ä¡ ÃßÀû¿ë
+//ëª¬ìŠ¤í„° ìœ„ì¹˜ ì¶”ì ìš©
 #include "../Scene/Scene.h"
 #include "../GameObject/Enemy.h"
 
-//CGameObjectÀÇ À§Ä¡¸¦ ÃßÀûÇØ¾ß ÇÏ¹Ç·Î Camera ÇÊ¿ä
+//CGameObjectì˜ ìœ„ì¹˜ë¥¼ ì¶”ì í•´ì•¼ í•˜ë¯€ë¡œ Camera í•„ìš”
 #include "../Scene/Camera.h"
 
 CWindowEnemyHP::CWindowEnemyHP():
@@ -47,7 +47,7 @@ bool CWindowEnemyHP::Init()
 		SetPos(m_Enemy->GetPos());
 
 	m_Bar = CreateWidget<CWidgetProgressBar>("EnemyHPBar"); 
-	//¿ì¼± ÅØ½ºÃ³ ·ÎµùÀ» ÇØÁÖ°í
+	//ìš°ì„  í…ìŠ¤ì²˜ ë¡œë”©ì„ í•´ì£¼ê³ 
 	m_Scene->GetSceneResource()->LoadTexture("BarBack", TEXT("Bar/BarBack.bmp"));
 	m_Bar->SetTexture(EProgressBar_TextureType::Back, "BarBack");
 
@@ -59,27 +59,27 @@ bool CWindowEnemyHP::Init()
 
 	
 
-	//¼ıÀÚÀ§Á¬ Ãß°¡ °úÁ¤//////////////////////////////////////////
+	//ìˆ«ììœ„ì ¯ ì¶”ê°€ ê³¼ì •//////////////////////////////////////////
 	m_Number = CreateWidget<CWidgetNumber>("EnemyHPNum");
-	//¾Ö´Ï¸ŞÀÌ¼Ç ·Îµå
+	//ì• ë‹ˆë©”ì´ì…˜ ë¡œë“œ
 	m_Scene->GetSceneResource()->CreateAnimationSequence("Number", "Number", TEXT("UI/Number.bmp"));
-	//ÄÃ·¯Å°¸¦ ¼³Á¤
+	//ì»¬ëŸ¬í‚¤ë¥¼ ì„¤ì •
 	m_Scene->GetSceneResource()->SetColorKey("Number",163,73,164);
 
-	//¼ıÀÚ ½ºÇÁ¶óÀÌÆ® ÁÂÇ¥ Ãß°¡
+	//ìˆ«ì ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œ ì¶”ê°€
 	for (int i = 0; i < 10; ++i)
 	{
 		m_Scene->GetSceneResource()->AddAnimationSpriteFrame("Number",
 			i * 17.f, 0.f, 16.f, 16.f);
 	}
 
-	//WidgetNumber Å¬·¡½º¿¡ ³Ñ¹ö ÀÌ¹ÌÁö¸¦ µî·Ï.
+	//WidgetNumber í´ë˜ìŠ¤ì— ë„˜ë²„ ì´ë¯¸ì§€ë¥¼ ë“±ë¡.
 	m_Number->SetNumberImage("Number");
 	
-	//4¹è Å©°Ô ±×·ÁÁÜ.
+	//4ë°° í¬ê²Œ ê·¸ë ¤ì¤Œ.
 	m_Number->SetScale(4.f);
 
-	//¸ó½ºÅÍÀÇ À§Ä¡ + 100 À§Ä¡¿¡ ±×·ÁÁÜ
+	//ëª¬ìŠ¤í„°ì˜ ìœ„ì¹˜ + 100 ìœ„ì¹˜ì— ê·¸ë ¤ì¤Œ
 	m_Number->SetOffset(0.f, 100.f);
 ///////////////////////////////////////////////////////////////
 

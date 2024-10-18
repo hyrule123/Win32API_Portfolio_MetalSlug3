@@ -1,6 +1,6 @@
 #include "IntroRocketLowest.h"
 
-//µð¹ö±×ÅØ½ºÆ®
+//ë””ë²„ê·¸í…ìŠ¤íŠ¸
 #include "../GameManager.h"
 
 #include "RocketThrust.h"
@@ -32,11 +32,11 @@ bool CIntroRocketLowest::Init(CGameObject* Obj)
 {
 	CIntroRocket::Init(Obj);
 
-	//¾Æ·§´ÜºÎÅÍ ÇÑ´Ü°è¾¿ ¿Ã·ÁÁÜ
+	//ì•„ëž«ë‹¨ë¶€í„° í•œë‹¨ê³„ì”© ì˜¬ë ¤ì¤Œ
 	SetRenderLayer(ERenderLayer::Enemy);
 
-	ChangeAnimation("BodyUpperRingInner");	//»ó´Ü ·ÎÄÏ ¾ÈÂÊºÎºÐ
-	ChangeAnimation("BodyLowest");			//¸öÅë
+	ChangeAnimation("BodyUpperRingInner");	//ìƒë‹¨ ë¡œì¼“ ì•ˆìª½ë¶€ë¶„
+	ChangeAnimation("BodyLowest");			//ëª¸í†µ
 	
 	m_Thrust = m_Scene->CreateObject<CRocketThrust>("Thrust", this);
 	m_Thrust->ThrustIgnite();

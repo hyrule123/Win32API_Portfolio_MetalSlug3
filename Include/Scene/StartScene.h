@@ -3,16 +3,16 @@
 #include "Scene.h"
 
 class CStartScene :
-    public CScene
+	public CScene
 {
-    friend class CSceneManager;
+	friend class CSceneManager;
 
 protected:
-    CStartScene();
-    virtual ~CStartScene();
+	CStartScene();
+	virtual ~CStartScene();
 
 public:
-    bool Init();
+	bool Init();
 
 
 

@@ -1,33 +1,33 @@
 #pragma once
 
-//ÀÌ Çì´õÆÄÀÏÀº °ÔÀÓ¿¡¼­ °øÅëÀ¸·Î »ç¿ëµÇ´Â ³»¿ëµéÀ» ´ã¾ÆµÎ°í
-//IncludeÇØ¼­ »ç¿ëÇÒ ¸ñÀûÀ¸·Î Á¦ÀÛµÇ¾ú´Ù.
+//ì´ í—¤ë”íŒŒì¼ì€ ê²Œì„ì—ì„œ ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë˜ëŠ” ë‚´ìš©ë“¤ì„ ë‹´ì•„ë‘ê³ 
+//Includeí•´ì„œ ì‚¬ìš©í•  ëª©ì ìœ¼ë¡œ ì œì‘ë˜ì—ˆë‹¤.
 
 //WIN32API
 #include <Windows.h>
 
-//¸µÅ©µå ¸®½ºÆ®
+//ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸
 #include <list>
 
-//¹è¿­
+//ë°°ì—´
 #include <vector>
 
-//¸Ê
+//ë§µ
 #include <map>
 
-//¿¬°ü ÄÁÅ×ÀÌ³Ê
+//ì—°ê´€ ì»¨í…Œì´ë„ˆ
 #include <unordered_map>
 
-//¸Ş¸ğ¸® ´©¼ö Å½Áö
+//ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ íƒì§€
 #include <crtdbg.h>
 
-//º¤ÅÍ2 ±¸Á¶Ã¼
+//ë²¡í„°2 êµ¬ì¡°ì²´
 #include "Vector2.h"
 
-//ÂüÁ¶Ä«¿îÆ®
+//ì°¸ì¡°ì¹´ìš´íŠ¸
 #include "SharedPtr.h"
 
-//¹®ÀÚ¿­
+//ë¬¸ìì—´
 #include <string>
 
 
@@ -45,30 +45,30 @@ namespace std
 #define tscanf_s sscanf_s
 #endif
 }
-//¶Ç´Â
+//ë˜ëŠ”
 //typedef std::basic_string<TCHAR> tstring;
 
 
 
-//Å¸ÀÔ Á¤º¸
+//íƒ€ì… ì •ë³´
 #include <typeinfo>
 
-//ÇÔ¼ö Æ÷ÀÎÅÍ
+//í•¨ìˆ˜ í¬ì¸í„°
 #include <functional>
 
-//Á¤·Ä
+//ì •ë ¬
 #include <algorithm>
 
-//½ºÅÃ
+//ìŠ¤íƒ
 #include <stack>
 
-//ÇÃ·¡±×
+//í”Œë˜ê·¸
 #include "flag.h"
 
 #include "fmod.hpp"
 
 //gdi +
-//GDIPVER ÀçÁ¤ÀÇ ÈÄ include
+//GDIPVER ì¬ì •ì˜ í›„ include
 #ifdef GDIPVER
 #undef GDIPVER
 #define GDIPVER 0x0110
@@ -83,13 +83,13 @@ namespace std
 
 
 
-//ÀÌ¹ÌÁö Ã³¸® ¶óÀÌºê·¯¸®
+//ì´ë¯¸ì§€ ì²˜ë¦¬ ë¼ì´ë¸ŒëŸ¬ë¦¬
 #pragma comment(lib,"msimg32.lib")
 
-//»ç¿îµå Ã³¸® ¶óÀÌºê·¯¸® FMOD
+//ì‚¬ìš´ë“œ ì²˜ë¦¬ ë¼ì´ë¸ŒëŸ¬ë¦¬ FMOD
 #pragma comment(lib, "../Bin/fmod64_vc.lib")
 
-//°ÔÀÓ ÇØ»óµµ
+//ê²Œì„ í•´ìƒë„
 #define ORIGINAL_GAME_RES_WIDTH		304
 #define ORIGINAL_GAME_RES_HEIGHT	224
 #define SCREEN_SCALE				3
@@ -103,11 +103,11 @@ namespace std
 
 
 
-//Áß·Â
+//ì¤‘ë ¥
 #define GRAVITY 9.8f
 
 
-//°æ·Î ÁöÁ¤ ¸ÅÅ©·Î ¼³Á¤
+//ê²½ë¡œ ì§€ì • ë§¤í¬ë¡œ ì„¤ì •
 #define ROOT_PATH		"RootPath"
 #define TEXTURE_PATH	"TexturePath"
 #define SOUND_PATH		"SoundPath"
@@ -132,7 +132,7 @@ T* Dcast(nullptr_t) { return nullptr; }
 
 
 
-//Ã¢ÀÇ ÇØ»óµµ ÀúÀå
+//ì°½ì˜ í•´ìƒë„ ì €ì¥
 struct Resolution
 {
 	int Width;
@@ -140,9 +140,9 @@ struct Resolution
 };
 
 
-//Sprite ¹æ½Ä ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ½ÃÀÛÁ¡°ú ³¡Á¡À» ÀúÀåÇÏ±â À§ÇÑ ±¸Á¶Ã¼
-//+ ÇÈ¼¿ ¿ÀÂ÷¸¦ ¹Ù·ÎÀâ±âÀ§ÇÑ ¿ÀÇÁ¼Â °ª
-//GameObect¿¡¼­ ·»´õ¸µÇÒ¶§ À§Ä¡°¡ º¯°æµÇ¾î Ãâ·ÂµÊ
+//Sprite ë°©ì‹ ì• ë‹ˆë©”ì´ì…˜ì˜ ì‹œì‘ì ê³¼ ëì ì„ ì €ì¥í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì²´
+//+ í”½ì…€ ì˜¤ì°¨ë¥¼ ë°”ë¡œì¡ê¸°ìœ„í•œ ì˜¤í”„ì…‹ ê°’
+//GameObectì—ì„œ ë Œë”ë§í• ë•Œ ìœ„ì¹˜ê°€ ë³€ê²½ë˜ì–´ ì¶œë ¥ë¨
 struct Sprite_FrameData
 {
 	Vector2 Start;
@@ -154,7 +154,7 @@ struct Sprite_FrameData
 
 
 
-//¹Ú½º Äİ¶óÀÌ´õ Á¤º¸ ÀúÀå¿ë
+//ë°•ìŠ¤ ì½œë¼ì´ë” ì •ë³´ ì €ì¥ìš©
 struct BoxInfo
 {
 	Vector2 LT;
@@ -184,7 +184,7 @@ struct CollisionProfile
 		Channel(),
 		Enable(true)
 	{
-		//¹Ì¸® ±âº» Ãæµ¹ ¼³Á¤À» false·Î ÇØ³õ´Â´Ù.
+		//ë¯¸ë¦¬ ê¸°ë³¸ ì¶©ëŒ ì„¤ì •ì„ falseë¡œ í•´ë†“ëŠ”ë‹¤.
 		for (int i = 0; i < (size_t)ECollisionChannel::Max; ++i)
 		{
 			Interaction[i] = false;
@@ -194,9 +194,9 @@ struct CollisionProfile
 
 struct CooltimeChecker
 {
-	float Cooltime;		//½Ã°£ Á¤ÇÏ±â¿ë º¯¼ö
-	float CooltimeLeft;	//½Ã°£ Àç±â¿ë º¯¼ö
-	bool isCooltime;	//ÄğÅ¸ÀÓ ¿©ºÎ È®ÀÎ
+	float Cooltime;		//ì‹œê°„ ì •í•˜ê¸°ìš© ë³€ìˆ˜
+	float CooltimeLeft;	//ì‹œê°„ ì¬ê¸°ìš© ë³€ìˆ˜
+	bool isCooltime;	//ì¿¨íƒ€ì„ ì—¬ë¶€ í™•ì¸
 
 	CooltimeChecker(float cooltime = 5.f) :
 		Cooltime(cooltime),
@@ -206,7 +206,7 @@ struct CooltimeChecker
 	}
 
 
-	bool UpdateCooltime(float DeltaTime)	//½Ã°£À» ¾÷µ¥ÀÌÆ®ÇÏ°í, ÁøÀÔ °¡´É ¿©ºÎ¸¸ ¾Ë·ÁÁÜ
+	bool UpdateCooltime(float DeltaTime)	//ì‹œê°„ì„ ì—…ë°ì´íŠ¸í•˜ê³ , ì§„ì… ê°€ëŠ¥ ì—¬ë¶€ë§Œ ì•Œë ¤ì¤Œ
 	{
 		if (!isCooltime)
 			return true;
@@ -219,7 +219,7 @@ struct CooltimeChecker
 		return false;
 	}
 
-	bool EnterCooltime()	//ÄğÅ¸ÀÓÀÎÁö È®ÀÎÇÏ°í ½ºÅ³ ÁøÀÔ °¡´É ¿©ºÎ¸¦ ¹İÈ¯ÇÏ¸ç ÄğÅ¸ÀÓ Àû¿ë±îÁö ÇØÁÜ
+	bool EnterCooltime()	//ì¿¨íƒ€ì„ì¸ì§€ í™•ì¸í•˜ê³  ìŠ¤í‚¬ ì§„ì… ê°€ëŠ¥ ì—¬ë¶€ë¥¼ ë°˜í™˜í•˜ë©° ì¿¨íƒ€ì„ ì ìš©ê¹Œì§€ í•´ì¤Œ
 	{
 		if (isCooltime)
 			return false;

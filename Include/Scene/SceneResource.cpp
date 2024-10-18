@@ -21,17 +21,17 @@ CSceneResource::~CSceneResource()
 
 		while (iter != iterEnd)
 		{
-			//ÁÖ¼Ò¸¦ ¹Ì¸® ¹Ş¾Æ³õ°í
+			//ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë°›ì•„ë†“ê³ 
 			std::string Name = iter->first;
 
-			//»èÁ¦(»èÁ¦ÇÏ¸é ´ÙÀ½ iterator ÁÖ¼Ò°¡ ¹İÈ¯µÇ¹Ç·Î ++iter ÇØÁÙ ÇÊ¿ä ¾ø´Ù)
-			//¸ÕÀú »èÁ¦ÇØ¼­ RefCount¸¦ ÁÙ¿©³õ´Â´Ù.
+			//ì‚­ì œ(ì‚­ì œí•˜ë©´ ë‹¤ìŒ iterator ì£¼ì†Œê°€ ë°˜í™˜ë˜ë¯€ë¡œ ++iter í•´ì¤„ í•„ìš” ì—†ë‹¤)
+			//ë¨¼ì € ì‚­ì œí•´ì„œ RefCountë¥¼ ì¤„ì—¬ë†“ëŠ”ë‹¤.
 			iter = m_mapAnimationSequence.erase(iter);
 			iterEnd = m_mapAnimationSequence.end();
 
-			//±×¸®°í ReleaseTextureÀ» ÅëÇØ ³²¾ÆÀÖ´Â RefCount¸¦ È®ÀÎÇÏ°í, 
-			//1¸¸ ³²¾ÆÀÖÀ¸¸é(-> »õ·Î ·ÎµåµÈ ¾À ¶Ç´Â ±âÁ¸ ¾À ¸ğµÎ »ç¿ëÇÏÁö ¾Ê´Â ÅØ½ºÃ³)
-			//Á¦°Å¸¦ ÇÏµµ·Ï ÇØÁØ´Ù.
+			//ê·¸ë¦¬ê³  ReleaseTextureì„ í†µí•´ ë‚¨ì•„ìˆëŠ” RefCountë¥¼ í™•ì¸í•˜ê³ , 
+			//1ë§Œ ë‚¨ì•„ìˆìœ¼ë©´(-> ìƒˆë¡œ ë¡œë“œëœ ì”¬ ë˜ëŠ” ê¸°ì¡´ ì”¬ ëª¨ë‘ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í…ìŠ¤ì²˜)
+			//ì œê±°ë¥¼ í•˜ë„ë¡ í•´ì¤€ë‹¤.
 			CResourceManager::GetInst()->ReleaseTexture(Name);
 
 		}
@@ -44,17 +44,17 @@ CSceneResource::~CSceneResource()
 
 		while (iter != iterEnd)
 		{
-			//ÁÖ¼Ò¸¦ ¹Ì¸® ¹Ş¾Æ³õ°í
+			//ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë°›ì•„ë†“ê³ 
 			std::string Name = iter->first;
 
-			//»èÁ¦(»èÁ¦ÇÏ¸é ´ÙÀ½ iterator ÁÖ¼Ò°¡ ¹İÈ¯µÇ¹Ç·Î ++iter ÇØÁÙ ÇÊ¿ä ¾ø´Ù)
-			//¸ÕÀú »èÁ¦ÇØ¼­ RefCount¸¦ ÁÙ¿©³õ´Â´Ù.
+			//ì‚­ì œ(ì‚­ì œí•˜ë©´ ë‹¤ìŒ iterator ì£¼ì†Œê°€ ë°˜í™˜ë˜ë¯€ë¡œ ++iter í•´ì¤„ í•„ìš” ì—†ë‹¤)
+			//ë¨¼ì € ì‚­ì œí•´ì„œ RefCountë¥¼ ì¤„ì—¬ë†“ëŠ”ë‹¤.
 			iter = m_mapTexture.erase(iter);
 			iterEnd = m_mapTexture.end();
 
-			//±×¸®°í ReleaseTextureÀ» ÅëÇØ ³²¾ÆÀÖ´Â RefCount¸¦ È®ÀÎÇÏ°í, 
-			//1¸¸ ³²¾ÆÀÖÀ¸¸é(-> »õ·Î ·ÎµåµÈ ¾À ¶Ç´Â ±âÁ¸ ¾À ¸ğµÎ »ç¿ëÇÏÁö ¾Ê´Â ÅØ½ºÃ³)
-			//Á¦°Å¸¦ ÇÏµµ·Ï ÇØÁØ´Ù.
+			//ê·¸ë¦¬ê³  ReleaseTextureì„ í†µí•´ ë‚¨ì•„ìˆëŠ” RefCountë¥¼ í™•ì¸í•˜ê³ , 
+			//1ë§Œ ë‚¨ì•„ìˆìœ¼ë©´(-> ìƒˆë¡œ ë¡œë“œëœ ì”¬ ë˜ëŠ” ê¸°ì¡´ ì”¬ ëª¨ë‘ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í…ìŠ¤ì²˜)
+			//ì œê±°ë¥¼ í•˜ë„ë¡ í•´ì¤€ë‹¤.
 			CResourceManager::GetInst()->ReleaseTexture(Name);
 
 		}
@@ -67,17 +67,17 @@ CSceneResource::~CSceneResource()
 
 		while (iter != iterEnd)
 		{
-			//ÁÖ¼Ò¸¦ ¹Ì¸® ¹Ş¾Æ³õ°í
+			//ì£¼ì†Œë¥¼ ë¯¸ë¦¬ ë°›ì•„ë†“ê³ 
 			std::string Name = iter->first;
 
-			//»èÁ¦(»èÁ¦ÇÏ¸é ´ÙÀ½ iterator ÁÖ¼Ò°¡ ¹İÈ¯µÇ¹Ç·Î ++iter ÇØÁÙ ÇÊ¿ä ¾ø´Ù)
-			//¸ÕÀú »èÁ¦ÇØ¼­ RefCount¸¦ ÁÙ¿©³õ´Â´Ù.
+			//ì‚­ì œ(ì‚­ì œí•˜ë©´ ë‹¤ìŒ iterator ì£¼ì†Œê°€ ë°˜í™˜ë˜ë¯€ë¡œ ++iter í•´ì¤„ í•„ìš” ì—†ë‹¤)
+			//ë¨¼ì € ì‚­ì œí•´ì„œ RefCountë¥¼ ì¤„ì—¬ë†“ëŠ”ë‹¤.
 			iter = m_mapSound.erase(iter);
 			iterEnd = m_mapSound.end();
 
-			//±×¸®°í ReleaseTextureÀ» ÅëÇØ ³²¾ÆÀÖ´Â RefCount¸¦ È®ÀÎÇÏ°í, 
-			//1¸¸ ³²¾ÆÀÖÀ¸¸é(-> »õ·Î ·ÎµåµÈ ¾À ¶Ç´Â ±âÁ¸ ¾À ¸ğµÎ »ç¿ëÇÏÁö ¾Ê´Â ÅØ½ºÃ³)
-			//Á¦°Å¸¦ ÇÏµµ·Ï ÇØÁØ´Ù.
+			//ê·¸ë¦¬ê³  ReleaseTextureì„ í†µí•´ ë‚¨ì•„ìˆëŠ” RefCountë¥¼ í™•ì¸í•˜ê³ , 
+			//1ë§Œ ë‚¨ì•„ìˆìœ¼ë©´(-> ìƒˆë¡œ ë¡œë“œëœ ì”¬ ë˜ëŠ” ê¸°ì¡´ ì”¬ ëª¨ë‘ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” í…ìŠ¤ì²˜)
+			//ì œê±°ë¥¼ í•˜ë„ë¡ í•´ì¤€ë‹¤.
 			CResourceManager::GetInst()->ReleaseSound(Name);
 
 		}
@@ -142,17 +142,17 @@ CSound* CSceneResource::FindSound(const std::string& Name)
 
 	auto iter = m_mapSound.find(Name);
 
-	//È¤½Ã ¿©±â¿¡ ¾øÀ¸¸é
+	//í˜¹ì‹œ ì—¬ê¸°ì— ì—†ìœ¼ë©´
 	if (iter == m_mapSound.end())
 	{
-		//ResourceManager¿¡¼­µµ ÇÑ¹ø Ã£¾Æº»´Ù.
+		//ResourceManagerì—ì„œë„ í•œë²ˆ ì°¾ì•„ë³¸ë‹¤.
 		CSound* Sound = CResourceManager::GetInst()->FindSound(Name);
 
-		//¿©±â¼­µµ ¾øÀ¸¸é nullptrÀ» ¹İÈ¯ÇÏ°í
+		//ì—¬ê¸°ì„œë„ ì—†ìœ¼ë©´ nullptrì„ ë°˜í™˜í•˜ê³ 
 		if (!Sound)
 			return nullptr;
 
-		//È¤½Ã³ª ÀÖÀ¸¸é ÀÌ°Íµµ SceneResource¿¡ µî·ÏÇÏ°í ÁÖ¼Ò¸¦ ¹İÈ¯ÇÑ´Ù.
+		//í˜¹ì‹œë‚˜ ìˆìœ¼ë©´ ì´ê²ƒë„ SceneResourceì— ë“±ë¡í•˜ê³  ì£¼ì†Œë¥¼ ë°˜í™˜í•œë‹¤.
 		m_mapSound.insert(std::make_pair(Name, Sound));
 
 		return Sound;
@@ -163,23 +163,23 @@ CSound* CSceneResource::FindSound(const std::string& Name)
 
 bool CSceneResource::LoadSound(const std::string& GroupName, const std::string& Name, bool Loop, const char* FileName, const std::string& PathName)
 {
-	//»ç¿îµå¸¦ Ã£¾Æ¼­ ÀÖÀ¸¸é true ¹İÈ¯
+	//ì‚¬ìš´ë“œë¥¼ ì°¾ì•„ì„œ ìˆìœ¼ë©´ true ë°˜í™˜
 	CSound* Sound = FindSound(Name);
 	if (Sound)
 		return true;
 
-	//¸®¼Ò½º¸Å´ÏÀú¿¡¼­µµ Ã£¾Æº½
+	//ë¦¬ì†ŒìŠ¤ë§¤ë‹ˆì €ì—ì„œë„ ì°¾ì•„ë´„
 	Sound = CResourceManager::GetInst()->FindSound(Name);
 
 	if (Sound)
 		return true;
 
-	//¸øÃ£¾ÒÀ¸¸é ¸¸µé±â. ¸¸µé±â ½ÇÆĞÇßÀ¸¸é »èÁ¦ÇÏ°í return false
+	//ëª»ì°¾ì•˜ìœ¼ë©´ ë§Œë“¤ê¸°. ë§Œë“¤ê¸° ì‹¤íŒ¨í–ˆìœ¼ë©´ ì‚­ì œí•˜ê³  return false
 	if (!CResourceManager::GetInst()->LoadSound(GroupName, Name, Loop, FileName, PathName))
 		return false;
 	
-	//¿©±â±îÁö ¿ÔÀ¸¸é ¾È ¸¸µé¾îÁ³À»¸®°¡ ¾øÀ½. map¿¡ µî·Ï ÈÄ true ¹İÈ¯
-	//FindSound¿¡¼­ ÀÚµ¿À¸·Î µî·ÏµÊ.
+	//ì—¬ê¸°ê¹Œì§€ ì™”ìœ¼ë©´ ì•ˆ ë§Œë“¤ì–´ì¡Œì„ë¦¬ê°€ ì—†ìŒ. mapì— ë“±ë¡ í›„ true ë°˜í™˜
+	//FindSoundì—ì„œ ìë™ìœ¼ë¡œ ë“±ë¡ë¨.
 	Sound = FindSound(Name);
 
 
@@ -274,17 +274,17 @@ CAnimationSequence* CSceneResource::FindAnimationSequence(const std::string& Nam
 {
 	auto iter = m_mapAnimationSequence.find(Name);
 
-	//È¤½Ã ¿©±â¿¡ ¾øÀ¸¸é
+	//í˜¹ì‹œ ì—¬ê¸°ì— ì—†ìœ¼ë©´
 	if (iter == m_mapAnimationSequence.end())
 	{
-		//ResourceManager¿¡¼­µµ ÇÑ¹ø Ã£¾Æº»´Ù.
+		//ResourceManagerì—ì„œë„ í•œë²ˆ ì°¾ì•„ë³¸ë‹¤.
 		CAnimationSequence* AnimationSequence = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-		//¿©±â¼­µµ ¾øÀ¸¸é nullptrÀ» ¹İÈ¯ÇÏ°í
+		//ì—¬ê¸°ì„œë„ ì—†ìœ¼ë©´ nullptrì„ ë°˜í™˜í•˜ê³ 
 		if (!AnimationSequence)
 			return nullptr;
 
-		//È¤½Ã³ª ÀÖÀ¸¸é ÀÌ°Íµµ SceneResource¿¡ µî·ÏÇÏ°í ÁÖ¼Ò¸¦ ¹İÈ¯ÇÑ´Ù.
+		//í˜¹ì‹œë‚˜ ìˆìœ¼ë©´ ì´ê²ƒë„ SceneResourceì— ë“±ë¡í•˜ê³  ì£¼ì†Œë¥¼ ë°˜í™˜í•œë‹¤.
 		m_mapAnimationSequence.insert(std::make_pair(Name, AnimationSequence));
 
 		return AnimationSequence;
@@ -310,7 +310,7 @@ bool CSceneResource::AddAnimationSpriteFrame(
 	const Vector2& Offset
 	)
 {
-	//CResourceManager¿¡ Á¢±ÙÇØ¼­ ¹Ù·Î »ı¼º
+	//CResourceManagerì— ì ‘ê·¼í•´ì„œ ë°”ë¡œ ìƒì„±
 	return CResourceManager::GetInst()->AddAnimationSpriteFrame(Name, Start, End, Offset);
 }
 
@@ -331,18 +331,18 @@ bool CSceneResource::AddAnimationFrameFrame(const std::string& Name)
 
 bool CSceneResource::CreateAnimationSequence(const std::string& Name, CTexture* Texture)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequence(Name, Texture))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -351,23 +351,23 @@ bool CSceneResource::CreateAnimationSequence(const std::string& Name, CTexture* 
 
 bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std::string& TexName)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//ÅØ½ºÃ³ ÁÖ¼Ò ¹Ş¾Æ¿À°í ¾øÀ¸¸é return
+	//í…ìŠ¤ì²˜ ì£¼ì†Œ ë°›ì•„ì˜¤ê³  ì—†ìœ¼ë©´ return
 	CTexture* Tex = CResourceManager::GetInst()->FindTexture(TexName);
 	if (!Tex)
 		return false;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequence(Name, Tex))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -376,18 +376,18 @@ bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std:
 
 bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std::string& TexName, const std::tstring& FileName, const std::string& PathName)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequence(Name, TexName, FileName, PathName))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -396,18 +396,18 @@ bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std:
 
 bool CSceneResource::CreateAnimationSequenceFullPath(const std::string& Name, const std::string& TexName, const std::tstring& FullPath)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequenceFullPath(Name, TexName, FullPath))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -418,18 +418,18 @@ bool CSceneResource::CreateAnimationSequenceFullPath(const std::string& Name, co
 
 bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std::string& TexName, const std::vector<std::tstring>& vecFileName, const std::string& PathName)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequence(Name, TexName, vecFileName, PathName))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -438,18 +438,18 @@ bool CSceneResource::CreateAnimationSequence(const std::string& Name, const std:
 
 bool CSceneResource::CreateAnimationSequenceFullPath(const std::string& Name, const std::string& TexName, const std::vector<std::tstring>& vecFullPath)
 {
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Ù¸é return
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆë‹¤ë©´ return
 	if (FindAnimationSequence(Name))
 		return true;
 
-	//»ı¼º¿¡ ½ÇÆĞÇß´Ù¸é return
+	//ìƒì„±ì— ì‹¤íŒ¨í–ˆë‹¤ë©´ return
 	if (!CResourceManager::GetInst()->CreateAnimationSequenceFullPath(Name, TexName, vecFullPath))
 		return false;
 
-	//¼º°øÇß´Ù¸é ÁÖ¼Ò¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ì„±ê³µí–ˆë‹¤ë©´ ì£¼ì†Œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	CAnimationSequence* Seq = CResourceManager::GetInst()->FindAnimationSequence(Name);
 
-	//ÇØ´ç ÁÖ¼Ò¸¦ ÀÌ Å¬·¡½ºÀÇ map¿¡ Ãß°¡ÇÑ´Ù.
+	//í•´ë‹¹ ì£¼ì†Œë¥¼ ì´ í´ë˜ìŠ¤ì˜ mapì— ì¶”ê°€í•œë‹¤.
 	m_mapAnimationSequence.insert(std::make_pair(Name, Seq));
 
 
@@ -494,10 +494,10 @@ bool CSceneResource::LoadCSVPreset(
 
 
 	int TexInfoRow = (int)ERowInfo::TexInfo;
-	//csvÀÇ µÎ¹øÂ°Çà Ã¹¹øÂ° ¿­¿¡´Â ÅØ½ºÃ³ ÀÌ¸§ÀÌ ÀûÇôÀÖ´Ù.
+	//csvì˜ ë‘ë²ˆì§¸í–‰ ì²«ë²ˆì§¸ ì—´ì—ëŠ” í…ìŠ¤ì²˜ ì´ë¦„ì´ ì í˜€ìˆë‹¤.
 	std::string TexName = CSVEditor->GetCell(TexInfoRow, 0);
 
-	//Ã¹Çà µÎ¹øÂ°Çà µÎ¹øÂ° ¿­¿¡´Â ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏ¸íÀÌ ÀûÇôÀÖ´Ù.
+	//ì²«í–‰ ë‘ë²ˆì§¸í–‰ ë‘ë²ˆì§¸ ì—´ì—ëŠ” ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ëª…ì´ ì í˜€ìˆë‹¤.
 	std::tstring FileName;
 #ifdef _UNICODE
 	FileName.assign(
@@ -508,18 +508,18 @@ bool CSceneResource::LoadCSVPreset(
 	FileName = m_CSVEditor->GetCell(TexInfoRow, 1);
 #endif
 
-	//Ã¹Çà µÎ¹øÂ°Çà 5¹øÂ° ¿­(1, 4)¿¡´Â È÷Æ®ÀÌÆåÆ® Ã¤³ÎÀ» »ç¿ëÇÒ°ÍÀÎÁö ¿©ºÎ°¡ ÀûÇôÀÖ´Ù.
+	//ì²«í–‰ ë‘ë²ˆì§¸í–‰ 5ë²ˆì§¸ ì—´(1, 4)ì—ëŠ” íˆíŠ¸ì´í™íŠ¸ ì±„ë„ì„ ì‚¬ìš©í• ê²ƒì¸ì§€ ì—¬ë¶€ê°€ ì í˜€ìˆë‹¤.
 	std::string EReactionChannelstr = CSVEditor->GetCell(TexInfoRow, 4);
 	int EReactionChannelFlag = 0;
 	sscanf_s(EReactionChannelstr.c_str(), "%d", &EReactionChannelFlag);
 
-	//ÅØ½ºÃ³¸¦ ÃÖ´ë·Î ÁöÁ¤ÇÑ EReactionChannel±îÁö ·ÎµåÇÑ´Ù.
+	//í…ìŠ¤ì²˜ë¥¼ ìµœëŒ€ë¡œ ì§€ì •í•œ EReactionChannelê¹Œì§€ ë¡œë“œí•œë‹¤.
 	EReactionChannel MaxReactionChannel = (EReactionChannel)EReactionChannelFlag;
 
 
 	if (LoadTexture(TexName, FileName, TEXTURE_PATH, MaxReactionChannel))
 	{
-		//ÄÃ·¯Å°°¡ µé¾îÀÖ´Â ¼¿
+		//ì»¬ëŸ¬í‚¤ê°€ ë“¤ì–´ìˆëŠ” ì…€
 		std::string src = CSVEditor->GetCell(TexInfoRow, 2);
 
 		int R = 255;
@@ -532,7 +532,7 @@ bool CSceneResource::LoadCSVPreset(
 			if (src[k] == '/')
 				++SlashCount;
 		}
-		//ÄÃ·¯Å° RGB°ªÀÌ Á¤»óÀûÀ¸·Î ÀÔ·ÂµÇ¾úÀ» °æ¿ì
+		//ì»¬ëŸ¬í‚¤ RGBê°’ì´ ì •ìƒì ìœ¼ë¡œ ì…ë ¥ë˜ì—ˆì„ ê²½ìš°
 		if (SlashCount == 2)
 		{
 			sscanf_s(src.c_str(), "%d/%d/%d", &R, &G, &B);
@@ -545,17 +545,17 @@ bool CSceneResource::LoadCSVPreset(
 		return false;
 	}
 
-	//³× ¹øÂ° Çà Ã¹¹ø¤Š ¿­ºÎÅÍ ¸¸µé¾î¾ß ÇÒ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º ÀÌ¸§ÀÌ ÀûÇôÀÖ´Ù.
+	//ë„¤ ë²ˆì§¸ í–‰ ì²«ë²ˆì¨° ì—´ë¶€í„° ë§Œë“¤ì–´ì•¼ í•  ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ì´ë¦„ì´ ì í˜€ìˆë‹¤.
 	int rowcount = (int)CSVEditor->GetRowCount();
 	for (int i = (int)ERowInfo::AnimSeqInfoStart; i < rowcount; ++i)
 	{
 		if (CSVEditor->GetRow(i).empty())
 			continue;
 
-		//°¡Àå Ã¹¹øÂ° ¿­Àº ¸¸µé ½ÃÄö½ºÀÇ ÀÌ¸§ÀÌ ÀûÇô ÀÖ´Ù.
+		//ê°€ì¥ ì²«ë²ˆì§¸ ì—´ì€ ë§Œë“¤ ì‹œí€€ìŠ¤ì˜ ì´ë¦„ì´ ì í˜€ ìˆë‹¤.
 		std::string AnimName = CSVEditor->GetCell(i, (int)EColInfo::AnimSeqName);
 
-		//¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º »ı¼º¿¡ µµ·Î ½ÇÆĞÇÏ¸é »èÁ¦ÇÏ°í return
+		//ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ìƒì„±ì— ë„ë¡œ ì‹¤íŒ¨í•˜ë©´ ì‚­ì œí•˜ê³  return
 		if (!CreateAnimationSequence(AnimName, TexName))
 		{
 			SAFE_DELETE(CSVEditor);
@@ -565,13 +565,13 @@ bool CSceneResource::LoadCSVPreset(
 
 		int rowsize = 0;
 
-		//ÀÌ¹Ì ·ÎµåµÇ¾úÀ½ÀÌ È®ÀÎµÇ¸é ½ÃÄö½º ºÎºĞÀº ·ÎµåÇÏÁö ¾ÊÀ½.
+		//ì´ë¯¸ ë¡œë“œë˜ì—ˆìŒì´ í™•ì¸ë˜ë©´ ì‹œí€€ìŠ¤ ë¶€ë¶„ì€ ë¡œë“œí•˜ì§€ ì•ŠìŒ.
 		if (CheckAnimLoaded(AnimName))
 			continue;
 		else
 			rowsize = (int)CSVEditor->GetRow(i).size();
 
-		//¸ÕÀú ¾Ö´Ï¸ŞÀÌ¼Ç Sequence¿¡ ´ëÇÑ Á¤º¸¸¦ µî·ÏÇÑ´Ù.
+		//ë¨¼ì € ì• ë‹ˆë©”ì´ì…˜ Sequenceì— ëŒ€í•œ ì •ë³´ë¥¼ ë“±ë¡í•œë‹¤.
 		for (
 			int j = (int)EColInfo::FramePosStart;
 			j < rowsize;
@@ -580,8 +580,8 @@ bool CSceneResource::LoadCSVPreset(
 		{
 			std::string src = CSVEditor->GetCell(i, j);
 
-			//¸¸¾à ¾Æ¹« ³»¿ëµµ ÀÔ·ÂµÇ¾îÀÖÁö ¾Ê´Ù¸é continue
-			//AnimInfo ÀÎÀÚ°ª¿¡µµ °ø¶õÀÌ µé¾î¿Ã ¼ö ÀÖÀ¸¹Ç·Î ÇØ´ç »çÇ×µµ Ã¼Å©
+			//ë§Œì•½ ì•„ë¬´ ë‚´ìš©ë„ ì…ë ¥ë˜ì–´ìˆì§€ ì•Šë‹¤ë©´ continue
+			//AnimInfo ì¸ìê°’ì—ë„ ê³µë€ì´ ë“¤ì–´ì˜¬ ìˆ˜ ìˆìœ¼ë¯€ë¡œ í•´ë‹¹ ì‚¬í•­ë„ ì²´í¬
 			if (src == "")
 				continue;
 
@@ -590,7 +590,7 @@ bool CSceneResource::LoadCSVPreset(
 			Vector2 End;
 			Vector2 Offset;
 
-			//½½·¡½¬°¡ 4°³ ÀÌ»óÀÌ¸é Offsetµµ µî·ÏµÇ¾îÀÖ´Ù´Â ¶æÀÌ¹Ç·Î Offset°ªµµ Àü´ŞÇÏ¿© »ı¼ºÇÑ´Ù.
+			//ìŠ¬ë˜ì‰¬ê°€ 4ê°œ ì´ìƒì´ë©´ Offsetë„ ë“±ë¡ë˜ì–´ìˆë‹¤ëŠ” ëœ»ì´ë¯€ë¡œ Offsetê°’ë„ ì „ë‹¬í•˜ì—¬ ìƒì„±í•œë‹¤.
 			int SlashCount = 0;
 			for (size_t k = 0; k < src.size(); ++k)
 			{
@@ -598,28 +598,28 @@ bool CSceneResource::LoadCSVPreset(
 					++SlashCount;
 			}
 
-			//ÀÔ·Â ¾ÈµÈ ºÎºĞÀÌ ³ª¿À¸é return;
+			//ì…ë ¥ ì•ˆëœ ë¶€ë¶„ì´ ë‚˜ì˜¤ë©´ return;
 			if (SlashCount < 3)
 				continue;
-			//½ºÇÁ¶óÀÌÆ® ÁÂÇ¥°ª¸¸ ÀÔ·ÂµÇ¾úÀ»°æ¿ì
+			//ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œê°’ë§Œ ì…ë ¥ë˜ì—ˆì„ê²½ìš°
 			else if (SlashCount == 3)
 			{
 				sscanf_s(src.c_str(), "%f/%f/%f/%f", &Start.x, &Start.y, &End.x, &End.y);
 			}
-			//¿ÀÇÁ¼Â °ª±îÁö ÀÔ·ÂµÆÀ»°æ¿ì
+			//ì˜¤í”„ì…‹ ê°’ê¹Œì§€ ì…ë ¥ëì„ê²½ìš°
 			else if (SlashCount > 3)
 			{
 				sscanf_s(src.c_str(), "%f/%f/%f/%f/%f/%f",
 					&Start.x, &Start.y, &End.x, &End.y, &Offset.x, &Offset.y);
 			}
 
-			//¾Æ¹«·± Á¤º¸°¡ ÀÔ·ÂµÇ¾îÀÖÁö ¾ÊÀ» °æ¿ì ±×¸²ÆÄÀÏÀÇ Ã¹ 10ÇÁ·¹ÀÓ Á¤º¸¸¦ ºÒ·¯¿Â´Ù.
+			//ì•„ë¬´ëŸ° ì •ë³´ê°€ ì…ë ¥ë˜ì–´ìˆì§€ ì•Šì„ ê²½ìš° ê·¸ë¦¼íŒŒì¼ì˜ ì²« 10í”„ë ˆì„ ì •ë³´ë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
 			if (Start == 0.f && End == 0.f)
 			{
 				End = 10.f;
 			}
 
-			//ÇÁ·¹ÀÓ µ¥ÀÌÅÍ Ãß°¡
+			//í”„ë ˆì„ ë°ì´í„° ì¶”ê°€
 			if (!AddAnimationSpriteFrame(AnimName,
 				Start, End, Offset))
 			{
@@ -627,7 +627,7 @@ bool CSceneResource::LoadCSVPreset(
 				return false;
 			}
 
-			//¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º¿¡ ·ÎµåµÇ¾úÀ½À» Àü´Ş
+			//ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ì— ë¡œë“œë˜ì—ˆìŒì„ ì „ë‹¬
 			SetAnimLoaded(AnimName);
 		}
 	}
@@ -647,17 +647,17 @@ CTexture* CSceneResource::FindTexture(const std::string& Name)
 {
 	auto iter = m_mapTexture.find(Name);
 
-	//È¤½Ã ¿©±â¿¡ ¾øÀ¸¸é
+	//í˜¹ì‹œ ì—¬ê¸°ì— ì—†ìœ¼ë©´
 	if (iter == m_mapTexture.end())
 	{
-		//ResourceManager¿¡¼­µµ ÇÑ¹ø Ã£¾Æº»´Ù.
+		//ResourceManagerì—ì„œë„ í•œë²ˆ ì°¾ì•„ë³¸ë‹¤.
 		CTexture* Texture = CResourceManager::GetInst()->FindTexture(Name);
 
-		//¿©±â¼­µµ ¾øÀ¸¸é nullptrÀ» ¹İÈ¯ÇÏ°í
+		//ì—¬ê¸°ì„œë„ ì—†ìœ¼ë©´ nullptrì„ ë°˜í™˜í•˜ê³ 
 		if (!Texture)
 			return nullptr;
 
-		//È¤½Ã³ª ÀÖÀ¸¸é ÀÌ°Íµµ SceneResource¿¡ µî·ÏÇÏ°í ÁÖ¼Ò¸¦ ¹İÈ¯ÇÑ´Ù.
+		//í˜¹ì‹œë‚˜ ìˆìœ¼ë©´ ì´ê²ƒë„ SceneResourceì— ë“±ë¡í•˜ê³  ì£¼ì†Œë¥¼ ë°˜í™˜í•œë‹¤.
 		m_mapTexture.insert(std::make_pair(Name, Texture));
 
 		return Texture;
@@ -678,7 +678,7 @@ bool CSceneResource::LoadTexture(const std::string& Name, const std::tstring& Fi
 {
 	CTexture* Tex = FindTexture(Name);
 	
-	//ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖÀ¸¸é true ¹İÈ¯.
+	//ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆìœ¼ë©´ true ë°˜í™˜.
 	if (Tex)
 		return true;
 

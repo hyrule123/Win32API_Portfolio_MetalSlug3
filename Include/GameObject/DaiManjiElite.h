@@ -21,7 +21,7 @@ enum EDaiManjiEliteActions
 };
 
 class CDaiManjiElite :
-    public CDaiManji
+	public CDaiManji
 {
 	friend class CScene;
 
@@ -48,7 +48,7 @@ private:
 	CooltimeChecker m_Timer;
 	CooltimeChecker m_ActionTimer;
 	EDaiManjiEliteActions m_Action;
-	bool m_ForceMove;	//±¸¼®¿¡ ¸ô·ÈÀ»¶§ °­Á¦·Î °¡¿îµ¥·Î ÀÌµ¿½ÃÅ´.
+	bool m_ForceMove;	//êµ¬ì„ì— ëª°ë ¸ì„ë•Œ ê°•ì œë¡œ ê°€ìš´ë°ë¡œ ì´ë™ì‹œí‚´.
 	bool m_Phase2;
 	INT16 m_SpawnQueue;
 	virtual void Routine(float DeltaTime);
@@ -60,7 +60,7 @@ private:
 	void EliteUFOSpawn();
 	void NormalUFOSpawn();
 	void DaiManjiDeployEnd();
-	void DaiManjiChargingEnd();	//¿©±â¼­ ½ÇÁ¦ ¿¡³ÊÁöº¼ÀÌ ¹ß»çµÈ´Ù.
+	void DaiManjiChargingEnd();	//ì—¬ê¸°ì„œ ì‹¤ì œ ì—ë„ˆì§€ë³¼ì´ ë°œì‚¬ëœë‹¤.
 	void DaiManjiReverseEnd();
 };
 

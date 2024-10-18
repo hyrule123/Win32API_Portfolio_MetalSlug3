@@ -1,11 +1,11 @@
 #include "AstroHMG.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//ÃÑ¾Ë ÀÌÆåÆ® »ı¼º¿ë
+//ì´ì•Œ ì´í™íŠ¸ ìƒì„±ìš©
 #include "PistolHit.h"
 
 #include "../ScoreManager.h"
@@ -36,14 +36,14 @@ bool CAstroHMG::Init(CGameObject* Obj)
 
 	SetRenderLayer(ERenderLayer::EffectLow);
 
-	//Ãæµ¹Ã¼ ¼³Á¤
+	//ì¶©ëŒì²´ ì„¤ì •
 	CColliderBox* Coll = AddCollider<CColliderBox>("Bullet");
 
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetSize(m_Size);
 	Coll->SetPivot(0.5f, 1.f);
 
-	//È£Ãâ ÇÔ¼ö ¼³
+	//í˜¸ì¶œ í•¨ìˆ˜ ì„¤
 	Coll->SetCollisionBeginFunc(this, &CAstroHMG::CollisionBegin);
 
 	m_isReady = true;
@@ -77,7 +77,7 @@ void CAstroHMG::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 	CPistolHit* Effect = m_Scene->CreateObject<CPistolHit>("BulletSFX");
 
-	//¾à°£ ·£´ıÇÏ°Ô ÇÇ°İÀÌÆåÆ® Ç¥½Ã
+	//ì•½ê°„ ëœë¤í•˜ê²Œ í”¼ê²©ì´í™íŠ¸ í‘œì‹œ
 	if (Effect)
 	{
 		Effect->SetPos(Src->GetHitPoint() + (rand() % 10));
@@ -85,7 +85,7 @@ void CAstroHMG::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 	Dest->GetOwnerObj()->InflictDamage(m_Damage);
 
-	//Á¡¼ö
+	//ì ìˆ˜
 	CScoreManager::GetInst()->AddScore(100);
 
 	SetActive(false);

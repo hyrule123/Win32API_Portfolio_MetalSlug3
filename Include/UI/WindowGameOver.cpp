@@ -4,110 +4,110 @@
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//»õ·Î¿î ¾À ÀüÈ¯À» À§ÇØ Æ÷ÇÔ
+//ìƒˆë¡œìš´ ì”¬ ì „í™˜ì„ ìœ„í•´ í¬í•¨
 #include "../Input.h"
 #include "../Scene/SceneManager.h"
 #include "../Scene/StartScene.h"
 
 
-//¹è°æÈ­¸é
+//ë°°ê²½í™”ë©´
 #include "WidgetImage.h"
 
-//¹öÆ°
+//ë²„íŠ¼
 #include "WidgetButton.h"
 
-//ÅØ½ºÆ®, ÅØ½ºÆ®ÀÌ¹ÌÁö
+//í…ìŠ¤íŠ¸, í…ìŠ¤íŠ¸ì´ë¯¸ì§€
 #include "WidgetText.h"
 #include "WidgetTextImage.h"
 
-//È­¸é ÇØ»óµµ ¾ò¾î¿À±â À§ÇÔ
+//í™”ë©´ í•´ìƒë„ ì–»ì–´ì˜¤ê¸° ìœ„í•¨
 #include "../GameManager.h"
 
-//¿¡µ÷¾À 
+//ì—ë”§ì”¬ 
 #include "../Scene/SceneEdit.h"
 
-//ÆäÀÌµåÀÎ, ÆäÀÌµå¾Æ¿ô
+//í˜ì´ë“œì¸, í˜ì´ë“œì•„ì›ƒ
 #include "WidgetFadeInOut.h"
 
 
 
 CWindowGameOver::CWindowGameOver() :
-    m_PlayGameDelayOn(),
-    m_Delay(2.f)
+	m_PlayGameDelayOn(),
+	m_Delay(2.f)
 {
 }
 
 CWindowGameOver::~CWindowGameOver()
 {
-    CInput::GetInst()->DeleteBindClass<CWindowGameOver>(this);
+	CInput::GetInst()->DeleteBindClass<CWindowGameOver>(this);
 }
 
 bool CWindowGameOver::Init()
 {
-    if (!CWidgetWindow::Init())
-        return false;
+	if (!CWidgetWindow::Init())
+		return false;
 
-    SetSize(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
+	SetSize(ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
 
-    //¹è°æÈ­¸é »ı¼º
-    CWidgetImage* Image = CreateWidget<CWidgetImage>("StartSceneBack");
-    m_Scene->GetSceneResource()->LoadTexture(
-        "GameOver0", TEXT("UI/GameOver0.bmp"));
-    Image->SetTexture("GameOver0");
-
-
-    //ÆäÀÌµåÀÎ
-    CWidgetFadeInOut* FadeIn = CreateWidget<CWidgetFadeInOut>("FadeIn");
-    FadeIn->SetEssential(true);
+	//ë°°ê²½í™”ë©´ ìƒì„±
+	CWidgetImage* Image = CreateWidget<CWidgetImage>("StartSceneBack");
+	m_Scene->GetSceneResource()->LoadTexture(
+		"GameOver0", TEXT("UI/GameOver0.bmp"));
+	Image->SetTexture("GameOver0");
 
 
-    //10ÃÊ ÈÄ ¸ŞÀÎ¸Ş´º·Î µ¹¾Æ°¨.
-    m_PlayGameDelayOn = true;
-    m_Delay = 10.f;
-
-    //{
-    //    //ÅØ½ºÆ®ÀÌ¹ÌÁö Ãâ·Â
-    //    CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("GamePlayText");
-    //    Text->SetTextImage("BasicFontSilver");
-    //    Text->SetPos(ORIGINAL_GAME_RES_WIDTH / 2, 170);
-    //    Text->SetText("Press 1 Key to Insert Coin");
-    //    Text->SetFlicker(10000.f, 0.8f);
-    //    Text->SetAlignMode(EAlignMode::Mid);
-    //}
-
-    //{
-    //    CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("EditModeText");
-    //    Text->SetTextImage("BasicFontSilver");
-    //    Text->SetPos(100, 214);
-    //    Text->SetText("Ctrl + E to Enter Edit Mode");
-    //    Text->SetFlicker(10000.f, 0.8f);
-    //}
+	//í˜ì´ë“œì¸
+	CWidgetFadeInOut* FadeIn = CreateWidget<CWidgetFadeInOut>("FadeIn");
+	FadeIn->SetEssential(true);
 
 
+	//10ì´ˆ í›„ ë©”ì¸ë©”ë‰´ë¡œ ëŒì•„ê°.
+	m_PlayGameDelayOn = true;
+	m_Delay = 10.f;
 
-    return true;
+	//{
+	//    //í…ìŠ¤íŠ¸ì´ë¯¸ì§€ ì¶œë ¥
+	//    CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("GamePlayText");
+	//    Text->SetTextImage("BasicFontSilver");
+	//    Text->SetPos(ORIGINAL_GAME_RES_WIDTH / 2, 170);
+	//    Text->SetText("Press 1 Key to Insert Coin");
+	//    Text->SetFlicker(10000.f, 0.8f);
+	//    Text->SetAlignMode(EAlignMode::Mid);
+	//}
+
+	//{
+	//    CWidgetTextImage* Text = CreateWidget< CWidgetTextImage>("EditModeText");
+	//    Text->SetTextImage("BasicFontSilver");
+	//    Text->SetPos(100, 214);
+	//    Text->SetText("Ctrl + E to Enter Edit Mode");
+	//    Text->SetFlicker(10000.f, 0.8f);
+	//}
+
+
+
+	return true;
 }
 
 void CWindowGameOver::Update(float DeltaTime)
 {
-    CWidgetWindow::Update(DeltaTime);
+	CWidgetWindow::Update(DeltaTime);
 
-    if (m_PlayGameDelayOn)
-    {
-        m_Delay -= DeltaTime;
-        if (m_Delay < 0.f)
-        {
-            CWidgetFadeInOut* FadeOut = CreateWidget<CWidgetFadeInOut>("WidgetFadeOut");
-            FadeOut->SetEssential(false);
-            FadeOut->AddEndFunction<CWindowGameOver>(this, &CWindowGameOver::ReturnMainMenuCallBack);
-        }
-    }
+	if (m_PlayGameDelayOn)
+	{
+		m_Delay -= DeltaTime;
+		if (m_Delay < 0.f)
+		{
+			CWidgetFadeInOut* FadeOut = CreateWidget<CWidgetFadeInOut>("WidgetFadeOut");
+			FadeOut->SetEssential(false);
+			FadeOut->AddEndFunction<CWindowGameOver>(this, &CWindowGameOver::ReturnMainMenuCallBack);
+		}
+	}
 
 }
 
 void CWindowGameOver::ReturnMainMenuCallBack()
 {
-    CSceneManager::GetInst()->CreateScene<CStartScene>();
+	CSceneManager::GetInst()->CreateScene<CStartScene>();
 }
 
 

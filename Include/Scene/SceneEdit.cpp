@@ -1,16 +1,16 @@
 #include "SceneEdit.h"
 
-//csv ¸®´õ
+//csv ë¦¬ë”
 #include "../CSVEditor.h"
 
-//´ÙÀÌ¾ó·Î±× Á¾·á ½Ã ½ºÅ¸Æ®¾ÀÀ¸·Î µ¹¾Æ°¨. ¾À ÀüÈ¯ ¿ë
+//ë‹¤ì´ì–¼ë¡œê·¸ ì¢…ë£Œ ì‹œ ìŠ¤íƒ€íŠ¸ì”¬ìœ¼ë¡œ ëŒì•„ê°. ì”¬ ì „í™˜ ìš©
 #include "SceneManager.h"
 #include "StartScene.h"
 
-//Ä«¸Ş¶ó ÀÌµ¿, ·Îµå ÈÄ Ä«¸Ş¶ó À§Ä¡ Àç¼³Á¤
+//ì¹´ë©”ë¼ ì´ë™, ë¡œë“œ í›„ ì¹´ë©”ë¼ ìœ„ì¹˜ ì¬ì„¤ì •
 #include "Camera.h"
 
-//°ÔÀÓ¸Å´ÏÀú¿¡ ¿¡µ÷¸ğµå º¯°æÀ» ¾Ë·ÁÁÖ±â À§ÇÔ
+//ê²Œì„ë§¤ë‹ˆì €ì— ì—ë”§ëª¨ë“œ ë³€ê²½ì„ ì•Œë ¤ì£¼ê¸° ìœ„í•¨
 #include "../GameManager.h"
 
 #include "../Resource/Texture/Texture.h"
@@ -19,10 +19,10 @@
 #include "SceneEdit.h"
 
 
-//À©µµ¿ì ÀÎ½ºÅÏ½º ¹Ş¾Æ¿À´Â ¿ëµµ
+//ìœˆë„ìš° ì¸ìŠ¤í„´ìŠ¤ ë°›ì•„ì˜¤ëŠ” ìš©ë„
 #include "../GameManager.h"
 
-//°æ·Î °ü¸®ÀÚ
+//ê²½ë¡œ ê´€ë¦¬ì
 #include "../PathManager.h"
 
 #include "../Resource/Texture/Texture.h"
@@ -30,12 +30,12 @@
 #include "../Scene/SceneResource.h"
 
 
-//¸®¼Ò½º Á¤ÀÇ ¹øÈ£ °¡Á®¿À±â À§ÇÔ
+//ë¦¬ì†ŒìŠ¤ ì •ì˜ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸° ìœ„í•¨
 #include "../resource.h"
 #include "../Resource/Animation/AnimationSequence.h"
 #include "../UI/WindowEdit.h"
 
-//¾Ö´Ï¸ŞÀÌ¼Ç ·»´õ¸µ¿ë °ÔÀÓ¿ÀºêÁ§Æ®
+//ì• ë‹ˆë©”ì´ì…˜ ë Œë”ë§ìš© ê²Œì„ì˜¤ë¸Œì íŠ¸
 #include "../GameObject/EditViewer.h"
 
 
@@ -50,10 +50,10 @@ CSceneEdit::CSceneEdit() :
 	m_Viewer(nullptr)
 
 {
-	//¿¡µğÅÍ ¸ğµåÀÓÀ» ¾Ë·ÁÁÜ.
+	//ì—ë””í„° ëª¨ë“œì„ì„ ì•Œë ¤ì¤Œ.
 	CGameManager::GetInst()->SetEditMode();
 
-	//Á¤Àûº¯¼ö¿¡ ÁÖ¼Ò¸¦ µî·Ï
+	//ì •ì ë³€ìˆ˜ì— ì£¼ì†Œë¥¼ ë“±ë¡
 	s_Dlg = this;
 }
 
@@ -70,14 +70,14 @@ CSceneEdit::~CSceneEdit()
 		SAFE_DELETE(m_vecCSVEditor[i]);
 	}
 
-	//ÀÌ ¾À°ú °ü·ÃµÈ ÀÔ·Â¹ÙÀÎµùÀ» ¸ğµÎ Á¦°ÅÇÑ´Ù.
+	//ì´ ì”¬ê³¼ ê´€ë ¨ëœ ì…ë ¥ë°”ì¸ë”©ì„ ëª¨ë‘ ì œê±°í•œë‹¤.
 	CInput::GetInst()->DeleteBindClass<CSceneEdit>(this);
 	
 }
 
 bool CSceneEdit::Init()
 {
-	//´ÜÃàÅ°¿Í, È£ÃâÇÒ Äİ¹é ¸Ş¼Òµå µî·Ï.
+	//ë‹¨ì¶•í‚¤ì™€, í˜¸ì¶œí•  ì½œë°± ë©”ì†Œë“œ ë“±ë¡.
 	CInput::GetInst()->AddBindFunction<CSceneEdit>("OpenEditor",
 		EInput_Type::Down, this, &CSceneEdit::ChangeVisibleStatus);
 
@@ -87,7 +87,7 @@ bool CSceneEdit::Init()
 
 
 
-	//Ã¢ »ı¼º
+	//ì°½ ìƒì„±
 	m_hDlg = CreateDialog(CGameManager::GetInst()->GetWindowInstance(), MAKEINTRESOURCE(IDD_DIALOG_ANIMEDIT), CGameManager::GetInst()->GetWindowHandle(), CSceneEdit::WndProc);
 
 	CGameManager* Mgr = CGameManager::GetInst();
@@ -105,29 +105,29 @@ bool CSceneEdit::Init()
 
 
 
-	//À©µµ¿ìÀÇ À§Ä¡ ÁöÁ¤. »çÀÌÁî´Â º¯°æÇÏÁö ¾Ê°í(SWP_NOSIZE) À§Ä¡¸¸
+	//ìœˆë„ìš°ì˜ ìœ„ì¹˜ ì§€ì •. ì‚¬ì´ì¦ˆëŠ” ë³€ê²½í•˜ì§€ ì•Šê³ (SWP_NOSIZE) ìœ„ì¹˜ë§Œ
 	SetWindowPos(m_hDlg, 0, rcmain.left, rcmain.top, 0, 0, SWP_NOSIZE);
 
-	//Ã¢ ¶ç¿ò
+	//ì°½ ë„ì›€
 	ShowWindow(m_hDlg, SW_SHOW);
 	m_Hide = false;
 
-	//¸®½ºÆ®ÀÇ ÇÚµéÀ» ¾ò¾î¿Â´Ù.
+	//ë¦¬ìŠ¤íŠ¸ì˜ í•¸ë“¤ì„ ì–»ì–´ì˜¨ë‹¤.
 	m_hTextureListBox = GetDlgItem(m_hDlg, IDC_LIST_TEXTURENAME);
 	m_hAnimSeqListBox = GetDlgItem(m_hDlg, IDC_LIST_ANIMSEQ);
 	m_hFrameListBox = GetDlgItem(m_hDlg, IDC_LIST_SPRITE_FRAME);
 	m_hPlayListBox = GetDlgItem(m_hDlg, IDC_LIST_PLAYLIST);
 
-	//Ã¼Å©¹Ú½º ÇÚµé ¾ò¾î¿Â´Ù.
+	//ì²´í¬ë°•ìŠ¤ í•¸ë“¤ ì–»ì–´ì˜¨ë‹¤.
 	m_hCheckReverse = GetDlgItem(m_hDlg, IDC_CHECK_REVERSE);
 
 
-	//·»´õ¸µ¿ë °ÔÀÓ¿ÀºêÁ§Æ®
+	//ë Œë”ë§ìš© ê²Œì„ì˜¤ë¸Œì íŠ¸
 	m_Viewer = CreateObject<CEditViewer>("Viewer");
 	m_Viewer->SetPos(100.f, 100.f);
 
 
-	//GameObject¿¡ µî·ÏµÈ µğ¹ö±×¿ë Å°¸¦ µî·Ï ÇØÁ¦ÇÑ´Ù.
+	//GameObjectì— ë“±ë¡ëœ ë””ë²„ê·¸ìš© í‚¤ë¥¼ ë“±ë¡ í•´ì œí•œë‹¤.
 	CInput::GetInst()->DeleteBindClass<CGameManager>(CGameManager::GetInst());
 
 
@@ -142,19 +142,19 @@ bool CSceneEdit::Init()
 
 bool CSceneEdit::LoadCSV()
 {
-	//Ç®°æ·Î¸¦ ¹Ş¾Æ¿Ã ÁÖ¼Ò º¯¼ö¸¦ ¸¸µé¾îÁÖ°í
+	//í’€ê²½ë¡œë¥¼ ë°›ì•„ì˜¬ ì£¼ì†Œ ë³€ìˆ˜ë¥¼ ë§Œë“¤ì–´ì£¼ê³ 
 	TCHAR FullPath[MAX_PATH] = {};
 
 
-	//ÆÄÀÏ ¿­±â Ã¢¿¡ Àü´ŞÇÒ ¼³Á¤ ±¸Á¶Ã¼¸¦ ¼³Á¤ÇØÁØ´Ù.
+	//íŒŒì¼ ì—´ê¸° ì°½ì— ì „ë‹¬í•  ì„¤ì • êµ¬ì¡°ì²´ë¥¼ ì„¤ì •í•´ì¤€ë‹¤.
 	OPENFILENAME OpenFile = {};
 
 
-	OpenFile.lStructSize = sizeof(OPENFILENAME);	//±¸Á¶Ã¼ Å©±â
-	OpenFile.hwndOwner = m_hDlg;	//°ü¸® ÇÚµé
-	OpenFile.lpstrFilter = TEXT("*.csv File\0*.csv\0¸ğµç ÆÄÀÏ\0*.*"); 	//ÆÄÀÏ Çü½Ä
-	OpenFile.lpstrFile = FullPath;	//°æ·Î°¡ ÀúÀåµÉ º¯¼ö ÁÖ¼Ò
-	OpenFile.nMaxFile = MAX_PATH;	//ÃÖ´ë °æ·Î ÀÚ¸´¼ö
+	OpenFile.lStructSize = sizeof(OPENFILENAME);	//êµ¬ì¡°ì²´ í¬ê¸°
+	OpenFile.hwndOwner = m_hDlg;	//ê´€ë¦¬ í•¸ë“¤
+	OpenFile.lpstrFilter = TEXT("*.csv File\0*.csv\0ëª¨ë“  íŒŒì¼\0*.*"); 	//íŒŒì¼ í˜•ì‹
+	OpenFile.lpstrFile = FullPath;	//ê²½ë¡œê°€ ì €ì¥ë  ë³€ìˆ˜ ì£¼ì†Œ
+	OpenFile.nMaxFile = MAX_PATH;	//ìµœëŒ€ ê²½ë¡œ ìë¦¿ìˆ˜
 
 #ifdef _UNICODE
 	OpenFile.lpstrInitialDir = CPathManager::GetInst()->FindPath(TEXTURE_PATH)->Path;
@@ -162,7 +162,7 @@ bool CSceneEdit::LoadCSV()
 	OpenFile.lpstrInitialDir = CPathManager::GetInst()->FindPath(TEXTURE_PATH)->PathMultiByte;
 #endif // _UNICODE
 
-	//¸¸µé¾îÁø Ç® °æ·Î¸¦ FullPath¿¡ º¸³½´Ù.
+	//ë§Œë“¤ì–´ì§„ í’€ ê²½ë¡œë¥¼ FullPathì— ë³´ë‚¸ë‹¤.
 	if (GetOpenFileName(&OpenFile))
 	{
 		bool Result = LoadCSVFullPath(FullPath);
@@ -201,10 +201,10 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 	}
 	ClearSelect(ERange::AnimSeq);
 
-	//csvÀÇ µÎ¹øÂ°Çà Ã¹¹øÂ° ¿­¿¡´Â ÅØ½ºÃ³ ÀÌ¸§ÀÌ ÀûÇôÀÖ´Ù.
+	//csvì˜ ë‘ë²ˆì§¸í–‰ ì²«ë²ˆì§¸ ì—´ì—ëŠ” í…ìŠ¤ì²˜ ì´ë¦„ì´ ì í˜€ìˆë‹¤.
 	std::string TexName = CSVEditor->GetCell((int)ERowInfo::TexInfo, 0);
 
-	//Ã¹Çà µÎ¹øÂ°Çà µÎ¹øÂ° ¿­¿¡´Â ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏ¸íÀÌ ÀûÇôÀÖ´Ù.
+	//ì²«í–‰ ë‘ë²ˆì§¸í–‰ ë‘ë²ˆì§¸ ì—´ì—ëŠ” ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ëª…ì´ ì í˜€ìˆë‹¤.
 	std::tstring FileName;
 #ifdef _UNICODE
 	FileName.assign(
@@ -216,7 +216,7 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 #endif
 	if (GetSceneResource()->LoadTexture(TexName, FileName))
 	{
-		//ÄÃ·¯Å°°¡ µé¾îÀÖ´Â ¼¿
+		//ì»¬ëŸ¬í‚¤ê°€ ë“¤ì–´ìˆëŠ” ì…€
 		std::string src = CSVEditor->GetCell(1, 2);
 
 		int R = 255;
@@ -229,14 +229,14 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 			if (src[k] == '/')
 				++SlashCount;
 		}
-		//ÄÃ·¯Å° RGB°ªÀÌ Á¤»óÀûÀ¸·Î ÀÔ·ÂµÇ¾úÀ» °æ¿ì
+		//ì»¬ëŸ¬í‚¤ RGBê°’ì´ ì •ìƒì ìœ¼ë¡œ ì…ë ¥ë˜ì—ˆì„ ê²½ìš°
 		if (SlashCount == 2)
 		{
 			sscanf_s(src.c_str(), "%d/%d/%d", &R, &G, &B);
 		}
 		GetSceneResource()->SetColorKey(TexName, R, G, B);
 
-		//ÅØ½ºÃ³°¡ ·ÎµåµÇ¸é ´ÙÀÌ¾ó·Î±×¿¡ ÅØ½ºÃ³ ÀÌ¸§°ú ÆÄÀÏ ÀÌ¸§À» Àü¼Û
+		//í…ìŠ¤ì²˜ê°€ ë¡œë“œë˜ë©´ ë‹¤ì´ì–¼ë¡œê·¸ì— í…ìŠ¤ì²˜ ì´ë¦„ê³¼ íŒŒì¼ ì´ë¦„ì„ ì „ì†¡
 		SendMessageA(m_hTextureListBox, LB_ADDSTRING, 0, (LPARAM)TexName.c_str());
 	}
 	else
@@ -245,7 +245,7 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 		return false;
 	}
 
-	//³× ¹øÂ° Çà Ã¹¹ø¤Š ¿­ºÎÅÍ ¸¸µé¾î¾ß ÇÒ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º ÀÌ¸§ÀÌ ÀûÇôÀÖ´Ù.
+	//ë„¤ ë²ˆì§¸ í–‰ ì²«ë²ˆì¨° ì—´ë¶€í„° ë§Œë“¤ì–´ì•¼ í•  ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ì´ë¦„ì´ ì í˜€ìˆë‹¤.
 	for (int i = (int)ERowInfo::AnimSeqInfoStart; i < CSVEditor->GetRowCount(); i++)
 	{
 		std::string AnimName;
@@ -255,26 +255,26 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 		{
 			std::string src = CSVEditor->GetCell(i, j);
 
-			//ÀÎÀÚ ¹øÈ£°¡ ¸î¹ø±îÁö µé¾î¿Ô´ÂÁö¸¦ Ä«¿îÆ®.
+			//ì¸ì ë²ˆí˜¸ê°€ ëª‡ë²ˆê¹Œì§€ ë“¤ì–´ì™”ëŠ”ì§€ë¥¼ ì¹´ìš´íŠ¸.
 			int ParamCount = 0;
-			//¸¸¾à ¾Æ¹« ³»¿ëµµ ÀÔ·ÂµÇ¾îÀÖÁö ¾Ê´Ù¸é continue
-			//AnimInfo ÀÎÀÚ°ª¿¡µµ °ø¶õÀÌ µé¾î¿Ã ¼ö ÀÖÀ¸¹Ç·Î ÇØ´ç »çÇ×µµ Ã¼Å©
+			//ë§Œì•½ ì•„ë¬´ ë‚´ìš©ë„ ì…ë ¥ë˜ì–´ìˆì§€ ì•Šë‹¤ë©´ continue
+			//AnimInfo ì¸ìê°’ì—ë„ ê³µë€ì´ ë“¤ì–´ì˜¬ ìˆ˜ ìˆìœ¼ë¯€ë¡œ í•´ë‹¹ ì‚¬í•­ë„ ì²´í¬
 			if (src == "")
 			{
 				continue;
 			}
 
 
-			//°¡Àå Ã¹¹øÂ° ¿­Àº ¸¸µé ½ÃÄö½ºÀÇ ÀÌ¸§ÀÌ ÀûÇô ÀÖ´Ù.
+			//ê°€ì¥ ì²«ë²ˆì§¸ ì—´ì€ ë§Œë“¤ ì‹œí€€ìŠ¤ì˜ ì´ë¦„ì´ ì í˜€ ìˆë‹¤.
 			if (j == (int)EColInfo::AnimSeqName)
 			{
 				AnimName = src;
 
-				//¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º »ı¼º¿¡ ¼º°øÇÏ¸é ´ÙÀÌ¾ó·Î±×¿¡ ÀÌ¸§ Àü¼Û
+				//ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ìƒì„±ì— ì„±ê³µí•˜ë©´ ë‹¤ì´ì–¼ë¡œê·¸ì— ì´ë¦„ ì „ì†¡
 				if (GetSceneResource()->
 					CreateAnimationSequence(AnimName, TexName))
 				{
-					//¸®½ºÆ®¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º ÀÌ¸§À» Ãß°¡
+					//ë¦¬ìŠ¤íŠ¸ì— ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ì´ë¦„ì„ ì¶”ê°€
 					SendMessageA(m_hAnimSeqListBox, LB_ADDSTRING, 0, (LPARAM)AnimName.c_str());
 				}
 				else
@@ -283,13 +283,13 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 					return false;
 				}
 			}
-			else if (j >= (int)EColInfo::FramePosStart)//ÇØ´ç ÇàÀÇ ÁÂÇ¥ ºÎºĞ ·Îµå
+			else if (j >= (int)EColInfo::FramePosStart)//í•´ë‹¹ í–‰ì˜ ì¢Œí‘œ ë¶€ë¶„ ë¡œë“œ
 			{
 				Vector2 Start;
 				Vector2 End;
 				Vector2 Offset;
 
-				//½½·¡½¬°¡ 4°³ ÀÌ»óÀÌ¸é Offsetµµ µî·ÏµÇ¾îÀÖ´Ù´Â ¶æÀÌ¹Ç·Î Offset°ªµµ Àü´ŞÇÏ¿© »ı¼ºÇÑ´Ù.
+				//ìŠ¬ë˜ì‰¬ê°€ 4ê°œ ì´ìƒì´ë©´ Offsetë„ ë“±ë¡ë˜ì–´ìˆë‹¤ëŠ” ëœ»ì´ë¯€ë¡œ Offsetê°’ë„ ì „ë‹¬í•˜ì—¬ ìƒì„±í•œë‹¤.
 				int SlashCount = 0;
 				for (size_t k = 0; k < src.size(); ++k)
 				{
@@ -297,15 +297,15 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 						++SlashCount;
 				}
 
-				//ÀÔ·Â ¾ÈµÈ ºÎºĞÀÌ ³ª¿À¸é return;
+				//ì…ë ¥ ì•ˆëœ ë¶€ë¶„ì´ ë‚˜ì˜¤ë©´ return;
 				if (SlashCount < 3)
 					break;
-				//½ºÇÁ¶óÀÌÆ® ÁÂÇ¥°ª¸¸ ÀÔ·ÂµÇ¾úÀ»°æ¿ì
+				//ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œê°’ë§Œ ì…ë ¥ë˜ì—ˆì„ê²½ìš°
 				else if (SlashCount == 3)
 				{
 					sscanf_s(src.c_str(), "%f/%f/%f/%f", &Start.x, &Start.y, &End.x, &End.y);
 				}
-				//¿ÀÇÁ¼Â °ª±îÁö ÀÔ·ÂµÆÀ»°æ¿ì
+				//ì˜¤í”„ì…‹ ê°’ê¹Œì§€ ì…ë ¥ëì„ê²½ìš°
 				else if (SlashCount > 3)
 				{
 					sscanf_s(src.c_str(), "%f/%f/%f/%f/%f/%f",
@@ -313,7 +313,7 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 				}
 
 
-				//ÇÁ·¹ÀÓ µ¥ÀÌÅÍ Ãß°¡
+				//í”„ë ˆì„ ë°ì´í„° ì¶”ê°€
 				if (!GetSceneResource()->AddAnimationSpriteFrame(AnimName,
 					Start, End, Offset))
 				{
@@ -329,7 +329,7 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 
 	if (index == -1)
 	{
-		//¿©±â±îÁö ´Ù ³¡³ª¸é CSVEditor ÁÖ¼Ò¸¦ ¸Ê¿¡ »ğÀÔ
+		//ì—¬ê¸°ê¹Œì§€ ë‹¤ ëë‚˜ë©´ CSVEditor ì£¼ì†Œë¥¼ ë§µì— ì‚½ì…
 		m_vecCSVEditor.push_back(CSVEditor);
 	}
 	else if(index >= 0 && index < m_vecCSVEditor.size())
@@ -348,22 +348,22 @@ bool CSceneEdit::LoadCSVFullPath(const TCHAR* FullPath, int index)
 
 bool CSceneEdit::ReloadCSV(const std::string& PathName)
 {
-	//ºñ¾îÀÖÀ¸¸é return
+	//ë¹„ì–´ìˆìœ¼ë©´ return
 	if (m_vecCSVEditor.empty())
 		return false;
 
-	//¸®½ºÆ® ´Ù Áö¿ì°í
+	//ë¦¬ìŠ¤íŠ¸ ë‹¤ ì§€ìš°ê³ 
 	ClearSelect(ERange::All);
 
-	//ºä¾îÀÇ ¾Ö´Ï¸ŞÀÌ¼Çµµ ¸ğµÎ Áö¿öÁÖ°í
+	//ë·°ì–´ì˜ ì• ë‹ˆë©”ì´ì…˜ë„ ëª¨ë‘ ì§€ì›Œì£¼ê³ 
 	m_Viewer->ResetAnimation();
 
 
-	//·ÎµåµÈ CAnimationSeqµµ ´Ù Áö¿öÁØÈÄ
+	//ë¡œë“œëœ CAnimationSeqë„ ë‹¤ ì§€ì›Œì¤€í›„
 	m_SceneResource->ClearAnimSeq();
 
 
-	//°æ·Î¸¦ ¹Ş¾Æ¿Â´Ù.
+	//ê²½ë¡œë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	std::tstring BasicPath;
 #ifdef _UNICODE
 	BasicPath = CPathManager::GetInst()->FindPath(PathName)->Path;
@@ -374,15 +374,15 @@ bool CSceneEdit::ReloadCSV(const std::string& PathName)
 	size_t size = m_vecCSVEditor.size();
 	for (size_t i = 0; i < size; ++i)
 	{
-		//ÆÄÀÏ¸íÀº °¢ csv ÆÄÀÏÀÇ Row 1 Col 2¿¡ ÀúÀåµÇ¾î ÀÖÀ½
+		//íŒŒì¼ëª…ì€ ê° csv íŒŒì¼ì˜ Row 1 Col 2ì— ì €ì¥ë˜ì–´ ìˆìŒ
 		std::string FileNameA;
 		FileNameA = m_vecCSVEditor[i]->GetCell(1, 3);
 
-		//CSVEditor¸¦ ´Ù ½èÀ¸¹Ç·Î Á¦°ÅÇÑ´Ù.
+		//CSVEditorë¥¼ ë‹¤ ì¼ìœ¼ë¯€ë¡œ ì œê±°í•œë‹¤.
 		SAFE_DELETE(m_vecCSVEditor[i]);
 		m_vecCSVEditor[i] = nullptr;
 		
-		//tÅ¸ÀÔ ¹®ÀÚ¿­·Î ¹Ù²ãÁØ´Ù.
+		//tíƒ€ì… ë¬¸ìì—´ë¡œ ë°”ê¿”ì¤€ë‹¤.
 		std::tstring FileNameT;
 #ifdef _UNICODE
 		FileNameT.assign(FileNameA.begin(), FileNameA.end());
@@ -390,10 +390,10 @@ bool CSceneEdit::ReloadCSV(const std::string& PathName)
 		FileNameT = FileNameA;
 #endif
 
-		//Ç® °æ·Î¸¦ ¸¸µé¾îÁÖ°í ·Îµå ¸Ş¼Òµå¿¡ ÀÎµ¦½º ¹øÈ£(i)¿Í ÇÔ²² Àü´Ş.
+		//í’€ ê²½ë¡œë¥¼ ë§Œë“¤ì–´ì£¼ê³  ë¡œë“œ ë©”ì†Œë“œì— ì¸ë±ìŠ¤ ë²ˆí˜¸(i)ì™€ í•¨ê»˜ ì „ë‹¬.
 		std::tstring FullPath = BasicPath + FileNameT;
 
-		//·Îµå ½Ãµµ. ½ÇÆĞ ½Ã false ¸®ÅÏ
+		//ë¡œë“œ ì‹œë„. ì‹¤íŒ¨ ì‹œ false ë¦¬í„´
 		if (!LoadCSVFullPath(FullPath.c_str(), (int)i))
 			return false;
 	}
@@ -402,7 +402,7 @@ bool CSceneEdit::ReloadCSV(const std::string& PathName)
 	SendMessage(m_hTextureListBox, LB_SETCURSEL,
 		(WPARAM)m_SelectTextureIndex, 0);
 
-	//¸ğµç °úÁ¤ÀÌ ³¡³ª¸é true ¸®ÅÏ
+	//ëª¨ë“  ê³¼ì •ì´ ëë‚˜ë©´ true ë¦¬í„´
 	return true;
 }
 
@@ -414,20 +414,20 @@ bool CSceneEdit::ReloadCSV(const std::string& PathName)
 
 void CSceneEdit::SelectTex()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectTextureIndex = (int)SendMessage(m_hTextureListBox, LB_GETCURSEL, 0, 0);
 
-	//¼±ÅÃµÇÁö ¾Ê¾ÒÀ»¶§´Â ½ºÅµ
+	//ì„ íƒë˜ì§€ ì•Šì•˜ì„ë•ŒëŠ” ìŠ¤í‚µ
 	if(SelectIndexRangeCheck(ERange::Texture))
 	{
-		//ÇÏÀ§ ¸®½ºÆ®¸¦ ´Ù Áö¿öÁØ´Ù.
+		//í•˜ìœ„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë‹¤ ì§€ì›Œì¤€ë‹¤.
 		ClearSelect(ERange::AnimSeq);
 
 
-		//ÇàÀÇ ¼ö¸¦ ÀüºÎ ¹Ş¾Æ¿Â´Ù.
+		//í–‰ì˜ ìˆ˜ë¥¼ ì „ë¶€ ë°›ì•„ì˜¨ë‹¤.
 		size_t size = m_vecCSVEditor[m_SelectTextureIndex]->GetRowCount();
 
-		//ÀÌ¸§ÀÌ ÀûÈù ÇàÀ» ¼øÈ¸ÇÏ¸é¼­ ¸®½ºÆ®¿¡ ÀÌ¸§À» µî·ÏÇÑ´Ù.
+		//ì´ë¦„ì´ ì íŒ í–‰ì„ ìˆœíšŒí•˜ë©´ì„œ ë¦¬ìŠ¤íŠ¸ì— ì´ë¦„ì„ ë“±ë¡í•œë‹¤.
 		for (size_t i = (int)ERowInfo::AnimSeqInfoStart; i < size; ++i)
 		{
 			SendMessageA(m_hAnimSeqListBox, LB_ADDSTRING, 0,
@@ -439,16 +439,16 @@ void CSceneEdit::SelectTex()
 
 void CSceneEdit::SelectAnimSeq()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectAnimSeqIndex = (int)SendMessage(m_hAnimSeqListBox, LB_GETCURSEL, 0, 0);
 
-	//»óÀ§ Ç×¸ñÀÇ ÀÎµ¦½º°¡ Á¤»óÀûÀ¸·Î ¼±ÅÃµÇ¾ú´ÂÁö È®ÀÎ
+	//ìƒìœ„ í•­ëª©ì˜ ì¸ë±ìŠ¤ê°€ ì •ìƒì ìœ¼ë¡œ ì„ íƒë˜ì—ˆëŠ”ì§€ í™•ì¸
 	if (SelectIndexRangeCheck(ERange::AnimSeq))
 	{
-		//¿¢¼¿ÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÄö½º ¸ñ·ÏÀÌ ÀÖ´Â Çà¸¸Å­ ´õÇØ¼­ °è»êÇÑ´Ù.
+		//ì—‘ì…€ì˜ ì• ë‹ˆë©”ì´ì…˜ ì‹œí€€ìŠ¤ ëª©ë¡ì´ ìˆëŠ” í–‰ë§Œí¼ ë”í•´ì„œ ê³„ì‚°í•œë‹¤.
 		m_SelectAnimSeqIndex += (int)ERowInfo::AnimSeqInfoStart;
 
-		//ÇÏÀ§ ¸®½ºÆ®¸¦ ´Ù Áö¿öÁØ´Ù.
+		//í•˜ìœ„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë‹¤ ì§€ì›Œì¤€ë‹¤.
 		ClearSelect(ERange::Frame);
 
 
@@ -456,12 +456,12 @@ void CSceneEdit::SelectAnimSeq()
 		size_t size = m_vecCSVEditor[m_SelectTextureIndex]
 			->GetRow(m_SelectAnimSeqIndex).size();
 
-		//ÀÌ¸§ÀÌ ÀûÈù ÇàÀ» ¼øÈ¸ÇÏ¸é¼­ ¸®½ºÆ®¿¡ ÀÌ¸§À» µî·ÏÇÑ´Ù.
-		//ÇöÀç 8¹ø ÀÎÀÚºÎÅÍ ÁÂÇ¥¸¦ ÀÔ·Â¹Ş´Â Áß
+		//ì´ë¦„ì´ ì íŒ í–‰ì„ ìˆœíšŒí•˜ë©´ì„œ ë¦¬ìŠ¤íŠ¸ì— ì´ë¦„ì„ ë“±ë¡í•œë‹¤.
+		//í˜„ì¬ 8ë²ˆ ì¸ìë¶€í„° ì¢Œí‘œë¥¼ ì…ë ¥ë°›ëŠ” ì¤‘
 		int count = 0;
 		for (size_t i = (size_t)EColInfo::FramePosStart; i < size; ++i)
 		{
-			//ºñ¾îÀÖ´Â ¼¿ÀÌ¸é return
+			//ë¹„ì–´ìˆëŠ” ì…€ì´ë©´ return
 			if (m_vecCSVEditor[m_SelectTextureIndex]->GetCell(m_SelectAnimSeqIndex, (int)i) == "")
 				return;
 
@@ -481,19 +481,19 @@ void CSceneEdit::SelectAnimSeq()
 
 void CSceneEdit::SelectFrame()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectFrameIndex = (int)SendMessage(m_hFrameListBox, LB_GETCURSEL, 0, 0);
 
-	//0¹ø ÀÎµ¦½º¿Í -1ÀÏ ¶§´Â ½ºÅµ
+	//0ë²ˆ ì¸ë±ìŠ¤ì™€ -1ì¼ ë•ŒëŠ” ìŠ¤í‚µ
 	if (SelectIndexRangeCheck(ERange::Frame))
 	{
-		//ÇÁ·¹ÀÓ ¸®½ºÆ®¿¡¼­ ¼±ÅÃÇßÀ» °æ¿ì PlayList´Â ¼±ÅÃÀ» ÇØÁ¦ÇÑ´Ù.
+		//í”„ë ˆì„ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì„ íƒí–ˆì„ ê²½ìš° PlayListëŠ” ì„ íƒì„ í•´ì œí•œë‹¤.
 		m_SelectPlayIndex = -1;
 		SendMessage(m_hPlayListBox, LB_SETCURSEL,
 			(WPARAM)m_SelectPlayIndex, 0);
 
 
-		//ÇöÀç ÁÂÇ¥¸¦ ÀÔ·Â¹Ş´Â csv ºÎºĞÀÇ ¿­ ¹øÈ£¸¦ ´õÇØÁÜ.
+		//í˜„ì¬ ì¢Œí‘œë¥¼ ì…ë ¥ë°›ëŠ” csv ë¶€ë¶„ì˜ ì—´ ë²ˆí˜¸ë¥¼ ë”í•´ì¤Œ.
 		int CSVIndex = m_SelectFrameIndex + (int)EColInfo::FramePosStart;
 		
 
@@ -507,7 +507,7 @@ void CSceneEdit::SelectFrame()
 		Vector2 End;
 		Vector2 Offset;
 
-		//½½·¡½¬°¡ 4°³ ÀÌ»óÀÌ¸é Offsetµµ µî·ÏµÇ¾îÀÖ´Ù´Â ¶æÀÌ¹Ç·Î Offset°ªµµ Àü´ŞÇÏ¿© »ı¼ºÇÑ´Ù.
+		//ìŠ¬ë˜ì‰¬ê°€ 4ê°œ ì´ìƒì´ë©´ Offsetë„ ë“±ë¡ë˜ì–´ìˆë‹¤ëŠ” ëœ»ì´ë¯€ë¡œ Offsetê°’ë„ ì „ë‹¬í•˜ì—¬ ìƒì„±í•œë‹¤.
 		int SlashCount = 0;
 		for (size_t k = 0; k < src.size(); ++k)
 		{
@@ -515,12 +515,12 @@ void CSceneEdit::SelectFrame()
 				++SlashCount;
 		}
 
-		//½ºÇÁ¶óÀÌÆ® ÁÂÇ¥°ª¸¸ ÀÔ·ÂµÇ¾úÀ»°æ¿ì
+		//ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œí‘œê°’ë§Œ ì…ë ¥ë˜ì—ˆì„ê²½ìš°
 		if (SlashCount == 3)
 		{
 			sscanf_s(src.c_str(), "%f/%f/%f/%f", &Start.x, &Start.y, &End.x, &End.y);
 		}
-		//¿ÀÇÁ¼Â °ª±îÁö ÀÔ·ÂµÆÀ»°æ¿ì
+		//ì˜¤í”„ì…‹ ê°’ê¹Œì§€ ì…ë ¥ëì„ê²½ìš°
 		else if (SlashCount > 3)
 		{
 			sscanf_s(src.c_str(), "%f/%f/%f/%f/%f/%f",
@@ -538,7 +538,7 @@ void CSceneEdit::SelectFrame()
 		SetDlgItemInt(m_hDlg, IDC_EDIT_FRAME_OFFSETY, (int)Offset.y, TRUE);
 
 
-		//ÇØ´ç ÅØ½ºÃ³¸¦ Ç¥½ÃÇÑ´Ù.
+		//í•´ë‹¹ í…ìŠ¤ì²˜ë¥¼ í‘œì‹œí•œë‹¤.
 		LoadAnimInfo();
 		std::string Name = m_vecCSVEditor[m_SelectTextureIndex]->
 			GetCell(m_SelectAnimSeqIndex, (int)EColInfo::AnimSeqName);
@@ -555,15 +555,15 @@ void CSceneEdit::SelectFrame()
 
 void CSceneEdit::SelectPlayList()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectPlayIndex = (int)SendMessage(m_hPlayListBox, LB_GETCURSEL, 0, 0);
 	
 
-	//0¹ø ÀÎµ¦½º¿Í -1ÀÏ ¶§´Â ½ºÅµ
+	//0ë²ˆ ì¸ë±ìŠ¤ì™€ -1ì¼ ë•ŒëŠ” ìŠ¤í‚µ
 	if (m_SelectPlayIndex >= 0)
 	{
-		//ÇÁ·¹ÀÓ ¸®½ºÆ®´Â ¼±ÅÃ¾ÈÇÔÀ¸·Î º¯°æÇÏ°í ÇÁ·¹ÀÓÀ» º¸°íÀÖ¾ú´Ù¸é
-		//¼³Á¤À» ¿ø»óº¹±¸ ÇØÁØ´Ù.
+		//í”„ë ˆì„ ë¦¬ìŠ¤íŠ¸ëŠ” ì„ íƒì•ˆí•¨ìœ¼ë¡œ ë³€ê²½í•˜ê³  í”„ë ˆì„ì„ ë³´ê³ ìˆì—ˆë‹¤ë©´
+		//ì„¤ì •ì„ ì›ìƒë³µêµ¬ í•´ì¤€ë‹¤.
 		m_SelectFrameIndex = -1;
 		SendMessage(m_hFrameListBox, LB_SETCURSEL,
 			(WPARAM)m_SelectFrameIndex, 0);
@@ -579,7 +579,7 @@ void CSceneEdit::SelectPlayList()
 		}
 
 
-		//ÇØ´ç ÅØ½ºÃ³¿¡ µé¾îÀÖ´Â ÀÌ¸§À» ¹Ş¾Æ¿Â´Ù.
+		//í•´ë‹¹ í…ìŠ¤ì²˜ì— ë“¤ì–´ìˆëŠ” ì´ë¦„ì„ ë°›ì•„ì˜¨ë‹¤.
 		char AnimName[MAX_PATH] = {};
 
 		SendMessageA(m_hPlayListBox, LB_GETTEXT, m_SelectPlayIndex, (LPARAM)AnimName);
@@ -600,7 +600,7 @@ void CSceneEdit::SelectPlayList()
 			OffsetX, OffsetY, PivotX, PivotY);
 
 		{
-			//µ¥ÀÌÅÍ¸¦ MFC·Î ¿Å°ÜÁØ´Ù.
+			//ë°ì´í„°ë¥¼ MFCë¡œ ì˜®ê²¨ì¤€ë‹¤.
 			SetDlgItemInt(m_hDlg, IDC_EDIT_LOOPFLAG, LoopFlag, TRUE);
 			SendMessage(m_hCheckReverse, BM_SETCHECK, (WPARAM)Reverse, 0);
 			SetDlgItemInt(m_hDlg, IDC_EDIT_LAYER, Layer, TRUE);
@@ -631,7 +631,7 @@ void CSceneEdit::SelectPlayList()
 		}
 
 
-		//¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ı½ÃÅ²´Ù.
+		//ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒì‹œí‚¨ë‹¤.
 		m_Viewer->GetAnimation()->SetAnimation(AnimName);
 	}
 }
@@ -694,7 +694,7 @@ bool CSceneEdit::SelectIndexRangeCheck(ERange Range)
 		if (m_SelectAnimSeqIndex < 0)
 			return false;
 
-		//¿¹¿Ü Ã³¸®
+		//ì˜ˆì™¸ ì²˜ë¦¬
 		size_t size = m_vecCSVEditor[m_SelectTextureIndex]
 			->GetRowCount();
 
@@ -736,15 +736,15 @@ void CSceneEdit::ChangeVisibleStatus()
 
 bool CSceneEdit::LoadAnimInfo()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectAnimSeqIndex = (int)SendMessage(m_hAnimSeqListBox, LB_GETCURSEL, 0, 0);
 
-	//»óÀ§ Ç×¸ñÀÇ ÀÎµ¦½º°¡ Á¤»óÀûÀ¸·Î ¼±ÅÃµÇ¾ú´ÂÁö È®ÀÎ
+	//ìƒìœ„ í•­ëª©ì˜ ì¸ë±ìŠ¤ê°€ ì •ìƒì ìœ¼ë¡œ ì„ íƒë˜ì—ˆëŠ”ì§€ í™•ì¸
 	if (SelectIndexRangeCheck(ERange::AnimSeq))
 	{
 		m_SelectAnimSeqIndex += (int)ERowInfo::AnimSeqInfoStart;
 
-		//AnimationInfo¸¦ »ı¼ºÇÏ±â À§ÇÑ º¯¼öµé ¼±¾ğ
+		//AnimationInfoë¥¼ ìƒì„±í•˜ê¸° ìœ„í•œ ë³€ìˆ˜ë“¤ ì„ ì–¸
 		std::string AnimSeqName;
 		int LoopFlag = (int)ELoopFlag::NoLoop;
 		float PlayTime = 1.f;
@@ -757,11 +757,11 @@ bool CSceneEdit::LoadAnimInfo()
 		float PivotY = 1.f;
 
 
-		//»óÀ§ Ç×¸ñÀÇ ÀÎµ¦½º°¡ Á¤»óÀûÀ¸·Î ¼±ÅÃµÇ¾ú´ÂÁö È®ÀÎ
+		//ìƒìœ„ í•­ëª©ì˜ ì¸ë±ìŠ¤ê°€ ì •ìƒì ìœ¼ë¡œ ì„ íƒë˜ì—ˆëŠ”ì§€ í™•ì¸
 		if (SelectIndexRangeCheck(ERange::AnimSeq))
 		{
-			//¿­°ÅÃ¼ Áß°£¿¡ ¹» ³¢¿ö³Ö±â ¿ëÀÌÇÏµµ·Ï ÁÂÇ¥ ÀÔ·ÂÁöÁ¡ ÀÌÀüÀ» ¹üÀ§·Î ÁöÁ¤ÇØÁØ´Ù.
-			//csv¿¡¼­ÀÇ AnimInfo µ¥ÀÌÅÍ ¹üÀ§´Â ÀÌ¸§ µÚºÎÅÍ ÁÂÇ¥ ÀÔ·ÂÁöÁ¡ ¹Ù·Î Àü±îÁö
+			//ì—´ê±°ì²´ ì¤‘ê°„ì— ë­˜ ë¼ì›Œë„£ê¸° ìš©ì´í•˜ë„ë¡ ì¢Œí‘œ ì…ë ¥ì§€ì  ì´ì „ì„ ë²”ìœ„ë¡œ ì§€ì •í•´ì¤€ë‹¤.
+			//csvì—ì„œì˜ AnimInfo ë°ì´í„° ë²”ìœ„ëŠ” ì´ë¦„ ë’¤ë¶€í„° ì¢Œí‘œ ì…ë ¥ì§€ì  ë°”ë¡œ ì „ê¹Œì§€
 			for (int j = (int)EColInfo::AnimSeqName; j <= (int)EColInfo::FramePosStart - 1; ++j)
 			{
 				std::string src = m_vecCSVEditor[m_SelectTextureIndex]->GetCell(m_SelectAnimSeqIndex, j);
@@ -775,7 +775,7 @@ bool CSceneEdit::LoadAnimInfo()
 
 					switch (j)
 					{
-					case (int)EColInfo::LoopFlag://Loop: ¹öÆÛ¿À¹ö·± ¹æÁö¸¦ À§ÇØ Ãß°¡ Ã³¸®
+					case (int)EColInfo::LoopFlag://Loop: ë²„í¼ì˜¤ë²„ëŸ° ë°©ì§€ë¥¼ ìœ„í•´ ì¶”ê°€ ì²˜ë¦¬
 						sscanf_s(src.c_str(), "%d", &LoopFlag);
 						break;
 					case (int)EColInfo::PlayTime://PlayTime
@@ -784,7 +784,7 @@ bool CSceneEdit::LoadAnimInfo()
 					case (int)EColInfo::PlayScale://PlayScale
 						sscanf_s(src.c_str(), "%f", &PlayScale);
 						break;
-					case (int)EColInfo::Reverse://Reverse:¹öÆÛ¿À¹ö·± ¹æÁö¸¦ À§ÇØ byte Å¸ÀÔÀ¸·Î
+					case (int)EColInfo::Reverse://Reverse:ë²„í¼ì˜¤ë²„ëŸ° ë°©ì§€ë¥¼ ìœ„í•´ byte íƒ€ì…ìœ¼ë¡œ
 						sscanf_s(src.c_str(), "%d", &temp);
 						Reverse = temp;
 						break;
@@ -809,7 +809,7 @@ bool CSceneEdit::LoadAnimInfo()
 				}
 			}
 
-			//ÇÑ Çà¿¡ ´ëÇÑ ¼øÈ¸°¡ ¿Ï·áµÇ¸é ÇØ´ç ¾Ö´Ï¸ŞÀÌ¼Ç¿¡ ´ëÇÑ µ¥ÀÌÅÍ Ãß°¡
+			//í•œ í–‰ì— ëŒ€í•œ ìˆœíšŒê°€ ì™„ë£Œë˜ë©´ í•´ë‹¹ ì• ë‹ˆë©”ì´ì…˜ì— ëŒ€í•œ ë°ì´í„° ì¶”ê°€
 			m_Viewer->ViewAnimation(AnimSeqName,
 				PlayTime,
 				(ELoopFlag)LoopFlag,
@@ -881,13 +881,13 @@ void CSceneEdit::ReturnStartScene()
 
 void CSceneEdit::InfoValueSet()
 {
-	//ÇöÀç ¸®½ºÆ®¹Ú½º¿¡¼­ ¾î¶² °ÍÀÌ ¼±ÅÃµÇ¾îÀÖ´ÂÁö È®ÀÎ
+	//í˜„ì¬ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ì–´ë–¤ ê²ƒì´ ì„ íƒë˜ì–´ìˆëŠ”ì§€ í™•ì¸
 	m_SelectPlayIndex = (int)SendMessage(m_hPlayListBox, LB_GETCURSEL, 0, 0);
 
-	//-1ÀÏ ¶§´Â ½ºÅµ
+	//-1ì¼ ë•ŒëŠ” ìŠ¤í‚µ
 	if (m_SelectPlayIndex >= 0)
 	{
-		//ÇØ´ç ÅØ½ºÃ³¿¡ µé¾îÀÖ´Â ÀÌ¸§À» ¹Ş¾Æ¿Â´Ù.
+		//í•´ë‹¹ í…ìŠ¤ì²˜ì— ë“¤ì–´ìˆëŠ” ì´ë¦„ì„ ë°›ì•„ì˜¨ë‹¤.
 		char AnimName[MAX_PATH] = {};
 		SendMessageA(m_hPlayListBox, LB_GETTEXT, m_SelectPlayIndex, (LPARAM)AnimName);
 
@@ -904,7 +904,7 @@ void CSceneEdit::InfoValueSet()
 
 
 		{
-			//µ¥ÀÌÅÍ¸¦ MFC·ÎºÎÅÍ ¹Ş¾Æ¿Â´Ù.
+			//ë°ì´í„°ë¥¼ MFCë¡œë¶€í„° ë°›ì•„ì˜¨ë‹¤.
 			LoopFlag = GetDlgItemInt(m_hDlg, IDC_EDIT_LOOPFLAG, NULL, TRUE);
 			Reverse = (bool)SendMessage(m_hCheckReverse, BM_GETCHECK, 0, 0);
 			Layer = GetDlgItemInt(m_hDlg, IDC_EDIT_LAYER, NULL, TRUE);
@@ -939,7 +939,7 @@ void CSceneEdit::InfoValueSet()
 			PlayTime, (ELoopFlag)LoopFlag, Reverse, PlayScale, Layer,
 			OffsetX, OffsetY, PivotX, PivotY);
 
-		//¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ı½ÃÅ²´Ù.
+		//ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒì‹œí‚¨ë‹¤.
 		m_Viewer->GetAnimation()->ChangeAnimation(AnimName);
 	}
 }
@@ -949,16 +949,16 @@ void CSceneEdit::InfoValueSet()
 
 void CSceneEdit::Reset()
 {
-	//¸®½ºÆ® ´Ù Áö¿ì°í
+	//ë¦¬ìŠ¤íŠ¸ ë‹¤ ì§€ìš°ê³ 
 	ClearSelect(ERange::All);
 
-	//ºä¾îÀÇ ¾Ö´Ï¸ŞÀÌ¼Çµµ ¸ğµÎ Áö¿öÁÖ°í
+	//ë·°ì–´ì˜ ì• ë‹ˆë©”ì´ì…˜ë„ ëª¨ë‘ ì§€ì›Œì£¼ê³ 
 	m_Viewer->ResetAnimation();
 
-	//·ÎµåµÈ CAnimationSeqµµ ´Ù Áö¿öÁØÈÄ
+	//ë¡œë“œëœ CAnimationSeqë„ ë‹¤ ì§€ì›Œì¤€í›„
 	m_SceneResource->ClearAnimSeq();
 
-	//·ÎµåµÈ csvµéµµ ½Ï Áö¿öÁØ´Ù.
+	//ë¡œë“œëœ csvë“¤ë„ ì‹¹ ì§€ì›Œì¤€ë‹¤.
 	for (size_t i = 0; i < m_vecCSVEditor.size(); ++i)
 	{
 		SAFE_DELETE(m_vecCSVEditor[i]);
@@ -970,11 +970,11 @@ LRESULT CSceneEdit::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 {
 	switch (message)
 	{
-		//CLOSE ¸Ş½ÃÁö -> Ã¢ ´İ±â ¸Ş½ÃÁö »ı¼º
+		//CLOSE ë©”ì‹œì§€ -> ì°½ ë‹«ê¸° ë©”ì‹œì§€ ìƒì„±
 	case WM_CLOSE:
 		s_Dlg->ChangeVisibleStatus();
 		break;
-		//Ã¢ ´İ±â ¸Ş½ÃÁö -> ¸Ş½ÃÁö ·çÇÁ¸¦ false·Î ¹Ù²ã¼­ Áß´Ü½ÃÅ´
+		//ì°½ ë‹«ê¸° ë©”ì‹œì§€ -> ë©”ì‹œì§€ ë£¨í”„ë¥¼ falseë¡œ ë°”ê¿”ì„œ ì¤‘ë‹¨ì‹œí‚´
 	case WM_DESTROY:
 		s_Dlg->ChangeVisibleStatus();
 		break;
@@ -986,7 +986,7 @@ LRESULT CSceneEdit::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 		switch (LOWORD(wParam))
 		{
 
-			//¹öÆ° ¸ğÀ½
+			//ë²„íŠ¼ ëª¨ìŒ
 		case IDC_BUTTON_QUIT:
 			s_Dlg->ChangeVisibleStatus();
 			break;
@@ -1015,7 +1015,7 @@ LRESULT CSceneEdit::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 
 
 
-			//¸®½ºÆ® ¸ğÀ½
+			//ë¦¬ìŠ¤íŠ¸ ëª¨ìŒ
 		case IDC_LIST_TEXTURENAME:
 			switch (HIWORD(wParam))
 			{
@@ -1028,7 +1028,7 @@ LRESULT CSceneEdit::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 		case IDC_LIST_ANIMSEQ:
 			switch (HIWORD(wParam))
 			{
-				//¸®½ºÆ®ÀÇ ¼±ÅÃ º¯°æÀÏ ‹š
+				//ë¦¬ìŠ¤íŠ¸ì˜ ì„ íƒ ë³€ê²½ì¼ ë–„
 			case LBN_SELCHANGE:
 				s_Dlg->SelectAnimSeq();
 				break;

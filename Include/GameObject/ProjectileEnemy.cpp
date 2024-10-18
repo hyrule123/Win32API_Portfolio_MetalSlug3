@@ -58,7 +58,7 @@ bool CProjectileEnemy::Init(CGameObject* Obj)
 {
 	CProjectile::Init(Obj);
 	
-	//ÀüºÎ ÄÑÁÜ
+	//ì „ë¶€ ì¼œì¤Œ
 	SetCullingDelete(ECullingDelete::All, true);
 
 	SetRenderLayer(ERenderLayer::EffectLow);
@@ -82,7 +82,7 @@ void CProjectileEnemy::Update(float DeltaTime)
 	{
 	case EProjectileEnemy::UFOLaser:
 	{
-		//¾Ö´Ï¸ÞÀÌ¼Ç »çÀÌÁî°¡ º¯°æµÉ ¶§¸¶´Ù ¿ÀÇÁ¼Â°ªÀ» º¯°æ
+		//ì• ë‹ˆë©”ì´ì…˜ ì‚¬ì´ì¦ˆê°€ ë³€ê²½ë  ë•Œë§ˆë‹¤ ì˜¤í”„ì…‹ê°’ì„ ë³€ê²½
 		Vector2 Size = m_Animation->GetAnimSize();
 		if(Size.y > 30.f)
 			m_Coll->SetOffset(0.f, Size.y);
@@ -111,7 +111,7 @@ void CProjectileEnemy::SetEssential(EProjectileEnemy Type, const Vector2& Dir, c
 
 	SetAnimation(m_vecProjectileName[(int)m_ProjectileType]);
 
-	//Å¸ÀÔº° °³º° ¼³Á¤
+	//íƒ€ìž…ë³„ ê°œë³„ ì„¤ì •
 	switch (m_ProjectileType)
 	{
 	case EProjectileEnemy::UFOLaser:

@@ -43,21 +43,21 @@ bool CMeteorBig::Init(CGameObject* Obj)
 	m_HP = 400;
 	SetSize(100.f, 80.f);
 
-	//ÀÌµ¿¸í·É on
+	//ì´ë™ëª…ë ¹ on
 	m_Pos.x = 100.f;
 	m_Pos.y = -100.f;
 
-	//¸ñÇ¥À§Ä¡ ÁöÁ¤
+	//ëª©í‘œìœ„ì¹˜ ì§€ì •
 	SetMaxSpeed(30.f);
 	Vector2 Dest;
 	Dest.x = 100.f;
 	Dest.y = (float)ORIGINAL_GAME_RES_HEIGHT + 150.f;
 	MoveToDest(true, EMoveToMethod::MoveDir, Dest);
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç, È÷Æ®ÀÌÆåÆ® ¿£µåÆã¼Ç µî·Ï
+	//ì• ë‹ˆë©”ì´ì…˜, íˆíŠ¸ì´í™íŠ¸ ì—”ë“œí‘ì…˜ ë“±ë¡
 	SetAnimation("MeteorBig");
 	SetEndFunction< CMeteorBig>("MeteorBigHit", this, &CMeteorBig::HitEffectEnd);
-	//ÀÌ Å¬·¡½º´Â "MeteorBigDestroy" ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àç»ıÇÏ°í »ç¶óÁø´Ù(Á¶°¢ 2°³ »ı¼º)
+	//ì´ í´ë˜ìŠ¤ëŠ” "MeteorBigDestroy" ì• ë‹ˆë©”ì´ì…˜ì„ ì¬ìƒí•˜ê³  ì‚¬ë¼ì§„ë‹¤(ì¡°ê° 2ê°œ ìƒì„±)
 	SetEndFunction<CMeteorBig>("MeteorBigDestroy", this, &CMeteorBig::MeteorBigDestroy);
 
 
@@ -71,7 +71,7 @@ bool CMeteorBig::Init(CGameObject* Obj)
 	m_MyColl->SetOffset(0.f, -20.f);
 
 
-	//StartFunc¿¡¼­ Æ÷ÀÎÅÍ µî·Ï, EndFunc¿¡¼­ Æ÷ÀÎÅÍ ÇØÁ¦
+	//StartFuncì—ì„œ í¬ì¸í„° ë“±ë¡, EndFuncì—ì„œ í¬ì¸í„° í•´ì œ
 	m_MyColl->SetCollisionBeginFunc< CMeteorBig>(this, &CMeteorBig::CollisionBegin);
 	m_MyColl->SetCollisionEndFunc<CMeteorBig>(this, &CMeteorBig::CollisionEnd);
 
@@ -227,19 +227,19 @@ void CMeteorBig::CollisionUpdate()
 
 	do
 	{
-		//¿ÏÀüÀÌ Æ÷ÇÔµÇ´Â °æ¿ì´Â ÀÌÂÊ¿¡¼­ Ã³¸®ÇÒ ¹®Á¦°¡ ¾Æ´Ï¶ó À§¾Æ·¡·Î Ã³¸®ÇÒ ¹®Á¦ÀÓ
+		//ì™„ì „ì´ í¬í•¨ë˜ëŠ” ê²½ìš°ëŠ” ì´ìª½ì—ì„œ ì²˜ë¦¬í•  ë¬¸ì œê°€ ì•„ë‹ˆë¼ ìœ„ì•„ë˜ë¡œ ì²˜ë¦¬í•  ë¬¸ì œì„
 		if (MyInfo.LT.x > PlayerInfo.LT.x && MyInfo.RB.x < PlayerInfo.RB.x)
 			break;
 		if (PlayerInfo.LT.x > MyInfo.LT.x && PlayerInfo.RB.x < MyInfo.RB.x)
 			break;
 
-		//ÇÃ·¹ÀÌ¾î°¡ ¿À¸¥ÂÊÀ» Ä§¹üÇÏ°í ÀÖÀ»¶§(ÀÌ‹š ÇÃ·¹ÀÌ¾îÀÇ ¿ŞÂÊµµ ¿ŞÂÊ¿¡ ÀÖ¾î¾ßÇÔ
+		//í”Œë ˆì´ì–´ê°€ ì˜¤ë¥¸ìª½ì„ ì¹¨ë²”í•˜ê³  ìˆì„ë•Œ(ì´ë–„ í”Œë ˆì´ì–´ì˜ ì™¼ìª½ë„ ì™¼ìª½ì— ìˆì–´ì•¼í•¨
 		if (MyInfo.LT.x < PlayerInfo.RB.x && PlayerInfo.LT.x < MyInfo.LT.x)
 		{
 			AdjustX = MyInfo.LT.x - PlayerInfo.RB.x;
 		}
 
-		//ÇÃ·¹ÀÌ¾î°¡ ¿ŞÂÊÀ» Ä§¹üÇÏ°í ÀÖÀ»¶§
+		//í”Œë ˆì´ì–´ê°€ ì™¼ìª½ì„ ì¹¨ë²”í•˜ê³  ìˆì„ë•Œ
 		else if (MyInfo.RB.x > PlayerInfo.LT.x && MyInfo.RB.x < PlayerInfo.RB.x)
 		{
 			AdjustX = MyInfo.RB.x - PlayerInfo.LT.x;
@@ -248,19 +248,19 @@ void CMeteorBig::CollisionUpdate()
 		
 	do
 	{
-		//¿ÏÀüÀÌ Æ÷ÇÔµÇ´Â °æ¿ì´Â ÀÌÂÊ¿¡¼­ Ã³¸®ÇÒ ¹®Á¦°¡ ¾Æ´Ï¶ó ÁÂ¿ì·Î Ã³¸®ÇÒ ¹®Á¦ÀÓ
+		//ì™„ì „ì´ í¬í•¨ë˜ëŠ” ê²½ìš°ëŠ” ì´ìª½ì—ì„œ ì²˜ë¦¬í•  ë¬¸ì œê°€ ì•„ë‹ˆë¼ ì¢Œìš°ë¡œ ì²˜ë¦¬í•  ë¬¸ì œì„
 		if (MyInfo.LT.y > PlayerInfo.LT.y && MyInfo.RB.y < PlayerInfo.RB.y)
 			break;
 		if (PlayerInfo.LT.y > MyInfo.LT.y && PlayerInfo.RB.y < MyInfo.RB.y)
 			break;
 
-		//ÇÃ·¹ÀÌ¾î°¡ À§À» Ä§¹üÇÏ°í ÀÖÀ»¶§(ÀÌ¶§ ÇÃ·¹ÀÌ¾îÀÇ À§ÂÊµµ »ç°¢Çü À§ÂÊ¿¡ ÀÖ¾î¾ßÇÔ)
+		//í”Œë ˆì´ì–´ê°€ ìœ„ì„ ì¹¨ë²”í•˜ê³  ìˆì„ë•Œ(ì´ë•Œ í”Œë ˆì´ì–´ì˜ ìœ„ìª½ë„ ì‚¬ê°í˜• ìœ„ìª½ì— ìˆì–´ì•¼í•¨)
 		if (MyInfo.LT.y < PlayerInfo.RB.y && PlayerInfo.LT.y < MyInfo.LT.y)
 		{
 			AdjustY = MyInfo.LT.y - PlayerInfo.RB.y;
 		}
 
-		//ÇÃ·¹ÀÌ¾î°¡ ¾Æ·¡¸¦ Ä§¹üÇÏ°í ÀÖÀ»¶§(ÀÌ¶§ ÇÃ·¹ÀÌ¾îÀÇ ¾Æ·§ÂÊµµ »ç°¢Çü ¾Æ·¡¿¡ ÀÖ¾î¾ßÇÔ
+		//í”Œë ˆì´ì–´ê°€ ì•„ë˜ë¥¼ ì¹¨ë²”í•˜ê³  ìˆì„ë•Œ(ì´ë•Œ í”Œë ˆì´ì–´ì˜ ì•„ë«ìª½ë„ ì‚¬ê°í˜• ì•„ë˜ì— ìˆì–´ì•¼í•¨
 		else if (MyInfo.RB.y > PlayerInfo.LT.y && MyInfo.RB.y < PlayerInfo.RB.y)
 		{
 			AdjustY = MyInfo.RB.y - PlayerInfo.LT.y;
@@ -316,9 +316,9 @@ void CMeteorBig::HitEffectEnd()
 
 void CMeteorBig::MeteorBigDestroy()
 {
-	ItemDrop();//¾ÆÀÌÅÛ µå·Ó
+	ItemDrop();//ì•„ì´í…œ ë“œë¡­
 
-	//¹İÂÊ ¾Ö´Ï¸ŞÀÌ¼Ç 2°³ »ı¼º
+	//ë°˜ìª½ ì• ë‹ˆë©”ì´ì…˜ 2ê°œ ìƒì„±
 	CMeteorBigHalf* BH = m_Scene->CreateObject< CMeteorBigHalf>("MeteorBigHalf");
 	BH->SetEssential(m_Pos, EMeteorBigHalfPart::Left);
 	BH = m_Scene->CreateObject< CMeteorBigHalf>("MeteorBigHalf");

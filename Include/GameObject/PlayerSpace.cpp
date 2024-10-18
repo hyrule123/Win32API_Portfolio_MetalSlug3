@@ -6,34 +6,34 @@
 #include "../Scene/SceneResource.h"
 #include "../Scene/SceneManager.h"
 
-//ÁÂ¿ì ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı °ü·Ã ÀÔ·Â È®ÀÎ¿ë
+//ì¢Œìš° ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ ê´€ë ¨ ì…ë ¥ í™•ì¸ìš©
 #include "../Input.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 
 #include "Pistol.h"
 
-//¹«±â
+//ë¬´ê¸°
 #include "PlayerHMG.h"
 #include "Laser.h"
 #include "Shotgun.h"
 #include "RocketLauncher.h"
-#include "AstroSlugSFX.h"	//·ÎÄÏ ¹ß»ç ÀÌÆåÆ®°¡ ¿©ƒ…À½
+#include "AstroSlugSFX.h"	//ë¡œì¼“ ë°œì‚¬ ì´í™íŠ¸ê°€ ì—¬ê¹„ìŒ
 #include "AstroBomb.h"
 
 #include "../UI/WindowSpace.h"
 
-//¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+//ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
 #include "JustPlay.h"
 
-//ÆäÀÌµåÀÎ¾Æ¿ô
+//í˜ì´ë“œì¸ì•„ì›ƒ
 #include "../UI/WidgetFadeInOut.h"
 
-//°¡½º Á¡¼ö Àç»ı
+//ê°€ìŠ¤ ì ìˆ˜ ì¬ìƒ
 #include "../UI/WidgetScore.h"
 
-//°ÔÀÓ¿À¹ö
+//ê²Œì„ì˜¤ë²„
 #include "../Scene/GameOver.h"
 
 
@@ -49,7 +49,7 @@ CPlayerSpace::CPlayerSpace():
 	m_NoActionChange(true),
 	m_GunFired(),
 	m_HMGQueue(),
-	m_HMGDelay(0.06f),	//Çìºñ¸Ó½Å°ÇÀÇ ¹ß»ç µô·¹ÀÌ
+	m_HMGDelay(0.06f),	//í—¤ë¹„ë¨¸ì‹ ê±´ì˜ ë°œì‚¬ ë”œë ˆì´
 	m_HMGDir(-1),
 	m_Offset(2.f, -65.f),
 	m_BombTurn()
@@ -109,7 +109,7 @@ CPlayerSpace::~CPlayerSpace()
 
 bool CPlayerSpace::LoadResource()
 {
-	/////////////////// ¾Ö´Ï¸ŞÀÌ¼Ç »ı¼º ///////////////////
+	/////////////////// ì• ë‹ˆë©”ì´ì…˜ ìƒì„± ///////////////////
 	CreateAnimation();
 	if(!LoadCSVPreset(TEXT("Player/PlayerSpace.csv")))
 		return false;
@@ -129,7 +129,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 	
 
 
-	//À§Ä¡ ¼³Á¤
+	//ìœ„ì¹˜ ì„¤ì •
 	SetPos(50.f, 50.f);
 	SetSize(22.f, 50.f);
 	SetDir(1.f, 0.f);
@@ -139,8 +139,8 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 	SetDeAccel(1.f);
 
 
-	//½ºÅ³ ¼³Á¤
-	//½ºÅ³ ¼³Á¤
+	//ìŠ¤í‚¬ ì„¤ì •
+	//ìŠ¤í‚¬ ì„¤ì •
 	m_vecCooltime.resize((size_t)EWeapon::MAX);
 
 	for (int i = 0; i < (int)EWeapon::MAX; ++i)
@@ -171,7 +171,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 	}
 
 
-	//°ø°İ Á¾·á EndFunction µî·Ï
+	//ê³µê²© ì¢…ë£Œ EndFunction ë“±ë¡
 	for (int i = (int)EDirSpace::Left2; i < (int)EDirSpace::MAX; ++i)
 	{
 		AddNotify< CPlayerSpace>(m_vecAnimName[i][(int)EDirAction::Idle_Pistol], 0, this, &CPlayerSpace::IdleStatusNotify);
@@ -215,7 +215,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 			this, &CPlayerSpace::SlugEjectionEnd);
 	}
 
-	//HMG ³ëÆ¼ÆÄÀÌ µî·Ï
+	//HMG ë…¸í‹°íŒŒì´ ë“±ë¡
 	for (int i = (int)EDirSpace::Left2; i < (int)EDirSpace::MAX; ++i)
 	{
 		for (int j = 0; j < 4; ++j)
@@ -225,7 +225,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 
 	}
 	
-	////Ãæµ¹Ã¼ ¼³Á¤
+	////ì¶©ëŒì²´ ì„¤ì •
 	CColliderBox* Collider = AddCollider<CColliderBox>("PlayerBox");
 
 	Collider->SetSize(m_Size);
@@ -236,7 +236,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 
 
 
-	//³²Àº ÃÑ¾Ë ¼ö Àü´Ş
+	//ë‚¨ì€ ì´ì•Œ ìˆ˜ ì „ë‹¬
 	m_WindowSpace->SetBulletLeft(m_Bullet);
 	m_WindowSpace->SetBombLeft(m_Bomb);
 
@@ -249,7 +249,7 @@ bool CPlayerSpace::Init(CGameObject* Obj)
 
 void CPlayerSpace::ComputeCurrentDir(float DeltaTime)
 {
-	//¿òÁ÷ÀÓÀÌ ¾øÀ» °æ¿ì ¿øÁ¡À¸·Î µ¹¾Æ¿È
+	//ì›€ì§ì„ì´ ì—†ì„ ê²½ìš° ì›ì ìœ¼ë¡œ ëŒì•„ì˜´
 	if (fabs(m_MoveDist.x) <= FLT_EPSILON)
 	{
 		if (m_DirTime > m_Tolerance)
@@ -259,11 +259,11 @@ void CPlayerSpace::ComputeCurrentDir(float DeltaTime)
 	};
 
 
-	//¿©±â±îÁö ÇßÀ¸¸é ÇÑ ÇÁ·¹ÀÓÀÇ ¹æÇâ °è»êÀÌ ³¡³­°ÍÀÓ. ¹æÇâ È®Á¤
-	//10À» °öÇÑµÚ Á¤¼ö·Î ¹Ù²Ù¾î¼­ ¼Ò¼öÁ¡À» ´Ù ¹Ù²ãÁØµÚ
-	//¿­°ÅÃ¼¿¡ ¸Â°Ô ´õÇØÁÜ
-	//ex)-0.25f(¸Ç ¿ŞÂÊ) -> -2.5f -> -2 + 2(ÃÖ´ñ°ª¸¸Å­ ´õÇØÁØ°ª)
-	//->ÀÎµ¦½º¿¡ ¸Â´Â °ªÀÌ ³ª¿È
+	//ì—¬ê¸°ê¹Œì§€ í–ˆìœ¼ë©´ í•œ í”„ë ˆì„ì˜ ë°©í–¥ ê³„ì‚°ì´ ëë‚œê²ƒì„. ë°©í–¥ í™•ì •
+	//10ì„ ê³±í•œë’¤ ì •ìˆ˜ë¡œ ë°”ê¾¸ì–´ì„œ ì†Œìˆ˜ì ì„ ë‹¤ ë°”ê¿”ì¤€ë’¤
+	//ì—´ê±°ì²´ì— ë§ê²Œ ë”í•´ì¤Œ
+	//ex)-0.25f(ë§¨ ì™¼ìª½) -> -2.5f -> -2 + 2(ìµœëŒ“ê°’ë§Œí¼ ë”í•´ì¤€ê°’)
+	//->ì¸ë±ìŠ¤ì— ë§ëŠ” ê°’ì´ ë‚˜ì˜´
 	// 
 	m_CurrentDir = (EDirSpace)
 		((int)(m_DirTime * 10.f) + (int)(m_DirTimeMax * 10.f));
@@ -278,7 +278,7 @@ void CPlayerSpace::ComputeCurrentDir(float DeltaTime)
 
 void CPlayerSpace::ComputeCurrentAct(float DeltaTime)
 {
-	//ÃÑ ¾È½úÀ¸¸é ¾ÆÀÌµé ¸ğ¼Ç(ÃÑ ½úÀ¸¸é ÃÑ ¹ß»ç ¸Ş¼Òµå¿¡¼­ ¾×¼Ç º¯°æµÊ)
+	//ì´ ì•ˆìˆìœ¼ë©´ ì•„ì´ë“¤ ëª¨ì…˜(ì´ ìˆìœ¼ë©´ ì´ ë°œì‚¬ ë©”ì†Œë“œì—ì„œ ì•¡ì…˜ ë³€ê²½ë¨)
 	if (!m_GunFired && !m_NoActionChange)
 	{
 		if (m_CurrentWeapon == EWeapon::Pistol)
@@ -296,7 +296,7 @@ void CPlayerSpace::MoveLeft()
 	else
 		m_DirTime -= DELTA_TIME;
 
-	if (m_DirTime <= -1.f * m_DirTimeMax)//ÃÖ´ñ°ªÀ» °íÁ¤(+¿ÀÂ÷°ª)
+	if (m_DirTime <= -1.f * m_DirTimeMax)//ìµœëŒ“ê°’ì„ ê³ ì •(+ì˜¤ì°¨ê°’)
 		m_DirTime = -1.f * (m_DirTimeMax + m_Tolerance);
 	SetDir(-1.f, 0.f);
 	MoveDir(m_Dir);
@@ -310,7 +310,7 @@ void CPlayerSpace::MoveRight()
 		m_DirTime += DELTA_TIME;
 
 
-	if (m_DirTime >= m_DirTimeMax)//ÃÖ´ñ°ªÀ» °íÁ¤
+	if (m_DirTime >= m_DirTimeMax)//ìµœëŒ“ê°’ì„ ê³ ì •
 		m_DirTime = m_DirTimeMax + m_Tolerance;
 
 	SetDir(1.f, 0.f);
@@ -416,9 +416,9 @@ void CPlayerSpace::FireGunCheck()
 	case EWeapon::Rocket:
 		if (!m_vecCooltime[(int)EWeapon::Rocket].isCooltime)
 		{
-			if (m_FiredRocket >= 2)	//¸¸¾à ¸Ê¿¡ 2¹ß ÀÌ»ó ·ÎÄÏÀÌ ¹ß»çµÆÀ¸¸é return
+			if (m_FiredRocket >= 2)	//ë§Œì•½ ë§µì— 2ë°œ ì´ìƒ ë¡œì¼“ì´ ë°œì‚¬ëìœ¼ë©´ return
 				break;
-			//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+			//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 			EnterSkillCoolTIme((int)EWeapon::Rocket);
 
 			FireRocket();
@@ -436,7 +436,7 @@ void CPlayerSpace::FireGunCheck()
 
 			FireLaser();
 
-			//¼±ÀÔ·Â ¹öÆÛ ÃÊ±âÈ­
+			//ì„ ì…ë ¥ ë²„í¼ ì´ˆê¸°í™”
 			m_AttackBuffer = 0;
 			m_GunFired = true;
 		}
@@ -458,7 +458,7 @@ void CPlayerSpace::FireBomb()
 	if (m_vecCooltime[(int)EWeapon::Bomb].isCooltime)
 		return;
 
-	//ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¸é ÄğÅ¸ÀÓÀ¸·Î ¹Ù²Ù´Â ¸Ş¼Òµå¸¦ È£ÃâÇÏ°í ·ÎÁ÷ ÀÛ¼º
+	//ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë©´ ì¿¨íƒ€ì„ìœ¼ë¡œ ë°”ê¾¸ëŠ” ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ê³  ë¡œì§ ì‘ì„±
 	EnterSkillCoolTIme((int)EWeapon::Bomb);
 
 
@@ -486,7 +486,7 @@ void CPlayerSpace::FireBomb()
 
 void CPlayerSpace::FireNotify()
 {
-	////½ºÅ³ ·ÎÁ÷ ÁøÇà
+	////ìŠ¤í‚¬ ë¡œì§ ì§„í–‰
 	//CProjectile* Bullet = m_Scene->CreateObject<CProjectile>("PlayerBullet", this);
 	//Bullet->SetMaxVelocityDir(1000.f, m_Dir);
 	//Bullet->SetPos(m_Pos);
@@ -500,7 +500,7 @@ void CPlayerSpace::RifleDrop()
 
 	m_CurrentAct = EDirAction::Rifle_Drop;
 
-	//ÃÑ ¹ß»ç »óÅÂ¸¦ true·Î º¯°æÇÏ¿© ÃÑ¹ß»ç ºÒ°¡´ÉÇÏ°Ô ÇÏ°í ¹«±â º¯°æ
+	//ì´ ë°œì‚¬ ìƒíƒœë¥¼ trueë¡œ ë³€ê²½í•˜ì—¬ ì´ë°œì‚¬ ë¶ˆê°€ëŠ¥í•˜ê²Œ í•˜ê³  ë¬´ê¸° ë³€ê²½
 	m_GunFired = true;
 	m_CurrentWeapon = EWeapon::Pistol;
 	m_WindowSpace->SetBulletLeft(m_Bullet);
@@ -625,14 +625,14 @@ void CPlayerSpace::GetGas()
 
 void CPlayerSpace::Death()
 {
-	//ÇÑ¹ø¸¸ ÁøÀÔ
+	//í•œë²ˆë§Œ ì§„ì…
 	if (m_HP <= -10)
 		return;
 	m_HP = -10;
 	
 	m_SideCollOn = false;
 
-	//¸ğµç Å°¹ÙÀÎµùÀ» Á¦°Å
+	//ëª¨ë“  í‚¤ë°”ì¸ë”©ì„ ì œê±°
 	CInput::GetInst()->DeleteBindClass<CPlayerSpace>(this);
 	ClearCollider();
 
@@ -655,9 +655,9 @@ void CPlayerSpace::Death()
 
 void CPlayerSpace::DeathEnd()
 {
-	//¹Ù·Î Á×À¸´Ï±î ±×·²µíÇÏÁö°¡ ¾ÊÀ½..
-	//µ¥½º Å¸ÀÌ¸Ó°°Àº°É ÇÏ³ª ¸¸µé¾î¼­ Á» ´õ ½Ã°£À» ¿¬ÀåÇØ¾ß ÇÒµí
-	//ÄÃ¸µÀ¸·Î ÇØ°á
+	//ë°”ë¡œ ì£½ìœ¼ë‹ˆê¹Œ ê·¸ëŸ´ë“¯í•˜ì§€ê°€ ì•ŠìŒ..
+	//ë°ìŠ¤ íƒ€ì´ë¨¸ê°™ì€ê±¸ í•˜ë‚˜ ë§Œë“¤ì–´ì„œ ì¢€ ë” ì‹œê°„ì„ ì—°ì¥í•´ì•¼ í• ë“¯
+	//ì»¬ë§ìœ¼ë¡œ í•´ê²°
 	CWidgetWindow* Window = m_Scene->FindWidgetWindow("WindowSpace");
 	if (Window)
 	{
@@ -691,16 +691,16 @@ void CPlayerSpace::SlugEjectionEnd()
 
 void CPlayerSpace::SetGameOver()
 {
-	//°ÔÀÓ¿À¹ö ¾ÀÀ¸·Î ÀüÈ¯ÇÏ°í
+	//ê²Œì„ì˜¤ë²„ ì”¬ìœ¼ë¡œ ì „í™˜í•˜ê³ 
 	CSceneManager::GetInst()->ChangeGameOver();
 
-	//´ÙÀÌ³ª¹Í Ä³½ºÆ®¸¦ ÇÑ µÚ
+	//ë‹¤ì´ë‚˜ë¯¹ ìºìŠ¤íŠ¸ë¥¼ í•œ ë’¤
 	CGameOver* GameOver = dynamic_cast<CGameOver*>(
 		CSceneManager::GetInst()->GetNextScene());
 	if (!GameOver)
 		return;
 
-	//Á×¾î¼­ °ÔÀÓ¿À¹öµÆ´Ù°í ¾Ë·ÁÁÜ.
+	//ì£½ì–´ì„œ ê²Œì„ì˜¤ë²„ëë‹¤ê³  ì•Œë ¤ì¤Œ.
 	GameOver->SetEssential(true);
 }
 
@@ -717,13 +717,13 @@ void CPlayerSpace::SetCutsceneMode(bool On)
 {
 	if (On)
 	{
-		//ÀÚ½ÅÀÇ Å°¹ÙÀÎµùÀ» ¸ğµÎ Á¦°ÅÇÏ°í ÁÂÃø ±¸¼®À¸·Î Ä³¸¯ÅÍ¸¦ ÀÌµ¿½ÃÅ²´Ù.
+		//ìì‹ ì˜ í‚¤ë°”ì¸ë”©ì„ ëª¨ë‘ ì œê±°í•˜ê³  ì¢Œì¸¡ êµ¬ì„ìœ¼ë¡œ ìºë¦­í„°ë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
 		CInput::GetInst()->DeleteBindClass<CPlayerSpace>(this);
 		MoveToDest(true, EMoveToMethod::MoveDir, Vector2(50.f, 200.f));
 	}
 	else
 	{
-		//´Ù½Ã ÀÔ·ÂÀ» µî·ÏÇÑ´Ù.
+		//ë‹¤ì‹œ ì…ë ¥ì„ ë“±ë¡í•œë‹¤.
 		RegisterInput();
 	}
 }
@@ -813,8 +813,8 @@ void CPlayerSpace::PostUpdate(float DeltaTime)
 	CGameManager::GetInst()->DebugTextOut("Current Dir", (int)m_CurrentDir);
 
 
-	//°°À» °æ¿ì ÇÁ·¹ÀÓÀ» ÀÌ¾î¼­ Àç»ıÇÏ°í
-	//´Ù¸¦ °æ¿ì »õ·Î Àç»ı
+	//ê°™ì„ ê²½ìš° í”„ë ˆì„ì„ ì´ì–´ì„œ ì¬ìƒí•˜ê³ 
+	//ë‹¤ë¥¼ ê²½ìš° ìƒˆë¡œ ì¬ìƒ
 	if (m_CurrentAct == m_PrevAct)
 	{
 		ChangeAnimContinue(
@@ -844,7 +844,7 @@ void CPlayerSpace::PostUpdate(float DeltaTime)
 
 
 
-	//ÀÌÀü ¾×¼Ç ¾÷µ¥ÀÌÆ®
+	//ì´ì „ ì•¡ì…˜ ì—…ë°ì´íŠ¸
 	m_PrevDir = m_CurrentDir;
 	m_PrevAct = m_CurrentAct;
 }
@@ -898,7 +898,7 @@ void CPlayerSpace::FireHMG()
 	{
 
 
-		//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+		//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 		CPlayerHMG* HMG = m_Scene->CreateObject<CPlayerHMG>("PlayerHMG");
 		HMG->SetEssential(Vector2(0.05f * (float)m_HMGDir, -1.f), m_Pos);
 
@@ -942,13 +942,13 @@ void CPlayerSpace::FireRocket()
 	SFX->SetEssential(m_Pos + m_Offset);
 
 
-	//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+	//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 	CRocketLauncher* Rocket = m_Scene->CreateObject<CRocketLauncher>("Rocket");
 	Rocket->SetEssential(Vector2(0.f, -1.f), m_Pos + m_Offset);
 
 	--m_Bullet;
 	m_WindowSpace->SetBulletLeft(m_Bullet);
-	++m_FiredRocket;	//·ÎÄÏ ¹ß»ç ¼ö Áõ°¡. ÀÌ °ªÀº CRocketLauncherÀÇ ¼Ò¸êÀÚ¿¡¼­ °¨¼ÒÇÔ
+	++m_FiredRocket;	//ë¡œì¼“ ë°œì‚¬ ìˆ˜ ì¦ê°€. ì´ ê°’ì€ CRocketLauncherì˜ ì†Œë©¸ìì—ì„œ ê°ì†Œí•¨
 }
 
 void CPlayerSpace::FireShotgun()
@@ -958,7 +958,7 @@ void CPlayerSpace::FireShotgun()
 
 	m_CurrentAct = EDirAction::Attack_Shotgun;
 
-	//ÃÑ¾Ë ¿ÀºêÁ§Æ® »ı¼º
+	//ì´ì•Œ ì˜¤ë¸Œì íŠ¸ ìƒì„±
 	CShotgun* Shotgun = m_Scene->CreateObject<CShotgun>("Shotgun");
 	Shotgun->SetEssential(this,m_Offset);
 
@@ -1120,7 +1120,7 @@ void CPlayerSpace::RegisterAnimName()
 	}
 
 
-	//Å×ÀÏºÎ½ºÅÍ
+	//í…Œì¼ë¶€ìŠ¤í„°
 	m_vecTailBoosterName[(int)EDirSpace::Left2] = "TailBoostLeft2";
 	m_vecTailBoosterName[(int)EDirSpace::Left1] = "TailBooxtLeft1";
 	m_vecTailBoosterName[(int)EDirSpace::Mid] = "TailBoostMid";
@@ -1128,7 +1128,7 @@ void CPlayerSpace::RegisterAnimName()
 	m_vecTailBoosterName[(int)EDirSpace::Right2] = "TailBoostRight2";
 
 
-	//Ãø¸éºÎ½ºÅÍ ¿ÀÇÁ¼Â
+	//ì¸¡ë©´ë¶€ìŠ¤í„° ì˜¤í”„ì…‹
 	m_vecSideBoosterOffset[(int)EDirSpace::Left2][DirLeft].Set(-10.f, -30.f);
 	m_vecSideBoosterOffset[(int)EDirSpace::Left2][DirRight].Set(1.f, -30.f);
 	
@@ -1147,16 +1147,16 @@ void CPlayerSpace::RegisterAnimName()
 
 void CPlayerSpace::RegisterInput()
 {
-	//ÀÌÆåÆ® »ı¼º
+	//ì´í™íŠ¸ ìƒì„±
 	SetInvincible(3.f);
 	CJustPlay* JustPlay = m_Scene->CreateObject<CJustPlay>("P1Indicator", this);
 	JustPlay->SetDuration(3.f);
 	JustPlay->SetOffset(0.f, -20.f);
 
-	//»çÀÌµå Ãæµ¹ È°¼ºÈ­
+	//ì‚¬ì´ë“œ ì¶©ëŒ í™œì„±í™”
 	m_SideCollOn = true;
 
-	//ÀÔ·Â ÃÊ±âÈ­
+	//ì…ë ¥ ì´ˆê¸°í™”
 	CInput::GetInst()->AddBindFunction<CPlayerSpace>("MoveLeft",
 		EInput_Type::Push,
 		this, &CPlayerSpace::MoveLeft);
@@ -1181,7 +1181,7 @@ void CPlayerSpace::RegisterInput()
 		EInput_Type::Push,
 		this, &CPlayerSpace::MoveDown);
 
-	//°ø°İÅ° ÀÌ¶§ µî·ÏÇØÁÜ
+	//ê³µê²©í‚¤ ì´ë•Œ ë“±ë¡í•´ì¤Œ
 	CInput::GetInst()->AddBindFunction<CPlayerSpace>("GunFire",
 		EInput_Type::Down,
 		this, &CPlayerSpace::FireGun);

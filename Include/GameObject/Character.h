@@ -6,7 +6,7 @@
 
 
 class CCharacter :
-    public CGameObject
+	public CGameObject
 {
 	friend class CScene;
 

@@ -19,7 +19,7 @@ CTrail::CTrail(const CTrail& Obj) :
 	m_FrequencyMax(Obj.m_FrequencyMax),
 	m_Force(Obj.m_Force)
 {
-	//ÀÌÈÄ ´Ü°è¿¡¼­ ¼³Á¤µÇ´Â º¯¼ö
+	//ì´í›„ ë‹¨ê³„ì—ì„œ ì„¤ì •ë˜ëŠ” ë³€ìˆ˜
 	//bool m_isReady;
 }
 

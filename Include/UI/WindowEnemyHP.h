@@ -5,35 +5,35 @@
 
 
 class CWindowEnemyHP :
-    public CWidgetWindow
+	public CWidgetWindow
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CWindowEnemyHP();
-    CWindowEnemyHP(const CWindowEnemyHP& widget);
-    virtual ~CWindowEnemyHP();
+	CWindowEnemyHP();
+	CWindowEnemyHP(const CWindowEnemyHP& widget);
+	virtual ~CWindowEnemyHP();
 public:
-    virtual bool Init();
+	virtual bool Init();
 
 private:
-    class CWidgetProgressBar* m_Bar;
-    class CWidgetNumber* m_Number;
+	class CWidgetProgressBar* m_Bar;
+	class CWidgetNumber* m_Number;
 
 
-    class CEnemy* m_Enemy;
-    float m_EnemyHPMax; //ÃÊ±âÈ­¶§ ¹Ù·Î ¸ó½ºÅÍÀÇ HP¸¦ ¹Ş¾Æ¿Í¼­ ±×°É ¸¸ÇÇ·Î ¼³Á¤
+	class CEnemy* m_Enemy;
+	float m_EnemyHPMax; //ì´ˆê¸°í™”ë•Œ ë°”ë¡œ ëª¬ìŠ¤í„°ì˜ HPë¥¼ ë°›ì•„ì™€ì„œ ê·¸ê±¸ ë§Œí”¼ë¡œ ì„¤ì •
 
-    //¸ó½ºÅÍÀÇ À§Ä¡¿¡¼­ ±âº»ÀûÀ¸·Î ¾ó¸¶³ª ¶³¾î¶ß·Á¼­ Ãâ·ÂÇÒÁö
-    //(Ã¼·Â¹ÙÀÌ¹Ç·Î)
-    Vector2 m_Offset;
+	//ëª¬ìŠ¤í„°ì˜ ìœ„ì¹˜ì—ì„œ ê¸°ë³¸ì ìœ¼ë¡œ ì–¼ë§ˆë‚˜ ë–¨ì–´ëœ¨ë ¤ì„œ ì¶œë ¥í• ì§€
+	//(ì²´ë ¥ë°”ì´ë¯€ë¡œ)
+	Vector2 m_Offset;
 public:
-    void SetOffset(const Vector2& Offset);
+	void SetOffset(const Vector2& Offset);
 
 public:
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 
 };
 

@@ -18,7 +18,7 @@ public:
 	bool ChangeScene();
 	CScene* GetNextScene();
 
-	//¾À »ı¼º ¸Ş¼Òµå
+	//ì”¬ ìƒì„± ë©”ì†Œë“œ
 	template <typename T>
 	bool CreateScene()
 	{
@@ -30,11 +30,11 @@ public:
 			return false;
 		}
 			
-		//¾À »ı¼º¿¡ ¼º°øÇßÀ¸¸é ¸â¹öº¯¼ö m_PresentScene¿¡ ¾÷Ä³½ºÆÃÀ» ÅëÇØ µî·Ï
+		//ì”¬ ìƒì„±ì— ì„±ê³µí–ˆìœ¼ë©´ ë©¤ë²„ë³€ìˆ˜ m_PresentSceneì— ì—…ìºìŠ¤íŒ…ì„ í†µí•´ ë“±ë¡
 		if (!m_PresentScene)
 			m_PresentScene = (CScene*)Scene;
 
-		//È¤½Ã³ª ±âÁ¸¿¡ ¾ÀÀÌ ÀÖ´Ù¸é ÇöÀç NextScene¿¡ µî·Ï.
+		//í˜¹ì‹œë‚˜ ê¸°ì¡´ì— ì”¬ì´ ìˆë‹¤ë©´ í˜„ì¬ NextSceneì— ë“±ë¡.
 		else
 			m_NextScene = (CScene*)Scene;
 
@@ -43,8 +43,8 @@ public:
 
 	bool Init();
 	
-	//boolÅ¸ÀÔÀ» ¹İÈ¯ÇÏ´Â ÀÌÀ¯´Â ¾ÀÀÌ º¯°æµÇ¾úÀ» °æ¿ì true¸¦ ¹İÈ¯ÇØ ÀÌÈÄ Ã³¸®°úÁ¤À» Áß´ÜÇÏ°í
-	//¹Ù·Î ´ÙÀ½ ¾À ·Îµù °úÁ¤À¸·Î ÁøÀÔÇÏ±â À§ÇØ¼­ÀÌ´Ù.
+	//boolíƒ€ì…ì„ ë°˜í™˜í•˜ëŠ” ì´ìœ ëŠ” ì”¬ì´ ë³€ê²½ë˜ì—ˆì„ ê²½ìš° trueë¥¼ ë°˜í™˜í•´ ì´í›„ ì²˜ë¦¬ê³¼ì •ì„ ì¤‘ë‹¨í•˜ê³ 
+	//ë°”ë¡œ ë‹¤ìŒ ì”¬ ë¡œë”© ê³¼ì •ìœ¼ë¡œ ì§„ì…í•˜ê¸° ìœ„í•´ì„œì´ë‹¤.
 	bool Update(float DeltaTime);
 
 	bool PostUpdate(float DeltaTime);

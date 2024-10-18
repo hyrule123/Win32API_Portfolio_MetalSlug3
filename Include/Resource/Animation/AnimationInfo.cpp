@@ -38,10 +38,10 @@ CAnimationInfo::CAnimationInfo(const CAnimationInfo& Obj) :
 	m_EndFunction(),
 	m_vecNotify{}
 {
-	//Init() ÀÌÈÄ¿¡ ÃÊ±âÈ­µÇ´Â ÇÔ¼ö
+	//Init() ì´í›„ì— ì´ˆê¸°í™”ë˜ëŠ” í•¨ìˆ˜
 	//m_EndFunction(Obj.m_EndFunction)
 
-	//vecNotify´Â ¾îÂ÷ÇÇ Init() ÀÌÈÄ¿¡ »ý¼ºµÇ¹Ç·Î º¹»çÇÒ ÇÊ¿ä ¾øÀ½.
+	//vecNotifyëŠ” ì–´ì°¨í”¼ Init() ì´í›„ì— ìƒì„±ë˜ë¯€ë¡œ ë³µì‚¬í•  í•„ìš” ì—†ìŒ.
 	//std::vector<std::vector<AnimationNotify*>> m_vecNotify;
 }
 
@@ -70,7 +70,7 @@ void CAnimationInfo::Init()
 
 	m_Time = 0.f;
 
-	//³ëÆ¼ÆÄÀÌ ÀÌÂ÷¿ø ¹è¿­ call ¿©ºÎ ÃÊ±âÈ­
+	//ë…¸í‹°íŒŒì´ ì´ì°¨ì› ë°°ì—´ call ì—¬ë¶€ ì´ˆê¸°í™”
 	size_t size = m_vecNotify.size();
 	for (int i = 0; i < size; ++i)
 	{

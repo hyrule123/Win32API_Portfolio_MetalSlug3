@@ -10,7 +10,7 @@
 #include "../Scene/SceneResource.h"
 #include "../Resource/Texture/Texture.h"
 
-//·£´ı³Ñ¹ö ¹Ş¾Æ¿À±âÀ§ÇÔ
+//ëœë¤ë„˜ë²„ ë°›ì•„ì˜¤ê¸°ìœ„í•¨
 #include "../GameManager.h"
 
 #include "../ScoreManager.h"
@@ -30,12 +30,12 @@ CLaser::CLaser() :
 	SetTypeID<CLaser>();
 
 	m_KeepFire = m_KeepFireRefVal;
-	m_DamageFreqRefVal = m_KeepFireRefVal / 6.f;//µ¥¹ÌÁö´Â 6È¸(ÀÜ»ó±îÁö)
+	m_DamageFreqRefVal = m_KeepFireRefVal / 6.f;//ë°ë¯¸ì§€ëŠ” 6íšŒ(ì”ìƒê¹Œì§€)
 }
 
 CLaser::CLaser(const CLaser& Obj) :
 	CProjectile(Obj),
-	m_ColorNum{},	//Init¿¡¼­ ÃÊ±âÈ­
+	m_ColorNum{},	//Initì—ì„œ ì´ˆê¸°í™”
 	m_Index(Obj.m_Index),
 	m_KeepFire(Obj.m_KeepFire),
 	m_KeepFireRefVal(Obj.m_KeepFireRefVal),
@@ -47,7 +47,7 @@ CLaser::CLaser(const CLaser& Obj) :
 	m_TurnOff(Obj.m_TurnOff)
 {
 	m_KeepFire = m_KeepFireRefVal;
-	m_DamageFreqRefVal = m_KeepFireRefVal / 6.f;//µ¥¹ÌÁö´Â 6È¸(ÀÜ»ó±îÁö)
+	m_DamageFreqRefVal = m_KeepFireRefVal / 6.f;//ë°ë¯¸ì§€ëŠ” 6íšŒ(ì”ìƒê¹Œì§€)
 }
 
 CLaser::~CLaser()
@@ -73,10 +73,10 @@ bool CLaser::Init(CGameObject* Obj)
 	m_ColorNum[2] = (UINT8)EReactionChannel::Laser2;
 	m_ColorNum[3] = (UINT8)EReactionChannel::Laser3;
 
-	//·¹ÀÌÀú ¹ß»ç Á¾·á ¿£µåÆã¼Ç ¼³Á¤
+	//ë ˆì´ì € ë°œì‚¬ ì¢…ë£Œ ì—”ë“œí‘ì…˜ ì„¤ì •
 	SetEndFunction<CLaser>("LaserLineOff", this, &CLaser::LaserLineOffEnd);
 
-	//ÀÜÇØ »ı¼º ³ëÆ¼ÆÄÀÌ ¼³Á¤
+	//ì”í•´ ìƒì„± ë…¸í‹°íŒŒì´ ì„¤ì •
 	AddNotify<CLaser>("LaserHit", 0, this, &CLaser::LaserHitNotify);
 	AddNotify<CLaser>("LaserHitOff", 0, this, &CLaser::LaserHitNotify);
 
@@ -109,7 +109,7 @@ void CLaser::Update(float DeltaTime)
 
 
 
-	//·¹ÀÌÀú ±æÀÌ¸¦ ¸Å ÇÁ·¹ÀÓ Ã¢ ³¡±îÁö·Î Á¦ÇÑÇÑ´Ù
+	//ë ˆì´ì € ê¸¸ì´ë¥¼ ë§¤ í”„ë ˆì„ ì°½ ëê¹Œì§€ë¡œ ì œí•œí•œë‹¤
 	m_Coll->SetDistance(fabs(m_Pos.y - m_Scene->GetCamPos().y - 5.f));
 
 	if (m_KeepFire > 0.f)
@@ -127,7 +127,7 @@ void CLaser::Update(float DeltaTime)
 	}
 
 
-	//ºÎµúÈ÷´Â ´ë»óÀÌ ÀÖ´Ù¸é È÷Æ®Æ÷ÀÎÆ®¿¡ È÷Æ®ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù. ±×·¸Áö ¾ÊÀ» °æ¿ì ¾Ö´Ï¸ŞÀÌ¼Ç Á¤Áö
+	//ë¶€ë”ªíˆëŠ” ëŒ€ìƒì´ ìˆë‹¤ë©´ íˆíŠ¸í¬ì¸íŠ¸ì— íˆíŠ¸ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤. ê·¸ë ‡ì§€ ì•Šì„ ê²½ìš° ì• ë‹ˆë©”ì´ì…˜ ì •ì§€
 
 	if (m_Coll->CheckCollidingAny())
 	{
@@ -162,7 +162,7 @@ void CLaser::Update(float DeltaTime)
 	}
 	else
 	{
-		//È÷Æ®Æ÷ÀÎÆ®¿¡¼­ ¹ß»ıÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ Àç»ıÀ» ÁßÁöÇÑ´Ù.
+		//íˆíŠ¸í¬ì¸íŠ¸ì—ì„œ ë°œìƒí•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ì˜ ì¬ìƒì„ ì¤‘ì§€í•œë‹¤.
 		StopAnimation(2);
 	}
 
@@ -254,7 +254,7 @@ void CLaser::Render(HDC hDC, float DeltaTime)
 			Pos = m_Pos - Camera->GetPos();
 		}
 
-		//¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖ´Ù¸é ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿ì¼±
+		//ì• ë‹ˆë©”ì´ì…˜ì´ ìˆë‹¤ë©´ ì• ë‹ˆë©”ì´ì…˜ì´ ìš°ì„ 
 		if (m_Animation)
 		{
 			for (int i = 0; i <= m_Animation->GetHighestLayer(); ++i)
@@ -306,7 +306,7 @@ void CLaser::Render(HDC hDC, float DeltaTime)
 			}
 
 
-			//2ÇÁ·¹ÀÓ¸¶´Ù ÇÑ¹ø¾¿ ·¹ÀÌÀú »ö»óÀ» ¹Ù²ãÁØ´Ù.
+			//2í”„ë ˆì„ë§ˆë‹¤ í•œë²ˆì”© ë ˆì´ì € ìƒ‰ìƒì„ ë°”ê¿”ì¤€ë‹¤.
 			if(m_ChangeIndex)
 				m_Index = CGameManager::GetInst()->GetRandNum() % 4;
 			m_ChangeIndex = !m_ChangeIndex;
@@ -317,7 +317,7 @@ void CLaser::Render(HDC hDC, float DeltaTime)
 		if (DEBUG_RENDER)
 		{
 
-			//Ãæµ¹Ã¼ ¸®½ºÆ®°¡ ºñ¾îÀÖ´Ù¸é ¾ÈÇØµµ µÊ
+			//ì¶©ëŒì²´ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆë‹¤ë©´ ì•ˆí•´ë„ ë¨
 			if (!m_listCollider.empty())
 			{
 				auto iter = m_listCollider.begin();
@@ -325,14 +325,14 @@ void CLaser::Render(HDC hDC, float DeltaTime)
 
 				while (iter != iterEnd)
 				{
-					//¸¸¾à Ãæµ¹Ã¼°¡ Á¦°ÅµÇ±â·Î ¿¹¾à µÇ¾îÀÖ¾ú´Ù¸é
+					//ë§Œì•½ ì¶©ëŒì²´ê°€ ì œê±°ë˜ê¸°ë¡œ ì˜ˆì•½ ë˜ì–´ìˆì—ˆë‹¤ë©´
 					if (!(*iter)->GetActive())
 					{
 						iter++;
 						continue;
 					}
 
-					//¸¸¾à ÀÓ½Ã·Î ºñÈ°¼ºÈ­¸¸ µÇ¾îÀÖ´Ù¸é Ã³¸®ÇÏÁö ¾Ê°í ³Ñ¾î°£´Ù.
+					//ë§Œì•½ ì„ì‹œë¡œ ë¹„í™œì„±í™”ë§Œ ë˜ì–´ìˆë‹¤ë©´ ì²˜ë¦¬í•˜ì§€ ì•Šê³  ë„˜ì–´ê°„ë‹¤.
 					else if (!(*iter)->GetEnable())
 					{
 						iter++;
@@ -380,7 +380,7 @@ void CLaser::LaserLineOffEnd()
 void CLaser::LaserHitNotify()
 {
 	int rnd = rand();
-	float RandDir = rnd % 2 == 0 ? -1.f : 1.f;	//·£´ıÇÑ ¹æÇâ ÁöÁ¤
+	float RandDir = rnd % 2 == 0 ? -1.f : 1.f;	//ëœë¤í•œ ë°©í–¥ ì§€ì •
 
 	CLaserDebris* Debris = m_Scene->CreateObject<CLaserDebris>("LaserDebris");
 	Debris->SetEssential(RandDir, 0.f, m_Pos.x, m_Pos.y - m_CollidingObjYPos, 0.f, 0.f, float(rnd % 100));

@@ -1,20 +1,20 @@
 #pragma once
 #include "WidgetWindow.h"
 class CWindowGameOver :
-    public CWidgetWindow
+	public CWidgetWindow
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CWindowGameOver();
-    virtual ~CWindowGameOver();
+	CWindowGameOver();
+	virtual ~CWindowGameOver();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
 
 private:
-    bool m_PlayGameDelayOn;
-    float m_Delay;
+	bool m_PlayGameDelayOn;
+	float m_Delay;
 
-    void ReturnMainMenuCallBack();
+	void ReturnMainMenuCallBack();
 };

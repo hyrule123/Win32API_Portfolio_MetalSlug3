@@ -17,7 +17,7 @@ CExplosion::CExplosion(const CExplosion& Obj) :
 	{
 		m_vecSizeName[i] = Obj.m_vecSizeName[i];
 	}
-	//ÀÌÈÄ ´Ü°è¿¡¼­ ¼³Á¤µÇ´Â º¯¼ö
+	//ì´í›„ ë‹¨ê³„ì—ì„œ ì„¤ì •ë˜ëŠ” ë³€ìˆ˜
 	//bool m_isReady;
 }
 

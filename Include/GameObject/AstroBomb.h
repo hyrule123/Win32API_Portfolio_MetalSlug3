@@ -1,34 +1,34 @@
-//¾Æ½ºÆ®·Î ½½·¯±×¿¡¼­ ¹ß»çÇÏ´Â ÆøÅº
-//¾Ö´Ï¸ŞÀÌ¼Ç ÀÌ¸§À¸·Î »ı¼ºÇØ¼­ ÁÂ/¿ìÃøÀ» ±¸ºĞÇØÁØ´Ù.
+//ì•„ìŠ¤íŠ¸ë¡œ ìŠ¬ëŸ¬ê·¸ì—ì„œ ë°œì‚¬í•˜ëŠ” í­íƒ„
+//ì• ë‹ˆë©”ì´ì…˜ ì´ë¦„ìœ¼ë¡œ ìƒì„±í•´ì„œ ì¢Œ/ìš°ì¸¡ì„ êµ¬ë¶„í•´ì¤€ë‹¤.
 
 #pragma once
 #include "Projectile.h"
 
 class CAstroBomb :
-    public CProjectile
+	public CProjectile
 {
-    friend class CScene;
+	friend class CScene;
 protected:
-    CAstroBomb();
-    CAstroBomb(const CAstroBomb& Obj);
-    virtual ~CAstroBomb();
+	CAstroBomb();
+	CAstroBomb(const CAstroBomb& Obj);
+	virtual ~CAstroBomb();
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual bool LoadResource();
-    virtual void Update(float DeltaTime);
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual bool LoadResource();
+	virtual void Update(float DeltaTime);
 
-    virtual void SetEssential(float PosX, float PosY ,bool SlowIgnition);
-
-protected:
-    bool m_isRight;
-    class CGameObject* m_Target;
-    float m_MaxTurnDirX;    //x¹æÇâ ÃÖ´ë ¼±È¸°¢
-    float m_Delay;    //ÆøÅºÀº ¾ç »çÀÌµå°¡ Å¸ÀÌ¹ÖÀÌ ´Ù¸£°Ô ³ª°¨.
-    bool  m_StartIgnition;                        //ÇÑÂÊÀº ´Ê°Ô, ÇÑÂÊÀº ºü¸£°Ô ³ª°¡¾ßÇÔ.
+	virtual void SetEssential(float PosX, float PosY ,bool SlowIgnition);
 
 protected:
-    void AstroBombStartEnd();  //·ÎÄÏ ÃÊ¹İ ¾Ö´Ï¸ŞÀÌ¼Ç ³¡³ª°í Á¡È­
-    void CollisionBegin(class CCollider* Src, class CCollider* Dest);
-    void HommingBegin(class CCollider* Src, class CCollider* Dest);
+	bool m_isRight;
+	class CGameObject* m_Target;
+	float m_MaxTurnDirX;    //xë°©í–¥ ìµœëŒ€ ì„ íšŒê°
+	float m_Delay;    //í­íƒ„ì€ ì–‘ ì‚¬ì´ë“œê°€ íƒ€ì´ë°ì´ ë‹¤ë¥´ê²Œ ë‚˜ê°.
+	bool  m_StartIgnition;                        //í•œìª½ì€ ëŠ¦ê²Œ, í•œìª½ì€ ë¹ ë¥´ê²Œ ë‚˜ê°€ì•¼í•¨.
+
+protected:
+	void AstroBombStartEnd();  //ë¡œì¼“ ì´ˆë°˜ ì• ë‹ˆë©”ì´ì…˜ ëë‚˜ê³  ì í™”
+	void CollisionBegin(class CCollider* Src, class CCollider* Dest);
+	void HommingBegin(class CCollider* Src, class CCollider* Dest);
 };
 

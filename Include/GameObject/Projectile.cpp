@@ -42,8 +42,8 @@ void CProjectile::Update(float DeltaTime)
 
 void CProjectile::PostUpdate(float DeltaTime)
 {
-	//ÆÄ±« Á¶°ÇÀÌ ¸¸Á·µÇ¸é ÃÑ¾Ë Á¦°Å
-	//°Å¸®¸¦ ¹þ¾î³µ°Å³ª, ÃÑ¾Ë ±âº»¼¼ÆÃÀ» ÇÏÁö ¾Ê¾Ò´Ù¸é ±×³É Á¦°Å
+	//íŒŒê´´ ì¡°ê±´ì´ ë§Œì¡±ë˜ë©´ ì´ì•Œ ì œê±°
+	//ê±°ë¦¬ë¥¼ ë²—ì–´ë‚¬ê±°ë‚˜, ì´ì•Œ ê¸°ë³¸ì„¸íŒ…ì„ í•˜ì§€ ì•Šì•˜ë‹¤ë©´ ê·¸ëƒ¥ ì œê±°
 	if (!m_isReady)
 	{
 		SetActive(false);

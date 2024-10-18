@@ -3,7 +3,7 @@
 
 
 class CIntroRocketLowest :
-    public CIntroRocket
+	public CIntroRocket
 {
 	friend class CScene;
 protected:

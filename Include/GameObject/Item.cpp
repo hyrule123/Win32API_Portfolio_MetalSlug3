@@ -2,15 +2,15 @@
 
 #include "../Scene/Scene.h"
 
-//¾ÆÀÌÅÛÀº ÇÃ·¹ÀÌ¾î¸¸ »ç¿ë°¡´É
+//ì•„ì´í…œì€ í”Œë ˆì´ì–´ë§Œ ì‚¬ìš©ê°€ëŠ¥
 #include "Player.h"
 
 #include "../Collision/ColliderBox.h"
 
-//¹«±â·ù È¹µæ½Ã ÀÌÆåÆ®
+//ë¬´ê¸°ë¥˜ íšë“ì‹œ ì´í™íŠ¸
 #include "JustPlay.h"
 
-//Á¡¼ö Ç¥½Ã
+//ì ìˆ˜ í‘œì‹œ
 #include "../ScoreManager.h"
 #include "../UI/WindowSpace.h"
 #include "../UI/WidgetScore.h"
@@ -83,7 +83,7 @@ bool CItem::Init(CGameObject* Obj)
 {
 	CGameObject::Init(Obj);
 
-	//¾ÆÀÌÅÛÀÌ ¹İ»çµÇ´Â °ÍÀÌ ³¡³ª¸é Ãæµ¹Ã¼¸¸ »èÁ¦ÇØÁÖ¸é µÈ´Ù
+	//ì•„ì´í…œì´ ë°˜ì‚¬ë˜ëŠ” ê²ƒì´ ëë‚˜ë©´ ì¶©ëŒì²´ë§Œ ì‚­ì œí•´ì£¼ë©´ ëœë‹¤
 	SetCullingDelete(ECullingDelete::All, true);
 
 	m_RenderLayer = ERenderLayer::EffectHigh;
@@ -157,7 +157,7 @@ void CItem::Update(float DeltaTime)
 	m_LeftTime -= DeltaTime;
 	if (m_LeftTime < 0.f)
 	{
-		ClearCollider();//ÄÃ¸µ »èÁ¦ ±â´É¶§¹®¿¡ ÀÚµ¿À¸·Î »ç¶óÁü
+		ClearCollider();//ì»¬ë§ ì‚­ì œ ê¸°ëŠ¥ë•Œë¬¸ì— ìë™ìœ¼ë¡œ ì‚¬ë¼ì§
 		return;
 	}
 
@@ -201,27 +201,27 @@ void CItem::Render(HDC hDC, float DeltaTime)
 
 void CItem::Reflect(const Vector2& NormalVector)
 {
-	//1. ÁøÇà¹æÇâ º¤ÅÍ¿Í Ãæµ¹ÇÑ ºÎºĞÀÇ ¹ı¼±º¤ÅÍ°¡ ÇÊ¿äÇÏ´Ù.
+	//1. ì§„í–‰ë°©í–¥ ë²¡í„°ì™€ ì¶©ëŒí•œ ë¶€ë¶„ì˜ ë²•ì„ ë²¡í„°ê°€ í•„ìš”í•˜ë‹¤.
 
-	//2. ÁøÇà¹æÇâ º¤ÅÍÀÇ ¿ªº¤ÅÍ(-p)¸¦ ±¸ÇÑ´Ù.
+	//2. ì§„í–‰ë°©í–¥ ë²¡í„°ì˜ ì—­ë²¡í„°(-p)ë¥¼ êµ¬í•œë‹¤.
 	Vector2 InverseVec = m_Dir * -1.f;
 
-	//3. ¿ªº¤ÅÍ(-p)¿Í ¹ı¼± º¤ÅÍÀÇ (n) ³»Àû (dot)À» ±¸ÇÑ´Ù.
+	//3. ì—­ë²¡í„°(-p)ì™€ ë²•ì„  ë²¡í„°ì˜ (n) ë‚´ì  (dot)ì„ êµ¬í•œë‹¤.
 	float Dot = InverseVec.Dot(NormalVector);
 
-	//4. ¹ı¼± º¤ÅÍ¸¦ 2¹è·Î (2 * n) ´Ã¸°´Ù.
+	//4. ë²•ì„  ë²¡í„°ë¥¼ 2ë°°ë¡œ (2 * n) ëŠ˜ë¦°ë‹¤.
 	Vector2 TwiceNormalVec = NormalVector * 2.f;
 
-	//5. 2¹è ±æÀÌÀÇ ¹ı¼±º¤ÅÍ¸¦ ³»ÀûÀÌ °è»êµÈ °ª¸¸Å­ ½ºÄÉÀÏÀ» Á¶ÀıÇÑ´Ù. ( 2 * n * dot(-p, n) )
+	//5. 2ë°° ê¸¸ì´ì˜ ë²•ì„ ë²¡í„°ë¥¼ ë‚´ì ì´ ê³„ì‚°ëœ ê°’ë§Œí¼ ìŠ¤ì¼€ì¼ì„ ì¡°ì ˆí•œë‹¤. ( 2 * n * dot(-p, n) )
 	TwiceNormalVec *= Dot;
 
-	//6. ¿ø·¡ ÁøÇà¹æÇâ º¤ÅÍ (p)¿¡ 5¹ø¿¡¼­ °è»êµÈ º¤ÅÍ (½ºÄÉÀÏ Á¶ÀıµÈ ¹ı¼± º¤ÅÍ) ¸¦ ´õÇÑ´Ù. ( p + 5¹ø °á°ú º¤ÅÍ )
+	//6. ì›ë˜ ì§„í–‰ë°©í–¥ ë²¡í„° (p)ì— 5ë²ˆì—ì„œ ê³„ì‚°ëœ ë²¡í„° (ìŠ¤ì¼€ì¼ ì¡°ì ˆëœ ë²•ì„  ë²¡í„°) ë¥¼ ë”í•œë‹¤. ( p + 5ë²ˆ ê²°ê³¼ ë²¡í„° )
 	m_Dir += TwiceNormalVec;
 
-	//7. ±¸ÇØÁø ¹İ»çº¤ÅÍ¸¦ Á¤±ÔÈ­½ÃÅ²´Ù. ( normalize reflect )
+	//7. êµ¬í•´ì§„ ë°˜ì‚¬ë²¡í„°ë¥¼ ì •ê·œí™”ì‹œí‚¨ë‹¤. ( normalize reflect )
 	m_Dir = m_Dir.Normalize();
 
-	//8. 2d ScreenÀÇ Æ¯¼º¿¡ µû¶ó(y°ªÀÌ ¹ØÀ¸·Î °¥¼ö·Ï Áõ°¡) ¿ªº¤ÅÍ¸¦ ±¸ÇÏ¸é ¿Ï¼º(negate reflect)
+	//8. 2d Screenì˜ íŠ¹ì„±ì— ë”°ë¼(yê°’ì´ ë°‘ìœ¼ë¡œ ê°ˆìˆ˜ë¡ ì¦ê°€) ì—­ë²¡í„°ë¥¼ êµ¬í•˜ë©´ ì™„ì„±(negate reflect)
 	//?
 }
 
@@ -304,7 +304,7 @@ void CItem::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 
 
-	//¾ÆÀÌÅÛÀÇ enum ¹øÈ£¿¡ µû¶ó ¼Ò¸®¸¦ ´Ù¸£°Ô Àç»ıÇÒ°Í
+	//ì•„ì´í…œì˜ enum ë²ˆí˜¸ì— ë”°ë¼ ì†Œë¦¬ë¥¼ ë‹¤ë¥´ê²Œ ì¬ìƒí• ê²ƒ
 	if (m_ItemType <= EItemList::Bomb)
 	{
 		CJustPlay* Ammo = m_Scene->CreateObject<CJustPlay>("GetAmmo");
@@ -313,7 +313,7 @@ void CItem::CollisionBegin(CCollider* Src, CCollider* Dest)
 	}
 	else
 	{
-		//¾ÆÀÌÅÛ ¸Ô´Â¼Ò¸®
+		//ì•„ì´í…œ ë¨¹ëŠ”ì†Œë¦¬
 	}
 
 	SetActive(false);

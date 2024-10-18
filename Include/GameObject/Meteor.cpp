@@ -32,7 +32,7 @@ bool CMeteor::Init(CGameObject* Obj)
 {
 	CEnemy::Init(Obj);
 
-	//го╢э╦╦ дц╦╣ а╕╟е ╠Б╢и х╟╪╨х╜
+	//М∙≤К▀╗К╖▄ Л╩╛К╖│ Л═°Й╠╟ Й╦╟К┼╔ М≥°Л└╠М≥■
 	SetCullingDelete(ECullingDelete::All, false);
 	SetCullingDelete(ECullingDelete::Bottom, true);
 

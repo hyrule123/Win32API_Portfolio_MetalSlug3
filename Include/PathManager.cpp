@@ -42,19 +42,19 @@ bool CPathManager::Init()
 
 	lstrcpy(Info->Path, Root);
 
-	//À¯´ÏÄÚµå¸é º¯È¯ ÇÔ¼ö¸¦ ÅëÇØ ÀúÀå
+	//ìœ ë‹ˆì½”ë“œë©´ ë³€í™˜ í•¨ìˆ˜ë¥¼ í†µí•´ ì €ìž¥
 #ifdef UNICODE
 	int length = WideCharToMultiByte(CP_ACP, 0, Info->Path, -1, nullptr, 0, 0, 0);
 	WideCharToMultiByte(CP_ACP, 0, Info->Path, -1, Info->PathMultiByte, length, 0, 0);
 
-	//À¯´ÏÄÚµå°¡ ¾Æ´Ï¸é ±×´ë·Î º¹»ç
+	//ìœ ë‹ˆì½”ë“œê°€ ì•„ë‹ˆë©´ ê·¸ëŒ€ë¡œ ë³µì‚¬
 #else
 	strcpy_s(Info->PathMultiByte, Info->Path);
 #endif
-	//·çÆ® °æ·Î¸¦ ±âº»À¸·Î µî·Ï
+	//ë£¨íŠ¸ ê²½ë¡œë¥¼ ê¸°ë³¸ìœ¼ë¡œ ë“±ë¡
 	m_mapPath.insert(std::make_pair(ROOT_PATH, Info));
 
-	//·çÆ® °æ·Î¾ÈÀÇ ¿©·¯ ¸®¼Ò½º Æú´õ¸¦ µî·Ï
+	//ë£¨íŠ¸ ê²½ë¡œì•ˆì˜ ì—¬ëŸ¬ ë¦¬ì†ŒìŠ¤ í´ë”ë¥¼ ë“±ë¡
 	AddPath(TEXTURE_PATH, TEXT("Texture/"), ROOT_PATH);
 	AddPath(SOUND_PATH, TEXT("Sound/"), ROOT_PATH);
 	AddPath(FONT_PATH, TEXT("Font/"), ROOT_PATH);
@@ -77,12 +77,12 @@ bool CPathManager::AddPath(const std::string& Name, const std::tstring& addpath,
 
 	lstrcat(Info->Path, addpath.c_str());
 
-	//À¯´ÏÄÚµå¸é º¯È¯ ÇÔ¼ö¸¦ ÅëÇØ ÀúÀå
+	//ìœ ë‹ˆì½”ë“œë©´ ë³€í™˜ í•¨ìˆ˜ë¥¼ í†µí•´ ì €ìž¥
 #ifdef UNICODE
 	int length = WideCharToMultiByte(CP_ACP, 0, Info->Path, -1, nullptr, 0, 0, 0);
 	WideCharToMultiByte(CP_ACP, 0, Info->Path, -1, Info->PathMultiByte, length, 0, 0);
 
-	//À¯´ÏÄÚµå°¡ ¾Æ´Ï¸é ±×´ë·Î º¹»ç
+	//ìœ ë‹ˆì½”ë“œê°€ ì•„ë‹ˆë©´ ê·¸ëŒ€ë¡œ ë³µì‚¬
 #else
 	strcpy_s(Info->PathMultiByte, Info->Path);
 #endif

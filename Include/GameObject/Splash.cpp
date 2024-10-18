@@ -1,6 +1,6 @@
 #include "Splash.h"
 
-//√Êµπ√º
+//Ï∂©ÎèåÏ≤¥
 #include "../Collision/ColliderCircle.h"
 #include "../../Include/Scene/Scene.h"
 #include "../ScoreManager.h"
@@ -29,10 +29,10 @@ bool CSplash::Init(CGameObject* Obj)
 
 	SetPivot(0.5f, 0.5f);
 
-	//√Êµπ√º º≥¡§
+	//Ï∂©ÎèåÏ≤¥ ÏÑ§Ï†ï
 	m_Coll = AddCollider<CColliderCircle>("Splash");
 
-	//»£√‚ «‘ºˆ º≥¡§
+	//Ìò∏Ï∂ú Ìï®Ïàò ÏÑ§Ï†ï
 	m_Coll->SetCollisionBeginFunc(this, &CSplash::CollisionBegin);
 
 	m_SetActive = true;
@@ -44,7 +44,7 @@ void CSplash::PostUpdate(float DeltaTime)
 {
 	CProjectile::PostUpdate(DeltaTime);
 
-	//µ¸ «—«¡∑π¿”∏∏ √Êµπ √º≈©«‘
+	//Îî± ÌïúÌîÑÎ†àÏûÑÎßå Ï∂©Îèå Ï≤¥ÌÅ¨Ìï®
 	SetActive(m_SetActive);
 	if (m_SetActive)
 		m_SetActive = false;
@@ -66,7 +66,7 @@ void CSplash::SetEssential(const Vector2& Pos, const Vector2& Offset, float Radi
 
 void CSplash::CollisionBegin(CCollider* Src, CCollider* Dest)
 {
-	//«ÿ¥Á π›∞Êø° µ•πÃ¡ˆ∏∏ ¡÷∞Ì ªÁ∂Û¡¯¥Ÿ.
+	//Ìï¥Îãπ Î∞òÍ≤ΩÏóê Îç∞ÎØ∏ÏßÄÎßå Ï£ºÍ≥† ÏÇ¨ÎùºÏßÑÎã§.
 	Dest->GetOwnerObj()->InflictDamage(m_Damage);
 	CScoreManager::GetInst()->AddScore(100);
 

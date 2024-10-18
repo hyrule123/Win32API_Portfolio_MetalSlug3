@@ -10,7 +10,7 @@ struct DebugText
 	float Duration;
 	float DurationMax;
 	std::string Text;
-	bool AddMode;	//ÇÑ »çÀÌÅ¬¿¡ °°Àº ÀÌ¸§À¸·Î ¿©·¯¹ø »ğÀÔ½Ã µÚ¿¡ Ãß°¡
+	bool AddMode;	//í•œ ì‚¬ì´í´ì— ê°™ì€ ì´ë¦„ìœ¼ë¡œ ì—¬ëŸ¬ë²ˆ ì‚½ì…ì‹œ ë’¤ì— ì¶”ê°€
 
 	DebugText() :
 		DurationMax(3.f),
@@ -24,9 +24,9 @@ struct DebugText
 class CGameManager
 {
 private:
-	//ÇÃ·¹ÀÌ¾î Çì´õ Æ÷ÇÔ½ÃÅ°Áö ¾Ê°í Àü¹æ¼±¾ğ(ÄÚµå²¿ÀÓ ¹æÁö)
-	//ÇÃ·¹ÀÌ¾î´Â ÀÚÁÖ ¾²ÀÌ¹Ç·Î º¯¼ö·Î µû·Î Àâ¾Æ³õ°í, 
-	//´Ù¸¥ °´Ã¼¿¡¼­ ¿äÃ» ½Ã ÁÖ¼Ò¸¦ ¹İÈ¯ÇØÁØ´Ù.
+	//í”Œë ˆì´ì–´ í—¤ë” í¬í•¨ì‹œí‚¤ì§€ ì•Šê³  ì „ë°©ì„ ì–¸(ì½”ë“œê¼¬ì„ ë°©ì§€)
+	//í”Œë ˆì´ì–´ëŠ” ìì£¼ ì“°ì´ë¯€ë¡œ ë³€ìˆ˜ë¡œ ë”°ë¡œ ì¡ì•„ë†“ê³ , 
+	//ë‹¤ë¥¸ ê°ì²´ì—ì„œ ìš”ì²­ ì‹œ ì£¼ì†Œë¥¼ ë°˜í™˜í•´ì¤€ë‹¤.
 	class CPlayer* m_Player;
 public:
 	void SetPlayer(class CPlayer* Player);
@@ -38,23 +38,23 @@ private:
 	ULONG_PTR m_gpToken;
 	Gdiplus::GdiplusStartupInput m_gpsi;
 
-	//À©µµ¿ì ÀÎ½ºÅÏ½º
+	//ìœˆë„ìš° ì¸ìŠ¤í„´ìŠ¤
 	HINSTANCE m_hInst;
 	HWND m_hWnd;
 	HDC m_hDC;
 
-	//¹é¹öÆÛ¿ë
+	//ë°±ë²„í¼ìš©
 	HDC m_BackhDC;
 	HBITMAP m_BackhBmp;
 	HBITMAP m_BackhBmpPrev;
 
-	//À©µµ¿ì Ã¢ »çÀÌÁî ÀúÀå¿ë
+	//ìœˆë„ìš° ì°½ ì‚¬ì´ì¦ˆ ì €ì¥ìš©
 	Resolution m_WindowSize;
 
-	//°ÔÀÓÀÇ ¿ø·¡ ÇØ»óµµ
+	//ê²Œì„ì˜ ì›ë˜ í•´ìƒë„
 	Resolution m_GameRes;
 
-	//static ¸Ş¼ÒµåÀÎ WinProcÀº °°Àº static º¯¼ö¸¸ Ã³¸®°¡´ÉÇÏ¹Ç·Î
+	//static ë©”ì†Œë“œì¸ WinProcì€ ê°™ì€ static ë³€ìˆ˜ë§Œ ì²˜ë¦¬ê°€ëŠ¥í•˜ë¯€ë¡œ
 	static bool m_Loop;
 
 	class CTimer* m_Timer;
@@ -62,7 +62,7 @@ private:
 	float m_TimeScale;
 	int		m_RandNum;
 
-	//µğ¹ö±×¿ë
+	//ë””ë²„ê·¸ìš©
 	bool	m_DebugRender;
 	HBRUSH	m_Brush[(int)EBrushType::Max];
 	HPEN	m_Pen[(int)EBrushType::Max];
@@ -80,7 +80,7 @@ public:
 	bool GetDebugRender() const;
 	
 private:
-	//¿¡µ÷¸ğµå Ã¼Å©¿ë º¯¼ö
+	//ì—ë”§ëª¨ë“œ ì²´í¬ìš© ë³€ìˆ˜
 	bool m_EditMode;
 public:
 	void SetEditMode(bool Enable = true);

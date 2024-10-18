@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-//¹Ú½ºÃæµ¹ Ã¼Å©¿¡ ÇÊ¿ä
+//ë°•ìŠ¤ì¶©ëŒ ì²´í¬ì— í•„ìš”
 #include "ColliderBox.h"
 #include "ColliderCircle.h"
 #include "ColliderLine.h"
@@ -25,42 +25,42 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
-	//Ãæµ¹ ·¹ÀÌ¾î ¸¸Å­ ÇÁ·ÎÇÊÀ» »ı¼º.
+	//ì¶©ëŒ ë ˆì´ì–´ ë§Œí¼ í”„ë¡œí•„ì„ ìƒì„±.
 	int size = (int)ECollisionChannel::Max;
 	for (int i = 0; i < size; ++i)
 	{
 		m_vecProfile[i] = new CollisionProfile;
 	}
 
-	//Default ¼³Á¤ -> ¸ğµÎ¿Í Ãæµ¹
+	//Default ì„¤ì • -> ëª¨ë‘ì™€ ì¶©ëŒ
 	SetProfileAll(ECollisionChannel::Default);
 
-	//È­¸é µÚÂÊµµ Ãæµ¹Ã¼¸¦ »ı¼ºÇÑ´Ù.
+	//í™”ë©´ ë’¤ìª½ë„ ì¶©ëŒì²´ë¥¼ ìƒì„±í•œë‹¤.
 	SetProfile(ECollisionChannel::BackAlly, ECollisionChannel::BackEnemy);
 	SetProfile(ECollisionChannel::BackEnemy, ECollisionChannel::BackAlly);
 
-	//Player ¼³Á¤ -> Default, Enemy, EnemyAttack°ú Ãæµ¹
+	//Player ì„¤ì • -> Default, Enemy, EnemyAttackê³¼ ì¶©ëŒ
 	SetProfile(ECollisionChannel::Player, ECollisionChannel::Default);
 	SetProfile(ECollisionChannel::Player, ECollisionChannel::Enemy);
 	SetProfile(ECollisionChannel::Player, ECollisionChannel::EnemyAttack);
 
-	//Enemy ¼³Á¤ -> Default, Player, PlayerAttack°ú Ãæµ¹
+	//Enemy ì„¤ì • -> Default, Player, PlayerAttackê³¼ ì¶©ëŒ
 	SetProfile(ECollisionChannel::Enemy, ECollisionChannel::Default);
 	SetProfile(ECollisionChannel::Enemy, ECollisionChannel::Player);
 	SetProfile(ECollisionChannel::Enemy, ECollisionChannel::PlayerAttack);
 	SetProfile(ECollisionChannel::Enemy, ECollisionChannel::Mouse);
 
 
-	//PlayerAttack ¼³Á¤ -> Default, Enemy°ú Ãæµ¹
+	//PlayerAttack ì„¤ì • -> Default, Enemyê³¼ ì¶©ëŒ
 	SetProfile(ECollisionChannel::PlayerAttack, ECollisionChannel::Default);
 	SetProfile(ECollisionChannel::PlayerAttack, ECollisionChannel::Enemy);
 
-	//EnemyAttack ¼³Á¤ -> Default, Player°ú Ãæµ¹
+	//EnemyAttack ì„¤ì • -> Default, Playerê³¼ ì¶©ëŒ
 	SetProfile(ECollisionChannel::EnemyAttack, ECollisionChannel::Default);
 	SetProfile(ECollisionChannel::EnemyAttack, ECollisionChannel::Player);
 
 
-	//Mouse ¼³Á¤ -> ÀÏ´Ü Default¿Í Enemy°ú¸¸ Ãæµ¹
+	//Mouse ì„¤ì • -> ì¼ë‹¨ Defaultì™€ Enemyê³¼ë§Œ ì¶©ëŒ
 	SetProfileAll(ECollisionChannel::Mouse);
 
 	return true;
@@ -73,7 +73,7 @@ bool CCollisionManager::CollisionBoxToBox(CColliderBox* Src, CColliderBox* Dest)
 		const BoxInfo& DestInfo = Dest->GetInfo();
 
 
-		//ÀÏ´Ü Ãæµ¹ÀÌ ¾È ÀÏ¾î³ª´Â »óÈ²À» ÀüºÎ °É·¯ÁÖ¸é
+		//ì¼ë‹¨ ì¶©ëŒì´ ì•ˆ ì¼ì–´ë‚˜ëŠ” ìƒí™©ì„ ì „ë¶€ ê±¸ëŸ¬ì£¼ë©´
 		if (SrcInfo.LT.x > DestInfo.RB.x)
 			return false;
 		else if (SrcInfo.RB.x < DestInfo.LT.x)
@@ -85,8 +85,8 @@ bool CCollisionManager::CollisionBoxToBox(CColliderBox* Src, CColliderBox* Dest)
 
 
 
-		//Ãæµ¹ÀÌ ÀÏ¾î³ª´Â »óÈ²ÀÌ¶ó´Â ¸»ÀÌ µÈ´Ù.
-		//Ãæµ¹ÀÌ ÀÏ¾î³ª´Â »óÈ²ÀÌ¶ó¸é¿ì¼± È÷Æ®Æ÷ÀÎÆ®¸¦ °è»êÇØ¾ß ÇÑ´Ù.
+		//ì¶©ëŒì´ ì¼ì–´ë‚˜ëŠ” ìƒí™©ì´ë¼ëŠ” ë§ì´ ëœë‹¤.
+		//ì¶©ëŒì´ ì¼ì–´ë‚˜ëŠ” ìƒí™©ì´ë¼ë©´ìš°ì„  íˆíŠ¸í¬ì¸íŠ¸ë¥¼ ê³„ì‚°í•´ì•¼ í•œë‹¤.
 		float Left = SrcInfo.LT.x > DestInfo.LT.x ? SrcInfo.LT.x : DestInfo.LT.x;
 		float Top = SrcInfo.LT.y > DestInfo.LT.y ? SrcInfo.LT.y : DestInfo.LT.y;
 		float Right = SrcInfo.RB.x < DestInfo.RB.x ? SrcInfo.RB.x : DestInfo.RB.x;
@@ -112,7 +112,7 @@ bool CCollisionManager::CollisionCircleToCircle(CColliderCircle* Src, CColliderC
 	const CircleInfo& DestInfo = Dest->GetInfo();
 	float Distance = SrcInfo.Center.Distance(DestInfo.Center);
 
-	//¸¸¾à µÎ ¹İÁö¸§ÀÇ ±æÀÌ¸¦ ÇÕÇÑ °Íº¸´Ù µÎ Á¡ »çÀÌÀÇ °Å¸®°¡ ¸Ö´Ù¸é Ãæµ¹ ¾Æ´Ô
+	//ë§Œì•½ ë‘ ë°˜ì§€ë¦„ì˜ ê¸¸ì´ë¥¼ í•©í•œ ê²ƒë³´ë‹¤ ë‘ ì  ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ë©€ë‹¤ë©´ ì¶©ëŒ ì•„ë‹˜
 	if (Distance > (SrcInfo.Radius + DestInfo.Radius))
 		return false;
 
@@ -129,7 +129,7 @@ bool CCollisionManager::CollisionBoxToCircle(CColliderBox* Src, CColliderCircle*
 {
 	Vector2 HitPoint;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionBoxCircle(Src->GetInfo(), Dest->GetInfo(), HitPoint))
 	{
 		Src->m_HitPoint = HitPoint;
@@ -145,7 +145,7 @@ bool CCollisionManager::CollisionCircleToBox(CColliderCircle* Src, CColliderBox*
 {
 	Vector2 HitPoint;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionBoxCircle(Dest->GetInfo(), Src->GetInfo(), HitPoint))
 	{
 		Src->m_HitPoint = HitPoint;
@@ -162,7 +162,7 @@ bool CCollisionManager::CollisionLineToCircle(CColliderLine* Src, CColliderCircl
 	Vector2 HitPointNear;
 	Vector2 HitPointFar;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionLineCircle(Src->GetInfo(), Dest->GetInfo(), HitPointNear, HitPointFar))
 	{
 		Src->m_HitPoint = HitPointNear;
@@ -181,7 +181,7 @@ bool CCollisionManager::CollisionCircleToLine(CColliderCircle* Src, CColliderLin
 	Vector2 HitPointNear;
 	Vector2 HitPointFar;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionLineCircle(Dest->GetInfo(), Src->GetInfo(), HitPointNear, HitPointFar))
 	{
 		Src->m_HitPoint = HitPointNear;
@@ -198,7 +198,7 @@ bool CCollisionManager::CollisionLineToBox(CColliderLine* Src, CColliderBox* Des
 	Vector2 HitPointNear;
 	Vector2 HitPointFar;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionLineBox(Src->GetInfo(), Dest->GetInfo(), HitPointNear, HitPointFar))
 	{
 		Src->m_HitPoint = HitPointNear;
@@ -215,7 +215,7 @@ bool CCollisionManager::CollisionBoxToLine(CColliderBox* Src, CColliderLine* Des
 	Vector2 HitPointNear;
 	Vector2 HitPointFar;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionLineBox(Dest->GetInfo(), Src->GetInfo(), HitPointNear, HitPointFar))
 	{
 		Src->m_HitPoint = HitPointNear;
@@ -231,7 +231,7 @@ bool CCollisionManager::CollisionLineToLine(CColliderLine* Src, CColliderLine* D
 {
 	Vector2 HitPoint;
 
-	//Ãæµ¹ÀÌ È®ÀÎµÆÀ¸¸é È÷Æ®Æ÷ÀÎÆ® ¼öÁ¤ÇÏ°í true ¹İÈ¯
+	//ì¶©ëŒì´ í™•ì¸ëìœ¼ë©´ íˆíŠ¸í¬ì¸íŠ¸ ìˆ˜ì •í•˜ê³  true ë°˜í™˜
 	if (CollisionLineLine(Dest->GetInfo(), Src->GetInfo(), HitPoint))
 	{
 		Src->m_HitPoint = HitPoint;
@@ -244,13 +244,13 @@ bool CCollisionManager::CollisionLineToLine(CColliderLine* Src, CColliderLine* D
 }
 
 
-//Dest¿Í Src¸¦ Ã³¸®ÇØ¼­ ³»ºÎ¿¡¼­ »ç¿ëÇÒ ¸Ş¼Òµå
+//Destì™€ Srcë¥¼ ì²˜ë¦¬í•´ì„œ ë‚´ë¶€ì—ì„œ ì‚¬ìš©í•  ë©”ì†Œë“œ
 bool CCollisionManager::CollisionBoxCircle(const BoxInfo& Box, const CircleInfo& Circle, Vector2& HitPoint)
 {
 
 
 
-	//¹Ú½ºÀÇ º¯ ÂÊÀ¸·Î Á¢±Ù ½Ã
+	//ë°•ìŠ¤ì˜ ë³€ ìª½ìœ¼ë¡œ ì ‘ê·¼ ì‹œ
 	if((Circle.Center.x >= Box.LT.x && Circle.Center.x <= Box.RB.x) ||
 		(Circle.Center.y >= Box.LT.y && Circle.Center.y <= Box.RB.y))
 	{
@@ -282,13 +282,13 @@ bool CCollisionManager::CollisionBoxCircle(const BoxInfo& Box, const CircleInfo&
 
 	}
 
-	//¹Ú½ºÀÇ º¯ ÂÊÀ¸·Î Á¢±Ù ÁßÀÌÁö ¾Ê´Ù¸é 
+	//ë°•ìŠ¤ì˜ ë³€ ìª½ìœ¼ë¡œ ì ‘ê·¼ ì¤‘ì´ì§€ ì•Šë‹¤ë©´ 
 	else
 	{
 
-		//´ë°¢¼±À» È®ÀÎÇÑ´Ù.
-		//»ç°¢ÇüÀÇ ³× ²ÀÁşÁ¡°ú ¿øÀÇ Áß½ÉÁ¡ÀÇ °Å¸®°¡
-		//¹İÁö¸§º¸´Ù Âª´Ù¸é Ãæµ¹ÀÌ´Ù.
+		//ëŒ€ê°ì„ ì„ í™•ì¸í•œë‹¤.
+		//ì‚¬ê°í˜•ì˜ ë„¤ ê¼­ì§“ì ê³¼ ì›ì˜ ì¤‘ì‹¬ì ì˜ ê±°ë¦¬ê°€
+		//ë°˜ì§€ë¦„ë³´ë‹¤ ì§§ë‹¤ë©´ ì¶©ëŒì´ë‹¤.
 
 		Vector2 Vertex[4] = {
 			Box.LT,
@@ -297,7 +297,7 @@ bool CCollisionManager::CollisionBoxCircle(const BoxInfo& Box, const CircleInfo&
 			Vector2(Box.RB.x, Box.LT.y)
 		};
 
-		//ÇÏ³ª¶óµµ °É¸®¸é True ÀÌ¹Ç·Î ¹Ù·Î °è»êÇÏ°í ºüÁ®³ª¿À¸é ¼º´ÉÀûÀ¸·Î µµ¿òÀÌ µÉ °Í.
+		//í•˜ë‚˜ë¼ë„ ê±¸ë¦¬ë©´ True ì´ë¯€ë¡œ ë°”ë¡œ ê³„ì‚°í•˜ê³  ë¹ ì ¸ë‚˜ì˜¤ë©´ ì„±ëŠ¥ì ìœ¼ë¡œ ë„ì›€ì´ ë  ê²ƒ.
 		for (int i = 0; i < 4; ++i)
 		{
 			if(Circle.Radius > Circle.Center.Distance(Vertex[i]))
@@ -321,7 +321,7 @@ bool CCollisionManager::CollisionLineBox(
 	Vector2 HitPoint[2];
 	UINT8 Count = 0;
 
-	//°¡Àå ¸ÕÀú ½ÃÀÛÁöÁ¡ÀÌ »ç°¢Çü ¾È¿¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù. ¸¸¾à ¾È¿¡ ÀÖÀ¸¸é true ¹× È÷Æ®Æ÷ÀÎÆ® ¹İÈ¯
+	//ê°€ì¥ ë¨¼ì € ì‹œì‘ì§€ì ì´ ì‚¬ê°í˜• ì•ˆì— ìˆëŠ”ì§€ í™•ì¸í•œë‹¤. ë§Œì•½ ì•ˆì— ìˆìœ¼ë©´ true ë° íˆíŠ¸í¬ì¸íŠ¸ ë°˜í™˜
 	if (Line.Start.x > Box.LT.x && Line.Start.x < Box.RB.x && Line.Start.y > Box.LT.y && Line.Start.y < Box.RB.y)
 	{
 		HitPoint[Count] = Line.Start;
@@ -392,7 +392,7 @@ bool CCollisionManager::CollisionLineBox(
 		}
 	}
 
-	//ÇÑ °÷¸¸ Ãæµ¹ÇßÀ» ¶§
+	//í•œ ê³³ë§Œ ì¶©ëŒí–ˆì„ ë•Œ
 	if (Count == 1)
 	{
 		HitPointNear = HitPoint[0];
@@ -530,7 +530,7 @@ bool CCollisionManager::CollisionPointToBox(const Vector2& Point, CColliderBox* 
 	const BoxInfo& DestInfo = Box->GetInfo();
 
 
-	//ÀÏ´Ü Ãæµ¹ÀÌ ¾È ÀÏ¾î³ª´Â »óÈ²À» ÀüºÎ °É·¯ÁÖ¸é
+	//ì¼ë‹¨ ì¶©ëŒì´ ì•ˆ ì¼ì–´ë‚˜ëŠ” ìƒí™©ì„ ì „ë¶€ ê±¸ëŸ¬ì£¼ë©´
 	if (Point.x > DestInfo.RB.x)
 		return false;
 	else if (Point.x < DestInfo.LT.x)
@@ -541,7 +541,7 @@ bool CCollisionManager::CollisionPointToBox(const Vector2& Point, CColliderBox* 
 		return false;
 
 
-	//Ãæµ¹ÀÌ µÈ´Ù. HitPoint¸¦ ±¸ÇØ¼­ ÀÔ·ÂÇØÁØ µÚ true¸¦ ¹İÈ¯
+	//ì¶©ëŒì´ ëœë‹¤. HitPointë¥¼ êµ¬í•´ì„œ ì…ë ¥í•´ì¤€ ë’¤ trueë¥¼ ë°˜í™˜
 	Box->m_HitPoint = Point;
 
 

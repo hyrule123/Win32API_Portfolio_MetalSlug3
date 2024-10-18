@@ -102,7 +102,7 @@ void CWindowSpace::SetBulletLeft(int Bullet)
 void CWindowSpace::SetBombLeft(int Bomb)
 {
 	m_BombLeft->SetText(Bomb);
-    m_BombLeft->SetColor(0.1f, EReactionChannel::InvincibleReaction);
+	m_BombLeft->SetColor(0.1f, EReactionChannel::InvincibleReaction);
 }
 
 void CWindowSpace::SetHPBar(int HP)

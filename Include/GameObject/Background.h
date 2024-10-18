@@ -2,20 +2,20 @@
 #include "GameObject.h"
 
 class CBackground :
-    public CGameObject
+	public CGameObject
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CBackground();
-    ~CBackground();
+	CBackground();
+	~CBackground();
 public:
-    bool Init(CGameObject* Obj = nullptr);
-    void Start();
+	bool Init(CGameObject* Obj = nullptr);
+	void Start();
 
 
 public:
-    void Update(float DeltaTime);
-    void Render(HDC hDC, float DeltaTime);
+	void Update(float DeltaTime);
+	void Render(HDC hDC, float DeltaTime);
 };
 

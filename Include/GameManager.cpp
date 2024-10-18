@@ -2,31 +2,31 @@
 //GameManager.cpp
 
 #include "GameManager.h"
-#include <time.h> //¿©±â¼­¸¸ »ç¿ëÇÒ ½Ã°£ Çì´õ
+#include <time.h> //ì—¬ê¸°ì„œë§Œ ì‚¬ìš©í•  ì‹œê°„ í—¤ë”
 
-//¾ÆÀÌÄÜ
+//ì•„ì´ì½˜
 #include "resource.h"
 
-//ÇÁ·¹ÀÓ °ü¸®
+//í”„ë ˆì„ ê´€ë¦¬
 #include "Timer.h"
 
-//ÀÔ·Â °ü¸®ÀÚ
+//ì…ë ¥ ê´€ë¦¬ì
 #include "Input.h"
 
-//¾À¸Å´ÏÀú
+//ì”¬ë§¤ë‹ˆì €
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
 
-//°æ·Î °ü¸®ÀÚ
+//ê²½ë¡œ ê´€ë¦¬ì
 #include "PathManager.h"
 
-//¸®¼Ò½º °ü¸®ÀÚ
+//ë¦¬ì†ŒìŠ¤ ê´€ë¦¬ì
 #include "Resource/ResourceManager.h"
 
-//Ãæµ¹ °ü¸®ÀÚ
+//ì¶©ëŒ ê´€ë¦¬ì
 #include "Collision/CollisionManager.h"
 
-//ÇÃ·¹ÀÌ¾î ÁÖ¼Ò ÀúÀå¿ë
+//í”Œë ˆì´ì–´ ì£¼ì†Œ ì €ì¥ìš©
 #include "GameObject/Player.h"
 
 #include "ScoreManager.h"
@@ -38,65 +38,65 @@ DEFINITION_SINGLETON(CGameManager)
 bool CGameManager::m_Loop = true;
 
 CGameManager::CGameManager():
-    m_EditMode(false),
-    m_DebugRender(),
-    m_RandNum()
+	m_EditMode(false),
+	m_DebugRender(),
+	m_RandNum()
 {
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(62977);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(62977);
 }
 CGameManager::~CGameManager()
 {
-    //GDIPLUS SHUTDOWN
-    Gdiplus::GdiplusShutdown(m_gpToken);
+	//GDIPLUS SHUTDOWN
+	Gdiplus::GdiplusShutdown(m_gpToken);
 
 
 
-    SAFE_DELETE(m_Timer);
+	SAFE_DELETE(m_Timer);
 
-    //HBRUSH Á¦°Å
-    for (int i = 0; i < (int)EBrushType::Max; ++i)
-    {
-        DeleteObject(m_Brush[i]);
-    }
-
-
-    //HPEN Á¦°Å
-    for (int i = 0; i < (int)EBrushType::Max; ++i)
-    {
-        DeleteObject(m_Pen[i]);
-    }
+	//HBRUSH ì œê±°
+	for (int i = 0; i < (int)EBrushType::Max; ++i)
+	{
+		DeleteObject(m_Brush[i]);
+	}
 
 
-    //¹é¹öÆÛ Á¦°Å
-    SelectObject(m_BackhDC, m_BackhBmpPrev);
-    DeleteObject(m_BackhBmp);
-    DeleteDC(m_BackhDC);
-
-    //ÁÖ¹öÆÛ Á¦°Å
-    ReleaseDC(m_hWnd, m_hDC);
+	//HPEN ì œê±°
+	for (int i = 0; i < (int)EBrushType::Max; ++i)
+	{
+		DeleteObject(m_Pen[i]);
+	}
 
 
-    
+	//ë°±ë²„í¼ ì œê±°
+	SelectObject(m_BackhDC, m_BackhBmpPrev);
+	DeleteObject(m_BackhBmp);
+	DeleteDC(m_BackhDC);
 
-    //½Ì±ÛÅÏ ÆĞÅÏµé ÇÒ´ç ÇØÁ¦: »ı¼ºÀÇ ¿ª¼øÀ¸·Î
-    CScoreManager::DestroyInst();
-    CCollisionManager::DestroyInst();
-    CSceneManager::DestroyInst();
-    CInput::DestroyInst();
-    CResourceManager::DestroyInst();
-    CPathManager::DestroyInst();
+	//ì£¼ë²„í¼ ì œê±°
+	ReleaseDC(m_hWnd, m_hDC);
 
-    {
-        auto iter = m_listDebugText.begin();
-        auto iterEnd = m_listDebugText.end();
 
-        while (iter != iterEnd)
-        {
-            SAFE_DELETE(*iter);
-            ++iter;
-        }
-    }
+	
+
+	//ì‹±ê¸€í„´ íŒ¨í„´ë“¤ í• ë‹¹ í•´ì œ: ìƒì„±ì˜ ì—­ìˆœìœ¼ë¡œ
+	CScoreManager::DestroyInst();
+	CCollisionManager::DestroyInst();
+	CSceneManager::DestroyInst();
+	CInput::DestroyInst();
+	CResourceManager::DestroyInst();
+	CPathManager::DestroyInst();
+
+	{
+		auto iter = m_listDebugText.begin();
+		auto iterEnd = m_listDebugText.end();
+
+		while (iter != iterEnd)
+		{
+			SAFE_DELETE(*iter);
+			++iter;
+		}
+	}
 
 }
 
@@ -104,147 +104,147 @@ CGameManager::~CGameManager()
 
 void CGameManager::DebugTextWipe()
 {
-    Rectangle(m_hDC, 
-        ORIGINAL_GAME_RES_WIDTH , 
-        7 * (int)m_listDebugText.size(),
-        m_WindowSize.Width + 1,
-        m_WindowSize.Height + 1);
+	Rectangle(m_hDC, 
+		ORIGINAL_GAME_RES_WIDTH , 
+		7 * (int)m_listDebugText.size(),
+		m_WindowSize.Width + 1,
+		m_WindowSize.Height + 1);
 }
 
 void CGameManager::SetEditMode(bool Enable)
 {
-    m_EditMode = Enable;
+	m_EditMode = Enable;
 }
 
 bool CGameManager::GetEditMode() const
 {
-    return m_EditMode;
+	return m_EditMode;
 }
 
 void CGameManager::SetWhiteOut(int Frame)
 {
-    m_WhiteOut = Frame;
+	m_WhiteOut = Frame;
 }
 
 bool CGameManager::Init(HINSTANCE hInstance)
 {
-    srand((unsigned int)time(0));
-    rand(); //Ã¹ °ª Á¦¿Ü
+	srand((unsigned int)time(0));
+	rand(); //ì²« ê°’ ì œì™¸
 
 
 	m_hInst = hInstance;
 
-    m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE * STATUS_SPACE);
-    m_WindowSize.Height = (int)(ORIGINAL_GAME_RES_HEIGHT * SCREEN_SCALE);
+	m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE * STATUS_SPACE);
+	m_WindowSize.Height = (int)(ORIGINAL_GAME_RES_HEIGHT * SCREEN_SCALE);
 
 
 
 
-	// À©µµ¿ìÅ¬·¡½º ±¸Á¶Ã¼¸¦ ¸¸µé¾îÁÖ°í µî·ÏÇÑ´Ù.
+	// ìœˆë„ìš°í´ë˜ìŠ¤ êµ¬ì¡°ì²´ë¥¼ ë§Œë“¤ì–´ì£¼ê³  ë“±ë¡í•œë‹¤.
 	Register();
 
-	// À©µµ¿ì Ã¢À» »ı¼ºÇÏ°í º¸¿©ÁØ´Ù.
+	// ìœˆë„ìš° ì°½ì„ ìƒì„±í•˜ê³  ë³´ì—¬ì¤€ë‹¤.
 	Create();
 
-    //ÁÖ¹öÆÛ ¹Ş¾Æ³õ±â
-    m_hDC = GetDC(m_hWnd);
+	//ì£¼ë²„í¼ ë°›ì•„ë†“ê¸°
+	m_hDC = GetDC(m_hWnd);
 
 
-    //¹é¹öÆÛ ÃÊ±âÈ­ - ¿ø·¡ ÇØ»óµµ »çÀÌÁî·Î ÃÊ±âÈ­ÇØÁØ´Ù.
-    m_BackhDC = CreateCompatibleDC(m_hDC);
-    m_BackhBmp = CreateCompatibleBitmap(m_hDC, 
-        ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
-    m_BackhBmpPrev = (HBITMAP)SelectObject(m_BackhDC, m_BackhBmp);
+	//ë°±ë²„í¼ ì´ˆê¸°í™” - ì›ë˜ í•´ìƒë„ ì‚¬ì´ì¦ˆë¡œ ì´ˆê¸°í™”í•´ì¤€ë‹¤.
+	m_BackhDC = CreateCompatibleDC(m_hDC);
+	m_BackhBmp = CreateCompatibleBitmap(m_hDC, 
+		ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT);
+	m_BackhBmpPrev = (HBITMAP)SelectObject(m_BackhDC, m_BackhBmp);
 
-    SetBkMode(m_BackhDC, TRANSPARENT);
-    SetTextColor(m_BackhDC, RGB(255, 127, 0));
+	SetBkMode(m_BackhDC, TRANSPARENT);
+	SetTextColor(m_BackhDC, RGB(255, 127, 0));
 
-    //ÁÖ¹öÆÛ ¹èÀ² È®´ë
-    //¹èÀ² ÀÚÀ² Á¶Á¤ ¸ğµå·Î º¯°æ
-    SetMapMode(m_hDC, MM_ANISOTROPIC);
-    //¿ø·¡ ÇØ»óµµ¸¦
-    SetWindowExtEx(m_hDC, 
-        (int)(ORIGINAL_GAME_RES_WIDTH * STATUS_SPACE), 
-        (int)(ORIGINAL_GAME_RES_HEIGHT),
-        NULL);
-    //È®´ëµÈ ÇØ»óµµ·Î Àû¿ë(µğ¹ö±× ¸ğµåÀÏ °æ¿ì ¿·¿¡ ºó °ø°£À» ¸¸µé¾î ÇØ´ç À§Ä¡¿¡ µğ¹ö±× Á¤º¸ Ç¥½Ã
-    SetViewportExtEx(m_hDC, 
-        m_WindowSize.Width, m_WindowSize.Height, NULL);
-
-
-    //GDI PLUS
-
-    if (Gdiplus::GdiplusStartup(&m_gpToken, &m_gpsi, NULL) != Gdiplus::Ok)
-        return false;
+	//ì£¼ë²„í¼ ë°°ìœ¨ í™•ëŒ€
+	//ë°°ìœ¨ ììœ¨ ì¡°ì • ëª¨ë“œë¡œ ë³€ê²½
+	SetMapMode(m_hDC, MM_ANISOTROPIC);
+	//ì›ë˜ í•´ìƒë„ë¥¼
+	SetWindowExtEx(m_hDC, 
+		(int)(ORIGINAL_GAME_RES_WIDTH * STATUS_SPACE), 
+		(int)(ORIGINAL_GAME_RES_HEIGHT),
+		NULL);
+	//í™•ëŒ€ëœ í•´ìƒë„ë¡œ ì ìš©(ë””ë²„ê·¸ ëª¨ë“œì¼ ê²½ìš° ì˜†ì— ë¹ˆ ê³µê°„ì„ ë§Œë“¤ì–´ í•´ë‹¹ ìœ„ì¹˜ì— ë””ë²„ê·¸ ì •ë³´ í‘œì‹œ
+	SetViewportExtEx(m_hDC, 
+		m_WindowSize.Width, m_WindowSize.Height, NULL);
 
 
+	//GDI PLUS
 
-    //BRUSH ÃÊ±âÈ­
-    m_Brush[(int)EBrushType::Black] = CreateSolidBrush(RGB(0, 0, 0));
-    m_Brush[(int)EBrushType::Red] = CreateSolidBrush(RGB(255, 0, 0));
-    m_Brush[(int)EBrushType::Green] = CreateSolidBrush(RGB(0, 255, 0));
-    m_Brush[(int)EBrushType::Blue] = CreateSolidBrush(RGB(0, 0, 255));
-    m_Brush[(int)EBrushType::Yellow] = CreateSolidBrush(RGB(255, 255, 0));
-
-    //BRUSH ÃÊ±âÈ­
-    m_Pen[(int)EBrushType::Black] = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
-    m_Pen[(int)EBrushType::Red] = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-    m_Pen[(int)EBrushType::Green] = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-    m_Pen[(int)EBrushType::Blue] = CreatePen(PS_SOLID, 2, RGB(0, 0, 255));
-    m_Pen[(int)EBrushType::Yellow] = CreatePen(PS_SOLID, 2, RGB(255, 255, 0));
+	if (Gdiplus::GdiplusStartup(&m_gpToken, &m_gpsi, NULL) != Gdiplus::Ok)
+		return false;
 
 
 
+	//BRUSH ì´ˆê¸°í™”
+	m_Brush[(int)EBrushType::Black] = CreateSolidBrush(RGB(0, 0, 0));
+	m_Brush[(int)EBrushType::Red] = CreateSolidBrush(RGB(255, 0, 0));
+	m_Brush[(int)EBrushType::Green] = CreateSolidBrush(RGB(0, 255, 0));
+	m_Brush[(int)EBrushType::Blue] = CreateSolidBrush(RGB(0, 0, 255));
+	m_Brush[(int)EBrushType::Yellow] = CreateSolidBrush(RGB(255, 255, 0));
 
-    //Å¸ÀÌ¸Ó ÃÊ±âÈ­
-    m_Timer = new CTimer;
-    m_Timer->Init();
-    m_DeltaTime = 0.f;
-    m_TimeScale = 1.f;
+	//BRUSH ì´ˆê¸°í™”
+	m_Pen[(int)EBrushType::Black] = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
+	m_Pen[(int)EBrushType::Red] = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+	m_Pen[(int)EBrushType::Green] = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
+	m_Pen[(int)EBrushType::Blue] = CreatePen(PS_SOLID, 2, RGB(0, 0, 255));
+	m_Pen[(int)EBrushType::Yellow] = CreatePen(PS_SOLID, 2, RGB(255, 255, 0));
+
+
+
+
+	//íƒ€ì´ë¨¸ ì´ˆê¸°í™”
+	m_Timer = new CTimer;
+	m_Timer->Init();
+	m_DeltaTime = 0.f;
+	m_TimeScale = 1.f;
  
 
 
-    //°æ·Î°ü¸®ÀÚ »ı¼º
-    if (!CPathManager::GetInst()->Init())
-        return false;
-    //¸®¼Ò½º ¸Å´ÏÀú »ı¼º - °æ·Î °ü¸®ÀÚ »ı¼º ÈÄ¿¡ »ı¼ºÇØ¾ß ÇÔ.
-    if (!CResourceManager::GetInst()->Init())
-        return false;
+	//ê²½ë¡œê´€ë¦¬ì ìƒì„±
+	if (!CPathManager::GetInst()->Init())
+		return false;
+	//ë¦¬ì†ŒìŠ¤ ë§¤ë‹ˆì € ìƒì„± - ê²½ë¡œ ê´€ë¦¬ì ìƒì„± í›„ì— ìƒì„±í•´ì•¼ í•¨.
+	if (!CResourceManager::GetInst()->Init())
+		return false;
 
 
 
-    //ÀÎÇ²¸Å´ÏÀú »ı¼º
-    if (!CInput::GetInst()->Init(m_hWnd))
-        return false;
+	//ì¸í’‹ë§¤ë‹ˆì € ìƒì„±
+	if (!CInput::GetInst()->Init(m_hWnd))
+		return false;
 
-    //Ãæµ¹ ¸Å´ÏÀú »ı¼º - °ÔÀÓ¿ÀºêÁ§Æ®¿¡¼­ »ç¿ëÇØ¾ß ÇÏ¹Ç·Î ¸¶Áö¸·¿¡
-    if (!CCollisionManager::GetInst()->Init())
-        return false;
-
-
-    //¾À¸Å´ÏÀú »ı¼º - ¹«Á¶°Ç ÀÎÇ²¸Å´ÏÀú »ı¼º ÈÄ¿¡ »ı¼ºÇØ¾ß ÇÔ.
-    if (!CSceneManager::GetInst()->Init())
-        return false;
+	//ì¶©ëŒ ë§¤ë‹ˆì € ìƒì„± - ê²Œì„ì˜¤ë¸Œì íŠ¸ì—ì„œ ì‚¬ìš©í•´ì•¼ í•˜ë¯€ë¡œ ë§ˆì§€ë§‰ì—
+	if (!CCollisionManager::GetInst()->Init())
+		return false;
 
 
+	//ì”¬ë§¤ë‹ˆì € ìƒì„± - ë¬´ì¡°ê±´ ì¸í’‹ë§¤ë‹ˆì € ìƒì„± í›„ì— ìƒì„±í•´ì•¼ í•¨.
+	if (!CSceneManager::GetInst()->Init())
+		return false;
 
-    //°ø¶õ »ı¼º
-    m_Blank = "                                           ";
 
 
-    //µğ¹ö±×¸ğµå ¼³Á¤
+	//ê³µë€ ìƒì„±
+	m_Blank = "                                           ";
+
+
+	//ë””ë²„ê·¸ëª¨ë“œ ì„¤ì •
 #ifdef _DEBUG
-    m_DebugRender = true;
+	m_DebugRender = true;
 #else
-    m_DebugRender = false;
+	m_DebugRender = false;
 #endif
 
-    //µğ¹ö±×¸ğµå º¯°æ Å° µî·Ï
-    CInput::GetInst()->AddBindFunction<CGameManager>("DebugRenderToggle", EInput_Type::Down, this, &CGameManager::ToggleDebugRender);
+	//ë””ë²„ê·¸ëª¨ë“œ ë³€ê²½ í‚¤ ë“±ë¡
+	CInput::GetInst()->AddBindFunction<CGameManager>("DebugRenderToggle", EInput_Type::Down, this, &CGameManager::ToggleDebugRender);
 
-    //ÀÎ°ÔÀÓ Å¸ÀÓ½ºÄÉÀÏ Áõ°¡/°¨¼Ò ±â´É
-    CInput::GetInst()->AddBindFunction<CGameManager>("TimeScaleUp", EInput_Type::Down, this, &CGameManager::TimeScaleUp);
-    CInput::GetInst()->AddBindFunction<CGameManager>("TimeScaleDown", EInput_Type::Down, this, &CGameManager::TimeScaleDown);
+	//ì¸ê²Œì„ íƒ€ì„ìŠ¤ì¼€ì¼ ì¦ê°€/ê°ì†Œ ê¸°ëŠ¥
+	CInput::GetInst()->AddBindFunction<CGameManager>("TimeScaleUp", EInput_Type::Down, this, &CGameManager::TimeScaleUp);
+	CInput::GetInst()->AddBindFunction<CGameManager>("TimeScaleDown", EInput_Type::Down, this, &CGameManager::TimeScaleDown);
 
 
 	return true;
@@ -252,79 +252,79 @@ bool CGameManager::Init(HINSTANCE hInstance)
 
 int CGameManager::Run()
 {
-    MSG msg = {};
+	MSG msg = {};
 
-    while (m_Loop)
-    {
-        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-        else 
-        {
-            Logic();
-        }
-    }
+	while (m_Loop)
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else 
+		{
+			Logic();
+		}
+	}
 
-    return (int)msg.wParam;
+	return (int)msg.wParam;
 }
 
 void CGameManager::Logic()
 {
 
 
-    m_DeltaTime = m_Timer->Update() * m_TimeScale;
+	m_DeltaTime = m_Timer->Update() * m_TimeScale;
 
-    //¸Å ÇÁ·¹ÀÓ rand °è»ê
-    m_RandNum = rand();
+	//ë§¤ í”„ë ˆì„ rand ê³„ì‚°
+	m_RandNum = rand();
 
-    //ÇöÀç Ã¢¿¡ Æ÷Ä¿½º ¶Ç´Â ¿¡µ÷ ¸ğµåÀÏ°æ¿ì¿¡¸¸ InputÀ» ¹Ş´Â´Ù.
-    if (GetFocus() == m_hWnd || m_EditMode)
-    {
-        Input(m_DeltaTime);
-    }
-    
+	//í˜„ì¬ ì°½ì— í¬ì»¤ìŠ¤ ë˜ëŠ” ì—ë”§ ëª¨ë“œì¼ê²½ìš°ì—ë§Œ Inputì„ ë°›ëŠ”ë‹¤.
+	if (GetFocus() == m_hWnd || m_EditMode)
+	{
+		Input(m_DeltaTime);
+	}
+	
 
-    //true°¡ ¹İÈ¯µÇ¾ú´Ù¸é Scene ÀüÈ¯ÀÌ ÀÏ¾î³­ °ÍÀÌ´Ù.
-    //±×´ë·Î return ÇØÁØ´Ù.
-    if (Update(m_DeltaTime))
-        return;
-    if (PostUpdate(m_DeltaTime))
-        return;
-    Collision(m_DeltaTime);
+	//trueê°€ ë°˜í™˜ë˜ì—ˆë‹¤ë©´ Scene ì „í™˜ì´ ì¼ì–´ë‚œ ê²ƒì´ë‹¤.
+	//ê·¸ëŒ€ë¡œ return í•´ì¤€ë‹¤.
+	if (Update(m_DeltaTime))
+		return;
+	if (PostUpdate(m_DeltaTime))
+		return;
+	Collision(m_DeltaTime);
 
-    if (m_DebugRender)
-    {
-        DebugTextWipe();    //µğ¹ö±× ÅØ½ºÆ®¿­À» ±ú²ıÀÌ Áö¿î´Ù.     
-        ShowBasicStatus();  //±âº» ½ºÅ×ÀÌÅÍ½º Ãâ·ÂÁ¤º¸ Àü´Ş
-        DebugTextRender();  //»óÅÂÁ¤º¸ Àü´Ş
-    }
+	if (m_DebugRender)
+	{
+		DebugTextWipe();    //ë””ë²„ê·¸ í…ìŠ¤íŠ¸ì—´ì„ ê¹¨ë—ì´ ì§€ìš´ë‹¤.     
+		ShowBasicStatus();  //ê¸°ë³¸ ìŠ¤í…Œì´í„°ìŠ¤ ì¶œë ¥ì •ë³´ ì „ë‹¬
+		DebugTextRender();  //ìƒíƒœì •ë³´ ì „ë‹¬
+	}
 
 
-    Render(m_DeltaTime);
+	Render(m_DeltaTime);
 }
 
 void CGameManager::Input(float DeltaTime)
 {
-    CInput::GetInst()->Update(DeltaTime);
+	CInput::GetInst()->Update(DeltaTime);
 }
 
 bool CGameManager::Update(float DeltaTime)
 {
 
 
-    CResourceManager::GetInst()->Update();
+	CResourceManager::GetInst()->Update();
 
 
-    return CSceneManager::GetInst()->Update(DeltaTime);
+	return CSceneManager::GetInst()->Update(DeltaTime);
 }
 
 bool CGameManager::PostUpdate(float DeltaTime)
 {
-    CInput::GetInst()->PostUpdate(DeltaTime);
+	CInput::GetInst()->PostUpdate(DeltaTime);
 
-    return CSceneManager::GetInst()->PostUpdate(DeltaTime);
+	return CSceneManager::GetInst()->PostUpdate(DeltaTime);
 }
 
 void CGameManager::Collision(float DeltaTime)
@@ -333,144 +333,144 @@ void CGameManager::Collision(float DeltaTime)
 
 void CGameManager::Render(float DeltaTime)
 {
-    Rectangle(m_BackhDC, -1, -1, ORIGINAL_GAME_RES_WIDTH+1, ORIGINAL_GAME_RES_HEIGHT+1);
-    
-    //È­ÀÌÆ®¾Æ¿ôÀ» È£ÃâÇÏÁö ¾Ê¾ÒÀ» °æ¿ì¿¡¸¸
-    if (m_WhiteOut <= 0)
-    {
+	Rectangle(m_BackhDC, -1, -1, ORIGINAL_GAME_RES_WIDTH+1, ORIGINAL_GAME_RES_HEIGHT+1);
+	
+	//í™”ì´íŠ¸ì•„ì›ƒì„ í˜¸ì¶œí•˜ì§€ ì•Šì•˜ì„ ê²½ìš°ì—ë§Œ
+	if (m_WhiteOut <= 0)
+	{
   
 
-        //¹é¹öÆÛ¿¡ ¸ğµÎ ±×·Á³½´Ù.
-        CSceneManager::GetInst()->Render(m_BackhDC, DeltaTime);
+		//ë°±ë²„í¼ì— ëª¨ë‘ ê·¸ë ¤ë‚¸ë‹¤.
+		CSceneManager::GetInst()->Render(m_BackhDC, DeltaTime);
 
-        //¸¶Áö¸·À¸·Î, °¡Àå À­ºÎºĞ ¸¶¿ì½º ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ·»´õ¸µÇØÁØ´Ù.
-        CInput::GetInst()->Render(m_BackhDC, DeltaTime);
+		//ë§ˆì§€ë§‰ìœ¼ë¡œ, ê°€ì¥ ìœ—ë¶€ë¶„ ë§ˆìš°ìŠ¤ ì• ë‹ˆë©”ì´ì…˜ì„ ë Œë”ë§í•´ì¤€ë‹¤.
+		CInput::GetInst()->Render(m_BackhDC, DeltaTime);
 
-    }
-    else
-        --m_WhiteOut;
-
-
-        //ÀÌÈÄ ¹é¹öÆÛ¸¦ ÁÖ¹öÆÛ¿¡ µ¤¾î¾º¿î´Ù.
-        BitBlt(m_hDC, 0, 0,
-            ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT,
-            m_BackhDC, 0, 0, SRCCOPY);
+	}
+	else
+		--m_WhiteOut;
 
 
+		//ì´í›„ ë°±ë²„í¼ë¥¼ ì£¼ë²„í¼ì— ë®ì–´ì”Œìš´ë‹¤.
+		BitBlt(m_hDC, 0, 0,
+			ORIGINAL_GAME_RES_WIDTH, ORIGINAL_GAME_RES_HEIGHT,
+			m_BackhDC, 0, 0, SRCCOPY);
 
-    //µğ¹ö±× ÅØ½ºÆ®¶õÀ» Áö¿î´Ù
-    DebugTextWipe();
+
+
+	//ë””ë²„ê·¸ í…ìŠ¤íŠ¸ë€ì„ ì§€ìš´ë‹¤
+	DebugTextWipe();
 }
 
 void CGameManager::ShowBasicStatus()
 {
-    DebugTextOut("FPS", m_Timer->GetFPS());
+	DebugTextOut("FPS", m_Timer->GetFPS());
 
-    DebugTextOut("MousePos", CInput::GetInst()->GetMousePos());
+	DebugTextOut("MousePos", CInput::GetInst()->GetMousePos());
 }
 
 
 
 void CGameManager::Register()
 {
-    // ·¹Áö½ºÅÍ¿¡ µî·ÏÇÒ À©µµ¿ì Å¬·¡½º ±¸Á¶Ã¼¸¦ ¸¸µé¾îÁØ´Ù.
-    WNDCLASSEX wcex;
+	// ë ˆì§€ìŠ¤í„°ì— ë“±ë¡í•  ìœˆë„ìš° í´ë˜ìŠ¤ êµ¬ì¡°ì²´ë¥¼ ë§Œë“¤ì–´ì¤€ë‹¤.
+	WNDCLASSEX wcex;
 
-    wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
 
-    // ¸Ş¼¼ÁöÅ¥¿¡¼­ ²¨³»¿Â ¸Ş¼¼Áö¸¦ ÀÎÀÚ·Î Àü´ŞÇÏ¸ç È£ÃâÇÒ ÇÔ¼öÀÇ ÇÔ¼ö ÁÖ¼Ò¸¦
-    // µî·ÏÇÑ´Ù.
-    wcex.lpfnWndProc = WndProc;
-    wcex.cbClsExtra = 0;
-    wcex.cbWndExtra = 0;
+	// ë©”ì„¸ì§€íì—ì„œ êº¼ë‚´ì˜¨ ë©”ì„¸ì§€ë¥¼ ì¸ìë¡œ ì „ë‹¬í•˜ë©° í˜¸ì¶œí•  í•¨ìˆ˜ì˜ í•¨ìˆ˜ ì£¼ì†Œë¥¼
+	// ë“±ë¡í•œë‹¤.
+	wcex.lpfnWndProc = WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
 
-    // À©µµ¿ì ÀÎ½ºÅÏ½º¸¦ µî·ÏÇÑ´Ù.
-    wcex.hInstance = m_hInst;
+	// ìœˆë„ìš° ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë“±ë¡í•œë‹¤.
+	wcex.hInstance = m_hInst;
 
-    // ½ÇÇàÆÄÀÏ¿¡ »ç¿ëÇÒ ¾ÆÀÌÄÜÀ» µî·ÏÇÑ´Ù.
-    wcex.hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_ICON1));
+	// ì‹¤í–‰íŒŒì¼ì— ì‚¬ìš©í•  ì•„ì´ì½˜ì„ ë“±ë¡í•œë‹¤.
+	wcex.hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_ICON1));
 
-    // ¸¶¿ì½º Ä¿¼­ ¸ğ¾çÀ» °áÁ¤ÇÑ´Ù.
-    wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	// ë§ˆìš°ìŠ¤ ì»¤ì„œ ëª¨ì–‘ì„ ê²°ì •í•œë‹¤.
+	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
-    // ¸Ş´º¸¦ »ç¿ëÇÒÁö ¸»Áö¸¦ °áÁ¤ÇÑ´Ù.
-    wcex.lpszMenuName = nullptr;
+	// ë©”ë‰´ë¥¼ ì‚¬ìš©í• ì§€ ë§ì§€ë¥¼ ê²°ì •í•œë‹¤.
+	wcex.lpszMenuName = nullptr;
 
-    // µî·ÏÇÒ Å¬·¡½ºÀÇ ÀÌ¸§À» À¯´ÏÄÚµå ¹®ÀÚ¿­·Î ¸¸µé¾î¼­ ÁöÁ¤ÇÑ´Ù.
-    // TEXT ¸ÅÅ©·Î´Â ÇÁ·ÎÁ§Æ® ¼³Á¤ÀÌ À¯´ÏÄÚµå·Î µÇ¾îÀÖÀ» °æ¿ì À¯´ÏÄÚµå ¹®ÀÚ¿­·Î ¸¸µé¾îÁö°í
-    // ¸ÖÆ¼¹ÙÀÌÆ®·Î µÇ¾îÀÖÀ» °æ¿ì ¸ÖÆ¼¹ÙÀÌÆ® ¹®ÀÚ¿­·Î ¸¸µé¾îÁö°Ô µÈ´Ù.
-    wcex.lpszClassName = TEXT("MetalSlug3");
+	// ë“±ë¡í•  í´ë˜ìŠ¤ì˜ ì´ë¦„ì„ ìœ ë‹ˆì½”ë“œ ë¬¸ìì—´ë¡œ ë§Œë“¤ì–´ì„œ ì§€ì •í•œë‹¤.
+	// TEXT ë§¤í¬ë¡œëŠ” í”„ë¡œì íŠ¸ ì„¤ì •ì´ ìœ ë‹ˆì½”ë“œë¡œ ë˜ì–´ìˆì„ ê²½ìš° ìœ ë‹ˆì½”ë“œ ë¬¸ìì—´ë¡œ ë§Œë“¤ì–´ì§€ê³ 
+	// ë©€í‹°ë°”ì´íŠ¸ë¡œ ë˜ì–´ìˆì„ ê²½ìš° ë©€í‹°ë°”ì´íŠ¸ ë¬¸ìì—´ë¡œ ë§Œë“¤ì–´ì§€ê²Œ ëœë‹¤.
+	wcex.lpszClassName = TEXT("MetalSlug3");
 
-    // À©µµ¿ìÃ¢ ÁÂ»ó´Ü¿¡ Ç¥½ÃÇÒ ÀÛÀº ¾ÆÀÌÄÜÀ» µî·ÏÇÑ´Ù.
-    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
+	// ìœˆë„ìš°ì°½ ì¢Œìƒë‹¨ì— í‘œì‹œí•  ì‘ì€ ì•„ì´ì½˜ì„ ë“±ë¡í•œë‹¤.
+	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
-    RegisterClassEx(&wcex);
+	RegisterClassEx(&wcex);
 }
 
 bool CGameManager::Create()
 {
-    m_hWnd = CreateWindow(TEXT("MetalSlug3"),
-        TEXT("MetalSlug3"), WS_OVERLAPPED | WS_SYSMENU,
-        200, 0, 0, 0, nullptr, nullptr, m_hInst, nullptr);
+	m_hWnd = CreateWindow(TEXT("MetalSlug3"),
+		TEXT("MetalSlug3"), WS_OVERLAPPED | WS_SYSMENU,
+		200, 0, 0, 0, nullptr, nullptr, m_hInst, nullptr);
 
-    if (!m_hWnd)
-    {
-        return false;
-    }
+	if (!m_hWnd)
+	{
+		return false;
+	}
 
-    RECT rc = { 0, 0, 
-        m_WindowSize.Width, m_WindowSize.Height};
-    
+	RECT rc = { 0, 0, 
+		m_WindowSize.Width, m_WindowSize.Height};
+	
 
-    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
+	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
 
-    MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
+	MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
 
-    // À©µµ¿ì Ã¢À» º¸¿©ÁØ´Ù. 1¹øÀÎÀÚ¿¡ µé¾î°£ ÇÚµéÀÇ À©µµ¿ì Ã¢À» º¸¿©ÁÙÁö ¸»Áö¸¦
-    // °áÁ¤ÇØÁØ´Ù.
-    ShowWindow(m_hWnd, SW_SHOW);
+	// ìœˆë„ìš° ì°½ì„ ë³´ì—¬ì¤€ë‹¤. 1ë²ˆì¸ìì— ë“¤ì–´ê°„ í•¸ë“¤ì˜ ìœˆë„ìš° ì°½ì„ ë³´ì—¬ì¤„ì§€ ë§ì§€ë¥¼
+	// ê²°ì •í•´ì¤€ë‹¤.
+	ShowWindow(m_hWnd, SW_SHOW);
 
-    // ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÏ¿© Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀÌ Á¦´ë·Î °»½ÅµÇ¾ú´Ù¸é 0ÀÌ ¾Æ´Ñ °ªÀ» ¹İÈ¯ÇÏ°í
-    // °»½ÅÀÌ ½ÇÆĞÇßÀ» °æ¿ì 0À» ¹İÈ¯ÇÑ´Ù.
-    UpdateWindow(m_hWnd);
+	// ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì´ ì œëŒ€ë¡œ ê°±ì‹ ë˜ì—ˆë‹¤ë©´ 0ì´ ì•„ë‹Œ ê°’ì„ ë°˜í™˜í•˜ê³ 
+	// ê°±ì‹ ì´ ì‹¤íŒ¨í–ˆì„ ê²½ìš° 0ì„ ë°˜í™˜í•œë‹¤.
+	UpdateWindow(m_hWnd);
 
-    
-    return true;
+	
+	return true;
 }
 
 LRESULT CGameManager::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (message)
-    {
-    case WM_DESTROY:
-        // À©µµ¿ì°¡ Á¾·áµÉ¶§ µé¾î¿À´Â ¸Ş¼¼ÁöÀÌ´Ù.
-        m_Loop = false;
-        PostQuitMessage(0);
-        break;
-        //ESC Å° ´©¸£¸é Á¾·á
-    case WM_KEYDOWN:
-        if (wParam == VK_ESCAPE)
-        {
-            DestroyWindow(hWnd);
-        }
-        break;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    return 0;
+	switch (message)
+	{
+	case WM_DESTROY:
+		// ìœˆë„ìš°ê°€ ì¢…ë£Œë ë•Œ ë“¤ì–´ì˜¤ëŠ” ë©”ì„¸ì§€ì´ë‹¤.
+		m_Loop = false;
+		PostQuitMessage(0);
+		break;
+		//ESC í‚¤ ëˆ„ë¥´ë©´ ì¢…ë£Œ
+	case WM_KEYDOWN:
+		if (wParam == VK_ESCAPE)
+		{
+			DestroyWindow(hWnd);
+		}
+		break;
+	default:
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
+	return 0;
 }
 
 void CGameManager::TimeScaleUp()
 {
-    m_TimeScale += 0.1f;
+	m_TimeScale += 0.1f;
 }
 
 void CGameManager::TimeScaleDown()
 {
-    m_TimeScale -= 0.1f;
+	m_TimeScale -= 0.1f;
 }
 
 //void CGameManager::DebugTextOut(const char* txt)
@@ -481,318 +481,318 @@ void CGameManager::TimeScaleDown()
 
 void CGameManager::DebugTextOut(const std::string& KeyName, const std::string& txt)
 {
-    std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
+	std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
 
-    DebugText* DT = nullptr;
-    if (iter == m_listDebugText.end())
-    {
-        DT = new DebugText;
-        m_listDebugText.push_back(DT);
-    }
-    else
-    {
-        DT = *iter;
-        DT->Duration = DT->DurationMax;
-    }
+	DebugText* DT = nullptr;
+	if (iter == m_listDebugText.end())
+	{
+		DT = new DebugText;
+		m_listDebugText.push_back(DT);
+	}
+	else
+	{
+		DT = *iter;
+		DT->Duration = DT->DurationMax;
+	}
 
-    if (DT)
-    {
-        if (!DT->AddMode)    //AddMode¸é °ª ÃÊ±âÈ­
-        {
-            DT->Text = KeyName + ": " + txt;
-        }
-        else
-        {
-            DT->Text += ", " + txt;
-        }
-    }
+	if (DT)
+	{
+		if (!DT->AddMode)    //AddModeë©´ ê°’ ì´ˆê¸°í™”
+		{
+			DT->Text = KeyName + ": " + txt;
+		}
+		else
+		{
+			DT->Text += ", " + txt;
+		}
+	}
 
 }
 
 void CGameManager::DebugTextOut(const std::string& KeyName, int Num)
 {
-    std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
+	std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
 
-    DebugText* DT = nullptr;
-    if (iter == m_listDebugText.end())
-    {
-        DT = new DebugText;
-        m_listDebugText.push_back(DT);
-    }
-    else
-    {
-        DT = *iter;
-        DT->Duration = DT->DurationMax;
-    }
+	DebugText* DT = nullptr;
+	if (iter == m_listDebugText.end())
+	{
+		DT = new DebugText;
+		m_listDebugText.push_back(DT);
+	}
+	else
+	{
+		DT = *iter;
+		DT->Duration = DT->DurationMax;
+	}
 
-    if (DT)
-    {
-        if (!DT->AddMode)    //AddMode¸é °ª ÃÊ±âÈ­
-        {
-            DT->Text = KeyName + ": " + std::to_string(Num);
-        }
-        else
-        {
-            DT->Text += ", " + std::to_string(Num);
-        }
-    }
+	if (DT)
+	{
+		if (!DT->AddMode)    //AddModeë©´ ê°’ ì´ˆê¸°í™”
+		{
+			DT->Text = KeyName + ": " + std::to_string(Num);
+		}
+		else
+		{
+			DT->Text += ", " + std::to_string(Num);
+		}
+	}
 }
 
 void CGameManager::DebugTextOut(const std::string& KeyName, float Flt)
 {
-    std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
+	std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
 
-    DebugText* DT = nullptr;
-    if (iter == m_listDebugText.end())
-    {
-        DT = new DebugText;
-        m_listDebugText.push_back(DT);
-    }
-    else
-    {
-        DT = *iter;
-        DT->Duration = DT->DurationMax;
-    }
+	DebugText* DT = nullptr;
+	if (iter == m_listDebugText.end())
+	{
+		DT = new DebugText;
+		m_listDebugText.push_back(DT);
+	}
+	else
+	{
+		DT = *iter;
+		DT->Duration = DT->DurationMax;
+	}
 
-    if (DT)
-    {
-        char temp[64] = {};
+	if (DT)
+	{
+		char temp[64] = {};
 
-        if (!DT->AddMode)    //AddMode¸é °ª ÃÊ±âÈ­
-        {
-            DT->Text = KeyName + ": ";
+		if (!DT->AddMode)    //AddModeë©´ ê°’ ì´ˆê¸°í™”
+		{
+			DT->Text = KeyName + ": ";
 
-            sprintf_s(temp, "%.2f", Flt);
-            DT->Text += temp;
-        }
-        else
-        {
-            DT->Text += " / "; 
-            sprintf_s(temp, "%.2f", Flt);
-            DT->Text += temp;
-        }
-    }
+			sprintf_s(temp, "%.2f", Flt);
+			DT->Text += temp;
+		}
+		else
+		{
+			DT->Text += " / "; 
+			sprintf_s(temp, "%.2f", Flt);
+			DT->Text += temp;
+		}
+	}
 
 }
 
 void CGameManager::DebugTextOut(const std::string& KeyName, Vector2 Vec)
 {
-    std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
+	std::list<DebugText*>::iterator iter = FindKeyName(KeyName);
 
-    DebugText* DT = nullptr;
-    if (iter == m_listDebugText.end())
-    {
-        DT = new DebugText;
-        m_listDebugText.push_back(DT);
-    }
-    else
-    {
-        DT = *iter;
-        DT->Duration = DT->DurationMax;
-    }
+	DebugText* DT = nullptr;
+	if (iter == m_listDebugText.end())
+	{
+		DT = new DebugText;
+		m_listDebugText.push_back(DT);
+	}
+	else
+	{
+		DT = *iter;
+		DT->Duration = DT->DurationMax;
+	}
 
-    if (DT)
-    {
-        char temp[64] = {};
+	if (DT)
+	{
+		char temp[64] = {};
 
-        if (!DT->AddMode)    //AddMode¸é °ª ÃÊ±âÈ­
-        {
-            DT->Text = KeyName + ": ";
+		if (!DT->AddMode)    //AddModeë©´ ê°’ ì´ˆê¸°í™”
+		{
+			DT->Text = KeyName + ": ";
 
-            sprintf_s(temp, "%.2f", Vec.x);
-            DT->Text += temp;
+			sprintf_s(temp, "%.2f", Vec.x);
+			DT->Text += temp;
 
-            memset(temp, 0, sizeof(temp));
-            sprintf_s(temp, ", %.2f", Vec.y);
-            DT->Text += temp;
-        }
-        else
-        {
-            DT->Text += " / ";
+			memset(temp, 0, sizeof(temp));
+			sprintf_s(temp, ", %.2f", Vec.y);
+			DT->Text += temp;
+		}
+		else
+		{
+			DT->Text += " / ";
 
-            sprintf_s(temp, "%.2f", Vec.x);
-            DT->Text += temp;
+			sprintf_s(temp, "%.2f", Vec.x);
+			DT->Text += temp;
 
-            memset(temp, 0, sizeof(temp));
-            sprintf_s(temp, ", %.2f", Vec.y);
-            DT->Text += temp;
-        }
-    }
+			memset(temp, 0, sizeof(temp));
+			sprintf_s(temp, ", %.2f", Vec.y);
+			DT->Text += temp;
+		}
+	}
 
 }
 
 std::list<DebugText*>::iterator CGameManager::FindKeyName(const std::string& KeyName)
 {
-    std::list<DebugText*>::iterator iter = m_listDebugText.begin();
-    std::list<DebugText*>::iterator iterEnd = m_listDebugText.end();
+	std::list<DebugText*>::iterator iter = m_listDebugText.begin();
+	std::list<DebugText*>::iterator iterEnd = m_listDebugText.end();
 
-    while (iter != iterEnd)
-    {
-        //ÇØ´ç Å°ÀÌ¸§ÀÌ µé¾îÀÖ´Â ÅØ½ºÆ®°¡ ÀÖÀ¸¸é true¸¦ ¹İÈ¯
-        if ((*iter)->Text.find(KeyName) != std::string::npos)
-        {
-            return iter;
-        }
-        ++iter;
-    }
+	while (iter != iterEnd)
+	{
+		//í•´ë‹¹ í‚¤ì´ë¦„ì´ ë“¤ì–´ìˆëŠ” í…ìŠ¤íŠ¸ê°€ ìˆìœ¼ë©´ trueë¥¼ ë°˜í™˜
+		if ((*iter)->Text.find(KeyName) != std::string::npos)
+		{
+			return iter;
+		}
+		++iter;
+	}
 
-    //Ã£Áö ¸øÇßÀ¸¸é end¸¦ ¹İÈ¯
-    return iterEnd;
+	//ì°¾ì§€ ëª»í–ˆìœ¼ë©´ endë¥¼ ë°˜í™˜
+	return iterEnd;
 }
 
 void CGameManager::DebugTextRender()
 {
-    UINT8 count = 0;
+	UINT8 count = 0;
 
-    auto iter = m_listDebugText.begin();
-    auto iterEnd = m_listDebugText.end();
+	auto iter = m_listDebugText.begin();
+	auto iterEnd = m_listDebugText.end();
 
-    while (iter != iterEnd)
-    {
-        (*iter)->Duration -= m_DeltaTime;
-        if ((*iter)->Duration < 0.f)
-        {
-            SAFE_DELETE(*iter);
+	while (iter != iterEnd)
+	{
+		(*iter)->Duration -= m_DeltaTime;
+		if ((*iter)->Duration < 0.f)
+		{
+			SAFE_DELETE(*iter);
 
-            iter = m_listDebugText.erase(iter);
+			iter = m_listDebugText.erase(iter);
 
-            continue;
-        }
+			continue;
+		}
 
 
-        std::string out = (*iter)->Text + m_Blank;
+		std::string out = (*iter)->Text + m_Blank;
 
-        TextOutA(m_hDC, ORIGINAL_GAME_RES_WIDTH + 1, 7 * count, (*iter)->Text.c_str(), (int)(*iter)->Text.size());
+		TextOutA(m_hDC, ORIGINAL_GAME_RES_WIDTH + 1, 7 * count, (*iter)->Text.c_str(), (int)(*iter)->Text.size());
 
-        ++count;
-        ++iter;
-    }
+		++count;
+		++iter;
+	}
 
 }
 
 
 void CGameManager::ToggleDebugRender()
 {
-    m_DebugRender = !m_DebugRender;
+	m_DebugRender = !m_DebugRender;
 
-    if (m_DebugRender)
-    {
-        m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE * STATUS_SPACE);
+	if (m_DebugRender)
+	{
+		m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE * STATUS_SPACE);
 
-        RECT rc = { 0, 0,
-           m_WindowSize.Width, m_WindowSize.Height };
+		RECT rc = { 0, 0,
+		   m_WindowSize.Width, m_WindowSize.Height };
 
-        AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
+		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
 
-        MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
-
-
-        SetWindowExtEx(m_hDC,
-            (int)(ORIGINAL_GAME_RES_WIDTH * STATUS_SPACE),
-            (int)(ORIGINAL_GAME_RES_HEIGHT),
-            NULL);
-        //È®´ëµÈ ÇØ»óµµ·Î Àû¿ë(µğ¹ö±× ¸ğµåÀÏ °æ¿ì ¿·¿¡ ºó °ø°£À» ¸¸µé¾î ÇØ´ç À§Ä¡¿¡ µğ¹ö±× Á¤º¸ Ç¥½Ã
-        SetViewportExtEx(m_hDC,
-            m_WindowSize.Width, m_WindowSize.Height, NULL);
-    }
-    else
-    {
-        m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE);
-
-        RECT rc = { 0, 0,
-            m_WindowSize.Width, m_WindowSize.Height };
-
-        AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
-
-        MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
+		MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
 
 
-        SetWindowExtEx(m_hDC,
-            (int)(ORIGINAL_GAME_RES_WIDTH),
-            (int)(ORIGINAL_GAME_RES_HEIGHT),
-            NULL);
-        //È®´ëµÈ ÇØ»óµµ·Î Àû¿ë(µğ¹ö±× ¸ğµåÀÏ °æ¿ì ¿·¿¡ ºó °ø°£À» ¸¸µé¾î ÇØ´ç À§Ä¡¿¡ µğ¹ö±× Á¤º¸ Ç¥½Ã
-        SetViewportExtEx(m_hDC,
-            m_WindowSize.Width, m_WindowSize.Height, NULL);
+		SetWindowExtEx(m_hDC,
+			(int)(ORIGINAL_GAME_RES_WIDTH * STATUS_SPACE),
+			(int)(ORIGINAL_GAME_RES_HEIGHT),
+			NULL);
+		//í™•ëŒ€ëœ í•´ìƒë„ë¡œ ì ìš©(ë””ë²„ê·¸ ëª¨ë“œì¼ ê²½ìš° ì˜†ì— ë¹ˆ ê³µê°„ì„ ë§Œë“¤ì–´ í•´ë‹¹ ìœ„ì¹˜ì— ë””ë²„ê·¸ ì •ë³´ í‘œì‹œ
+		SetViewportExtEx(m_hDC,
+			m_WindowSize.Width, m_WindowSize.Height, NULL);
+	}
+	else
+	{
+		m_WindowSize.Width = (int)(ORIGINAL_GAME_RES_WIDTH * SCREEN_SCALE);
 
-    }
+		RECT rc = { 0, 0,
+			m_WindowSize.Width, m_WindowSize.Height };
+
+		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, false);
+
+		MoveWindow(m_hWnd, 200, 0, abs(rc.left) + abs(rc.right), abs(rc.top) + abs(rc.bottom), true);
+
+
+		SetWindowExtEx(m_hDC,
+			(int)(ORIGINAL_GAME_RES_WIDTH),
+			(int)(ORIGINAL_GAME_RES_HEIGHT),
+			NULL);
+		//í™•ëŒ€ëœ í•´ìƒë„ë¡œ ì ìš©(ë””ë²„ê·¸ ëª¨ë“œì¼ ê²½ìš° ì˜†ì— ë¹ˆ ê³µê°„ì„ ë§Œë“¤ì–´ í•´ë‹¹ ìœ„ì¹˜ì— ë””ë²„ê·¸ ì •ë³´ í‘œì‹œ
+		SetViewportExtEx(m_hDC,
+			m_WindowSize.Width, m_WindowSize.Height, NULL);
+
+	}
 
 
 }
 
 bool CGameManager::GetDebugRender() const
 {
-    return m_DebugRender;
+	return m_DebugRender;
 }
 
 HBRUSH CGameManager::GetBrush(EBrushType Type) const
 {
-    return m_Brush[(int)Type];
+	return m_Brush[(int)Type];
 }
 
 HPEN CGameManager::GetPen(EBrushType Type) const
 {
-    return m_Pen[(int)Type];
+	return m_Pen[(int)Type];
 }
 
 void CGameManager::SetPlayer(CPlayer* Player)
 {
-    m_Player = Player;
+	m_Player = Player;
 }
 
 void CGameManager::DeletePlayer(CPlayer* Player)
 {
-    if (m_Player == Player)
-        m_Player = nullptr;
+	if (m_Player == Player)
+		m_Player = nullptr;
 }
 
 CPlayer* CGameManager::GetPlayer() const
 {
-    return m_Player;
+	return m_Player;
 }
 
 
 float CGameManager::GetTimeScale() const
 {
-    return m_TimeScale;
+	return m_TimeScale;
 }
 
 void CGameManager::SetTimeScale(float TimeScale)
 {
-    m_TimeScale = TimeScale;
+	m_TimeScale = TimeScale;
 }
 
 int CGameManager::GetRandNum() const
 {
-    return m_RandNum;
+	return m_RandNum;
 }
 
 HINSTANCE CGameManager::GetWindowInstance() const
 {
-    return m_hInst;
+	return m_hInst;
 }
 
 HDC CGameManager::GetWindowDC() const
 {
-    return m_hDC;
+	return m_hDC;
 }
 
 HDC CGameManager::GetWindowBackDC() const
 {
-    return m_BackhDC;
+	return m_BackhDC;
 }
 
 HWND CGameManager::GetWindowHandle() const
 {
-    return m_hWnd;
+	return m_hWnd;
 }
 
 float CGameManager::GetDeltaTime() const
 {
-    return m_DeltaTime;
+	return m_DeltaTime;
 }
 
 Resolution CGameManager::GetWindowSize() const
 {
-    return m_WindowSize;
+	return m_WindowSize;
 }

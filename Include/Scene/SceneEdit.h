@@ -12,7 +12,7 @@ enum class ERange
 
 
 class CSceneEdit :
-    public CScene
+	public CScene
 {
 	friend class CSceneManager;
 	friend class CSceneEdit;
@@ -24,26 +24,26 @@ public:
 	bool Init();
 
 
-//´ÙÀÌ¾ó·Î±× °ü·Ã
+//ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨
 private:
-	//´ÙÀÌ¾ó·Î±× ÇÚµé
+	//ë‹¤ì´ì–¼ë¡œê·¸ í•¸ë“¤
 	HWND	m_hDlg;
 public:
 	HWND GetHWND() const;
 
 private:
-	//Ã¢ ¼û±â±â¸¦ Çß´ÂÁö ¿©ºÎ È®ÀÎ¿ë
+	//ì°½ ìˆ¨ê¸°ê¸°ë¥¼ í–ˆëŠ”ì§€ ì—¬ë¶€ í™•ì¸ìš©
 	bool m_Hide;
 public:
 	void ChangeVisibleStatus();
 
-	//Å¬¶óÀÌ¾ğÆ® ¿µ¿ª¿¡ ·»´õ¸µÇØÁÙ CGameObject
+	//í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì— ë Œë”ë§í•´ì¤„ CGameObject
 	CSharedPtr<class CEditViewer> m_Viewer;
 
-	//¸ğµç µ¥ÀÌÅÍ ÃÖÁ¾ ÀúÀåÀº ¿©±â¿¡
+	//ëª¨ë“  ë°ì´í„° ìµœì¢… ì €ì¥ì€ ì—¬ê¸°ì—
 	std::vector<class CCSVEditor*> m_vecCSVEditor;
 
-private://¸®½ºÆ® ¼±ÅÃÀÌ ¹Ù²ğ °æ¿ì ¹Ù²ãÁà¾ß ÇÏ´Â º¯¼öµé
+private://ë¦¬ìŠ¤íŠ¸ ì„ íƒì´ ë°”ë€” ê²½ìš° ë°”ê¿”ì¤˜ì•¼ í•˜ëŠ” ë³€ìˆ˜ë“¤
 	HWND	m_hTextureListBox;
 	int		m_SelectTextureIndex;
 
@@ -59,13 +59,13 @@ private://¸®½ºÆ® ¼±ÅÃÀÌ ¹Ù²ğ °æ¿ì ¹Ù²ãÁà¾ß ÇÏ´Â º¯¼öµé
 
 
 public:
-	//¸®½ºÆ® ¼±ÅÃ ÇÁ·¹ÀÓÀÌ º¯°æµÆÀ» ¶§ È£ÃâµÉ ¸Ş¼Òµå.
+	//ë¦¬ìŠ¤íŠ¸ ì„ íƒ í”„ë ˆì„ì´ ë³€ê²½ëì„ ë•Œ í˜¸ì¶œë  ë©”ì†Œë“œ.
 	void SelectTex();
 	void SelectAnimSeq();
 	void SelectFrame();
 	
 
-private://¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ¸®½ºÆ® °ü·Ã ¿ä¼Òµé
+private://ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ ê´€ë ¨ ìš”ì†Œë“¤
 	HWND	m_hPlayListBox;
 	HWND	m_hCheckReverse;
 	int		m_SelectPlayIndex;
@@ -75,23 +75,23 @@ private://¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ¸®½ºÆ® °ü·Ã ¿ä¼Òµé
 	bool	LoadAnimInfo();
 	void	AddPlayList();
 	void	PlayAnimation();
-	void	ClearList(); //¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ¸®½ºÆ® Á¦°Å
-	void	ReturnStartScene();	//µµ·Î ½ºÅ¸Æ®¾ÀÀ¸·Î º¹±Í
+	void	ClearList(); //ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ë¦¬ìŠ¤íŠ¸ ì œê±°
+	void	ReturnStartScene();	//ë„ë¡œ ìŠ¤íƒ€íŠ¸ì”¬ìœ¼ë¡œ ë³µê·€
 
 
 private: 
-	//¸®½ºÆ® ¸ñ·ÏÀ» ¸ğµÎ clear ÇØÁÖ°í ºóÄ­ ÇÏ³ª¸¸ »ı¼ºÇÑ´Ù(ÀÎµ¦½º ¹øÈ£¿Í ¸®½ºÆ® ¹øÈ£ ¸ÂÃß±â À§ÇÔ)
+	//ë¦¬ìŠ¤íŠ¸ ëª©ë¡ì„ ëª¨ë‘ clear í•´ì£¼ê³  ë¹ˆì¹¸ í•˜ë‚˜ë§Œ ìƒì„±í•œë‹¤(ì¸ë±ìŠ¤ ë²ˆí˜¸ì™€ ë¦¬ìŠ¤íŠ¸ ë²ˆí˜¸ ë§ì¶”ê¸° ìœ„í•¨)
 	void ClearSelect(ERange Range);
 
-	//ÁöÁ¤ÇÑ ¹üÀ§ºÎÅÍ ÇÏÀ§ Ç×¸ñÀÇ ÀÎµ¦½º ¹øÈ£°¡ ¹üÀ§ ¾È¿¡ ¼¼ÆÃµÇ¾îÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	//ì§€ì •í•œ ë²”ìœ„ë¶€í„° í•˜ìœ„ í•­ëª©ì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸ê°€ ë²”ìœ„ ì•ˆì— ì„¸íŒ…ë˜ì–´ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 	bool SelectIndexRangeCheck(ERange Range);
 
 
-	//·Îµå °ü·Ã
-	bool LoadCSV(); //CSV ÆÄÀÏ ·Îµå
-	//Ç® °æ·Î¸¦ ¹Ş¾Æ¼­ ·Îµå °úÁ¤À» Ã³¸®ÇÏ´Â ¸Ş¼Òµå.
-	//¸¸¾à index¿¡ ±âº»°ª -1ÀÌ ¾Æ´Ñ Æ¯Á¤ ÀÎµ¦½º °ªÀÌ µé¾î¿À¸é ÇØ´ç ÀÎµ¦½º¿¡ »ğÀÔ.
-	//->ReloadCSV¿ë
+	//ë¡œë“œ ê´€ë ¨
+	bool LoadCSV(); //CSV íŒŒì¼ ë¡œë“œ
+	//í’€ ê²½ë¡œë¥¼ ë°›ì•„ì„œ ë¡œë“œ ê³¼ì •ì„ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ.
+	//ë§Œì•½ indexì— ê¸°ë³¸ê°’ -1ì´ ì•„ë‹Œ íŠ¹ì • ì¸ë±ìŠ¤ ê°’ì´ ë“¤ì–´ì˜¤ë©´ í•´ë‹¹ ì¸ë±ìŠ¤ì— ì‚½ì….
+	//->ReloadCSVìš©
 	bool LoadCSVFullPath(const TCHAR* FullPath, int index = -1);
 	bool ReloadCSV(const std::string& PathName = DATA_PATH);
 	void Reset();
@@ -99,7 +99,7 @@ private:
 private:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-public://Á¤Àû ¸Ş¼ÒµåÀÎ WndProc¿¡ ÁÖ¼Ò¸¦ Àü´ŞÇØÁÖ±â À§ÇÑ Á¤Àû º¯¼ö
+public://ì •ì  ë©”ì†Œë“œì¸ WndProcì— ì£¼ì†Œë¥¼ ì „ë‹¬í•´ì£¼ê¸° ìœ„í•œ ì •ì  ë³€ìˆ˜
 	static CSceneEdit* s_Dlg;
 
 };

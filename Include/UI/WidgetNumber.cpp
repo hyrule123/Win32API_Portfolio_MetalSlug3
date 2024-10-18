@@ -1,6 +1,6 @@
 #include "WidgetNumber.h"
 
-//ÅØ½ºÃ³ ·Îµå¿ë
+//í…ìŠ¤ì²˜ ë¡œë“œìš©
 #include "../Resource/ResourceManager.h"
 #include "../Resource/Texture/Texture.h"
 #include "../Resource/Animation/AnimationSequence.h"
@@ -67,7 +67,7 @@ void CWidgetNumber::Update(float DeltaTime)
 {
 	int Num = m_Number;
 
-	//10´ÜÀ§·Î ³¡±îÁö ³ª´²°¡¸é¼­ ³ª¸ÓÁö¸¦ ÇÑÀÚ¸®¾¿ ½ºÅÃ¿¡ »ğÀÔ
+	//10ë‹¨ìœ„ë¡œ ëê¹Œì§€ ë‚˜ëˆ ê°€ë©´ì„œ ë‚˜ë¨¸ì§€ë¥¼ í•œìë¦¬ì”© ìŠ¤íƒì— ì‚½ì…
 	while (true)
 	{
 		m_NumberStack.push(Num % 10);
@@ -78,7 +78,7 @@ void CWidgetNumber::Update(float DeltaTime)
 
 
 	m_NumberVec.clear();
-	//±×´ë·Î ´Ù½Ã »©³»¸é ¿Ã¹Ù¸¥ ¼ø¼­·Î º¤ÅÍ¿¡ µé¾î°¥ °ÍÀÓ.
+	//ê·¸ëŒ€ë¡œ ë‹¤ì‹œ ë¹¼ë‚´ë©´ ì˜¬ë°”ë¥¸ ìˆœì„œë¡œ ë²¡í„°ì— ë“¤ì–´ê°ˆ ê²ƒì„.
 	while (!m_NumberStack.empty())
 	{
 		m_NumberVec.push_back(m_NumberStack.top());
@@ -100,13 +100,13 @@ void CWidgetNumber::Render(HDC hDC, float DeltaTime)
 		size_t size = m_NumberVec.size();
 		for (size_t i = 0; i < size; ++i)
 		{
-			//¼ıÀÚ°¡ Ãâ·ÂµÉ ÁÂÇ¥
+			//ìˆ«ìê°€ ì¶œë ¥ë  ì¢Œí‘œ
 			Vector2 RenderLT = m_Pos + m_Offset + m_Owner->GetPos();
 			RenderLT.x += m_Size.x * m_Scale * (float)i;
-			//¼ıÀÚ°¡ Ãâ·ÂµÉ »çÀÌÁî
+			//ìˆ«ìê°€ ì¶œë ¥ë  ì‚¬ì´ì¦ˆ
 			Vector2 RenderSize = m_Size * m_Scale;
 
-			//Ãâ·ÂÇØ¾ß ÇÒ ¼ıÀÚ
+			//ì¶œë ¥í•´ì•¼ í•  ìˆ«ì
 			int num = m_NumberVec[i];
 
 			if (m_NumberImage->GetTextureType() == ETextureType::Sprite)

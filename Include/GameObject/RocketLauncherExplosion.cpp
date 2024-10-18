@@ -51,10 +51,10 @@ bool CRocketLauncherExplosion::Init(CGameObject* Obj)
 
 	SetAnimation(m_Name);
 
-	//·ÎÄÏ Æø¹ß ÀÌÆåÆ®ÀÇ ·»´õ¸µ ·¹ÀÌ¾î´Â default
+	//ë¡œì¼“ í­ë°œ ì´í™íŠ¸ì˜ ë Œë”ë§ ë ˆì´ì–´ëŠ” default
 	m_RenderLayer = ERenderLayer::Default;
 
-	//2ÇÁ·¹ÀÓ ³ëÆ¼ÆÄÀÌ »ı¼º
+	//2í”„ë ˆì„ ë…¸í‹°íŒŒì´ ìƒì„±
 	AddNotify<CRocketLauncherExplosion>(m_Name, 2, this, &CRocketLauncherExplosion::Frame2Notify);
 
 
@@ -67,7 +67,7 @@ void CRocketLauncherExplosion::SetEssential(const Vector2& Dir, const Vector2& P
 	m_Dir = Dir;
 	m_Pos = Pos;
 
-	//Ãæµ¹Ã¼ »ı¼º
+	//ì¶©ëŒì²´ ìƒì„±
 	CColliderCircle* Coll = AddCollider<CColliderCircle>("Rocket");
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetCollisionBeginFunc<CRocketLauncherExplosion>(this, &CRocketLauncherExplosion::CollisionBegin);
@@ -122,16 +122,16 @@ void CRocketLauncherExplosion::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 void CRocketLauncherExplosion::Frame2Notify()
 {
-	//ÀÚ½ÅÀÇ Ãæµ¹Ã¼ Á¦°Å
+	//ìì‹ ì˜ ì¶©ëŒì²´ ì œê±°
 	ClearCollider();
 
 	int index = (int)m_CurrentSize + 1;
 
-	//ÃÖ´ë Å©±âÀÎ °æ¿ì Áß´Ü
+	//ìµœëŒ€ í¬ê¸°ì¸ ê²½ìš° ì¤‘ë‹¨
 	if (index >= (int)EExplosionSize::Max || index < (int)EExplosionSize::Small)
 		return;
 
-	//ÀÌ¿ÜÀÇ °æ¿ì ÀÚ½Åº¸´Ù Á»´õ Å« Æø¹ßÃ¼ »ı¼º
+	//ì´ì™¸ì˜ ê²½ìš° ìì‹ ë³´ë‹¤ ì¢€ë” í° í­ë°œì²´ ìƒì„±
 	CRocketLauncherExplosion* Explosion = m_Scene->CreateObject<CRocketLauncherExplosion>(m_SizeName[index]);
 	Explosion->SetEssential(m_Dir, m_Pos);
 }

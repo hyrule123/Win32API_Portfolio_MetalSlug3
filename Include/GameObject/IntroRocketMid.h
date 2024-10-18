@@ -1,7 +1,7 @@
 #pragma once
 #include "IntroRocket.h"
 class CIntroRocketMid :
-    public CIntroRocket
+	public CIntroRocket
 {
 	friend class CScene;
 protected:

@@ -21,7 +21,7 @@ public:
 	virtual void Render(HDC hDC, float DeltaTime);
 
 
-protected://¸®¼Ò½º °ü¸®ÀÚ¿Í ¿¬°á
+protected://ë¦¬ì†ŒìŠ¤ ê´€ë¦¬ìì™€ ì—°ê²°
 	class CSceneResource* m_SceneResource;
 public:
 	class CSceneResource* GetSceneResource() const;
@@ -36,10 +36,10 @@ public:
 	virtual void SetEssential();
 
 
-protected: // Ä«¸Ş¶ó °ü·Ã
-	//¾ÀÀÌ µé°íÀÖÀ» Ä«¸Ş¶ó Å¬·¡½º
+protected: // ì¹´ë©”ë¼ ê´€ë ¨
+	//ì”¬ì´ ë“¤ê³ ìˆì„ ì¹´ë©”ë¼ í´ë˜ìŠ¤
 	class CCamera* m_Camera;
-	//Ä«¸Ş¶óÀÇ À§Ä¡ ÀúÀå¿ë - Ä«¸Ş¶óÀÇ À§Ä¡¸¦ ¾ÕÀ¸·Î CScene¿¡¼­ ¾ò¾î¿Â´Ù.
+	//ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ ì €ì¥ìš© - ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¥¼ ì•ìœ¼ë¡œ CSceneì—ì„œ ì–»ì–´ì˜¨ë‹¤.
 	Vector2 m_CamPos;
 	Vector2 m_CamRes;
 public:
@@ -49,18 +49,18 @@ public:
 	class CCamera* GetCamera() const;
 	//=====================================================================
 
-protected:	//Ãæµ¹Ã¼ °ü¸® Å¬·¡½º
+protected:	//ì¶©ëŒì²´ ê´€ë¦¬ í´ë˜ìŠ¤
 	class CSceneCollision* m_Collision;
 public:
 	class CSceneCollision* GetSceneCollision()	const;
 //=====================================================================
 
 
-protected://À§Á¬ °ü·Ã
+protected://ìœ„ì ¯ ê´€ë ¨
 	std::vector<CSharedPtr<class CWidgetWindow>> m_vecWidgetWindow;
 
-	//Zorder '³»¸²Â÷¼ø' ¼ø¼­´ë·Î Á¤·Ä -> Ãæµ¹ Ã³¸®´Â ³»¸²Â÷¼øºÎÅÍ ÇÏ±â¶§¹®
-	//ÇÑ¹ø Á¤·ÄÇØ³õ°í, Ãæµ¹ Ã¼Å©¶§´Â ¼øÂ÷, ·»´õ¸µ ¶§´Â ¿ª¼øÀ¸·Î Ãâ·ÂÇÏ¸é µÉµí.
+	//Zorder 'ë‚´ë¦¼ì°¨ìˆœ' ìˆœì„œëŒ€ë¡œ ì •ë ¬ -> ì¶©ëŒ ì²˜ë¦¬ëŠ” ë‚´ë¦¼ì°¨ìˆœë¶€í„° í•˜ê¸°ë•Œë¬¸
+	//í•œë²ˆ ì •ë ¬í•´ë†“ê³ , ì¶©ëŒ ì²´í¬ë•ŒëŠ” ìˆœì°¨, ë Œë”ë§ ë•ŒëŠ” ì—­ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ë©´ ë ë“¯.
 	static bool SortWidgetWindow(const CSharedPtr<class CWidgetWindow>& Src,
 		const CSharedPtr<class CWidgetWindow>& Dest);
 public:
@@ -88,37 +88,37 @@ public:
 
 
 
-protected://°ÔÀÓ¿ÀºêÁ§Æ® °ü·Ã
+protected://ê²Œì„ì˜¤ë¸Œì íŠ¸ ê´€ë ¨
 	std::unordered_map<size_t, CSharedPtr<class CGameObject>> 
-		m_mapOriginalObj;	//¿øº»À» ÀúÀåÇÒ ¸®½ºÆ®
+		m_mapOriginalObj;	//ì›ë³¸ì„ ì €ì¥í•  ë¦¬ìŠ¤íŠ¸
 
-	//º¹»çº»(½ÇÁ¦ ·ÎÁ÷¿¡ µé¾î°¡´Â) ¿ÀºêÁ§Æ®µé
+	//ë³µì‚¬ë³¸(ì‹¤ì œ ë¡œì§ì— ë“¤ì–´ê°€ëŠ”) ì˜¤ë¸Œì íŠ¸ë“¤
 	std::list<CSharedPtr<class CGameObject>> m_ObjList[(int)ERenderLayer::Max];
 public:
 	bool ChangeRenderLayer(class CGameObject* Obj, ERenderLayer SrcLayer, ERenderLayer DestLayer);
 	CGameObject* FindObject(const std::string& Name);
 
-	//º¹»ç »ı¼ºÀÚ·Î º¹Á¦ÇØ¼­ »ç¿ëÇÒ ±âº» ¿ÀºêÁ§Æ® »ı¼º. ¿øº»Àº ÀÌ¸§À» ¹İµå½Ã ÀÔ·ÂÇØ¾ßÇÑ´Ù.
+	//ë³µì‚¬ ìƒì„±ìë¡œ ë³µì œí•´ì„œ ì‚¬ìš©í•  ê¸°ë³¸ ì˜¤ë¸Œì íŠ¸ ìƒì„±. ì›ë³¸ì€ ì´ë¦„ì„ ë°˜ë“œì‹œ ì…ë ¥í•´ì•¼í•œë‹¤.
 	template <typename T>
 	T* CreateOriginalObj(const std::string& Name)
 	{
-		//µé¾î¿Â TÅ¸ÀÔÀÇ °ÔÀÓ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÑ´Ù.
+		//ë“¤ì–´ì˜¨ Tíƒ€ì…ì˜ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 		T* Obj = new T;
 
-		//ÀÚ½ÅÀ» »ı¼ºÇÑ CSceneÀ» µî·ÏÇÑ´Ù.
+		//ìì‹ ì„ ìƒì„±í•œ CSceneì„ ë“±ë¡í•œë‹¤.
 		Obj->SetOwnerScene((CScene*)this);
-		//ÀÌ¸§À» ¼³Á¤ÇØÁØ´Ù.
+		//ì´ë¦„ì„ ì„¤ì •í•´ì¤€ë‹¤.
 		Obj->SetName(Name);
 
-		//¸®¼Ò½º¸¦ ·ÎµåÇÏ°í ½ÇÆĞÇÏ¸é »èÁ¦ÇÏ°í ¿ø·¡·Î µ¹¾Æ°£´Ù.
+		//ë¦¬ì†ŒìŠ¤ë¥¼ ë¡œë“œí•˜ê³  ì‹¤íŒ¨í•˜ë©´ ì‚­ì œí•˜ê³  ì›ë˜ë¡œ ëŒì•„ê°„ë‹¤.
 		if (!Obj->LoadResource())
 		{
-			//¹æ±İ ¸¸µé¾îÁø º¯¼ö¿©¼­ ±»ÀÌ µıµ¥ ÂüÁ¶¹Ş´Â °÷ÀÌ ¾øÀ¸¹Ç·Î SAFE_DELETE
+			//ë°©ê¸ˆ ë§Œë“¤ì–´ì§„ ë³€ìˆ˜ì—¬ì„œ êµ³ì´ ë”´ë° ì°¸ì¡°ë°›ëŠ” ê³³ì´ ì—†ìœ¼ë¯€ë¡œ SAFE_DELETE
 			SAFE_DELETE(Obj);
 			return nullptr;
 		}
 
-		//»ı¼ºµÈ ¿øº» °ÔÀÓ¿ÀºêÁ§Æ®¸¦ °ü¸®ÇÏ´Â m_mapOriginalObj¿¡ ¾÷Ä³½ºÆÃÇÏ¿© »ğÀÔÇÑ´Ù.
+		//ìƒì„±ëœ ì›ë³¸ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” m_mapOriginalObjì— ì—…ìºìŠ¤íŒ…í•˜ì—¬ ì‚½ì…í•œë‹¤.
 		m_mapOriginalObj.insert(std::make_pair(Obj->GetTypeID(), (CGameObject*)Obj));
 
 		return Obj;
@@ -133,7 +133,7 @@ public:
 		auto iter = m_mapOriginalObj.find(Key);
 
 		T* FoundObj = nullptr;
-		//¸¸¾à ¿øº» ¸®½ºÆ®¿¡ ¾øÀ¸¸é »ı¼ºÇÑ´Ù. ½ÇÆĞ ½Ã return.
+		//ë§Œì•½ ì›ë³¸ ë¦¬ìŠ¤íŠ¸ì— ì—†ìœ¼ë©´ ìƒì„±í•œë‹¤. ì‹¤íŒ¨ ì‹œ return.
 		if (iter == m_mapOriginalObj.end())
 		{
 			FoundObj = CreateOriginalObj<T>(Name);
@@ -148,22 +148,22 @@ public:
 
 		T* Obj = new T(*FoundObj);
 
-		//¿ÀºêÁ§Æ®¿¡ ÀÌ¸§À» ¼³Á¤ÇÑ´Ù.
+		//ì˜¤ë¸Œì íŠ¸ì— ì´ë¦„ì„ ì„¤ì •í•œë‹¤.
 		Obj->SetName(Name);
 
-		//ÃÊ±âÈ­ ÇÔ¼ö¸¦ ÀÛµ¿½ÃÅ°°í ½ÇÆĞÇÏ¸é ´Ù½Ã Á¦°ÅÇÏ°í nullptrÀ» ¹İÈ¯ÇÑ´Ù.
+		//ì´ˆê¸°í™” í•¨ìˆ˜ë¥¼ ì‘ë™ì‹œí‚¤ê³  ì‹¤íŒ¨í•˜ë©´ ë‹¤ì‹œ ì œê±°í•˜ê³  nullptrì„ ë°˜í™˜í•œë‹¤.
 		if (!Obj->Init((CGameObject*)Master))
 		{
-			//¹æ±İ ¸¸µé¾îÁø º¯¼ö¿©¼­ ±»ÀÌ µıµ¥ ÂüÁ¶¹Ş´Â °÷ÀÌ ¾øÀ¸¹Ç·Î SAFE_DELETE
+			//ë°©ê¸ˆ ë§Œë“¤ì–´ì§„ ë³€ìˆ˜ì—¬ì„œ êµ³ì´ ë”´ë° ì°¸ì¡°ë°›ëŠ” ê³³ì´ ì—†ìœ¼ë¯€ë¡œ SAFE_DELETE
 			SAFE_DELETE(Obj);
 			return nullptr;
 		}
 
 
-		//»ı¼ºµÈ °ÔÀÓ¿ÀºêÁ§Æ®¸¦ °ü¸®ÇÏ´Â m_ObjList¿¡ ¾÷Ä³½ºÆÃÇÏ¿© »ğÀÔÇÑ´Ù.
+		//ìƒì„±ëœ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” m_ObjListì— ì—…ìºìŠ¤íŒ…í•˜ì—¬ ì‚½ì…í•œë‹¤.
 		m_ObjList[(int)Obj->m_RenderLayer].push_back((CGameObject*)Obj);
 
-		//ÁÖÀÎ ¿ÀºêÁ§Æ®°¡ ÀÖÀ» °æ¿ì ÁÖÀÎ ¿ÀºêÁ§Æ®ÀÇ ÁÖ¼Òµµ ¾÷Ä³½ºÆÃÇÏ¿© »ğÀÔÇÑ´Ù.
+		//ì£¼ì¸ ì˜¤ë¸Œì íŠ¸ê°€ ìˆì„ ê²½ìš° ì£¼ì¸ ì˜¤ë¸Œì íŠ¸ì˜ ì£¼ì†Œë„ ì—…ìºìŠ¤íŒ…í•˜ì—¬ ì‚½ì…í•œë‹¤.
 		if (Master)
 		{
 			AddSlave<CGameObject>((CGameObject*)Master, (CGameObject*)Obj);
@@ -182,7 +182,7 @@ public:
 
 
 protected:
-	//y¼ÒÆÃÀ» À§ÇÑ Á¤·Ä ±âÁØ ¸Ş¼Òµå
+	//yì†ŒíŒ…ì„ ìœ„í•œ ì •ë ¬ ê¸°ì¤€ ë©”ì†Œë“œ
 	static bool SortY(const CSharedPtr<class CGameObject>& Src, const CSharedPtr<class CGameObject>& Dest);
 
 

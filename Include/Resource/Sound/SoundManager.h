@@ -18,14 +18,14 @@ private:
 	std::unordered_map<std::string, FMOD::ChannelGroup*> m_mapChannelGroup;
 
 public:
-	//»ı¼º
+	//ìƒì„±
 	bool CreateSoundChannelGroup(const std::string& Name);
 
-	//Å½»ö
+	//íƒìƒ‰
 	FMOD::ChannelGroup* FindChannelGroup(const std::string& Name);
 	class CSound* FindSound(const std::string& Name);
 
-	//·Îµù
+	//ë¡œë”©
 	bool LoadSound(
 		const std::string& GroupName,
 		const std::string& Name,
@@ -33,7 +33,7 @@ public:
 		const char* FileName,
 		const std::string& PathName = SOUND_PATH);
 
-	//±âÅ¸ ¼³Á¤
+	//ê¸°íƒ€ ì„¤ì •
 	bool SetMasterVolume(int Volume);
 	bool SetVolume(const std::string& GroupName, int Volume);
 	bool SoundPlay(const std::string& Name);
@@ -47,7 +47,7 @@ public:
 	bool SoundSetNodelay(const std::string& Name);
 
 	
-	//Á¦°Å(SceneResource ¿ë)
+	//ì œê±°(SceneResource ìš©)
 	void ReleaseSound(const std::string& Name);
 
 

@@ -1,10 +1,10 @@
 #pragma once
 #include "Effect.h"
 
-//½ÇÁ¦·Î ½ºÇÃ·¡½Ã µ¥¹ÌÁö¸¦ Ã¼Å©ÇÔ
+//ì‹¤ì œë¡œ ìŠ¤í”Œë˜ì‹œ ë°ë¯¸ì§€ë¥¼ ì²´í¬í•¨
 
 class CRocketLauncherExplosion :
-    public CEffect
+	public CEffect
 {
 	friend class CScene;
 
@@ -18,7 +18,7 @@ public:
 
 private:
 	int m_Damage;
-	EExplosionSize m_CurrentSize;	//¿¬¼âÆø¹ß ÀÏ¾î³¯°ÍÀÓ
+	EExplosionSize m_CurrentSize;	//ì—°ì‡„í­ë°œ ì¼ì–´ë‚ ê²ƒì„
 	std::string m_SizeName[(int)EExplosionSize::Max];
 
 public:

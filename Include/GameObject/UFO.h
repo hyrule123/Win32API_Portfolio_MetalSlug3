@@ -8,14 +8,14 @@ enum class EUFORoutine : UINT8
 	MovetoPlayer,
 	AttackDelay,
 	Attack,
-	KeyCheck,//´ÙÀ½ ÆäÀÌÁî·Î ³Ñ¾î°¡±â À§ÇÑ Å° ¸ó½ºÅÍÀÏ °æ¿ì ´Ù½Ã Ã³À½À¸·Î µ¹¾Æ°£´Ù
+	KeyCheck,//ë‹¤ìŒ í˜ì´ì¦ˆë¡œ ë„˜ì–´ê°€ê¸° ìœ„í•œ í‚¤ ëª¬ìŠ¤í„°ì¼ ê²½ìš° ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°„ë‹¤
 	Flee
 
 
 };
 
 class CUFO :
-    public CEnemy
+	public CEnemy
 {
 	friend class CScene;
 

@@ -1,18 +1,18 @@
 #include "SpaceIntro.h"
 
-//µğ¹ö±×¿ë
+//ë””ë²„ê·¸ìš©
 #include "../GameManager.h"
 
-//°ÔÀÓ¿ÀºêÁ§Æ® »ı¼º
+//ê²Œì„ì˜¤ë¸Œì íŠ¸ ìƒì„±
 #include "../Scene/MainScene.h"
-//»ç¿îµå ·Îµå
+//ì‚¬ìš´ë“œ ë¡œë“œ
 #include "../Scene/SceneResource.h"
 
-//·ÎÄÏ ÆÄÆ®
+//ë¡œì¼“ íŒŒíŠ¸
 #include "IntroRocketMid.h"
 #include "IntroRocketLowest.h"
 
-//¾Æ½ºÆ®·Î ½½·¯±× »ı¼º
+//ì•„ìŠ¤íŠ¸ë¡œ ìŠ¬ëŸ¬ê·¸ ìƒì„±
 #include "AstroSlug.h"
 
 
@@ -218,7 +218,7 @@ void CSpaceIntro::Update(float DeltaTime)
 	}
 	else if (m_Phase == 4)
 	{
-	//ÆäÀÌÁî4´Â RingÀÌ ¾øÀ¸¹Ç·Î Body·Î Ã¼Å©
+	//í˜ì´ì¦ˆ4ëŠ” Ringì´ ì—†ìœ¼ë¯€ë¡œ Bodyë¡œ ì²´í¬
 		if (!m_RocketPart[m_Phase][Body])
 		{
 			Phase4();
@@ -267,7 +267,7 @@ void CSpaceIntro::Update(float DeltaTime)
 					m_RocketNoseRight->SetAnimation("CapSeparateSFX", true);
 					m_Scene->GetSceneResource()->SoundPlay("NoseOpen");
 					
-					//ÇÃ·¹ÀÌ¾î »ı¼º
+					//í”Œë ˆì´ì–´ ìƒì„±
 					m_Player = m_Scene->CreateObject<CAstroSlug>("AstroSlug", this);
 					m_Player->SetRenderLayer(ERenderLayer::Slug);
 					m_Player->SetCutSceneOffset(Vector2(-20.f, 450.f));
@@ -334,7 +334,7 @@ void CSpaceIntro::Update(float DeltaTime)
 
 
 
-	//À§Ä¡ ÀÌµ¿
+	//ìœ„ì¹˜ ì´ë™
 	m_Pos.y += 200.f * DeltaTime;
 
 	

@@ -2,13 +2,13 @@
 #include "WidgetProgressBar.h"
 #include "WidgetWindow.h"
 
-//ÅØ½ºÃ³ ·Îµù
+//í…ìŠ¤ì²˜ ë¡œë”©
 #include "../Resource/Texture/Texture.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
 
-//HBRUSH °¡Á®¿À´Â ¿ëµµ
+//HBRUSH ê°€ì ¸ì˜¤ëŠ” ìš©ë„
 #include "../GameManager.h"
 
 CWidgetProgressBar::CWidgetProgressBar()	:
@@ -69,7 +69,7 @@ void CWidgetProgressBar::SetBarFrameSize(float SizeX, float SizeY)
 	m_Size.x = SizeX;
 	m_Size.y = SizeY;
 
-	//ÆÐµùÀ» ±âº» 10À¸·Î ¼³Á¤ÇØÁÜ.
+	//íŒ¨ë”©ì„ ê¸°ë³¸ 10ìœ¼ë¡œ ì„¤ì •í•´ì¤Œ.
 	SetPadding(1.f);
 }
 
@@ -106,11 +106,11 @@ bool CWidgetProgressBar::SetHitFlicker(bool On, float Duration)
 
 void CWidgetProgressBar::SetPadding(float Padding)
 {
-	//x¿Í y Áß ÂªÀº ÂÊÀ» ¹ÝÀ¸·Î ³ª´«°Í°ú ºñ±³.
+	//xì™€ y ì¤‘ ì§§ì€ ìª½ì„ ë°˜ìœ¼ë¡œ ë‚˜ëˆˆê²ƒê³¼ ë¹„êµ.
 	float ShortArea = (m_Size.x > m_Size.y ? m_Size.y : m_Size.x) / 2.f;
 	m_Padding = Padding;
 
-	//¸¸¾à ÆÐµùÀÇ ±æÀÌ°¡ ÂªÀº ÂÊÀÇ ¹Ýº¸´Ù ±æ¸é °­Á¦·Î ÆÐµù°ªÀ» ÁÙ¿©ÁÜ
+	//ë§Œì•½ íŒ¨ë”©ì˜ ê¸¸ì´ê°€ ì§§ì€ ìª½ì˜ ë°˜ë³´ë‹¤ ê¸¸ë©´ ê°•ì œë¡œ íŒ¨ë”©ê°’ì„ ì¤„ì—¬ì¤Œ
 	if (m_Padding > ShortArea)
 	{
 		m_Padding = ShortArea - 1.f;
@@ -163,12 +163,12 @@ void CWidgetProgressBar::Update(float DeltaTime)
 	CWidget::Update(DeltaTime);
 
 
-	//¹ÙÀÇ »çÀÌÁî¸¦ ÃÊ±âÈ­ÇÏ°í
+	//ë°”ì˜ ì‚¬ì´ì¦ˆë¥¼ ì´ˆê¸°í™”í•˜ê³ 
 	m_BarPos.LT = m_Pos + m_Padding;
 	m_BarPos.RB = m_Pos + m_Size - m_Padding;
 	Vector2 m_BarSize = (m_BarPos.RB - m_BarPos.LT) * m_Value;
 
-	//±×·ÁÁú °÷À» ¼³Á¤ÇÑ´Ù.
+	//ê·¸ë ¤ì§ˆ ê³³ì„ ì„¤ì •í•œë‹¤.
 	switch (m_Dir)
 	{
 	case EProgressBar_Dir::LeftToRight:
@@ -198,7 +198,7 @@ void CWidgetProgressBar::Render(HDC hDC, float DeltaTime)
 {
 	CWidget::Render(hDC, DeltaTime);
 
-	//Á¡¸ê ¿©ºÎ °è»ê
+	//ì ë©¸ ì—¬ë¶€ ê³„ì‚°
 	if (m_ReactionTime > 0.f)
 	{
 		m_ReactionTime -= DeltaTime;
@@ -226,7 +226,7 @@ void CWidgetProgressBar::Render(HDC hDC, float DeltaTime)
 		Vector2	RenderPos;
 		Vector2 RenderSize;
 
-		//ÇöÀç »óÅÂ È®ÀÎ. ¹× ¸®¾×¼Ç °áÁ¤
+		//í˜„ìž¬ ìƒíƒœ í™•ì¸. ë° ë¦¬ì•¡ì…˜ ê²°ì •
 		int ReactionNum = 0;
 		if (!m_Flicker)
 		{
@@ -281,17 +281,17 @@ void CWidgetProgressBar::Render(HDC hDC, float DeltaTime)
 				}
 			}
 
-			else//ÇÁ·¹ÀÓÀÏ °æ¿ì´Â Ã³¸®ÇÏÁö ¾ÊÀ½
+			else//í”„ë ˆìž„ì¼ ê²½ìš°ëŠ” ì²˜ë¦¬í•˜ì§€ ì•ŠìŒ
 			{
 			}
 		}
 
-		else//ÅØ½ºÃ³ ¾øÀ»°æ¿ì
+		else//í…ìŠ¤ì²˜ ì—†ì„ê²½ìš°
 		{
-			//Æ²Àº ³ë¶õ»ö
+			//í‹€ì€ ë…¸ëž€ìƒ‰
 			HBRUSH Brush = CGameManager::GetInst()->GetBrush(EBrushType::Yellow);
 
-			//¹Ù´Â »¡°£»ö
+			//ë°”ëŠ” ë¹¨ê°„ìƒ‰
 			if (i == (int)EProgressBar_TextureType::Bar)
 			{
 				Brush = CGameManager::GetInst()->GetBrush(EBrushType::Red);

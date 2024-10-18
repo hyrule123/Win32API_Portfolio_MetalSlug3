@@ -1,27 +1,27 @@
 #pragma once
 #include "Projectile.h"
 class CRocketLauncher :
-    public CProjectile
+	public CProjectile
 {
-    friend class CScene;
+	friend class CScene;
 protected:
-    CRocketLauncher();
-    CRocketLauncher(const CRocketLauncher& Obj);
-    virtual ~CRocketLauncher();
+	CRocketLauncher();
+	CRocketLauncher(const CRocketLauncher& Obj);
+	virtual ~CRocketLauncher();
 public:
-    virtual bool Init(CGameObject* Obj = nullptr);
-    virtual bool LoadResource();
-    virtual void Update(float DeltaTime);
+	virtual bool Init(CGameObject* Obj = nullptr);
+	virtual bool LoadResource();
+	virtual void Update(float DeltaTime);
 
 protected:
-    float m_TrailTimer;
-    bool m_TrailOn;
-    class CGameObject* m_Target;
-    float m_MaxTurnDirX;    //x¹æÇâ ÃÖ´ë ¼±È¸°¢
+	float m_TrailTimer;
+	bool m_TrailOn;
+	class CGameObject* m_Target;
+	float m_MaxTurnDirX;    //xë°©í–¥ ìµœëŒ€ ì„ íšŒê°
 
 protected:
-    void RocketStartEnd();  //·ÎÄÏ ÃÊ¹İ ¾Ö´Ï¸ŞÀÌ¼Ç ³¡³ª°í Á¡È­
-    void CollisionBegin(class CCollider* Src, class CCollider* Dest);
-    void HommingBegin(class CCollider* Src, class CCollider* Dest);
+	void RocketStartEnd();  //ë¡œì¼“ ì´ˆë°˜ ì• ë‹ˆë©”ì´ì…˜ ëë‚˜ê³  ì í™”
+	void CollisionBegin(class CCollider* Src, class CCollider* Dest);
+	void HommingBegin(class CCollider* Src, class CCollider* Dest);
 };
 

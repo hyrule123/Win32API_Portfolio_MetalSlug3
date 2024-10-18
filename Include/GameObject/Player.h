@@ -25,7 +25,7 @@ enum class EWeapon
 
 
 class CPlayer :
-    public CCharacter
+	public CCharacter
 {
 	friend class CScene;
 
@@ -42,11 +42,11 @@ public:
 
 	
 protected:
-	int m_AttackBuffer; //°ø°İ ¼±ÀÔ·Â ¹öÆÛ
+	int m_AttackBuffer; //ê³µê²© ì„ ì…ë ¥ ë²„í¼
 	int m_Bullet;
 	int m_Bomb;
-	UINT8 m_FiredRocket;	//ÇöÀç ·ÎÄÏ ¹ß»ç ¼ö Á¦ÇÑ. ÃÖ´ë 2¹ß.
-	class CWindowSpace* m_WindowSpace;	//À§Á¬¿¡ ³²Àº ÃÑ¾Ë, ÆøÅº ¼ö Àü´Ş
+	UINT8 m_FiredRocket;	//í˜„ì¬ ë¡œì¼“ ë°œì‚¬ ìˆ˜ ì œí•œ. ìµœëŒ€ 2ë°œ.
+	class CWindowSpace* m_WindowSpace;	//ìœ„ì ¯ì— ë‚¨ì€ ì´ì•Œ, í­íƒ„ ìˆ˜ ì „ë‹¬
 public:
 	void DecreaseRocket();
 	virtual void ChangeWeapon(EWeapon Weapon);

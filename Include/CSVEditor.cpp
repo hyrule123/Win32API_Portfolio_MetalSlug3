@@ -1,4 +1,4 @@
-﻿#include "CSVEditor.h"
+#include "CSVEditor.h"
 #include <fstream>
 #include <streambuf>
 #include <sstream>

@@ -2,8 +2,8 @@
 
 /*
 [SharedPtr.h]
-* Ref(ÂüÁ¶ Ä«¿îÆÃ) Å¬·¡½º¿Í °°ÀÌ È°¿ëÇÏ´Â Å¬·¡½º
-* ¾ÕÀ¸·Î Æ÷ÀÎÅÍ º¯¼ö¸¦ Á÷Á¢ ¸¸µå´Â ´ë½Å, SharedPtr Å¬·¡½º¸¦ »ý¼ºÇÑ´Ù.
+* Ref(ì°¸ì¡° ì¹´ìš´íŒ…) í´ëž˜ìŠ¤ì™€ ê°™ì´ í™œìš©í•˜ëŠ” í´ëž˜ìŠ¤
+* ì•žìœ¼ë¡œ í¬ì¸í„° ë³€ìˆ˜ë¥¼ ì§ì ‘ ë§Œë“œëŠ” ëŒ€ì‹ , SharedPtr í´ëž˜ìŠ¤ë¥¼ ìƒì„±í•œë‹¤.
 */
 
 template <typename T>
@@ -15,7 +15,7 @@ public:
 	{
 
 	}
-	//º¹»ç »ý¼ºÀÚ
+	//ë³µì‚¬ ìƒì„±ìž
 	CSharedPtr(const CSharedPtr<T>& ptr)
 	{
 		m_Ptr = ptr.m_Ptr;
@@ -46,26 +46,26 @@ private:
 public:
 
 
-	//±âÁ¸¿¡ Æ÷ÀÎÅÍ¸¦ °¡Áö°í ÀÖ´ø ÁÖ¼Ò¿¡ »õ·Î¿î ÁÖ¼Ò¸¦ '´ëÀÔ'
-	//Å¬·¡½º ÇüÅÂ·Î ºñ±³¸¦ ÇÒ ¼öµµ ÀÖ°í
-	//¾Æ¿¹ Æ÷ÀÎÅÍ ÁÖ¼Ò¸¦ ºñ±³ÇÒ ¼öµµ ÀÖÀ¸¹Ç·Î
+	//ê¸°ì¡´ì— í¬ì¸í„°ë¥¼ ê°€ì§€ê³  ìžˆë˜ ì£¼ì†Œì— ìƒˆë¡œìš´ ì£¼ì†Œë¥¼ 'ëŒ€ìž…'
+	//í´ëž˜ìŠ¤ í˜•íƒœë¡œ ë¹„êµë¥¼ í•  ìˆ˜ë„ ìžˆê³ 
+	//ì•„ì˜ˆ í¬ì¸í„° ì£¼ì†Œë¥¼ ë¹„êµí•  ìˆ˜ë„ ìžˆìœ¼ë¯€ë¡œ
 	void operator = (const CSharedPtr<T>& ptr)
 	{
-		//±âÁ¸¿¡ ÂüÁ¶ÇÏ°í ÀÖ´ø °´Ã¼°¡ ÀÖÀ» °æ¿ì Ä«¿îÆ®¸¦ 1 °¨¼ÒÇÑ´Ù.
+		//ê¸°ì¡´ì— ì°¸ì¡°í•˜ê³  ìžˆë˜ ê°ì²´ê°€ ìžˆì„ ê²½ìš° ì¹´ìš´íŠ¸ë¥¼ 1 ê°ì†Œí•œë‹¤.
 		if (m_Ptr)
 			m_Ptr->Release();
 
 
-		//»õ·Î¿î ÁÖ¼Ò¸¦ µî·Ï
+		//ìƒˆë¡œìš´ ì£¼ì†Œë¥¼ ë“±ë¡
 		m_Ptr = ptr.m_Ptr;
 
-		//m_PtrÀÌ nullPtrÀÌ ¾Æ´Ò °æ¿ì ÀÚ½ÅÀ» ·¹ÆÛ·±½º Ä«¿îÆ®¸¦ ´Ã·ÁÁØ´Ù.
+		//m_Ptrì´ nullPtrì´ ì•„ë‹ ê²½ìš° ìžì‹ ì„ ë ˆí¼ëŸ°ìŠ¤ ì¹´ìš´íŠ¸ë¥¼ ëŠ˜ë ¤ì¤€ë‹¤.
 		if (m_Ptr)
 		{
 			m_Ptr->AddRef();
 		}
 	}
-	//À§Ã³·³ SharedPtr °´Ã¼°¡ ¾Æ´Ï¶ó Æ÷ÀÎÅÍ º¯¼ö·Î ´ëÀÔ¿¬»êÀÌ µé¾î¿Ã ¼ö ÀÖ´Ù.
+	//ìœ„ì²˜ëŸ¼ SharedPtr ê°ì²´ê°€ ì•„ë‹ˆë¼ í¬ì¸í„° ë³€ìˆ˜ë¡œ ëŒ€ìž…ì—°ì‚°ì´ ë“¤ì–´ì˜¬ ìˆ˜ ìžˆë‹¤.
 	void operator = (T* ptr)
 	{
 		if (m_Ptr)

@@ -35,9 +35,9 @@ enum class EReactionChannel
 };
 
 
-//ÇÑ ¿ÀºêÁ§Æ®°¡ ¿©·¯ ÀåÀÇ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» µé°í ÀÖÀ»¼öµµ ÀÖÀ¸¹Ç·Î ´ÙÁß ·¹ÀÌ¾î·Î ±¸¼º.
-//¿©·¯ ÀåÀÇ ·¹ÀÌ¾î¸¦ »ç¿ëÇÏ´Â °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ °æ¿ì °¢ÀÚ Å¬·¡½º¿¡ ¿­°ÅÃ¼¸¦ »ý¼ºÇØ¼­
-//¿øÇÏ´Â ÀÌ¸§À¸·Î ÁöÁ¤ÇÏ¿© »ç¿ëÇØµµ µÉµí.
+//í•œ ì˜¤ë¸Œì íŠ¸ê°€ ì—¬ëŸ¬ ìž¥ì˜ ì• ë‹ˆë©”ì´ì…˜ì„ ë“¤ê³  ìžˆì„ìˆ˜ë„ ìžˆìœ¼ë¯€ë¡œ ë‹¤ì¤‘ ë ˆì´ì–´ë¡œ êµ¬ì„±.
+//ì—¬ëŸ¬ ìž¥ì˜ ë ˆì´ì–´ë¥¼ ì‚¬ìš©í•˜ëŠ” ê²Œìž„ì˜¤ë¸Œì íŠ¸ì˜ ê²½ìš° ê°ìž í´ëž˜ìŠ¤ì— ì—´ê±°ì²´ë¥¼ ìƒì„±í•´ì„œ
+//ì›í•˜ëŠ” ì´ë¦„ìœ¼ë¡œ ì§€ì •í•˜ì—¬ ì‚¬ìš©í•´ë„ ë ë“¯.
 enum class EAnimationLayer
 {
 	Layer1,
@@ -95,7 +95,7 @@ enum class EPlayType
 	Duration
 };
 
-//¹öÆ° ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁö Ãâ·Â¿ë ¿­°ÅÃ¼
+//ë²„íŠ¼ ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ ì¶œë ¥ìš© ì—´ê±°ì²´
 enum class EButtonState
 {
 	Normal,
@@ -105,7 +105,7 @@ enum class EButtonState
 	Max
 };
 
-//¹öÆ° ¼Ò¸® Àç»ý¿ë ¿­°ÅÃ¼
+//ë²„íŠ¼ ì†Œë¦¬ ìž¬ìƒìš© ì—´ê±°ì²´
 enum class EButtonSoundState
 {
 	MouseHovered,
@@ -147,7 +147,7 @@ enum class EDirection
 {
 	Left,
 	Right,
-	Mid,//¿ìÁÖ ½ºÅ×ÀÌÁö Àü¿ë
+	Mid,//ìš°ì£¼ ìŠ¤í…Œì´ì§€ ì „ìš©
 	Max
 };
 
@@ -157,7 +157,7 @@ enum class ETileOption
 	Blocked
 };
 
-//Æø¹ß ÀÌÆÑÆ® »ý¼º ½Ã Å©±â ÁöÁ¤ ¿ëµµ
+//í­ë°œ ì´íŒ©íŠ¸ ìƒì„± ì‹œ í¬ê¸° ì§€ì • ìš©ë„
 enum class EExplosionSize
 {
 	Back,
@@ -167,7 +167,7 @@ enum class EExplosionSize
 	Max
 };
 
-//WidgetTextImage Á¤·Ä ¸ðµå ¼³Á¤
+//WidgetTextImage ì •ë ¬ ëª¨ë“œ ì„¤ì •
 enum class EAlignMode
 {
 	Left,

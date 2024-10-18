@@ -275,17 +275,17 @@ struct Vector2
 
 	float Angle(const Vector2& Vec)
 	{
-		//¸ñÇ¥°ª°úÀÇ ¹Øº¯°ú ³ôÀÌ¸¦ ±¸ÇÑ´Ù.
+		//ëª©í‘œê°’ê³¼ì˜ ë°‘ë³€ê³¼ ë†’ì´ë¥¼ êµ¬í•œë‹¤.
 		float width = Vec.x - x;
 		float height = Vec.y - y;
 
-		//ÇÇÅ¸°í¶ó½º Á¤¸®¸¦ ÅëÇØ ºøº¯ÀÇ ±æÀÌ¸¦ ±¸ÇÑ´Ù.
+		//í”¼íƒ€ê³ ë¼ìŠ¤ ì •ë¦¬ë¥¼ í†µí•´ ë¹—ë³€ì˜ ê¸¸ì´ë¥¼ êµ¬í•œë‹¤.
 		float c = sqrt(width * width + height * height);
 
-		//±¸ÇÑ ±æÀÌ·Î ÄÚ»çÀÎ°ªÀ» ±¸ÇÑ´Ù.
+		//êµ¬í•œ ê¸¸ì´ë¡œ ì½”ì‚¬ì¸ê°’ì„ êµ¬í•œë‹¤.
 		float theta = acosf(width / c);
 
-		//¸¸¾à ±¸ÇØ¾ß ÇÏ´Â °¢µµ°¡ 180 degree(PI) ¸¦ ³Ñ¾î°¥ ½Ã 360 degree(PI * 2)¿¡¼­ »©ÁØ´Ù.
+		//ë§Œì•½ êµ¬í•´ì•¼ í•˜ëŠ” ê°ë„ê°€ 180 degree(PI) ë¥¼ ë„˜ì–´ê°ˆ ì‹œ 360 degree(PI * 2)ì—ì„œ ë¹¼ì¤€ë‹¤.
 		if (height < 0.f)
 			theta = 2.f * PI - theta;
 
@@ -294,11 +294,11 @@ struct Vector2
 
 	float FastAngle(const Vector2& Vec)
 	{
-		//¸ñÇ¥°ª°úÀÇ ¹Øº¯°ú ³ôÀÌ¸¦ ±¸ÇÑ´Ù.
+		//ëª©í‘œê°’ê³¼ì˜ ë°‘ë³€ê³¼ ë†’ì´ë¥¼ êµ¬í•œë‹¤.
 		float width = Vec.x - x;
 		float height = Vec.y - y;
 
-		//ÇÇÅ¸°í¶ó½º Á¤¸®¸¦ ÅëÇØ ºøº¯ÀÇ ±æÀÌ¸¦ ±¸ÇÑ´Ù.
+		//í”¼íƒ€ê³ ë¼ìŠ¤ ì •ë¦¬ë¥¼ í†µí•´ ë¹—ë³€ì˜ ê¸¸ì´ë¥¼ êµ¬í•œë‹¤.
 		float c = width * width + height * height;
 
 		c = [](float n)->float
@@ -309,17 +309,17 @@ struct Vector2
 		}(c);
 		return c;
 
-		//±¸ÇÑ ±æÀÌ·Î ÄÚ»çÀÎ°ªÀ» ±¸ÇÑ´Ù.
+		//êµ¬í•œ ê¸¸ì´ë¡œ ì½”ì‚¬ì¸ê°’ì„ êµ¬í•œë‹¤.
 		float theta = acosf(width / c);
 
-		//¸¸¾à ±¸ÇØ¾ß ÇÏ´Â °¢µµ°¡ 180 degree(PI) ¸¦ ³Ñ¾î°¥ ½Ã 360 degree(PI * 2)¿¡¼­ »©ÁØ´Ù.
+		//ë§Œì•½ êµ¬í•´ì•¼ í•˜ëŠ” ê°ë„ê°€ 180 degree(PI) ë¥¼ ë„˜ì–´ê°ˆ ì‹œ 360 degree(PI * 2)ì—ì„œ ë¹¼ì¤€ë‹¤.
 		if (height < 0.f)
 			theta = 2.f * PI - theta;
 
 		return theta;
 	}
 
-	//º¤ÅÍÀÇ Å©±â È¤Àº °Å¸®
+	//ë²¡í„°ì˜ í¬ê¸° í˜¹ì€ ê±°ë¦¬
 	float Distance(const Vector2& Dest)	const
 	{
 		float Width = x - Dest.x;
@@ -333,13 +333,13 @@ struct Vector2
 	}
 
 
-	//º¤ÅÍÀÇ ±æÀÌ¸¦ ¹İÈ¯ÇÑ´Ù.
+	//ë²¡í„°ì˜ ê¸¸ì´ë¥¼ ë°˜í™˜í•œë‹¤.
 	float Norm() const 
 	{ 
 		return hypotf(x, y); 
 	}
 
-	//¹æÇâÀÌ °°Àº ´ÜÀ§ º¤ÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+	//ë°©í–¥ì´ ê°™ì€ ë‹¨ìœ„ ë²¡í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 	Vector2 Normalize() const 
 	{
 		if (x == 0.f && y == 0.f)

@@ -1,24 +1,24 @@
 #pragma once
 #include "WidgetWindow.h"
 class CWindowStart :
-    public CWidgetWindow
+	public CWidgetWindow
 {
-    friend class CScene;
+	friend class CScene;
 
 protected:
-    CWindowStart();
-    virtual ~CWindowStart();
+	CWindowStart();
+	virtual ~CWindowStart();
 public:
-    virtual bool Init();
-    virtual void Update(float DeltaTime);
+	virtual bool Init();
+	virtual void Update(float DeltaTime);
 
 private:
-    bool m_PlayGameDelayOn;
-    float m_Delay;
+	bool m_PlayGameDelayOn;
+	float m_Delay;
 
 private:
-    void PlayGameCallback();
-    void OpenEditScene();
-    void PlayGame();
+	void PlayGameCallback();
+	void OpenEditScene();
+	void PlayGame();
 };
 

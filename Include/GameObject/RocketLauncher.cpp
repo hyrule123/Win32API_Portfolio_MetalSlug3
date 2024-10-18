@@ -1,19 +1,19 @@
 #include "RocketLauncher.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../../Include/Scene/Scene.h"
 
-//Æø¹ß ÀÌÆåÆ® »ı¼º¿ë
+//í­ë°œ ì´í™íŠ¸ ìƒì„±ìš©
 #include "RocketLauncherExplosion.h"
 
-//¿¬±â »ı¼º¿ë
+//ì—°ê¸° ìƒì„±ìš©
 #include "JustPlay.h"
 
-//·ÎÄÏ Á¦ÇÑ¼ö Á¢±Ù¿ë
+//ë¡œì¼“ ì œí•œìˆ˜ ì ‘ê·¼ìš©
 #include "Player.h"
 
-//Ãæµ¹ÇÔ¼ö¿¡¼­ DELTA_TIME Á¢±Ù
+//ì¶©ëŒí•¨ìˆ˜ì—ì„œ DELTA_TIME ì ‘ê·¼
 #include "../GameManager.h"
 
 #include "../Scene/SceneResource.h"
@@ -46,18 +46,18 @@ bool CRocketLauncher::Init(CGameObject* Obj)
 {
 	CProjectile::Init(Obj);
 	
-	//·ÎÄÏ ¾Ö´Ï¸ŞÀÌ¼Ç ÁöÁ¤
+	//ë¡œì¼“ ì• ë‹ˆë©”ì´ì…˜ ì§€ì •
 	SetAnimation("Rocket_Start");
 
 	SetRenderLayer(ERenderLayer::EffectHigh);
 	m_MaxSpeed = 50.f;
-	//m_Damage = 0;	ÀÚÃ¼ µ¥¹ÌÁö´Â ¾øÀ½. ¿¬¼â ½ºÇÃ·¡½Ã µ¥¹ÌÁö¸¸ ÀÖÀ½
-	SetDir(0.f, -1.f);	//¹æÇâ ¼³Á¤
+	//m_Damage = 0;	ìì²´ ë°ë¯¸ì§€ëŠ” ì—†ìŒ. ì—°ì‡„ ìŠ¤í”Œë˜ì‹œ ë°ë¯¸ì§€ë§Œ ìˆìŒ
+	SetDir(0.f, -1.f);	//ë°©í–¥ ì„¤ì •
 
 	SetSize(10.f, 25.f);
 	SetPivot(0.5f, 1.f);
 
-	//Ãæµ¹Ã¼ 1 ¼³Á¤ -> ´ê¾ÒÀ» ¶§ Æø¹ßÇÏ´Â ¿ëµµ
+	//ì¶©ëŒì²´ 1 ì„¤ì • -> ë‹¿ì•˜ì„ ë•Œ í­ë°œí•˜ëŠ” ìš©ë„
 	CColliderBox* Coll = AddCollider<CColliderBox>("RocketColl");
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetSize(m_Size);
@@ -67,11 +67,11 @@ bool CRocketLauncher::Init(CGameObject* Obj)
 
 
 	Coll = nullptr;
-	//Ãæµ¹Ã¼ 2 ¼³Á¤ -> ´ê¾ÒÀ» ¶§ À¯µµµÇ´Â ¿ëµµ
+	//ì¶©ëŒì²´ 2 ì„¤ì • -> ë‹¿ì•˜ì„ ë•Œ ìœ ë„ë˜ëŠ” ìš©ë„
 	Coll = AddCollider<CColliderBox>("Homming");
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	
-	//°ÔÀÓ È­¸é Å©±âÀÇ Ãæµ¹Ã¼¸¦ ¼³Á¤
+	//ê²Œì„ í™”ë©´ í¬ê¸°ì˜ ì¶©ëŒì²´ë¥¼ ì„¤ì •
 	Coll->SetSize(100.f, (float)ORIGINAL_GAME_RES_HEIGHT);
 	Coll->SetPivot(0.5f, 1.f);
 	Coll->SetOffset(0.f, -25.f);
@@ -81,7 +81,7 @@ bool CRocketLauncher::Init(CGameObject* Obj)
 	SetEndFunction< CRocketLauncher>("Rocket_Start", this, &CRocketLauncher::RocketStartEnd);
 
 
-	//ÄÃ¸µ ¼³Á¤
+	//ì»¬ë§ ì„¤ì •
 	SetCullingDelete(ECullingDelete::Bottom, false); 
 
 	SoundPlay("RocketLauncherFire");
@@ -104,7 +104,7 @@ void CRocketLauncher::Update(float DeltaTime)
 {
 	CProjectile::Update(DeltaTime);
 
-	//¿¬±â Ãâ·Â
+	//ì—°ê¸° ì¶œë ¥
 	m_TrailTimer -= DeltaTime;
 	if (m_TrailTimer < 0.f && m_TrailOn)
 	{
@@ -122,15 +122,15 @@ void CRocketLauncher::Update(float DeltaTime)
 
 	if (CheckColliding(m_Target))
 	{
-		//xÃà¿¡¼­ ¾ó¸¶³ª ¶³¾îÁ®ÀÖ´ÂÁö¸¦ Ã¼Å©
+		//xì¶•ì—ì„œ ì–¼ë§ˆë‚˜ ë–¨ì–´ì ¸ìˆëŠ”ì§€ë¥¼ ì²´í¬
 		float PosX = m_Pos.x - m_Target->GetPos().x;
 
-		if (PosX > 0.f)	//¾ç¼öÀÌ¸é ¿ŞÂÊ¿¡ ÀÖ´Ù´Â ¶æÀÌ¹Ç·Î
+		if (PosX > 0.f)	//ì–‘ìˆ˜ì´ë©´ ì™¼ìª½ì— ìˆë‹¤ëŠ” ëœ»ì´ë¯€ë¡œ
 			m_Dir.x -= m_MaxTurnDirX * DeltaTime;
 		else if (PosX < 0.f)
 			m_Dir.x += m_MaxTurnDirX * DeltaTime;
 
-		SetDir(m_Dir);	//Á¤±ÔÈ­
+		SetDir(m_Dir);	//ì •ê·œí™”
 	}
 	else
 	{
@@ -139,7 +139,7 @@ void CRocketLauncher::Update(float DeltaTime)
 
 
 
-	//ÁÖ¾îÁø ¹æÇâ º¤ÅÍ ¹æÇâÀ¸·Î ÀÌµ¿
+	//ì£¼ì–´ì§„ ë°©í–¥ ë²¡í„° ë°©í–¥ìœ¼ë¡œ ì´ë™
 	AddForce(100.f);
 }
 
@@ -162,7 +162,7 @@ void CRocketLauncher::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 	CRocketLauncherExplosion* SFX = m_Scene->CreateObject<CRocketLauncherExplosion>("Rocket_SmallExplosion");
 
-	//ÇÇ°İÀÌÆåÆ® Ç¥½Ã
+	//í”¼ê²©ì´í™íŠ¸ í‘œì‹œ
 	SFX->SetEssential(m_Dir, Src->GetHitPoint());
 
 	//Dest->GetOwnerObj()->InflictDamage(m_Damage);
@@ -172,7 +172,7 @@ void CRocketLauncher::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 void CRocketLauncher::HommingBegin(CCollider* Src, CCollider* Dest)
 {
-	//Å¸°ÙÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀ¸¸é °¡Àå ¸ÕÀú Ãæµ¹ÆÇÁ¤ ³­ ´ë»óÀ» Å¸°ÙÀ¸·Î ÁöÁ¤
+	//íƒ€ê²Ÿì´ ì„¤ì •ë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ ê°€ì¥ ë¨¼ì € ì¶©ëŒíŒì • ë‚œ ëŒ€ìƒì„ íƒ€ê²Ÿìœ¼ë¡œ ì§€ì •
 	if (!m_Target)
 		m_Target = Dest->GetOwnerObj();
 }

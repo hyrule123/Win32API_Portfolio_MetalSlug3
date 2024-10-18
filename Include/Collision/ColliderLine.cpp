@@ -1,22 +1,22 @@
 #include "ColliderLine.h"
 
 
-//°ÔÀÓ¿ÀºêÁ§Æ® À§Ä¡ ¹Ş¾Æ¿À±â À§ÇÔ
+//ê²Œì„ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ ë°›ì•„ì˜¤ê¸° ìœ„í•¨
 #include "../GameObject/GameObject.h"
 
-//CScene ÁÖ¼Ò¸¦ »ç¿ëÇÏ´Â Æ÷ÀÎÅÍ º¯¼ö
+//CScene ì£¼ì†Œë¥¼ ì‚¬ìš©í•˜ëŠ” í¬ì¸í„° ë³€ìˆ˜
 #include "../Scene/Scene.h"
 
-//HBRUSH ¹Ş¾Æ¿À±â À§ÇÔ
+//HBRUSH ë°›ì•„ì˜¤ê¸° ìœ„í•¨
 #include "../GameManager.h"
 
-//Ä«¸Ş¶ó À§Ä¡¸¦ ÅëÇØ ·»´õ¸µÇØ¾ßÇÔ
+//ì¹´ë©”ë¼ ìœ„ì¹˜ë¥¼ í†µí•´ ë Œë”ë§í•´ì•¼í•¨
 #include "../Scene/Camera.h"
 
-//°¢ ECollisionTypeº° Ã³¸® ¸Ş¼Òµå°¡ ¿©±â µé¾îÀÖÀ½
+//ê° ECollisionTypeë³„ ì²˜ë¦¬ ë©”ì†Œë“œê°€ ì—¬ê¸° ë“¤ì–´ìˆìŒ
 #include "CollisionManager.h"
 
-//¹Ú½º Ãæµ¹Ã¼¿ÍÀÇ Ãæµ¹ ½Ã Ã³¸®¿ë
+//ë°•ìŠ¤ ì¶©ëŒì²´ì™€ì˜ ì¶©ëŒ ì‹œ ì²˜ë¦¬ìš©
 #include "ColliderBox.h"
 #include "ColliderCircle.h"
 
@@ -29,7 +29,7 @@ CColliderLine::CColliderLine() :
 {
 	SetTypeID<CColliderLine>();
 
-	//»ı¼ºÀÚ¿¡¼­ ¾Æ¿¹ Box·Î ¼³Á¤ÇØÁØ´Ù.
+	//ìƒì„±ìì—ì„œ ì•„ì˜ˆ Boxë¡œ ì„¤ì •í•´ì¤€ë‹¤.
 	m_ColliderType = EColliderType::Line;
 }
 
@@ -56,7 +56,7 @@ void CColliderLine::SetFixedPos(const Vector2& Start)
 
 void CColliderLine::SetOffset(const Vector2& Offset)
 {
-	if (m_isFixed)	//È¤½Ã ±âÁ¸¿¡ ¾²°íÀÖ´ø ¿ÀÇÁ¼Â°ªÀÌ ÀÖÀ»¼ö ÀÖÀ¸¹Ç·Î ±âÁ¸ ¿ÀÇÁ¼Â°ªÀ» •û°í ´õÇØÁØ´Ù.
+	if (m_isFixed)	//í˜¹ì‹œ ê¸°ì¡´ì— ì“°ê³ ìˆë˜ ì˜¤í”„ì…‹ê°’ì´ ìˆì„ìˆ˜ ìˆìœ¼ë¯€ë¡œ ê¸°ì¡´ ì˜¤í”„ì…‹ê°’ì„ ëº´ê³  ë”í•´ì¤€ë‹¤.
 	{
 		m_Info.Start -= m_Offset;
 		m_Info.Start += Offset;
@@ -70,7 +70,7 @@ void CColliderLine::SetOffset(const Vector2& Offset)
 
 void CColliderLine::SetOffset(float _x, float _y)
 {
-	if (m_isFixed)	//È¤½Ã ±âÁ¸¿¡ ¾²°íÀÖ´ø ¿ÀÇÁ¼Â°ªÀÌ ÀÖÀ»¼ö ÀÖÀ¸¹Ç·Î ±âÁ¸ ¿ÀÇÁ¼Â°ªÀ» •û°í ´õÇØÁØ´Ù.
+	if (m_isFixed)	//í˜¹ì‹œ ê¸°ì¡´ì— ì“°ê³ ìˆë˜ ì˜¤í”„ì…‹ê°’ì´ ìˆì„ìˆ˜ ìˆìœ¼ë¯€ë¡œ ê¸°ì¡´ ì˜¤í”„ì…‹ê°’ì„ ëº´ê³  ë”í•´ì¤€ë‹¤.
 	{
 		m_Info.Start -= m_Offset;
 		m_Info.Start.x += _x;
@@ -99,7 +99,7 @@ void CColliderLine::SetFixedEnd(const Vector2& End)
 
 void CColliderLine::SetDir(const Vector2& Dir, float Distance)
 {
-	//³¡Á¡ °íÁ¤À» ÇØÁ¦
+	//ëì  ê³ ì •ì„ í•´ì œ
 	m_isFixedEnd = false;
 	m_Dir = Dir.Normalize();
 	m_Distance = Distance;
@@ -123,7 +123,7 @@ void CColliderLine::SetDistance(float Distance)
 
 bool CColliderLine::Collision(CCollider* Dest)
 {
-	//ºÎ‹HÈù »ó´ë¹æÀÇ Ãæµ¹Ã¼ Å¸ÀÔ¿¡ µû¶ó ¹Ù²ï´Ù.
+	//ë¶€ë”«íŒ ìƒëŒ€ë°©ì˜ ì¶©ëŒì²´ íƒ€ì…ì— ë”°ë¼ ë°”ë€ë‹¤.
 	switch (Dest->GetColliderType())
 	{
 	case EColliderType::Box:
@@ -212,12 +212,12 @@ void CColliderLine::Render(HDC hDC, float DeltaTime)
 #ifdef _DEBUG
 
 	HPEN Pen = CGameManager::GetInst()->GetPen(EBrushType::Green);
-	//Ææ°ú ºê·¯½Ã¸¦ Åõ¸íÇÏ°Ô ¹Ù²ã ÁØ´Ù.
+	//íœê³¼ ë¸ŒëŸ¬ì‹œë¥¼ íˆ¬ëª…í•˜ê²Œ ë°”ê¿” ì¤€ë‹¤.
 
 	HBRUSH PrevBrush = (HBRUSH)SelectObject(hDC, GetStockObject(HOLLOW_BRUSH));
 	bool isCollide = false;
 
-	//¸¸¾à ¸®½ºÆ®°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é Ãæµ¹ÁßÀÌ¶ó´Â ¶æÀÌ¹Ç·Î 
+	//ë§Œì•½ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ì¶©ëŒì¤‘ì´ë¼ëŠ” ëœ»ì´ë¯€ë¡œ 
 	if (!m_listCollision.empty() || m_isMouseColliding)
 	{
 		isCollide = true;
@@ -228,8 +228,8 @@ void CColliderLine::Render(HDC hDC, float DeltaTime)
 
 	if (isCollide)
 	{
-		//Ãæµ¹ ÁßÀÏ °æ¿ì È÷Æ®Æ÷ÀÎÆ®¸¦ ÀÛÀº ¿øÀ¸·Î ±×·ÁÁØ´Ù.
-		//Ä«¸Ş¶óÀÇ À§Ä¡¸¦ »©¼­ ½ÇÁ¦ ±×·ÁÁú À§Ä¡¸¦ °è»êÇÑ´Ù.
+		//ì¶©ëŒ ì¤‘ì¼ ê²½ìš° íˆíŠ¸í¬ì¸íŠ¸ë¥¼ ì‘ì€ ì›ìœ¼ë¡œ ê·¸ë ¤ì¤€ë‹¤.
+		//ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¥¼ ë¹¼ì„œ ì‹¤ì œ ê·¸ë ¤ì§ˆ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤.
 		Vector2 PosLT = m_HitPoint - m_Scene->GetCamera()->GetPos() - 10.f;
 		Vector2 PosRB = m_HitPoint - m_Scene->GetCamera()->GetPos() + 10.f;
 		Ellipse(hDC,
@@ -239,11 +239,11 @@ void CColliderLine::Render(HDC hDC, float DeltaTime)
 			(int)PosRB.y);
 	}
 
-	//Ä«¸Ş¶óÀÇ À§Ä¡¸¦ »©¼­ ½ÇÁ¦ ±×·ÁÁú À§Ä¡¸¦ °è»êÇÑ´Ù.
+	//ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¥¼ ë¹¼ì„œ ì‹¤ì œ ê·¸ë ¤ì§ˆ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤.
 	Vector2 PosStart = m_Info.Start - m_Scene->GetCamera()->GetPos();
 	Vector2 PosEnd = m_Info.End - m_Scene->GetCamera()->GetPos();
 
-	//¼±À» ±×¸°´Ù
+	//ì„ ì„ ê·¸ë¦°ë‹¤
 	MoveToEx(hDC, (int)PosStart.x, (int)PosStart.y, NULL);
 	LineTo(hDC, (int)PosEnd.x, (int)PosEnd.y);
 

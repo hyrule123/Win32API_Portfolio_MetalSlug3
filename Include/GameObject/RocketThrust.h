@@ -2,7 +2,7 @@
 #include "IntroRocket.h"
 
 class CRocketThrust :
-    public CIntroRocket
+	public CIntroRocket
 {
 	friend class CScene;
 protected:

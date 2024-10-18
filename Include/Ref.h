@@ -19,9 +19,9 @@ protected:
 	std::string m_Name;
 
 
-	//ÀÌ°Ô false°¡ µÇ¸é »èÁ¦ ´ë±â¿¡ µé¾î°¨
+	//ì´ê²Œ falseê°€ ë˜ë©´ ì‚­ì œ ëŒ€ê¸°ì— ë“¤ì–´ê°
 	bool m_Active;
-	//ÀÌ°Ô false°¡ µÇ¸é ÀÏ½ÃÀûÀ¸·Î¸¸ ºñÈ°¼ºÈ­
+	//ì´ê²Œ falseê°€ ë˜ë©´ ì¼ì‹œì ìœ¼ë¡œë§Œ ë¹„í™œì„±í™”
 	bool m_Enable;
 
 public:
@@ -38,7 +38,7 @@ public:
 	bool GetActive() const;
 	bool GetEnable() const;
 
-	//T ÅÛ¸¦¸´À¸·Î µé¾î¿Â Å¸ÀÔ°ú °°Àº Å¸ÀÔÀÎÁö Ã¼Å©
+	//T í…œë¥¼ë¦¿ìœ¼ë¡œ ë“¤ì–´ì˜¨ íƒ€ì…ê³¼ ê°™ì€ íƒ€ì…ì¸ì§€ ì²´í¬
 	template <typename T>
 	bool CheckTypeID() const
 	{

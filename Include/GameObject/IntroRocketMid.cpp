@@ -1,6 +1,6 @@
 #include "IntroRocketMid.h"
 
-//µğ¹ö±×ÅØ½ºÆ®
+//ë””ë²„ê·¸í…ìŠ¤íŠ¸
 #include "../GameManager.h"
 
 #include "../Scene/Scene.h"
@@ -32,7 +32,7 @@ bool CIntroRocketMid::Init(CGameObject* Obj)
 {
 	CIntroRocket::Init(Obj);
 
-	//¾Æ·§´ÜºÎÅÍ ÇÑ´Ü°è¾¿ ¿Ã·ÁÁÜ
+	//ì•„ë«ë‹¨ë¶€í„° í•œë‹¨ê³„ì”© ì˜¬ë ¤ì¤Œ
 	SetRenderLayer(ERenderLayer::Enemy);
 
 	ChangeAnimation("BodyMiddle");

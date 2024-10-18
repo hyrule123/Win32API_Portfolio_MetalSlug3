@@ -1,54 +1,54 @@
 #pragma once
 #include "Collider.h"
 class CColliderLine :
-    public CCollider
+	public CCollider
 {
-    friend class CGameObject;
-    friend class CCollisionManager;
+	friend class CGameObject;
+	friend class CCollisionManager;
 
 protected:
-    CColliderLine();
-    CColliderLine(const CColliderLine& col);
-    virtual ~CColliderLine();
+	CColliderLine();
+	CColliderLine(const CColliderLine& col);
+	virtual ~CColliderLine();
 
 protected:
-    LineInfo m_Info;
-    bool m_isFixedEnd;
-    Vector2 m_FixedEnd;
-    Vector2 m_Dir;
-    float m_Distance;
+	LineInfo m_Info;
+	bool m_isFixedEnd;
+	Vector2 m_FixedEnd;
+	Vector2 m_Dir;
+	float m_Distance;
 
 
 public:
-    //ÀÌ ÇÔ¼ö¸¦ ÅëÇØ Start Point¸¦ ÁöÁ¤
-    virtual void SetFixedPos(const Vector2& Start);
+	//ì´ í•¨ìˆ˜ë¥¼ í†µí•´ Start Pointë¥¼ ì§€ì •
+	virtual void SetFixedPos(const Vector2& Start);
 
-    //µÎ °¡Áö ÇÔ¼ö Áß ÇÏ³ª¸¦ ÅëÇØ End Point¸¦ ÁöÁ¤
-    void SetFixedEnd(const Vector2& End);   //°íÁ¤ EndÁöÁ¡À» ¼³Á¤
-    void SetDir(const Vector2& Dir, float Distance);    //À¯µ¿ EndÁöÁ¡À» ¼³Á¤.
-    void SetDir(float Degree, float Distance);
-    void SetDistance(float Distance);
+	//ë‘ ê°€ì§€ í•¨ìˆ˜ ì¤‘ í•˜ë‚˜ë¥¼ í†µí•´ End Pointë¥¼ ì§€ì •
+	void SetFixedEnd(const Vector2& End);   //ê³ ì • Endì§€ì ì„ ì„¤ì •
+	void SetDir(const Vector2& Dir, float Distance);    //ìœ ë™ Endì§€ì ì„ ì„¤ì •.
+	void SetDir(float Degree, float Distance);
+	void SetDistance(float Distance);
 
-    virtual void SetOffset(const Vector2& Offset);
-    virtual void SetOffset(float _x, float _y);
+	virtual void SetOffset(const Vector2& Offset);
+	virtual void SetOffset(float _x, float _y);
 
-    virtual bool Collision(CCollider* Dest);
-    virtual bool CollisionPoint(const Vector2& Point);
-
-
-    LineInfo GetInfo() const;
+	virtual bool Collision(CCollider* Dest);
+	virtual bool CollisionPoint(const Vector2& Point);
 
 
+	LineInfo GetInfo() const;
 
-    //·¹ÀÌÀú¿ë ÇÔ¼ö
-    float GetLineInfoEndY() const;
+
+
+	//ë ˆì´ì €ìš© í•¨ìˆ˜
+	float GetLineInfoEndY() const;
 
 
 protected:
-    virtual bool Init();
-    virtual void Start();
-    virtual void Update(float DeltaTime);
-    virtual void PostUpdate(float DeltaTime);
-    virtual void Render(HDC hDC, float DeltaTime);
+	virtual bool Init();
+	virtual void Start();
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void Render(HDC hDC, float DeltaTime);
 };
 

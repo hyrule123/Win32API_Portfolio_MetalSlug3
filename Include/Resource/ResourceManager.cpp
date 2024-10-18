@@ -17,7 +17,7 @@ CResourceManager::CResourceManager():
 CResourceManager::~CResourceManager()
 {
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç¸Å´ÏÀú ¸ÕÀú Á¦°Å
+	//ì• ë‹ˆë©”ì´ì…˜ë§¤ë‹ˆì € ë¨¼ì € ì œê±°
 	SAFE_DELETE(m_FontManager);
 	SAFE_DELETE(m_SoundManager);
 	SAFE_DELETE(m_AnimationManager);
@@ -26,7 +26,7 @@ CResourceManager::~CResourceManager()
 
 bool CResourceManager::Init()
 {
-	//°¢ ¸®¼Ò½ºº° ¸Å´ÏÀú ÃÊ±âÈ­
+	//ê° ë¦¬ì†ŒìŠ¤ë³„ ë§¤ë‹ˆì € ì´ˆê¸°í™”
 	m_TextureManager = new CTextureManager;
 
 	if (!m_TextureManager->Init())
@@ -154,7 +154,7 @@ bool CResourceManager::CreateAnimationSequence(const std::string& Name, CTexture
 bool CResourceManager::CreateAnimationSequence(const std::string& Name, const std::string& TexName)
 {
 
-	//È¤½Ã³ª ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸¸µå´Â µ¥ ÇÊ¿äÇÑ ÅØ½ºÃ³°¡ <¾øÀ»> °æ¿ì return
+	//í˜¹ì‹œë‚˜ ì• ë‹ˆë©”ì´ì…˜ì„ ë§Œë“œëŠ” ë° í•„ìš”í•œ í…ìŠ¤ì²˜ê°€ <ì—†ì„> ê²½ìš° return
 	CTexture* Tex = FindTexture(TexName);
 	if (!Tex)
 		return false;
@@ -171,14 +171,14 @@ bool CResourceManager::CreateAnimationSequence(const std::string& Name, const st
 		return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 	
 
-	//ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇßÀ¸¸é return
+	//í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìœ¼ë©´ return
 	if (!m_TextureManager->LoadTexture(TexName, FileName, PathName))
 		return false;
 
-	//¼º°øÇßÀ¸¸é ÁÖ¼Ò ¹Ş¾Æ´Ù°¡
+	//ì„±ê³µí–ˆìœ¼ë©´ ì£¼ì†Œ ë°›ì•„ë‹¤ê°€
 	Tex = FindTexture(TexName);
 
-	//µî·Ï
+	//ë“±ë¡
 	return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 
 }
@@ -191,14 +191,14 @@ bool CResourceManager::CreateAnimationSequenceFullPath(const std::string& Name, 
 		return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 
 
-	//ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇßÀ¸¸é return
+	//í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìœ¼ë©´ return
 	if (!m_TextureManager->LoadTextureFullPath(TexName, FullPath))
 		return false;
 
-	//¼º°øÇßÀ¸¸é ÁÖ¼Ò ¹Ş¾Æ´Ù°¡
+	//ì„±ê³µí–ˆìœ¼ë©´ ì£¼ì†Œ ë°›ì•„ë‹¤ê°€
 	Tex = FindTexture(TexName);
 
-	//µî·Ï
+	//ë“±ë¡
 	return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 }
 
@@ -212,15 +212,15 @@ bool CResourceManager::CreateAnimationSequence(const std::string& Name, const st
 		return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 
 
-	//ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇßÀ¸¸é return
+	//í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìœ¼ë©´ return
 	if (!m_TextureManager->LoadTexture(TexName, vecFileName))
 		return false;
 
-	//¼º°øÇßÀ¸¸é ÁÖ¼Ò ¹Ş¾Æ´Ù°¡
+	//ì„±ê³µí–ˆìœ¼ë©´ ì£¼ì†Œ ë°›ì•„ë‹¤ê°€
 	Tex = FindTexture(TexName);
 
 
-	//µî·Ï
+	//ë“±ë¡
 	return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 }
 
@@ -232,14 +232,14 @@ bool CResourceManager::CreateAnimationSequenceFullPath(const std::string& Name, 
 		return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 
 
-	//ÅØ½ºÃ³ ·Îµå¿¡ ½ÇÆĞÇßÀ¸¸é return
+	//í…ìŠ¤ì²˜ ë¡œë“œì— ì‹¤íŒ¨í–ˆìœ¼ë©´ return
 	if (!m_TextureManager->LoadTextureFullPath(TexName, vecFullPath))
 		return false;
 
-	//¼º°øÇßÀ¸¸é ÁÖ¼Ò ¹Ş¾Æ´Ù°¡
+	//ì„±ê³µí–ˆìœ¼ë©´ ì£¼ì†Œ ë°›ì•„ë‹¤ê°€
 	Tex = FindTexture(TexName);
 
-	//µî·Ï
+	//ë“±ë¡
 	return m_AnimationManager->CreateAnimationSequence(Name, Tex);
 }
 

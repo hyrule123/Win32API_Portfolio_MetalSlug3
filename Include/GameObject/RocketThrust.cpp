@@ -1,6 +1,6 @@
 #include "RocketThrust.h"
 
-//µğ¹ö±×ÅØ½ºÆ®
+//ë””ë²„ê·¸í…ìŠ¤íŠ¸
 #include "../GameManager.h"
 
 

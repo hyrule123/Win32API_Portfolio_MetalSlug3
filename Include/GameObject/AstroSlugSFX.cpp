@@ -4,7 +4,7 @@
 
 #include "PlayerSpace.h"
 
-//²¿¸® SFXX
+//ê¼¬ë¦¬ SFXX
 #include "AstroTail.h"
 
 CAstroSlugSFX::CAstroSlugSFX():
@@ -17,7 +17,7 @@ CAstroSlugSFX::CAstroSlugSFX(const CAstroSlugSFX& Obj):
 	CEffect(Obj),
 	m_isTailSFX(Obj.m_isTailSFX)
 {
-	//ÀÌÈÄ ´Ü°è¿¡¼­ ¼³Á¤µÇ´Â º¯¼ö
+	//ì´í›„ ë‹¨ê³„ì—ì„œ ì„¤ì •ë˜ëŠ” ë³€ìˆ˜
 	//bool m_isReady;
 
 }
@@ -68,10 +68,10 @@ bool CAstroSlugSFX::Init(CGameObject* Obj)
 
 		SetRenderLayer(ERenderLayer::Default);
 		
-		//²¿¸® °­·ÂºÎ½ºÅÍ ¿¬°èµÇ´Â ±â´É.
+		//ê¼¬ë¦¬ ê°•ë ¥ë¶€ìŠ¤í„° ì—°ê³„ë˜ëŠ” ê¸°ëŠ¥.
 		SetEndFunction<CAstroSlugSFX>("TailBoost1", this, &CAstroSlugSFX::Booster1EndFunc);
 
-		//²¿¸® ºÎ½ºÅÍ »ı¼ºÀ» À§ÇÑ EndFunction µî·Ï
+		//ê¼¬ë¦¬ ë¶€ìŠ¤í„° ìƒì„±ì„ ìœ„í•œ EndFunction ë“±ë¡
 		SetEndFunction<CAstroSlugSFX>("TailLeft", this, &CAstroSlugSFX::TailLeftEnd);
 		SetEndFunction<CAstroSlugSFX>("TailRight", this, &CAstroSlugSFX::TailRightEnd);
 		SetEndFunction<CAstroSlugSFX>("TailStraight", this, &CAstroSlugSFX::TailStraightEnd);

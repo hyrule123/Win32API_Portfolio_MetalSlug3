@@ -36,7 +36,7 @@ CCollider::CCollider(const CCollider& col):
 	m_HitPoint(),
 	m_ColliderType(col.m_ColliderType),
 	m_Profile(col.m_Profile),
-	m_CollisionBegin(nullptr),	//¿©±âºÎÅÍ´Â Init ÀÌÈÄ¿¡ ¼³Á¤µÇ¹Ç·Î ÃÊ±âÈ­
+	m_CollisionBegin(nullptr),	//ì—¬ê¸°ë¶€í„°ëŠ” Init ì´í›„ì— ì„¤ì •ë˜ë¯€ë¡œ ì´ˆê¸°í™”
 	m_CollisionEnd(nullptr),
 	m_listCollision(),
 	m_CollisionBeginMouse(nullptr),
@@ -178,7 +178,7 @@ const Vector2& CCollider::GetHitPoint() const
 
 void CCollider::CallCollisionBegin(CCollider* Dest)
 {
-	//¸¸¾à ÇÔ¼ö Æ÷ÀÎÅÍ°¡ µî·ÏµÇ¾î ÀÖ´Ù¸é ÀÚ½ÅÀ» Src, »ó´ë¸¦ Dest¿¡ ³Ö¾î¼­ È£ÃâÇÑ´Ù.
+	//ë§Œì•½ í•¨ìˆ˜ í¬ì¸í„°ê°€ ë“±ë¡ë˜ì–´ ìžˆë‹¤ë©´ ìžì‹ ì„ Src, ìƒëŒ€ë¥¼ Destì— ë„£ì–´ì„œ í˜¸ì¶œí•œë‹¤.
 	if(m_CollisionBegin)
 		m_CollisionBegin(this, Dest);
 
@@ -265,7 +265,7 @@ void CCollider::ClearCollisionList()
 
 	while (iter != iterEnd)
 	{
-		//¼­·ÎÀÇ Ãæµ¹ Á¾·á ÇÔ¼ö¸¦ È£Ãâ
+		//ì„œë¡œì˜ ì¶©ëŒ ì¢…ë£Œ í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
 		CallCollisionEnd(*iter);
 		(*iter)->CallCollisionEnd(this);
 		(*iter)->DeleteCollisionList(this);

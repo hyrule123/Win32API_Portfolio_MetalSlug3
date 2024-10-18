@@ -21,9 +21,9 @@ enum RocketBodyInfo
 
 
 
-//¿©·¯ °³ÀÇ ·ÎÄÏ ¸öÅëÀ» ÇÑµ¥ ¹­¾î °ü¸®ÇÏ´Â °ü¸® Å¬·¡½º
+//ì—¬ëŸ¬ ê°œì˜ ë¡œì¼“ ëª¸í†µì„ í•œë° ë¬¶ì–´ ê´€ë¦¬í•˜ëŠ” ê´€ë¦¬ í´ë˜ìŠ¤
 class CSpaceIntro :
-    public CGameObject
+	public CGameObject
 {
 	friend class CScene;
 protected:

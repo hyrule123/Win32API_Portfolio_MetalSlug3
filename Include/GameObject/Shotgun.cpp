@@ -1,10 +1,10 @@
 #include "Shotgun.h"
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneResource.h"
 
-//ÁÖÀÎ À§Ä¡¸¦ ¹Ş¾Æ¿À±â À§ÇÔ
+//ì£¼ì¸ ìœ„ì¹˜ë¥¼ ë°›ì•„ì˜¤ê¸° ìœ„í•¨
 #include "Player.h"
 
 #include "../GameManager.h"
@@ -33,15 +33,15 @@ bool CShotgun::Init(CGameObject* Obj)
 {
 	CProjectile::Init(Obj);
 
-	//·»´õ¸µ·¹ÀÌ¾î
+	//ë Œë”ë§ë ˆì´ì–´
 	SetRenderLayer(ERenderLayer::EffectLow);
 
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç ¹× ³ëÆ¼ÆÄÀÌ(Ãæµ¹Ã¼ Á¦°Å)
+	//ì• ë‹ˆë©”ì´ì…˜ ë° ë…¸í‹°íŒŒì´(ì¶©ëŒì²´ ì œê±°)
 	SetAnimation("Shotgun_Fire");
 	AddNotify<CShotgun>("Shotgun_Fire", 2, this, &CShotgun::ColliderDelete);
 
-	//endfunction ¼³Á¤(Àç»ı ÈÄ Á¦°Å)
+	//endfunction ì„¤ì •(ì¬ìƒ í›„ ì œê±°)
 	SetEndFunction<CShotgun>("Shotgun_Fire", this, &CShotgun::AnimEndDelete);
 
 	m_Scene->GetSceneResource()->SoundPlay("Shotgun");
@@ -52,17 +52,17 @@ bool CShotgun::Init(CGameObject* Obj)
 	SetPivot(0.5f, 1.f);
 	SetMaxSpeed(0.f);
 
-	//Ãæµ¹Ã¼ ¼³Á¤
+	//ì¶©ëŒì²´ ì„¤ì •
 	CColliderBox* Coll = AddCollider<CColliderBox>("Shotgun");
 
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetSize(m_Size);
 	Coll->SetPivot(m_Pivot);
 
-	//È£Ãâ ÇÔ¼ö ¼³Á¤
+	//í˜¸ì¶œ í•¨ìˆ˜ ì„¤ì •
 	Coll->SetCollisionBeginFunc(this, &CShotgun::CollisionBegin);
 
-	//¹İÂ¦ÀÓ ¼³Á¤
+	//ë°˜ì§ì„ ì„¤ì •
 	CGameManager::GetInst()->SetWhiteOut(1);
 
 	return true;

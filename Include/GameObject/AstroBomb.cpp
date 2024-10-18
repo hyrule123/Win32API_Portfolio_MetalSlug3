@@ -1,13 +1,13 @@
 #include "AstroBomb.h"
 
-//Ãæµ¹Ã¼
+//ì¶©ëŒì²´
 #include "../Collision/ColliderBox.h"
 #include "../../Include/Scene/Scene.h"
 
-//Æø¹ß ÀÌÆåÆ® »ı¼º¿ë
+//í­ë°œ ì´í™íŠ¸ ìƒì„±ìš©
 #include "DamageExplosion.h"
 
-//Ãæµ¹ÇÔ¼ö¿¡¼­ DELTA_TIME Á¢±Ù
+//ì¶©ëŒí•¨ìˆ˜ì—ì„œ DELTA_TIME ì ‘ê·¼
 #include "../GameManager.h"
 
 
@@ -52,10 +52,10 @@ bool CAstroBomb::Init(CGameObject* Obj)
 	m_MaxSpeed = 20.f;
 	SetSize(16.f, 48.f);
 
-	//·»´õ¸µ·¹ÀÌ¾î
+	//ë Œë”ë§ë ˆì´ì–´
 	SetRenderLayer(ERenderLayer::EffectLow);
 
-	//Ãæµ¹Ã¼ 1 ¼³Á¤ -> ´ê¾ÒÀ» ¶§ Æø¹ßÇÏ´Â ¿ëµµ
+	//ì¶©ëŒì²´ 1 ì„¤ì • -> ë‹¿ì•˜ì„ ë•Œ í­ë°œí•˜ëŠ” ìš©ë„
 	CColliderBox* Coll = AddCollider<CColliderBox>("AstroBombColl");
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 	Coll->SetSize(m_Size);
@@ -63,13 +63,13 @@ bool CAstroBomb::Init(CGameObject* Obj)
 	Coll->SetOffset(0.f, -45.f);
 
 
-	//m_Damage = 0;	ÀÚÃ¼ µ¥¹ÌÁö´Â ¾øÀ½. Àü¹æ ¹üÀ§ ½ºÇÃ·¡½Ã µ¥¹ÌÁö¸¸ ÀÖÀ½.
+	//m_Damage = 0;	ìì²´ ë°ë¯¸ì§€ëŠ” ì—†ìŒ. ì „ë°© ë²”ìœ„ ìŠ¤í”Œë˜ì‹œ ë°ë¯¸ì§€ë§Œ ìˆìŒ.
 	if (m_isRight)
 	{
-		SetDir(1.f, 1.f);	//¹æÇâ ¼³Á¤
+		SetDir(1.f, 1.f);	//ë°©í–¥ ì„¤ì •
 		SetPivot(0.f, 0.f);
 
-		//endfunction -> ·ÎÄÏ ÀÚ¸®ÀâÈ÷¸é Á¡È­µÇ´Â ¿ëµµ
+		//endfunction -> ë¡œì¼“ ìë¦¬ì¡íˆë©´ ì í™”ë˜ëŠ” ìš©ë„
 		SetEndFunction<CAstroBomb>("BombRight", this, &CAstroBomb::AstroBombStartEnd);
 
 		Coll->SetPivot(m_Pivot);
@@ -80,7 +80,7 @@ bool CAstroBomb::Init(CGameObject* Obj)
 		SetDir(-1.f, 1.f);
 		SetPivot(1.f, 0.f);
 
-		//endfunction -> ·ÎÄÏ ÀÚ¸®ÀâÈ÷¸é Á¡È­µÇ´Â ¿ëµµ
+		//endfunction -> ë¡œì¼“ ìë¦¬ì¡íˆë©´ ì í™”ë˜ëŠ” ìš©ë„
 		SetEndFunction<CAstroBomb>("BombLeft", this, &CAstroBomb::AstroBombStartEnd);
 
 		Coll->SetPivot(m_Pivot);
@@ -94,18 +94,18 @@ bool CAstroBomb::Init(CGameObject* Obj)
 
 
 	Coll = nullptr;
-	//Ãæµ¹Ã¼ 2 ¼³Á¤ -> ´ê¾ÒÀ» ¶§ À¯µµµÇ´Â ¿ëµµ
+	//ì¶©ëŒì²´ 2 ì„¤ì • -> ë‹¿ì•˜ì„ ë•Œ ìœ ë„ë˜ëŠ” ìš©ë„
 	Coll = AddCollider<CColliderBox>("AstroBombHomming");
 	Coll->SetCollisionProfile(ECollisionChannel::PlayerAttack);
 
-	//°ÔÀÓ È­¸é Å©±âÀÇ Ãæµ¹Ã¼¸¦ ¼³Á¤
+	//ê²Œì„ í™”ë©´ í¬ê¸°ì˜ ì¶©ëŒì²´ë¥¼ ì„¤ì •
 	Coll->SetSize(100.f, (float)ORIGINAL_GAME_RES_HEIGHT);
 	Coll->SetPivot(0.5f, 1.f);
 	Coll->SetCollisionBeginFunc(this, &CAstroBomb::HommingBegin);
 
 
 
-	//ÄÃ¸µ ¼³Á¤
+	//ì»¬ë§ ì„¤ì •
 	SetCullingDelete(ECullingDelete::Bottom, false);
 
 
@@ -132,10 +132,10 @@ void CAstroBomb::Update(float DeltaTime)
 
 	if (CheckColliding(m_Target))
 	{
-		//xÃà¿¡¼­ ¾ó¸¶³ª ¶³¾îÁ®ÀÖ´ÂÁö¸¦ Ã¼Å©
+		//xì¶•ì—ì„œ ì–¼ë§ˆë‚˜ ë–¨ì–´ì ¸ìˆëŠ”ì§€ë¥¼ ì²´í¬
 		float PosX = m_Pos.x - m_Target->GetPos().x;
 
-		if (PosX > 0.f)	//¾ç¼öÀÌ¸é ¿ŞÂÊ¿¡ ÀÖ´Ù´Â ¶æÀÌ¹Ç·Î
+		if (PosX > 0.f)	//ì–‘ìˆ˜ì´ë©´ ì™¼ìª½ì— ìˆë‹¤ëŠ” ëœ»ì´ë¯€ë¡œ
 			m_Dir.x -= m_MaxTurnDirX * DeltaTime;
 		else if (PosX < 0.f)
 			m_Dir.x += m_MaxTurnDirX * DeltaTime;
@@ -147,7 +147,7 @@ void CAstroBomb::Update(float DeltaTime)
 
 	if (m_StartIgnition)
 	{
-		//µô·¹ÀÌµ¿¾È¿¡´Â ´À¸®°Ô
+		//ë”œë ˆì´ë™ì•ˆì—ëŠ” ëŠë¦¬ê²Œ
 		m_Delay -= DeltaTime;
 		if (m_Delay >= 0.f)
 		{
@@ -157,7 +157,7 @@ void CAstroBomb::Update(float DeltaTime)
 		{
 			AddForce(800.f);
 
-			//ÃÖ´ë ¼Óµµ 800À¸·Î 
+			//ìµœëŒ€ ì†ë„ 800ìœ¼ë¡œ 
 			m_MaxSpeed = 800.f;
 		}
 	}
@@ -183,7 +183,7 @@ void CAstroBomb::AstroBombStartEnd()
 {
 	SoundPlay("RocketLauncherFire");
 
-	//¾Ö´Ï¸ŞÀÌ¼Ç Ãß°¡
+	//ì• ë‹ˆë©”ì´ì…˜ ì¶”ê°€
 	SetAnimation("BombIgnition");
 
 	if (!m_isRight)
@@ -191,10 +191,10 @@ void CAstroBomb::AstroBombStartEnd()
 	else
 		m_Animation->SetOffset("BombIgnition", 10.f, -11.f);
 
-	//¹æÇâ º¯°æ
+	//ë°©í–¥ ë³€ê²½
 	SetDir(0.f, -1.f);
 	
-	//Update¿¡ Á¡È­µÇ¾ú´Ù°í Àü´Ş
+	//Updateì— ì í™”ë˜ì—ˆë‹¤ê³  ì „ë‹¬
 	m_StartIgnition = true;
 }
 
@@ -202,7 +202,7 @@ void CAstroBomb::CollisionBegin(CCollider* Src, CCollider* Dest)
 {
 	SoundPlayOneChan("RocketLauncherHit");
 
-	//ÇÇ°İÀÌÆåÆ® Ç¥½Ã. Á¡¼ö Ã³¸®´Â Ãæµ¹Ã¼¿¡¼­ ÇÔ.
+	//í”¼ê²©ì´í™íŠ¸ í‘œì‹œ. ì ìˆ˜ ì²˜ë¦¬ëŠ” ì¶©ëŒì²´ì—ì„œ í•¨.
 	CDamageExplosion* SFX = m_Scene->CreateObject<CDamageExplosion>("BigExplosion");
 	SFX->SetEssential(EExplosionSize::Big, Src->GetHitPoint(), 100);
 
@@ -213,7 +213,7 @@ void CAstroBomb::CollisionBegin(CCollider* Src, CCollider* Dest)
 
 void CAstroBomb::HommingBegin(CCollider* Src, CCollider* Dest)
 {
-	//Å¸°ÙÀÌ ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀ¸¸é °¡Àå ¸ÕÀú Ãæµ¹ÆÇÁ¤ ³­ ´ë»óÀ» Å¸°ÙÀ¸·Î ÁöÁ¤
+	//íƒ€ê²Ÿì´ ì„¤ì •ë˜ì–´ìˆì§€ ì•Šìœ¼ë©´ ê°€ì¥ ë¨¼ì € ì¶©ëŒíŒì • ë‚œ ëŒ€ìƒì„ íƒ€ê²Ÿìœ¼ë¡œ ì§€ì •
 	if (!m_Target)
 		m_Target = Dest->GetOwnerObj();
 }

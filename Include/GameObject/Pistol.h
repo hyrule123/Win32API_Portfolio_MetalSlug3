@@ -3,20 +3,20 @@
 #include "Projectile.h"
 
 class CPistol :
-    public CProjectile
+	public CProjectile
 {
-    friend class CScene;
+	friend class CScene;
 
 
 protected:
-    CPistol();
-    CPistol(const CPistol& Obj);
-    virtual ~CPistol();
+	CPistol();
+	CPistol(const CPistol& Obj);
+	virtual ~CPistol();
 
 public:
-    bool Init(CGameObject* Obj = nullptr);
-    bool LoadResource();
+	bool Init(CGameObject* Obj = nullptr);
+	bool LoadResource();
 
-    void CollisionBegin(class CCollider* Src, class CCollider* Dest);
+	void CollisionBegin(class CCollider* Src, class CCollider* Dest);
 };
 

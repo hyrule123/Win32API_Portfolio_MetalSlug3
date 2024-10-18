@@ -64,7 +64,7 @@ int CTexture::GetMaxReactionChannel() const
 		return (int)m_vecImageInfo.size();
 }
 
-//°³º° ÆÄÀÏ µî·Ï ¸Ş¼Òµå
+//ê°œë³„ íŒŒì¼ ë“±ë¡ ë©”ì†Œë“œ
 bool CTexture::LoadTexture(const std::tstring& FileName, const std::string& PathName, EReactionChannel MaxChannel)
 {
 	const PathInfo* Path = CPathManager::GetInst()->FindPath(PathName);
@@ -74,9 +74,9 @@ bool CTexture::LoadTexture(const std::tstring& FileName, const std::string& Path
 
 	TCHAR FullPath[MAX_PATH] = {};
 
-	//°æ·Î¸¦ ÀÏ´Ü ³Ö¾î³õ°í, 
+	//ê²½ë¡œë¥¼ ì¼ë‹¨ ë„£ì–´ë†“ê³ , 
 	lstrcpy(FullPath, Path->Path);
-	//ÆÄÀÏ¸íÀ» ºÙ¿©ÁØ´Ù.
+	//íŒŒì¼ëª…ì„ ë¶™ì—¬ì¤€ë‹¤.
 	lstrcat(FullPath, FileName.c_str());
 
 	bool result = LoadTextureFullPath(FullPath, MaxChannel);
@@ -94,20 +94,20 @@ bool CTexture::LoadTextureFullPath(const std::tstring& FullPath, EReactionChanne
 {
 	ImageInfo* Image = new ImageInfo;
 
-	//¸Ş¸ğ¸® DC¸¦ ¾ò¾î¿Â´Ù. =
+	//ë©”ëª¨ë¦¬ DCë¥¼ ì–»ì–´ì˜¨ë‹¤. =
 	Image->hMemDC = CreateCompatibleDC(CGameManager::GetInst()->GetWindowDC());
 
-	//ÀÌ¹ÌÁö¸¦ ·ÎµåÇÑ´Ù. 
+	//ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•œë‹¤. 
 	Image->hBmp = (HBITMAP)LoadImage(CGameManager::GetInst()->GetWindowInstance(), FullPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
-	//È¤½Ã³ª ÀÌ¹ÌÁö°¡ ·ÎµåµÇÁö ¾Ê¾Ò´Ù¸é false¸¦ ¸®ÅÏÇÑ´Ù.
+	//í˜¹ì‹œë‚˜ ì´ë¯¸ì§€ê°€ ë¡œë“œë˜ì§€ ì•Šì•˜ë‹¤ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤.
 	if (!Image->hBmp)
 		return false;
 
-	//±×¸®±â µµ±¸¸¦ °¥¾Æ³¢¿ì°í, ÀÌÀü µµ±¸¸¦ µû·Î º¯¼ö¸¦ ¸¸µé¾î µé°í ÀÖ´Â´Ù.
+	//ê·¸ë¦¬ê¸° ë„êµ¬ë¥¼ ê°ˆì•„ë¼ìš°ê³ , ì´ì „ ë„êµ¬ë¥¼ ë”°ë¡œ ë³€ìˆ˜ë¥¼ ë§Œë“¤ì–´ ë“¤ê³  ìˆëŠ”ë‹¤.
 	Image->hPrevBmp = (HBITMAP)SelectObject(Image->hMemDC, Image->hBmp);
 
-	//ºñÆ®¸Ê ÀÌ¹ÌÁöÀÇ Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+	//ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ì˜ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
 	GetObject(Image->hBmp, sizeof(BITMAP), &Image->BmpInfo);
 
 	lstrcpy(Image->FullPath, FullPath.c_str());
@@ -115,8 +115,8 @@ bool CTexture::LoadTextureFullPath(const std::tstring& FullPath, EReactionChanne
 	m_vecImageInfo.push_back(Image);
 
 
-	//¿©±â±îÁø ±âº» ÅØ½ºÃ³ ·Îµå °úÁ¤ ÁøÇà
-	//Ãß°¡·Î È÷Æ®ÀÌÆåÆ®¿Í, ÇÊ¿ä½Ã ¹«Àû ÀÌÆåÆ®¸¦ ³Ö´Â °úÁ¤À» ÁøÇà
+	//ì—¬ê¸°ê¹Œì§„ ê¸°ë³¸ í…ìŠ¤ì²˜ ë¡œë“œ ê³¼ì • ì§„í–‰
+	//ì¶”ê°€ë¡œ íˆíŠ¸ì´í™íŠ¸ì™€, í•„ìš”ì‹œ ë¬´ì  ì´í™íŠ¸ë¥¼ ë„£ëŠ” ê³¼ì •ì„ ì§„í–‰
 
 	if (MaxChannel != EReactionChannel::Normal)
 	{
@@ -159,23 +159,23 @@ bool CTexture::LoadTextureFullPath(const std::tstring& FullPath, EReactionChanne
 				break;
 			}
 
-			//HSB°ªÀ» ÀúÀåÇØ³õ°í
+			//HSBê°’ì„ ì €ì¥í•´ë†“ê³ 
 			HSB.SetParameters(&Param);
 
-			//¿øº»À¸·ÎºÎÅÍ ÀÌ¹ÌÁö ÆÄÀÏÀ» GDI+·Î º¹»ç
+			//ì›ë³¸ìœ¼ë¡œë¶€í„° ì´ë¯¸ì§€ íŒŒì¼ì„ GDI+ë¡œ ë³µì‚¬
 			Gdiplus::Bitmap* bmp = Gdiplus::Bitmap::FromHBITMAP(Image->hBmp, NULL);
 
-			//ÀüÃ¼ ¹üÀ§ º¯È¯À» À§ÇØ »çÀÌÁî¸¦ ¹Ş¾Æ³õÀ½
+			//ì „ì²´ ë²”ìœ„ ë³€í™˜ì„ ìœ„í•´ ì‚¬ì´ì¦ˆë¥¼ ë°›ì•„ë†“ìŒ
 			RECT rc;
 			rc.left = 0;
 			rc.top = 0;
 			rc.right = bmp->GetWidth();
 			rc.bottom = bmp->GetHeight();
 
-			//È¿°ú Àû¿ë
+			//íš¨ê³¼ ì ìš©
 			Gdiplus::Status status = bmp->ApplyEffect(&HSB, &rc);
 
-			//ÄÃ·¯Å°¸¦ È®ÀÎÇÒ 0, 0 ÇÈ¼¿ÀÇ RGB°ª ¹Ş¾Æ¿È
+			//ì»¬ëŸ¬í‚¤ë¥¼ í™•ì¸í•  0, 0 í”½ì…€ì˜ RGBê°’ ë°›ì•„ì˜´
 			Gdiplus::Color color;
 			bmp->GetPixel(0, 0, &color);
 			Gdiplus::ARGB rgb = color.GetValue();
@@ -183,27 +183,27 @@ bool CTexture::LoadTextureFullPath(const std::tstring& FullPath, EReactionChanne
 			int g = ((rgb >> GREEN_SHIFT) & 0x000000FF);
 			int b = ((rgb >> BLUE_SHIFT) & 0x000000FF);
 
-			//µ¿ÀûÇÒ´ç
+			//ë™ì í• ë‹¹
 			ImageInfo* EffectImage = new ImageInfo;
 
-			//¸Ş¸ğ¸® DC¸¦ ¾ò¾î¿Â´Ù. =
+			//ë©”ëª¨ë¦¬ DCë¥¼ ì–»ì–´ì˜¨ë‹¤. =
 			EffectImage->hMemDC = CreateCompatibleDC(CGameManager::GetInst()->GetWindowDC());
 
-			// GDI Çü½Ä HBITMAPÀ» ¹Ş¾Æ¿Â´Ù
+			// GDI í˜•ì‹ HBITMAPì„ ë°›ì•„ì˜¨ë‹¤
 			bmp->GetHBITMAP(Gdiplus::Color(0, 0, 0), &EffectImage->hBmp);
 
-			//È¤½Ã³ª ÀÌ¹ÌÁö°¡ ·ÎµåµÇÁö ¾Ê¾Ò´Ù¸é false¸¦ ¸®ÅÏÇÑ´Ù.
+			//í˜¹ì‹œë‚˜ ì´ë¯¸ì§€ê°€ ë¡œë“œë˜ì§€ ì•Šì•˜ë‹¤ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤.
 			if (!EffectImage->hBmp)
 				return false;
 
-			//¹æ±İ ¹Ş¾Æ³õÀº ÄÃ·¯Å° ÀúÀå
+			//ë°©ê¸ˆ ë°›ì•„ë†“ì€ ì»¬ëŸ¬í‚¤ ì €ì¥
 			EffectImage->ColorKey = RGB(r, g, b);
 			EffectImage->ColorKeyEnable = true;
 
-			//±×¸®±â µµ±¸¸¦ °¥¾Æ³¢¿ì°í, ÀÌÀü µµ±¸¸¦ µû·Î º¯¼ö¸¦ ¸¸µé¾î µé°í ÀÖ´Â´Ù.
+			//ê·¸ë¦¬ê¸° ë„êµ¬ë¥¼ ê°ˆì•„ë¼ìš°ê³ , ì´ì „ ë„êµ¬ë¥¼ ë”°ë¡œ ë³€ìˆ˜ë¥¼ ë§Œë“¤ì–´ ë“¤ê³  ìˆëŠ”ë‹¤.
 			EffectImage->hPrevBmp = (HBITMAP)SelectObject(EffectImage->hMemDC, EffectImage->hBmp);
 
-			//ºñÆ®¸Ê ÀÌ¹ÌÁöÀÇ Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+			//ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ì˜ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
 			GetObject(EffectImage->hBmp, sizeof(BITMAP), &EffectImage->BmpInfo);
 			lstrcpy(EffectImage->FullPath, FullPath.c_str());
 
@@ -218,42 +218,42 @@ bool CTexture::LoadTextureFullPath(const std::tstring& FullPath, EReactionChanne
 
 bool CTexture::LoadTextureByTextureNumbers(const std::tstring& FolderPath, int NumberOfTexture, const std::string& PathName)
 {
-	//°æ·Î¸¦ Ã£¾Æ³õ°í
+	//ê²½ë¡œë¥¼ ì°¾ì•„ë†“ê³ 
 	const PathInfo* Path = CPathManager::GetInst()->FindPath(PathName);
 
-	//¾øÀ¸¸é ¸®ÅÏ
+	//ì—†ìœ¼ë©´ ë¦¬í„´
 	if (!Path)
 		return false;
 
-	//¸¸µé¾îÁø Ç® °æ·Î ¼ö¸¸Å­ ¹Ì¸® °ø°£À» È®º¸ÇØ³õÀº µÚ
+	//ë§Œë“¤ì–´ì§„ í’€ ê²½ë¡œ ìˆ˜ë§Œí¼ ë¯¸ë¦¬ ê³µê°„ì„ í™•ë³´í•´ë†“ì€ ë’¤
 	std::vector<std::tstring> vecFullPath;
 	vecFullPath.resize(NumberOfTexture);
 
 	std::vector<std::tstring> vecFileName;
 	vecFileName.resize(NumberOfTexture);
 
-	//Ç®°æ·Î ÀÔ·Â °úÁ¤
+	//í’€ê²½ë¡œ ì…ë ¥ ê³¼ì •
 	for (size_t i = 0; i < NumberOfTexture; ++i)
 	{
 		vecFullPath[i] = Path->Path;
 
-		//Æú´õ °æ·Î Ãß°¡
+		//í´ë” ê²½ë¡œ ì¶”ê°€
 		vecFullPath[i] += FolderPath;
 
-		//°³º° ÆÄÀÏ¸í »ı¼º
+		//ê°œë³„ íŒŒì¼ëª… ìƒì„±
 		TCHAR TempFileName[MAX_PATH] = {};
 		tsPrintf_s(TempFileName, _countof(TempFileName), TEXT("/%d.bmp"), (int)i);
 
-		//ÆÄÀÏ¸í Ãß°¡
+		//íŒŒì¼ëª… ì¶”ê°€
 		vecFullPath[i] += TempFileName;
 
-		//ÆÄÀÏ¸í ¹Ş¾Æ³õÀ½(µÚ¿¡¼­ »ç¿ë)
+		//íŒŒì¼ëª… ë°›ì•„ë†“ìŒ(ë’¤ì—ì„œ ì‚¬ìš©)
 		vecFileName[i] = TempFileName;
 		
 
 	}
 
-	//·ÎµåÇÏ°í ¼º°øÇÏ¸é ÆÄÀÏ ÀÌ¸§, ÁÖ¼Ò, ÀÌ¸§À» µî·Ï.
+	//ë¡œë“œí•˜ê³  ì„±ê³µí•˜ë©´ íŒŒì¼ ì´ë¦„, ì£¼ì†Œ, ì´ë¦„ì„ ë“±ë¡.
 	bool result = LoadTextureFullPath(vecFullPath);
 	if (result)
 	{
@@ -271,21 +271,21 @@ bool CTexture::LoadTextureByTextureNumbers(const std::tstring& FolderPath, int N
 
 bool CTexture::LoadTexture(const std::vector<std::tstring>& vecFileName, const std::string& PathName)
 {
-	//°æ·Î¸¦ Ã£¾Æ³õ°í
+	//ê²½ë¡œë¥¼ ì°¾ì•„ë†“ê³ 
 	const PathInfo* Path = CPathManager::GetInst()->FindPath(PathName);
 
-	//¾øÀ¸¸é ¸®ÅÏ
+	//ì—†ìœ¼ë©´ ë¦¬í„´
 	if (!Path)
 		return false;
 
-	//ÆÄÀÏ ÀÌ¸§ ¸®½ºÆ®ÀÇ »çÀÌÁî°¡ ¸î°³ÀÎÁö ¹Ş¾Æ³õ°í
+	//íŒŒì¼ ì´ë¦„ ë¦¬ìŠ¤íŠ¸ì˜ ì‚¬ì´ì¦ˆê°€ ëª‡ê°œì¸ì§€ ë°›ì•„ë†“ê³ 
 	size_t size = vecFileName.size();
 
-	//¸¸µé¾îÁø Ç® °æ·Î ¼ö¸¸Å­ ¹Ì¸® °ø°£À» È®º¸ÇØ³õÀº µÚ
+	//ë§Œë“¤ì–´ì§„ í’€ ê²½ë¡œ ìˆ˜ë§Œí¼ ë¯¸ë¦¬ ê³µê°„ì„ í™•ë³´í•´ë†“ì€ ë’¤
 	std::vector<std::tstring> vecFullPath;
 	vecFullPath.resize(size);
 
-	//Ç®°æ·Î ÀÔ·Â
+	//í’€ê²½ë¡œ ì…ë ¥
 	for (size_t i = 0; i < size; ++i)
 	{
 		vecFullPath[i] = Path->Path;
@@ -294,7 +294,7 @@ bool CTexture::LoadTexture(const std::vector<std::tstring>& vecFileName, const s
 
 	bool result = LoadTextureFullPath(vecFullPath);
 
-	//ÆÄÀÏ¸í°ú °æ·Î ÀÌ¸§À» µî·ÏÇÑ´Ù.(*Ç®°æ·Î´Â LoadTextureFullPath¿¡¼­ Ã³¸®)
+	//íŒŒì¼ëª…ê³¼ ê²½ë¡œ ì´ë¦„ì„ ë“±ë¡í•œë‹¤.(*í’€ê²½ë¡œëŠ” LoadTextureFullPathì—ì„œ ì²˜ë¦¬)
 	if (result)
 	{
 		for (size_t i = 0; i < size; ++i)
@@ -316,23 +316,23 @@ bool CTexture::LoadTextureFullPath(const std::vector<std::tstring>& vecFullPath)
 	{
 		ImageInfo* Image = new ImageInfo;
 
-		//¸Ş¸ğ¸® DC¸¦ ¾ò¾î¿Â´Ù. =
+		//ë©”ëª¨ë¦¬ DCë¥¼ ì–»ì–´ì˜¨ë‹¤. =
 		Image->hMemDC = CreateCompatibleDC(CGameManager::GetInst()->GetWindowDC());
 
-		//ÀÌ¹ÌÁö¸¦ ·ÎµåÇÑ´Ù. 
+		//ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•œë‹¤. 
 		Image->hBmp = (HBITMAP)LoadImage(CGameManager::GetInst()->GetWindowInstance(), vecFullPath[i].c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
-		//È¤½Ã³ª ÀÌ¹ÌÁö°¡ ·ÎµåµÇÁö ¾Ê¾Ò´Ù¸é false¸¦ ¸®ÅÏÇÑ´Ù.
+		//í˜¹ì‹œë‚˜ ì´ë¯¸ì§€ê°€ ë¡œë“œë˜ì§€ ì•Šì•˜ë‹¤ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤.
 		if (!Image->hBmp)
 			return false;
 
-		//±×¸®±â µµ±¸¸¦ °¥¾Æ³¢¿ì°í, ÀÌÀü µµ±¸¸¦ µû·Î º¯¼ö¸¦ ¸¸µé¾î µé°í ÀÖ´Â´Ù.
+		//ê·¸ë¦¬ê¸° ë„êµ¬ë¥¼ ê°ˆì•„ë¼ìš°ê³ , ì´ì „ ë„êµ¬ë¥¼ ë”°ë¡œ ë³€ìˆ˜ë¥¼ ë§Œë“¤ì–´ ë“¤ê³  ìˆëŠ”ë‹¤.
 		Image->hPrevBmp = (HBITMAP)SelectObject(Image->hMemDC, Image->hBmp);
 
-		//ºñÆ®¸Ê ÀÌ¹ÌÁöÀÇ Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+		//ë¹„íŠ¸ë§µ ì´ë¯¸ì§€ì˜ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
 		GetObject(Image->hBmp, sizeof(BITMAP), &Image->BmpInfo);
 
-		//Ç® °æ·Î ÁÖ¼Ò¸¦ µî·ÏÇÑ´Ù.
+		//í’€ ê²½ë¡œ ì£¼ì†Œë¥¼ ë“±ë¡í•œë‹¤.
 		lstrcpy(Image->FullPath, vecFullPath[i].c_str());
 
 		m_vecImageInfo.push_back(Image);
@@ -340,7 +340,7 @@ bool CTexture::LoadTextureFullPath(const std::vector<std::tstring>& vecFullPath)
 	}
 
 
-	//ÅØ½ºÃ³¸¦ ¿©·¯Àå µî·ÏÇß´Ù´Â °ÍÀº FrameÅ¸ÀÔ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸¸µé°Ú´Ù´Â ¼Ò¸®°¡ µÈ´Ù.
+	//í…ìŠ¤ì²˜ë¥¼ ì—¬ëŸ¬ì¥ ë“±ë¡í–ˆë‹¤ëŠ” ê²ƒì€ Frameíƒ€ì… ì• ë‹ˆë©”ì´ì…˜ì„ ë§Œë“¤ê² ë‹¤ëŠ” ì†Œë¦¬ê°€ ëœë‹¤.
 	m_TextureType = ETextureType::Frame;
 
 
@@ -371,18 +371,18 @@ bool CTexture::LoadTexture(ImageInfo* Info, const TCHAR* FileName, const std::st
 
 bool CTexture::LoadTextureFullPath(ImageInfo* Info, const TCHAR* FullPath)
 {
-	// È­¸éDC¸¦ ³Ö°í ¸Ş¸ğ¸® DC¸¦ ¾ò´Â´Ù.
+	// í™”ë©´DCë¥¼ ë„£ê³  ë©”ëª¨ë¦¬ DCë¥¼ ì–»ëŠ”ë‹¤.
 	HDC	hDC = CreateCompatibleDC(CGameManager::GetInst()->GetWindowDC());
 
-	// ºñÆ®¸ÊÀ» ·ÎµùÇÑ´Ù.
+	// ë¹„íŠ¸ë§µì„ ë¡œë”©í•œë‹¤.
 	HBITMAP	hBmp = (HBITMAP)LoadImage(CGameManager::GetInst()->GetWindowInstance(),
 		FullPath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 	if (!hBmp)
 		return false;
 
-	// ÀĞ¾î¿Â ºñÆ®¸ÊÀ» ¸Ş¸ğ¸® DC¿¡ ÁöÁ¤ÇÑ´Ù.
-	// ±âÁ¸¿¡ DC°¡ °¡Áö°í ÀÖ´ø µµ±¸¸¦ ¹İÈ¯ÇÑ´Ù.
+	// ì½ì–´ì˜¨ ë¹„íŠ¸ë§µì„ ë©”ëª¨ë¦¬ DCì— ì§€ì •í•œë‹¤.
+	// ê¸°ì¡´ì— DCê°€ ê°€ì§€ê³  ìˆë˜ ë„êµ¬ë¥¼ ë°˜í™˜í•œë‹¤.
 	HBITMAP hPrevBmp = (HBITMAP)SelectObject(hDC, hBmp);
 
 	BITMAP	BmpInfo;
@@ -408,11 +408,11 @@ bool CTexture::LoadTexture(std::vector<ImageInfo*>* vecInfo, const std::vector<s
 
 	size_t	Size = vecFileName.size();
 
-	// ¹Ì¸® °³¼ö¸¸Å­ push ÇØ³õ´Â È¿°úÀÌ´Ù.
+	// ë¯¸ë¦¬ ê°œìˆ˜ë§Œí¼ push í•´ë†“ëŠ” íš¨ê³¼ì´ë‹¤.
 	vecFullPath.resize(Size);
 
-	// ¹Ì¸® ¹è¿­ °ø°£À» È®º¸ÇÏ¿© ²Ë Ã¡À»¶§ °ø°£ ÀçÇÒ´çÀÌ ÀÏ¾î³ª´Â°ÍÀ» ¹æÁöÇØÁÖ´Â
-	// ¿ªÇÒÀ» ÇÒ¶§ »ç¿ëÇÑ´Ù.
+	// ë¯¸ë¦¬ ë°°ì—´ ê³µê°„ì„ í™•ë³´í•˜ì—¬ ê½‰ ì°¼ì„ë•Œ ê³µê°„ ì¬í• ë‹¹ì´ ì¼ì–´ë‚˜ëŠ”ê²ƒì„ ë°©ì§€í•´ì£¼ëŠ”
+	// ì—­í• ì„ í• ë•Œ ì‚¬ìš©í•œë‹¤.
 	//vecFullPath.reserve(Size);
 
 	for (size_t i = 0; i < Size; ++i)
@@ -445,19 +445,19 @@ bool CTexture::LoadTextureFullPath(std::vector<ImageInfo*>* vecInfo, const std::
 
 	for (size_t i = 0; i < Size; ++i)
 	{
-		// È­¸éDC¸¦ ³Ö°í ¸Ş¸ğ¸® DC¸¦ ¾ò´Â´Ù.
+		// í™”ë©´DCë¥¼ ë„£ê³  ë©”ëª¨ë¦¬ DCë¥¼ ì–»ëŠ”ë‹¤.
 		HDC	hDC = CreateCompatibleDC(CGameManager::GetInst()->GetWindowDC());
 
-		// ºñÆ®¸ÊÀ» ·ÎµùÇÑ´Ù.
-		// string ÀÌ³ª wstring Å¬·¡½ºÀÇ c_str() ÇÔ¼ö´Â ¹®ÀÚ¿­ Æ÷ÀÎÅÍ¸¦ ¾ò¾î¿Â´Ù.
+		// ë¹„íŠ¸ë§µì„ ë¡œë”©í•œë‹¤.
+		// string ì´ë‚˜ wstring í´ë˜ìŠ¤ì˜ c_str() í•¨ìˆ˜ëŠ” ë¬¸ìì—´ í¬ì¸í„°ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 		HBITMAP	hBmp = (HBITMAP)LoadImage(CGameManager::GetInst()->GetWindowInstance(),
 			vecFullPath[i].c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 		if (!hBmp)
 			return false;
 
-		// ÀĞ¾î¿Â ºñÆ®¸ÊÀ» ¸Ş¸ğ¸® DC¿¡ ÁöÁ¤ÇÑ´Ù.
-		// ±âÁ¸¿¡ DC°¡ °¡Áö°í ÀÖ´ø µµ±¸¸¦ ¹İÈ¯ÇÑ´Ù.
+		// ì½ì–´ì˜¨ ë¹„íŠ¸ë§µì„ ë©”ëª¨ë¦¬ DCì— ì§€ì •í•œë‹¤.
+		// ê¸°ì¡´ì— DCê°€ ê°€ì§€ê³  ìˆë˜ ë„êµ¬ë¥¼ ë°˜í™˜í•œë‹¤.
 		HBITMAP hPrevBmp = (HBITMAP)SelectObject(hDC, hBmp);
 
 		BITMAP	BmpInfo;

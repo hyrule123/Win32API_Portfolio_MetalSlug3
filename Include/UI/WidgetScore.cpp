@@ -1,6 +1,6 @@
 #include "WidgetScore.h"
 
-//ÅØ½ºÃ³ ·Îµå¿ë
+//í…ìŠ¤ì²˜ ë¡œë“œìš©
 #include "../Resource/ResourceManager.h"
 #include "../Resource/Texture/Texture.h"
 #include "../Resource/Animation/AnimationSequence.h"

@@ -8,7 +8,6 @@ class CScoreManager
 public:
 	void Init();
 
-
 private:
 	int m_Score;
 

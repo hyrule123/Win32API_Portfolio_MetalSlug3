@@ -3,17 +3,17 @@
 #include "../Ref.h"
 #include "../GameObject/GameObject.h"
 
-//¾À ¸®¼Ò½º °ü¸®ÀÚ
+//ì”¬ ë¦¬ì†ŒìŠ¤ ê´€ë¦¬ì
 #include "SceneResource.h"
 #include "SceneManager.h"
 
-//Ä«¸Ş¶ó Å¬·¡½º
+//ì¹´ë©”ë¼ í´ë˜ìŠ¤
 #include "Camera.h"
 
-//¾À Ãæµ¹Ã¼ °ü¸®ÀÚ
+//ì”¬ ì¶©ëŒì²´ ê´€ë¦¬ì
 #include "SceneCollision.h"
 
-//À§Á¬ À©µµ¿ì Á¤·Ä¿ë
+//ìœ„ì ¯ ìœˆë„ìš° ì •ë ¬ìš©
 #include "../UI/WidgetWindow.h"
 
 
@@ -30,14 +30,14 @@ CScene::CScene() :
 CScene::~CScene()
 {
 
-	//°ÔÀÓ¿ÀºêÁ§Æ® ¸ÕÀú ½Ï Áö¿öÁÖ°í
+	//ê²Œì„ì˜¤ë¸Œì íŠ¸ ë¨¼ì € ì‹¹ ì§€ì›Œì£¼ê³ 
 	for (int i = 0; i < (int)ERenderLayer::Max; ++i)
 	{
 		m_ObjList[i].clear();
 	}
 	m_mapOriginalObj.clear();
 
-	//ÇØ´ç °ÔÀÓ¿ÀºêÁ§Æ®µéÀÌ »ç¿ëÁßÀÌ´ø ¸®¼Ò½º Á¦°Å
+	//í•´ë‹¹ ê²Œì„ì˜¤ë¸Œì íŠ¸ë“¤ì´ ì‚¬ìš©ì¤‘ì´ë˜ ë¦¬ì†ŒìŠ¤ ì œê±°
 	SAFE_DELETE(m_Collision);
 	SAFE_DELETE(m_Camera);
 	SAFE_DELETE(m_SceneResource);
@@ -55,7 +55,7 @@ bool CScene::Init()
 
 void CScene::Update(float DeltaTime)
 {
-	//Ä«¸Ş¶óÀÇ À§Ä¡¸¦ ¾ò¾î³õ´Â´Ù
+	//ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¥¼ ì–»ì–´ë†“ëŠ”ë‹¤
 	m_CamPos = m_Camera->GetPos();
 	m_CamRes = m_Camera->GetRes();
 
@@ -84,7 +84,7 @@ void CScene::Update(float DeltaTime)
 		}
 	}
 
-	//UI ¾÷µ¥ÀÌÆ®
+	//UI ì—…ë°ì´íŠ¸
 	{
 		auto iter = m_vecWidgetWindow.begin();
 		auto iterEnd = m_vecWidgetWindow.end();
@@ -110,7 +110,7 @@ void CScene::Update(float DeltaTime)
 
 
 
-	//Ä«¸Ş¶ó ¾÷µ¥ÀÌÆ®
+	//ì¹´ë©”ë¼ ì—…ë°ì´íŠ¸
 	m_Camera->Update(DeltaTime);
 	
 }
@@ -127,7 +127,7 @@ void CScene::PostUpdate(float DeltaTime)
 		{
 			if (!(*iter)->GetActive())
 			{
-				//ÁÖÀÎ ¿ÀºêÁ§Æ®ÀÇ Á¾¼Ó ¿ÀºêÁ§Æ® ¸ñ·Ï¿¡¼­ ÀÚ½ÅÀ» »èÁ¦
+				//ì£¼ì¸ ì˜¤ë¸Œì íŠ¸ì˜ ì¢…ì† ì˜¤ë¸Œì íŠ¸ ëª©ë¡ì—ì„œ ìì‹ ì„ ì‚­ì œ
 				if ((*iter)->m_MasterObject)
 				{
 					CGameObject* master = (*iter)->m_MasterObject;
@@ -147,7 +147,7 @@ void CScene::PostUpdate(float DeltaTime)
 					}
 				}
 
-				//Á¾¼Ó ¿ÀºêÁ§Æ®¸¦ ¼øÈ¸ÇÏ¸é¼­ ÀÚ½Å°úÀÇ ¿¬°áÀ» ²÷°í SetActive¸¦ false·Î ÀüÈ¯
+				//ì¢…ì† ì˜¤ë¸Œì íŠ¸ë¥¼ ìˆœíšŒí•˜ë©´ì„œ ìì‹ ê³¼ì˜ ì—°ê²°ì„ ëŠê³  SetActiveë¥¼ falseë¡œ ì „í™˜
 				auto SlaveIter = (*iter)->m_SlaveObject.begin();
 				auto SlaveIterEnd = (*iter)->m_SlaveObject.end();
 
@@ -157,7 +157,7 @@ void CScene::PostUpdate(float DeltaTime)
 					(*SlaveIter)->m_MasterObject = nullptr;
 					++SlaveIter;
 				}
-				//»èÁ¦ ´ë±â¸¦ ½ÃÄÑ³õ¾ÒÀ¸¹Ç·Î ¸®½ºÆ®¸¦ ºñ¿öÁØ´Ù.
+				//ì‚­ì œ ëŒ€ê¸°ë¥¼ ì‹œì¼œë†“ì•˜ìœ¼ë¯€ë¡œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¹„ì›Œì¤€ë‹¤.
 				(*iter)->m_SlaveObject.clear();
 
 				iter = m_ObjList[i].erase(iter);
@@ -179,12 +179,12 @@ void CScene::PostUpdate(float DeltaTime)
 		}
 	}
 
-	//UI ¾÷µ¥ÀÌÆ®
+	//UI ì—…ë°ì´íŠ¸
 	{
 		auto iter = m_vecWidgetWindow.begin();
 		auto iterEnd = m_vecWidgetWindow.end();
 
-		//¿ì¼± ¿ø¼Ò°¡ 2°³ ÀÌ»óÀÏ °æ¿ì Zorder ¼øÀ¸·Î Á¤·ÄºÎÅÍ ÇØÁØ´Ù.
+		//ìš°ì„  ì›ì†Œê°€ 2ê°œ ì´ìƒì¼ ê²½ìš° Zorder ìˆœìœ¼ë¡œ ì •ë ¬ë¶€í„° í•´ì¤€ë‹¤.
 		if (m_vecWidgetWindow.size() > 1)
 		{
 			std::sort(iter, iterEnd, CScene::SortWidgetWindow);
@@ -208,7 +208,7 @@ void CScene::PostUpdate(float DeltaTime)
 			{
 				(*iter)->PostUpdate(DeltaTime);
 
-				//PostUpdate°¡ ³¡³­ À§Á¬À©µµ¿ìµéÀº Ãæµ¹ °Ë»ç ´ë±â¿­¿¡ Ãß°¡
+				//PostUpdateê°€ ëë‚œ ìœ„ì ¯ìœˆë„ìš°ë“¤ì€ ì¶©ëŒ ê²€ì‚¬ ëŒ€ê¸°ì—´ì— ì¶”ê°€
 				if ((*iter)->GetCheckCollide())
 					m_Collision->m_vecWidgetWindow.push_back(*iter);
 			}
@@ -235,7 +235,7 @@ void CScene::Render(HDC hDC, float DeltaTime)
 
 		while (iter != iterEnd)
 		{
-			//Á¦°Å´Â ¸ğµÎ Update()¿¡¼­ °ü¸®ÇÔ. ¿©±ä ±×³É ³ÀµĞ´Ù.
+			//ì œê±°ëŠ” ëª¨ë‘ Update()ì—ì„œ ê´€ë¦¬í•¨. ì—¬ê¸´ ê·¸ëƒ¥ ëƒ…ë‘”ë‹¤.
 			if (!(*iter)->GetActive())
 			{
 				++iter;
@@ -256,7 +256,7 @@ void CScene::Render(HDC hDC, float DeltaTime)
 	}
 
 
-	//UI ·»´õ. PostUpdate¿¡¼­ ZOrder ³»¸²Â÷¼øÀ¸·Î Á¤·ÄÇßÀ¸¹Ç·Î ¿ª¼øÀ¸·Î Ãâ·ÂÇÑ´Ù.
+	//UI ë Œë”. PostUpdateì—ì„œ ZOrder ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆìœ¼ë¯€ë¡œ ì—­ìˆœìœ¼ë¡œ ì¶œë ¥í•œë‹¤.
 	{
 		auto iter = m_vecWidgetWindow.rbegin();
 		auto iterEnd = m_vecWidgetWindow.rend();
@@ -379,9 +379,9 @@ bool CScene::ChangeRenderLayer(CGameObject* Obj, ERenderLayer SrcLayer, ERenderL
 	{
 		if ((*iter) == Obj)
 		{
-			Temp = *iter;	//ÁÖ¼Ò ¹Ş¾Æ¼­
-			m_ObjList[(int)DestLayer].push_back(Temp);//»õ ·¹ÀÌ¾î¿¡ »ğÀÔ
-			m_ObjList[(int)SrcLayer].erase(iter);	//ÇØ´ç ¸®½ºÆ®´Â Á¦°Å ÈÄ
+			Temp = *iter;	//ì£¼ì†Œ ë°›ì•„ì„œ
+			m_ObjList[(int)DestLayer].push_back(Temp);//ìƒˆ ë ˆì´ì–´ì— ì‚½ì…
+			m_ObjList[(int)SrcLayer].erase(iter);	//í•´ë‹¹ ë¦¬ìŠ¤íŠ¸ëŠ” ì œê±° í›„
 
 			return true;
 		}
