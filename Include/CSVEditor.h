@@ -1,5 +1,6 @@
 #include "GameInfo.h"
 
+//출처: https://kukuta.tistory.com/216
 class CCSVEditor
 {
 public:
